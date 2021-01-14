@@ -2,22 +2,15 @@ package com.jacob.mips.models.instructions;
 
 import com.jacob.mips.models.Word32;
 
-public class LoadWord implements IType {
-
-	private final Word32 instruction;
+public class LoadWord extends IType {
 
 	public LoadWord(Word32 instruction) {
-		this.instruction = instruction;
+		super(instruction);
 	}
 
 	@Override
-	public void getSubInstructionSequence() {
+	public void getExecutionSequence() {
 
 
-	}
-
-	@Override
-	public Word32 getInstructionWord() {
-		return instruction;
 	}
 }

@@ -1,27 +1,35 @@
 package com.jacob.mips.models.instructions;
 
+import com.jacob.mips.models.Word32;
+
 import java.util.BitSet;
 
-public interface IType extends Instruction{
+public abstract class IType implements Instruction {
 
-	default InstructionTypes getInstructionType() {
+	protected final Word32 instruction;
+
+	protected IType(Word32 instruction) {
+		this.instruction = instruction;
+	}
+
+	public InstructionTypes getInstructionType() {
 		return InstructionTypes.I_TYPE;
 	}
 
-	default BitSet getOpCode() {
-		return getInstructionWord().getBitsInRange(0, 6);
+	protected BitSet getOpCode() {
+		return instruction.getBitsInRange(0, 6);
 	}
 
-	default BitSet getRS() {
-		return this.getInstructionWord().getBitsInRange(6, 11);
+	protected BitSet getRS() {
+		return instruction.getBitsInRange(6, 11);
 	}
 
-	default BitSet getRT() {
-		return getInstructionWord().getBitsInRange(11, 16);
+	protected BitSet getRT() {
+		return instruction.getBitsInRange(11, 16);
 	}
 
-	default BitSet getImmediate() {
-		return getInstructionWord().getBitsInRange(16, 32);
+	protected BitSet getImmediate() {
+		return instruction.getBitsInRange(16, 32);
 	}
 
 }
