@@ -24,4 +24,8 @@ public class Word32 {
 	public BitSet getWord() {
 		return word;
 	}
+
+	public BitSet getBitsInRange(int start, int end) {
+		return word.get(start, end);
+	}
 }

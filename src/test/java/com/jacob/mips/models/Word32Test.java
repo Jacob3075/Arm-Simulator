@@ -25,8 +25,4 @@ class Word32Test {
 
 	}
 
-	@Test
-	public void getBitValuesInRange() {
-
-	}
 }

@@ -1,5 +1,7 @@
 package com.jacob.mips.models;
 
+import com.jacob.mips.models.instructions.Instruction;
+
 import java.util.Optional;
 
 public class ProgramCounter {
