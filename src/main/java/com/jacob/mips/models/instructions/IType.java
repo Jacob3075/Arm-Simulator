@@ -17,19 +17,19 @@ public abstract class IType implements Instruction {
 	}
 
 	protected BitSet getOpCode() {
-		return instruction.getBitsInRange(0, 6);
+		return instruction.getBitsInRange(26, 32);
 	}
 
 	protected BitSet getRS() {
-		return instruction.getBitsInRange(6, 11);
+		return instruction.getBitsInRange(21, 26);
 	}
 
 	protected BitSet getRT() {
-		return instruction.getBitsInRange(11, 16);
+		return instruction.getBitsInRange(16, 21);
 	}
 
 	protected BitSet getImmediate() {
-		return instruction.getBitsInRange(16, 32);
+		return instruction.getBitsInRange(0, 16);
 	}
 
 }
