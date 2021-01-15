@@ -1,6 +1,7 @@
 package com.jacob.mips.models;
 
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +26,16 @@ public class RegisterFile {
 		return words.get(location);
 	}
 
-	public List<Word32> updateWordAt(int location, Word32 newWord) {
+	public Word32 getWordAt(BitSet location) {
+		return this.getWordAt((int) location.toLongArray()[0]);
+	}
+
+	public RegisterFile updateWordAt(int location, Word32 newWord) {
 		words.set(location, newWord);
-		return words;
+		return this;
+	}
+
+	public RegisterFile updateWordAt(BitSet location, Word32 newWord) {
+		return this.updateWordAt((int) location.toLongArray()[0], newWord);
 	}
 }

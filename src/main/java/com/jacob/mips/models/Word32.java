@@ -28,4 +28,10 @@ public class Word32 {
 	public BitSet getBitsInRange(int start, int end) {
 		return word.get(start, end);
 	}
+
+	public BitSet add(BitSet immediateValue) {
+		return BitSet.valueOf(new long[]{
+				word.toLongArray()[0] + immediateValue.toLongArray()[0]
+		});
+	}
 }

@@ -1,6 +1,7 @@
 package com.jacob.mips.models;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 
 public class MemoryArray {
@@ -16,6 +17,10 @@ public class MemoryArray {
 
 	public Word32 readWordAt(int location) {
 		return memory.get(location);
+	}
+
+	public Word32 readWordAt(BitSet location) {
+		return this.readWordAt((int) location.toLongArray()[0]);
 	}
 
 	public MemoryArray writeWordTo(int location, Word32 word32) {
