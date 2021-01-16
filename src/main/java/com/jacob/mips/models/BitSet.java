@@ -1,40 +1,104 @@
 package com.jacob.mips.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.lang.Integer.toBinaryString;
 
 public class BitSet {
-	private final List<Boolean> bits;
-
-	public BitSet(Boolean[] bits) {
-		if (bits.length > 32) {
-			this.bits = Arrays.asList(new Boolean[32]);
-		} else {
-			this.bits = Arrays.asList(bits);
-		}
-	}
+	private final ArrayList<Boolean> bits = new ArrayList<>();
 
 	public BitSet() {
-		this.bits = Arrays.asList(new Boolean[32]);
 	}
 
-	public static BitSet fromInt(int i) {
-		return null;
+	public BitSet(Boolean[] bits) {
+		List<Boolean> bitList = Arrays.asList(bits);
+		Collections.reverse(bitList);
+		this.bits.addAll(bitList);
+
+	}
+
+	public BitSet(List<Boolean> bits) {
+		Collections.reverse(bits);
+		this.bits.addAll(bits);
+	}
+
+	public static BitSet fromInt(int intValue) {
+		List<Character> characterList = new ArrayList<>();
+		for (char c : toBinaryString(intValue).toCharArray()) {
+			characterList.add(c);
+		}
+
+		List<Boolean> booleanArray = characterList.stream()
+		                                          .map(Object::toString)
+		                                          .map(charValue -> charValue.equals("1"))
+		                                          .collect(Collectors.toList());
+
+		return new BitSet(booleanArray);
+	}
+
+	public BitSet signExtendTo(int finalLength) {
+		int       lastIndex = this.bits.size() - 1;
+		Boolean   fillValue = this.bits.get(lastIndex);
+		Boolean[] integers  = new Boolean[finalLength - lastIndex - 1];
+		Arrays.fill(integers, fillValue);
+		this.bits.addAll(Arrays.asList(integers));
+
+		return this;
 	}
 
 	public int toInt() {
-		return 0;
+		return Integer.parseInt(this.toString(), 2);
 	}
 
 	public int size() {
-		return 0;
+		return this.bits.size();
+	}
+
+	public Boolean getBit(int location) {
+		return this.bits.get(location);
 	}
 
 	public BitSet get(int start, int end) {
-		return null;
+		return new BitSet(this.bits.subList(start, end));
 	}
 
-	public void set(int i, int i1, boolean b) {
+	public BitSet set(int location) {
+		if (location >= this.bits.size()) {
+			Boolean[] booleans = new Boolean[location - this.bits.size() + 1];
+			Arrays.fill(booleans, false);
+			this.bits.addAll(Arrays.asList(booleans));
+		}
+		this.bits.set(location, true);
+		return this;
+	}
 
+	public BitSet set(int start, int end, Boolean value) {
+		if (end < this.bits.size()) {
+			for (int i = start; i < end; i++) {
+				this.bits.set(i, value);
+			}
+		} else {
+			for (int i = start; i < end; i++) {
+				if (i < this.bits.size()) {
+					this.bits.set(i, value);
+				} else {
+					this.bits.add(value);
+				}
+			}
+		}
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		String string = this.bits.stream()
+		                          .map(boolValue -> ((boolean) boolValue) ? "1" : "0")
+		                          .collect(Collectors.joining(""));
+
+		return new StringBuilder(string).reverse().toString();
 	}
 }

@@ -10,8 +10,7 @@ import com.jacob.mips.models.Word32;
 public class SignExtendImmediate implements SubInstruction {
 	private final Word32 immediate;
 	public SignExtendImmediate(BitSet immediate) {
-		immediate.set(16, 32, false);
-		this.immediate = new Word32(immediate);
+		this.immediate = new Word32(immediate.set(16, 32, false));
 	}
 
 	@Override
