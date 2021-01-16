@@ -1,10 +1,10 @@
 package com.jacob.mips.executors;
 
 import com.jacob.mips.executors.sub_instruction.SubInstruction;
+import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.Word32;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.List;
 
 public class InstructionExecutorBuilder {

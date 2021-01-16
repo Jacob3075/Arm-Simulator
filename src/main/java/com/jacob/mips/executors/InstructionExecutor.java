@@ -1,13 +1,13 @@
 package com.jacob.mips.executors;
 
 import com.jacob.mips.executors.sub_instruction.SubInstruction;
+import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.MemoryArray;
 import com.jacob.mips.models.RegisterFile;
 import com.jacob.mips.models.Word32;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 
 @Getter
 public class InstructionExecutor {
@@ -29,7 +29,7 @@ public class InstructionExecutor {
 		this.signExtendedImmediate = builder.signExtendedImmediate;
 	}
 
-	public InstructionExecutor executeNextInstruction(MemoryArray memoryArray, RegisterFile registerFile) {
+	public InstructionExecutor executeNextSubInstruction(MemoryArray memoryArray, RegisterFile registerFile) {
 		SubInstruction subInstruction = subInstructions.remove(0);
 
 		return subInstruction.run(this, registerFile, memoryArray);

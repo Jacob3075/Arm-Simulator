@@ -1,11 +1,10 @@
 package com.jacob.mips.executors.sub_instruction;
 
-import com.jacob.mips.executors.InstructionExecutorBuilder;
 import com.jacob.mips.executors.InstructionExecutor;
+import com.jacob.mips.executors.InstructionExecutorBuilder;
+import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.MemoryArray;
 import com.jacob.mips.models.RegisterFile;
-
-import java.util.BitSet;
 
 import static com.jacob.mips.executors.sub_instruction.SubInstructionTypes.COMPUTE_MEMORY_ADDRESS;
 

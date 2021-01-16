@@ -1,8 +1,8 @@
 package com.jacob.mips.models.instructions;
 
+import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.Word32;
 
-import java.util.BitSet;
 
 public abstract class IType implements Instruction {
 

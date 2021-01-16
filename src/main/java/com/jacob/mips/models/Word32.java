@@ -2,20 +2,18 @@ package com.jacob.mips.models;
 
 import lombok.ToString;
 
-import java.util.BitSet;
-
 @ToString
 public class Word32 {
 
 	private final BitSet word;
 
 	public Word32() {
-		this.word = new BitSet(32);
+		this.word = new BitSet();
 	}
 
 	public Word32(BitSet word) {
 		if (word.size() > 32) {
-			this.word = new BitSet(32);
+			this.word = new BitSet();
 		} else {
 			this.word = word;
 		}
@@ -30,8 +28,6 @@ public class Word32 {
 	}
 
 	public BitSet add(BitSet immediateValue) {
-		return BitSet.valueOf(new long[]{
-				word.toLongArray()[0] + immediateValue.toLongArray()[0]
-		});
+		return BitSet.fromInt(word.toInt() + immediateValue.toInt());
 	}
 }
