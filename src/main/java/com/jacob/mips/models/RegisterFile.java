@@ -10,7 +10,7 @@ public class RegisterFile {
 	public RegisterFile() {
 		words = Arrays.stream(new Word32[32])
 		              .map(nullObj -> new Word32())
-		              .collect(Collectors.toUnmodifiableList());
+		              .collect(Collectors.toList());
 	}
 
 	public RegisterFile(List<Word32> words) {
