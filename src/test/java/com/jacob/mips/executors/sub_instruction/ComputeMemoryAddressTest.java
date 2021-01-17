@@ -1,5 +1,6 @@
 package com.jacob.mips.executors.sub_instruction;
 
+import com.jacob.mips.executors.ExecutionEnvironment;
 import com.jacob.mips.executors.InstructionExecutor;
 import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.MemoryArray;
@@ -26,13 +27,17 @@ class ComputeMemoryAddressTest {
 
 		var computeMemoryAddress = new ComputeMemoryAddress(BitSet.fromInt(intValue2));
 
-		var instructionExecutor = computeMemoryAddress.run(
+		var executionEnvironment = new ExecutionEnvironment(
 				mockInstructionExecutor,
 				mockRegisterFile,
 				mockMemoryArray
 		);
+		executionEnvironment = computeMemoryAddress.run(executionEnvironment);
 
-		assertEquals(intValue1 + intValue2, instructionExecutor.getDestinationRegister().toInt());
+		assertEquals(
+				intValue1 + intValue2,
+				executionEnvironment.getInstructionExecutor().getDestinationRegister().toInt()
+		);
 
 	}
 }

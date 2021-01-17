@@ -1,5 +1,6 @@
 package com.jacob.mips.executors.sub_instruction;
 
+import com.jacob.mips.executors.ExecutionEnvironment;
 import com.jacob.mips.executors.InstructionExecutor;
 import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.MemoryArray;
@@ -22,19 +23,20 @@ class ReadFromMemoryTest {
 		int intValue2 = 50;
 
 		BitSet bitSet = BitSet.fromInt(10);
-		Word32 value = Word32.fromInt(intValue2);
+		Word32 value  = Word32.fromInt(intValue2);
 
 		when(mockInstructionExecutor.getDestinationRegister()).thenReturn(bitSet);
 		when(mockMemoryArray.readWordAt(bitSet)).thenReturn(value);
 
 		var readFromMemory = new ReadFromMemory();
 
-		var instructionExecutor = readFromMemory.run(
+		var executionEnvironment = new ExecutionEnvironment(
 				mockInstructionExecutor,
 				mockRegisterFile,
 				mockMemoryArray
 		);
+		executionEnvironment = readFromMemory.run(executionEnvironment);
 
-		assertEquals(value, instructionExecutor.getNewWordToWrite());
+		assertEquals(value, executionEnvironment.getInstructionExecutor().getNewWordToWrite());
 	}
 }

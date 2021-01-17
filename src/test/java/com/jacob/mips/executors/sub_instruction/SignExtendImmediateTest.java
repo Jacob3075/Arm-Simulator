@@ -1,5 +1,6 @@
 package com.jacob.mips.executors.sub_instruction;
 
+import com.jacob.mips.executors.ExecutionEnvironment;
 import com.jacob.mips.executors.InstructionExecutorBuilder;
 import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.MemoryArray;
@@ -20,12 +21,16 @@ class SignExtendImmediateTest {
 		BitSet bitSet              = BitSet.fromInt(intValue);
 		var    signExtendImmediate = new SignExtendImmediate(bitSet);
 
-		var instructionExecutor = signExtendImmediate.run(
+		var executionEnvironment = new ExecutionEnvironment(
 				new InstructionExecutorBuilder().build(),
 				mockRegisterFile,
 				mockMemoryArray
 		);
+		executionEnvironment = signExtendImmediate.run(executionEnvironment);
 
-		assertEquals(intValue, instructionExecutor.getSignExtendedImmediate().toInt());
+		assertEquals(
+				intValue,
+				executionEnvironment.getInstructionExecutor().getSignExtendedImmediate().toInt()
+		);
 	}
 }
