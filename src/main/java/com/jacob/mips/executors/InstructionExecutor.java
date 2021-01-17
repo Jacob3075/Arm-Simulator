@@ -29,10 +29,10 @@ public class InstructionExecutor {
 		this.signExtendedImmediate = builder.signExtendedImmediate;
 	}
 
-	public InstructionExecutor executeNextSubInstruction(MemoryArray memoryArray, RegisterFile registerFile) {
+	public ExecutionEnvironment executeNextSubInstruction(MemoryArray memoryArray, RegisterFile registerFile) {
 		SubInstruction subInstruction = subInstructions.remove(0);
 
-		return subInstruction.run(this, registerFile, memoryArray);
+		return subInstruction.run(new ExecutionEnvironment(this, registerFile, memoryArray));
 	}
 
 }

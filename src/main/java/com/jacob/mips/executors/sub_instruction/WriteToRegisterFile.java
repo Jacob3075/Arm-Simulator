@@ -1,5 +1,6 @@
 package com.jacob.mips.executors.sub_instruction;
 
+import com.jacob.mips.executors.ExecutionEnvironment;
 import com.jacob.mips.executors.InstructionExecutor;
 import com.jacob.mips.models.BitSet;
 import com.jacob.mips.models.MemoryArray;
@@ -20,9 +21,20 @@ public class WriteToRegisterFile implements SubInstruction {
 	}
 
 	@Override
-	public InstructionExecutor run(
-			InstructionExecutor instructionExecutor, RegisterFile registerFile, MemoryArray memoryArray) {
-		registerFile.updateWordAt(destinationAddress, instructionExecutor.getNewWordToWrite());
-		return instructionExecutor;
+	public ExecutionEnvironment run(ExecutionEnvironment executionEnvironment) {
+
+		MemoryArray         memoryArray         = executionEnvironment.getMemoryArray();
+		RegisterFile        registerFile        = executionEnvironment.getRegisterFile();
+		InstructionExecutor instructionExecutor = executionEnvironment.getInstructionExecutor();
+
+		var updatedRegisterFile = registerFile.updateWordAt(
+				destinationAddress,
+				instructionExecutor.getNewWordToWrite()
+		);
+		return new ExecutionEnvironment(
+				instructionExecutor,
+				updatedRegisterFile,
+				memoryArray
+		);
 	}
 }

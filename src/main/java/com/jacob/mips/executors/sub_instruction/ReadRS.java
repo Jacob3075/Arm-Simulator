@@ -1,5 +1,6 @@
 package com.jacob.mips.executors.sub_instruction;
 
+import com.jacob.mips.executors.ExecutionEnvironment;
 import com.jacob.mips.executors.InstructionExecutor;
 import com.jacob.mips.executors.InstructionExecutorBuilder;
 import com.jacob.mips.models.BitSet;
@@ -22,16 +23,20 @@ public class ReadRS implements SubInstruction {
 	}
 
 	@Override
-	public InstructionExecutor run(
-			InstructionExecutor instructionExecutor,
-			RegisterFile registerFile, MemoryArray memoryArray) {
+	public ExecutionEnvironment run(ExecutionEnvironment executionEnvironment) {
+
+		MemoryArray         memoryArray         = executionEnvironment.getMemoryArray();
+		RegisterFile        registerFile        = executionEnvironment.getRegisterFile();
+		InstructionExecutor instructionExecutor = executionEnvironment.getInstructionExecutor();
 
 		Word32 sourceRegister = registerFile.getWordAt(sourceAddress);
-
-		return new InstructionExecutorBuilder()
-				       .using(instructionExecutor)
-				       .setSourceRegister1(sourceRegister)
-				       .build();
-
+		return new ExecutionEnvironment(
+				new InstructionExecutorBuilder()
+						.using(instructionExecutor)
+						.setSourceRegister1(sourceRegister)
+						.build(),
+				registerFile,
+				memoryArray
+		);
 	}
 }

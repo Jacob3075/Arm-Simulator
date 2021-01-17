@@ -1,5 +1,6 @@
 package com.jacob.mips.executors.sub_instruction;
 
+import com.jacob.mips.executors.ExecutionEnvironment;
 import com.jacob.mips.executors.InstructionExecutor;
 import com.jacob.mips.executors.InstructionExecutorBuilder;
 import com.jacob.mips.models.BitSet;
@@ -21,14 +22,20 @@ public class ComputeMemoryAddress implements SubInstruction {
 	}
 
 	@Override
-	public InstructionExecutor run(
-			InstructionExecutor instructionExecutor, RegisterFile registerFile, MemoryArray memoryArray) {
+	public ExecutionEnvironment run(ExecutionEnvironment executionEnvironment) {
+
+		MemoryArray         memoryArray         = executionEnvironment.getMemoryArray();
+		RegisterFile        registerFile        = executionEnvironment.getRegisterFile();
+		InstructionExecutor instructionExecutor = executionEnvironment.getInstructionExecutor();
 
 		BitSet destinationRegister = instructionExecutor.getSourceRegister1().add(immediate);
-		return new InstructionExecutorBuilder()
-				       .using(instructionExecutor)
-				       .setDestinationRegister(destinationRegister)
-				       .build();
-
+		return new ExecutionEnvironment(
+				new InstructionExecutorBuilder()
+						.using(instructionExecutor)
+						.setDestinationRegister(destinationRegister)
+						.build(),
+				registerFile,
+				memoryArray
+		);
 	}
 }
