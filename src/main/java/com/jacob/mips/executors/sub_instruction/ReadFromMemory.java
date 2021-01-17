@@ -18,8 +18,8 @@ public class ReadFromMemory implements SubInstruction {
 	@Override
 	public InstructionExecutor run(
 			InstructionExecutor instructionExecutor, RegisterFile registerFile, MemoryArray memoryArray) {
-		Word32 newWordToWrite = memoryArray.readWordAt(instructionExecutor.getDestinationRegister());
 
+		Word32 newWordToWrite = memoryArray.readWordAt(instructionExecutor.getDestinationRegister());
 		return new InstructionExecutorBuilder()
 				       .using(instructionExecutor)
 				       .setNewWordToWrite(newWordToWrite)

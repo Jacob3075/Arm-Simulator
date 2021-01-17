@@ -23,8 +23,8 @@ public class ComputeMemoryAddress implements SubInstruction {
 	@Override
 	public InstructionExecutor run(
 			InstructionExecutor instructionExecutor, RegisterFile registerFile, MemoryArray memoryArray) {
-		BitSet destinationRegister = instructionExecutor.getSourceRegister1().add(immediate);
 
+		BitSet destinationRegister = instructionExecutor.getSourceRegister1().add(immediate);
 		return new InstructionExecutorBuilder()
 				       .using(instructionExecutor)
 				       .setDestinationRegister(destinationRegister)
