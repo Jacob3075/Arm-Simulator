@@ -26,4 +26,8 @@ public class MemoryArray {
 		memory.set(location, word32);
 		return new MemoryArray(memory);
 	}
+
+	public MemoryArray writeWordTo(BitSet location, Word32 word32) {
+		return writeWordTo(location.toInt(), word32);
+	}
 }

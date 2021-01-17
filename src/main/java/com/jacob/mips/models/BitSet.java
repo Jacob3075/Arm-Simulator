@@ -1,5 +1,6 @@
 package com.jacob.mips.models;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +13,12 @@ public class BitSet {
 	private final ArrayList<Boolean> bits = new ArrayList<>();
 
 	public BitSet() {
+	}
+
+	public BitSet(int size) {
+		Boolean[] booleans = new Boolean[size];
+		Arrays.fill(booleans, false);
+		this.bits.addAll(Arrays.asList(booleans));
 	}
 
 	public BitSet(Boolean[] bits) {
@@ -42,16 +49,15 @@ public class BitSet {
 
 	public BitSet signExtendTo(int finalLength) {
 		int       lastIndex = this.bits.size() - 1;
-		Boolean   fillValue = this.bits.get(lastIndex);
 		Boolean[] integers  = new Boolean[finalLength - lastIndex - 1];
-		Arrays.fill(integers, fillValue);
+		Arrays.fill(integers, false);
 		this.bits.addAll(Arrays.asList(integers));
 
 		return this;
 	}
 
 	public int toInt() {
-		return Integer.parseInt(this.toString(), 2);
+		return new BigInteger(this.toString(), 2).intValue();
 	}
 
 	public int size() {
@@ -96,8 +102,8 @@ public class BitSet {
 	@Override
 	public String toString() {
 		String string = this.bits.stream()
-		                          .map(boolValue -> ((boolean) boolValue) ? "1" : "0")
-		                          .collect(Collectors.joining(""));
+		                         .map(boolValue -> ((boolean) boolValue) ? "1" : "0")
+		                         .collect(Collectors.joining(""));
 
 		return new StringBuilder(string).reverse().toString();
 	}

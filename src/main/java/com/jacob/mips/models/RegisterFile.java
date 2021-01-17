@@ -26,7 +26,7 @@ public class RegisterFile {
 	}
 
 	public Word32 getWordAt(BitSet location) {
-		return this.getWordAt((int) location.toInt());
+		return this.getWordAt(location.toInt());
 	}
 
 	public RegisterFile updateWordAt(int location, Word32 newWord) {
@@ -35,6 +35,6 @@ public class RegisterFile {
 	}
 
 	public RegisterFile updateWordAt(BitSet location, Word32 newWord) {
-		return this.updateWordAt((int) location.toInt(), newWord);
+		return this.updateWordAt(location.toInt(), newWord);
 	}
 }
