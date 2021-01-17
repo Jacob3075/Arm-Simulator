@@ -1,6 +1,7 @@
 package com.jacob.mips.models;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class RegisterFile {
 	}
 
 	public List<Word32> getStoredWords() {
-		return words;
+		return Collections.unmodifiableList(words);
 	}
 
 	public Word32 getWordAt(int location) {
