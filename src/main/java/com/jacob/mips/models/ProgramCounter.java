@@ -18,6 +18,6 @@ public class ProgramCounter {
 	}
 
 	public Optional<Instruction> getNextInstruction() {
-		return instructions.getInstructionAt(++currentInstruction);
+		return instructions.getInstructionAt(currentInstruction++);
 	}
 }

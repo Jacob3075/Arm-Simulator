@@ -31,7 +31,7 @@ public class Word32 {
 		return word.get(start, end);
 	}
 
-	public BitSet add(BitSet immediateValue) {
+	public BitSet add(Word32 immediateValue) {
 		return BitSet.fromInt(word.toInt() + immediateValue.toInt());
 	}
 

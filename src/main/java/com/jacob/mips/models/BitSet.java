@@ -47,6 +47,11 @@ public class BitSet {
 		return new BitSet(booleanArray);
 	}
 
+	public BitSet concat(BitSet bitSet) {
+		this.bits.addAll(bitSet.bits);
+		return this;
+	}
+
 	public BitSet signExtendTo(int finalLength) {
 		int       lastIndex = this.bits.size() - 1;
 		Boolean[] integers  = new Boolean[finalLength - lastIndex - 1];

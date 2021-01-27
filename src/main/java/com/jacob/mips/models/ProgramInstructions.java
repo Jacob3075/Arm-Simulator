@@ -25,4 +25,10 @@ public class ProgramInstructions {
 			return Optional.empty();
 		}
 	}
+
+	public ProgramInstructions addInstruction(Instruction instruction) {
+		this.instructions.add(instruction);
+		return this;
+	}
+
 }
