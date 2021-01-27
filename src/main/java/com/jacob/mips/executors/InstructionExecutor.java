@@ -32,7 +32,11 @@ public class InstructionExecutor {
 	public ExecutionEnvironment executeNextSubInstruction(MemoryArray memoryArray, RegisterFile registerFile) {
 		SubInstruction subInstruction = subInstructions.remove(0);
 
-		return subInstruction.run(new ExecutionEnvironment(this, registerFile, memoryArray));
+		return subInstruction.run(new ExecutionEnvironment(
+				this,
+				registerFile,
+				memoryArray
+		));
 	}
 
 }

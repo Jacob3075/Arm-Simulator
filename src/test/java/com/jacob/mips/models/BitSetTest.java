@@ -103,7 +103,6 @@ class BitSetTest {
 		assertTrue(bitSet5.getBit(2));
 
 		BitSet bitSet11 = BitSet.fromInt(11);
-		System.out.println("bitSet11 = " + bitSet11);
 		assertTrue(bitSet11.getBit(0));
 		assertTrue(bitSet11.getBit(1));
 		assertFalse(bitSet11.getBit(2));

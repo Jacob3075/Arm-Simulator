@@ -10,11 +10,6 @@ import com.jacob.mips.models.RegisterFile;
 import static com.jacob.mips.executors.sub_instruction.SubInstructionTypes.COMPUTE_MEMORY_ADDRESS;
 
 public class ComputeMemoryAddress implements SubInstruction {
-	private final BitSet immediate;
-
-	public ComputeMemoryAddress(BitSet immediate) {
-		this.immediate = immediate;
-	}
 
 	@Override
 	public SubInstructionTypes getSubInstructionType() {
@@ -28,7 +23,8 @@ public class ComputeMemoryAddress implements SubInstruction {
 		RegisterFile        registerFile        = executionEnvironment.getRegisterFile();
 		InstructionExecutor instructionExecutor = executionEnvironment.getInstructionExecutor();
 
-		BitSet destinationRegister = instructionExecutor.getSourceRegister1().add(immediate);
+		BitSet destinationRegister = instructionExecutor.getSourceRegister1()
+		                                                .add(instructionExecutor.getSignExtendedImmediate());
 		return new ExecutionEnvironment(
 				new InstructionExecutorBuilder()
 						.using(instructionExecutor)
