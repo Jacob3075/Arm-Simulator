@@ -17,10 +17,10 @@ class BitSetTest {
 		BitSet    bitSet1  = new BitSet(booleans);
 
 		assertEquals(4, bitSet1.size());
-		assertTrue(bitSet1.getBit(1));
-		assertTrue(bitSet1.getBit(3));
-		assertFalse(bitSet1.getBit(0));
-		assertFalse(bitSet1.getBit(2));
+		assertEquals(booleans[1], bitSet1.getBit(1));
+		assertEquals(booleans[3], bitSet1.getBit(3));
+		assertEquals(booleans[0], bitSet1.getBit(0));
+		assertEquals(booleans[2], bitSet1.getBit(2));
 	}
 
 	@Test
@@ -104,8 +104,8 @@ class BitSetTest {
 
 		BitSet bitSet11 = BitSet.fromInt(11);
 		assertTrue(bitSet11.getBit(0));
-		assertTrue(bitSet11.getBit(1));
-		assertFalse(bitSet11.getBit(2));
+		assertFalse(bitSet11.getBit(1));
+		assertTrue(bitSet11.getBit(2));
 		assertTrue(bitSet11.getBit(3));
 	}
 

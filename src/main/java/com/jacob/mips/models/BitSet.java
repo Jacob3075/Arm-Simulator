@@ -3,7 +3,6 @@ package com.jacob.mips.models;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,12 +22,10 @@ public class BitSet {
 
 	public BitSet(Boolean[] bits) {
 		List<Boolean> bitList = Arrays.asList(bits);
-		Collections.reverse(bitList);
 		this.bits.addAll(bitList);
 	}
 
 	public BitSet(List<Boolean> bits) {
-		Collections.reverse(bits);
 		this.bits.addAll(bits);
 	}
 
@@ -49,7 +46,6 @@ public class BitSet {
 	public BitSet concat(BitSet bitSet) {
 		ArrayList<Boolean> newBitSet = new ArrayList<>(bits);
 		newBitSet.addAll(bitSet.bits);
-		Collections.reverse(newBitSet);
 		return new BitSet(newBitSet);
 	}
 
@@ -107,10 +103,8 @@ public class BitSet {
 
 	@Override
 	public String toString() {
-		String string = this.bits.stream()
-		                         .map(boolValue -> ((boolean) boolValue) ? "1" : "0")
-		                         .collect(Collectors.joining(""));
-
-		return new StringBuilder(string).reverse().toString();
+		return this.bits.stream()
+		                .map(boolValue -> ((boolean) boolValue) ? "1" : "0")
+		                .collect(Collectors.joining(""));
 	}
 }
