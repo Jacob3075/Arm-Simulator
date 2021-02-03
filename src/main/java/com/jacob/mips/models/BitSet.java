@@ -25,7 +25,6 @@ public class BitSet {
 		List<Boolean> bitList = Arrays.asList(bits);
 		Collections.reverse(bitList);
 		this.bits.addAll(bitList);
-
 	}
 
 	public BitSet(List<Boolean> bits) {
@@ -48,8 +47,10 @@ public class BitSet {
 	}
 
 	public BitSet concat(BitSet bitSet) {
-		this.bits.addAll(bitSet.bits);
-		return this;
+		ArrayList<Boolean> newBitSet = new ArrayList<>(bits);
+		newBitSet.addAll(bitSet.bits);
+		Collections.reverse(newBitSet);
+		return new BitSet(newBitSet);
 	}
 
 	public BitSet signExtendTo(int finalLength) {

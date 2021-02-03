@@ -2,6 +2,8 @@ package com.jacob.mips.models;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BitSetTest {
@@ -52,7 +54,6 @@ class BitSetTest {
 		assertFalse(set4.getBit(6));
 		assertFalse(set4.getBit(7));
 		assertEquals(9, set4.size());
-
 	}
 
 	@Test
@@ -96,7 +97,6 @@ class BitSetTest {
 
 	@Test
 	void creatingFromInt() {
-
 		BitSet bitSet5 = BitSet.fromInt(5);
 		assertTrue(bitSet5.getBit(0));
 		assertFalse(bitSet5.getBit(1));
@@ -111,10 +111,26 @@ class BitSetTest {
 
 	@Test
 	void convertingToInt() {
-		BitSet    bitSet11 = new BitSet(new Boolean[]{true, false, true, true});
+		BitSet bitSet11 = new BitSet(new Boolean[]{true, false, true, true});
 		assertEquals(11, bitSet11.toInt());
 
 		BitSet bitSet10 = new BitSet(new Boolean[]{true, false, true, false});
 		assertEquals(10, bitSet10.toInt());
+	}
+
+	@Test
+	void concatMethod() {
+		BitSet bitSet1 = new BitSet(Arrays.asList(true, true, false, true, false, false));
+		BitSet bitSet2 = new BitSet(Arrays.asList(true, false, false, false, true, false));
+
+		BitSet concatedBitSet = bitSet1.concat(bitSet2);
+
+		assertEquals(bitSet1.getBit(0), concatedBitSet.getBit(0));
+		assertEquals(bitSet1.getBit(3), concatedBitSet.getBit(3));
+		assertEquals(bitSet2.getBit(7 - 6), concatedBitSet.getBit(7));
+		assertEquals(bitSet2.getBit(9 - 6), concatedBitSet.getBit(9));
+		assertEquals(bitSet2.getBit(11 - 6), concatedBitSet.getBit(11));
+		assertEquals(6, bitSet1.size());
+		assertEquals(bitSet1.size() + bitSet2.size(), concatedBitSet.size());
 	}
 }
