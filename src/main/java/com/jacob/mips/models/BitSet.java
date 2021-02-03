@@ -51,11 +51,13 @@ public class BitSet {
 
 	public BitSet signExtendTo(int finalLength) {
 		int       lastIndex = this.bits.size() - 1;
-		Boolean[] integers  = new Boolean[finalLength - lastIndex - 1];
-		Arrays.fill(integers, false);
-		this.bits.addAll(Arrays.asList(integers));
+		Boolean[] fillBits  = new Boolean[finalLength - lastIndex - 1];
+		Arrays.fill(fillBits, false);
 
-		return this;
+		ArrayList<Boolean> newBitList = new ArrayList<>(Arrays.asList(fillBits));
+		newBitList.addAll(bits);
+
+		return new BitSet(newBitList);
 	}
 
 	public int toInt() {

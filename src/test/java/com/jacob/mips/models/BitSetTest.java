@@ -25,14 +25,15 @@ class BitSetTest {
 
 	@Test
 	void signExtension() {
-		Boolean[] booleans = {true, true, true, false};
-		BitSet    bitSet   = new BitSet(booleans);
+		BitSet bitSet = BitSet.fromInt(5);
 
 		BitSet signExtendTo8BitSet = bitSet.signExtendTo(8);
 		assertEquals(8, signExtendTo8BitSet.size());
+		assertEquals(5, bitSet.toInt());
 
 		BitSet signExtendTo32BitSet = signExtendTo8BitSet.signExtendTo(32);
 		assertEquals(32, signExtendTo32BitSet.size());
+		assertEquals(5, bitSet.toInt());
 	}
 
 	@Test
