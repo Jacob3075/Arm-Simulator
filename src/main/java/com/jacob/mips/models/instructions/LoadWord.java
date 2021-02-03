@@ -23,6 +23,11 @@ public class LoadWord extends IType {
 				       .build();
 	}
 
+	@Override
+	public String toString() {
+		return instruction.toString();
+	}
+
 	public static class Builder {
 
 		private BitSet rS;
@@ -30,9 +35,10 @@ public class LoadWord extends IType {
 		private BitSet immediate;
 
 		public LoadWord build() {
-			BitSet combinedBitSet = new BitSet().concat(rS)
-			                                    .concat(rT)
-			                                    .concat(immediate);
+			BitSet combinedBitSet = new BitSet().concat(BitSet.fromInt(35).signExtendTo(6))
+			                                    .concat(rS.signExtendTo(5))
+			                                    .concat(rT.signExtendTo(5))
+			                                    .concat(immediate.signExtendTo(16));
 
 			return new LoadWord(new Word32(combinedBitSet));
 		}
