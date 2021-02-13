@@ -20,7 +20,7 @@ public class InstructionExecutor {
 
 	private final ArrayList<SubInstruction> subInstructions;
 
-	public InstructionExecutor(InstructionExecutorBuilder builder) {
+	 InstructionExecutor(InstructionExecutorBuilder builder) {
 		this.subInstructions = builder.subInstructions;
 		this.sourceRegister1 = builder.sourceRegister1;
 		this.sourceRegister2 = builder.sourceRegister2;

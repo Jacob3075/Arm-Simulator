@@ -8,7 +8,7 @@ import com.jacob.mips.models.Word32;
 
 public class LoadWord extends IType {
 
-	public LoadWord(Word32 instruction) {
+	private LoadWord(Word32 instruction) {
 		super(instruction);
 	}
 
