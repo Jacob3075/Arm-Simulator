@@ -10,9 +10,11 @@ internal class WordTest {
     @Test
     internal fun `create word from int value`() {
         val intValue = 200
-        val word: Word = Word.from(intValue)
+        val wordSize = Word.WordSize.BIT32
 
-        word.bitArray.size `should be equal to` 32
+        val word: Word = Word.from(intValue, wordSize)
+
+        word.bitArray.size `should be equal to` wordSize.wordSize
 
         val fromWord: Int = word.toInt()
         fromWord `should be equal to` intValue
