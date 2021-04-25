@@ -10,3 +10,6 @@ fun Int.toBinaryString(length: Int): String {
 }
 
 fun Boolean.toInt() = if (this) 1 else 0
+
+fun <T> List<T?>.padListTill(newLength: Int): MutableList<T?> =
+    List(maxOf(newLength, size)) { index -> getOrNull(index) }.toMutableList()

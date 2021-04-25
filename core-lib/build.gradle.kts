@@ -13,6 +13,8 @@ dependencies {
 
     testImplementation ("org.amshove.kluent:kluent:1.65")
     testImplementation ("org.jetbrains.kotlin:kotlin-test-junit:1.4.32")
+
+    testImplementation("io.mockk:mockk:1.10.6")
 }
 
 tasks.test {
