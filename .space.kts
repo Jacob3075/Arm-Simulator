@@ -6,7 +6,6 @@
 
 job("Alternate day buildsat 10:00") {
     startOn {
-        repository = "Arm-Sim"
         gitPush { enabled = false }
         schedule { cron("0 10 * * */2") }
     }
