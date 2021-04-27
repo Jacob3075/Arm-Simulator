@@ -1,4 +1,4 @@
 
-rootProject.name = "ArmSimulator"
+rootProject.name = "Arm Simulator"
 
 include("core-lib")
