@@ -5,7 +5,7 @@ import com.jacob.core_lib.word.Word
 
 class CoreRegister(private val registerAddress: RegisterAddress) : Register {
 
-    var value: Word = Word(0)
+    private var value: Word = Word(0)
 
     override fun getRegisterAddress(): RegisterAddress {
         return registerAddress
@@ -13,6 +13,10 @@ class CoreRegister(private val registerAddress: RegisterAddress) : Register {
 
     override fun setRegisterValue(word: Word) {
         value = word
+    }
+
+    override fun getRegisterValue(): Word {
+        return value
     }
 
     override fun toString(): String {

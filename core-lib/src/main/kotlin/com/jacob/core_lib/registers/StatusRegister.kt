@@ -16,4 +16,8 @@ class StatusRegister : Register {
     override fun setRegisterValue(word: Word) {
         TODO("Not yet implemented")
     }
+
+    override fun getRegisterValue(): Word {
+        TODO("Not yet implemented")
+    }
 }
