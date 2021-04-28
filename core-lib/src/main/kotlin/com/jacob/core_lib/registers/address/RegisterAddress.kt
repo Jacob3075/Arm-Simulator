@@ -1,6 +1,6 @@
-package com.jacob.core_lib.register
+package com.jacob.core_lib.registers.address
 
-enum class RegisterAddress(private val address: Int) {
+enum class RegisterAddress(val address: Int) {
 
     REGISTER1(1),
     REGISTER2(2),
