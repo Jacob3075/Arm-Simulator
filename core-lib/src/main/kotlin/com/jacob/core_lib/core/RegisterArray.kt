@@ -1,10 +1,22 @@
 package com.jacob.core_lib.core
 
-import com.jacob.core_lib.register.*
-import com.jacob.core_lib.register.RegisterAddress.*
+import com.jacob.core_lib.registers.*
+import com.jacob.core_lib.registers.address.RegisterAddress
+import com.jacob.core_lib.registers.address.RegisterAddress.*
+import com.jacob.core_lib.word.ImmediateValue
 
 class RegisterArray {
-    val registers: List<Register> = listOf(
+    fun getRegisterAt(registerAddress: RegisterAddress): Register {
+        return registers.find { it.getRegisterAddress() == registerAddress }
+            ?: throw IllegalArgumentException("Invalid Register Address")
+    }
+
+    fun setValueAtRegister(registerAddress: RegisterAddress, immediateValue: ImmediateValue) {
+        val registerToUpdate = getRegisterAt(registerAddress)
+        registerToUpdate.setRegisterValue(immediateValue)
+    }
+
+    private val registers: List<Register> = listOf(
         CoreRegister(REGISTER1),
         CoreRegister(REGISTER2),
         CoreRegister(REGISTER3),
@@ -20,6 +32,7 @@ class RegisterArray {
         StackPointer(),
         LinkRegister(),
         ProgramCounter(),
+        StatusRegister(),
     )
 
 }
