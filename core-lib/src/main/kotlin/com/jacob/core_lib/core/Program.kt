@@ -1,24 +1,31 @@
 package com.jacob.core_lib.core
 
-import com.jacob.core_lib.instructions.Branch
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.registers.ProgramCounter
+import com.jacob.core_lib.instructions.Label as InstructionsLabel
 
 class Program(private val instructions: List<Instruction>) {
 
-    private val labels: ArrayList<Label> = ArrayList()
+    private val _labels: ArrayList<Label> = ArrayList()
+    val labels: List<Label>
+        get() = _labels
 
     init {
         instructions.forEachIndexed { index, instruction ->
-            if (instruction is Branch) {
-                labels.add(Label(instruction.labelName, index))
+            if (instruction is InstructionsLabel) {
+                _labels.add(Label(instruction.labelName, index))
             }
         }
     }
 
-    fun run(memoryArray: MemoryArray, registerArray: RegisterArray) {
-        instructions.forEach { instruction ->
-            instruction.execute(memoryArray, registerArray, labels)
-        }
+    fun getInstructionAt(programCounter: ProgramCounter): Instruction? {
+        val instruction: Instruction? = instructions.getOrNull(programCounter.nextInstructionAddress)
+        programCounter.nextInstruction()
+        return instruction
+    }
+
+    fun hasMoreInstructions(programCounter: ProgramCounter): Boolean {
+        return programCounter.nextInstructionAddress < instructions.size
     }
 
 }
