@@ -9,6 +9,7 @@ dependencies {
 
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testImplementation("org.junit.platform:junit-platform-commons:1.7.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
     testImplementation ("org.amshove.kluent:kluent:1.65")
