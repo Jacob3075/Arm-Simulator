@@ -1,24 +1,23 @@
 package com.jacob.core_lib.core
 
+import com.jacob.core_lib.instructions.Branch
 import com.jacob.core_lib.instructions.Instruction
 
-@Suppress("RedundantEmptyInitializerBlock")
 class Program(private val instructions: List<Instruction>) {
 
-    private val _labels: ArrayList<Label> = ArrayList()
-    val labels: List<Label> = _labels
+    private val labels: ArrayList<Label> = ArrayList()
 
     init {
-//        instructions.forEachIndexed { index, instruction ->
-//            if (instruction is Move) {
-//                _labels.add(Label(object : Any() {}, index))
-//            }
-//        }
+        instructions.forEachIndexed { index, instruction ->
+            if (instruction is Branch) {
+                labels.add(Label(instruction.labelName, index))
+            }
+        }
     }
 
     fun run(memoryArray: MemoryArray, registerArray: RegisterArray) {
         instructions.forEach { instruction ->
-            instruction.execute(memoryArray, registerArray)
+            instruction.execute(memoryArray, registerArray, labels)
         }
     }
 

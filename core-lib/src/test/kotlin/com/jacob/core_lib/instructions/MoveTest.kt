@@ -1,5 +1,6 @@
 package com.jacob.core_lib.instructions
 
+import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.registers.address.DestinationRegister
@@ -24,12 +25,13 @@ internal class MoveTest {
     @Test
     internal fun `executing instruction updates the register array`() {
         val memoryArray = mockk<MemoryArray>()
+        val labels = mockk<List<Label>>()
         val registerArray = RegisterArray()
         val immediateValue = ImmediateValue(20)
         val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_2)
 
         val moveInstruction = Move(destinationRegister, immediateValue)
-        moveInstruction.execute(memoryArray, registerArray)
+        moveInstruction.execute(memoryArray, registerArray, labels)
 
         registerArray.getRegisterAt(destinationRegister.registerAddress)
             .getRegisterValue() `should be equal to` immediateValue

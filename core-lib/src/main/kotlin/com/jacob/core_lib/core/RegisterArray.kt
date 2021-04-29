@@ -23,7 +23,8 @@ class RegisterArray {
 
     private val stackPointer = StackPointer()
     private val linkRegister = LinkRegister()
-    private val programCounter = ProgramCounter()
+    val statusRegister: StatusRegister = StatusRegister()
+    val programCounter = ProgramCounter()
 
     fun getRegisterAt(registerAddress: RegisterAddress): Register {
         return registers.find { it.getRegisterAddress() == registerAddress }
@@ -34,11 +35,4 @@ class RegisterArray {
         val registerToUpdate = getRegisterAt(registerAddress)
         registerToUpdate.setRegisterValue(immediateValue)
     }
-
-    fun updateProgramCounter(nextInstructionAddress: Int) {
-        programCounter.nextInstructionAddress = nextInstructionAddress
-    }
-
-    val statusRegister: StatusRegister = StatusRegister()
-
 }
