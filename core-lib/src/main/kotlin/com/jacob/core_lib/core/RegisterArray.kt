@@ -32,7 +32,8 @@ class RegisterArray {
         StackPointer(),
         LinkRegister(),
         ProgramCounter(),
-        StatusRegister(),
     )
+
+    val statusRegister: StatusRegister = StatusRegister()
 
 }

@@ -4,7 +4,7 @@ import com.jacob.core_lib.registers.address.RegisterAddress
 import com.jacob.core_lib.word.Word
 
 class ProgramCounter : Register {
-    val registerNumber: RegisterAddress = RegisterAddress.REGISTER15
+    val registerNumber: RegisterAddress = RegisterAddress.PROGRAMCOUNTER
     override fun getRegisterAddress(): RegisterAddress {
         TODO("Not yet implemented")
     }

@@ -20,6 +20,6 @@ class CoreRegister(private val registerAddress: RegisterAddress) : Register {
     }
 
     override fun toString(): String {
-        return "CoreRegister(registerAddress=$registerAddress)"
+        return "CoreRegister(registerAddress=$registerAddress, value=$value)"
     }
 }

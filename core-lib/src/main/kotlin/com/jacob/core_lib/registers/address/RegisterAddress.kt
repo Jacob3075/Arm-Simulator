@@ -14,9 +14,9 @@ enum class RegisterAddress(val address: Int) {
     REGISTER10(10),
     REGISTER11(11),
     REGISTER12(12),
-    REGISTER13(13),
-    REGISTER14(14),
-    REGISTER15(15),;
+    STACKPOINTER(13),
+    LINKREGISTER(14),
+    PROGRAMCOUNTER(15), ;
 
     override fun toString(): String {
         return "RegisterAddress(address=$address)"
