@@ -7,8 +7,7 @@ class Core(
     private val program: Program
 ) {
 
-    fun runProgram(): Unit {
+    fun runProgram() {
         program.run(memoryArray, registerArray)
-
     }
 }
