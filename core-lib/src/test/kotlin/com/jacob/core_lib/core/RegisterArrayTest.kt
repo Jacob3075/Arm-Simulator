@@ -11,7 +11,7 @@ internal class RegisterArrayTest {
     @Test
     internal fun `returns correct register`() {
         val registerArray = RegisterArray()
-        val registerAddress = RegisterAddress.REGISTER1
+        val registerAddress = RegisterAddress.REGISTER_1
         val registerAt = registerArray.getRegisterAt(registerAddress)
         registerAt.getRegisterAddress() shouldBeEqualTo registerAddress
     }
@@ -19,14 +19,14 @@ internal class RegisterArrayTest {
     @Test
     fun `update value at register`() {
         var registerArray = RegisterArray()
-        var registerAddress = RegisterAddress.REGISTER10
+        var registerAddress = RegisterAddress.REGISTER_10
         var immediateValue = ImmediateValue(50)
         registerArray.setValueAtRegister(registerAddress, immediateValue)
 
         registerArray.getRegisterAt(registerAddress).getRegisterValue() `should be equal to` immediateValue
 
         registerArray = RegisterArray()
-        registerAddress = RegisterAddress.REGISTER7
+        registerAddress = RegisterAddress.REGISTER_7
         immediateValue = ImmediateValue(23)
         registerArray.setValueAtRegister(registerAddress, immediateValue)
 

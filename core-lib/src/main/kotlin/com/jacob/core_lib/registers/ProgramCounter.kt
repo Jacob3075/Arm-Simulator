@@ -1,19 +1,12 @@
 package com.jacob.core_lib.registers
 
-import com.jacob.core_lib.registers.address.RegisterAddress
-import com.jacob.core_lib.word.Word
+class ProgramCounter {
+    var nextInstructionAddress: Int = 0
+        set(value) {
+            field = if (value < 0) field else value
+        }
 
-class ProgramCounter : Register {
-    val registerNumber: RegisterAddress = RegisterAddress.PROGRAMCOUNTER
-    override fun getRegisterAddress(): RegisterAddress {
-        TODO("Not yet implemented")
-    }
-
-    override fun setRegisterValue(word: Word) {
-        TODO("Not yet implemented")
-    }
-
-    override fun getRegisterValue(): Word {
-        TODO("Not yet implemented")
+    fun nextInstruction() {
+        nextInstructionAddress++
     }
 }

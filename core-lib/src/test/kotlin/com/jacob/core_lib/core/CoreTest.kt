@@ -29,8 +29,8 @@ internal class CoreTest {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
 
-        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER1)
-        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER2)
+        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_1)
+        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_2)
         val immediateValue1 = ImmediateValue(10)
         val immediateValue2 = ImmediateValue(20)
 
@@ -49,15 +49,15 @@ internal class CoreTest {
         registerArray.getRegisterAt(destinationRegister2.registerAddress)
             .getRegisterValue() `should be equal to` immediateValue2
 
-        registerArray.getRegisterAt(RegisterAddress.REGISTER3).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER4).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER5).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER6).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER7).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER8).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER9).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER10).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER11).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER12).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_4).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_7).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_8).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_9).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_10).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_11).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_12).getRegisterValue() `should be equal to` Word(0)
     }
 }

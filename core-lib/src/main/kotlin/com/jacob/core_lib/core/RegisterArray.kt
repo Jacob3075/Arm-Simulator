@@ -6,6 +6,25 @@ import com.jacob.core_lib.registers.address.RegisterAddress.*
 import com.jacob.core_lib.word.ImmediateValue
 
 class RegisterArray {
+    private val registers: List<Register> = listOf(
+        CoreRegister(REGISTER_1),
+        CoreRegister(REGISTER_2),
+        CoreRegister(REGISTER_3),
+        CoreRegister(REGISTER_4),
+        CoreRegister(REGISTER_5),
+        CoreRegister(REGISTER_6),
+        CoreRegister(REGISTER_7),
+        CoreRegister(REGISTER_8),
+        CoreRegister(REGISTER_9),
+        CoreRegister(REGISTER_10),
+        CoreRegister(REGISTER_11),
+        CoreRegister(REGISTER_12),
+    )
+
+    private val stackPointer = StackPointer()
+    private val linkRegister = LinkRegister()
+    private val programCounter = ProgramCounter()
+
     fun getRegisterAt(registerAddress: RegisterAddress): Register {
         return registers.find { it.getRegisterAddress() == registerAddress }
             ?: throw IllegalArgumentException("Invalid Register Address")
@@ -16,23 +35,9 @@ class RegisterArray {
         registerToUpdate.setRegisterValue(immediateValue)
     }
 
-    private val registers: List<Register> = listOf(
-        CoreRegister(REGISTER1),
-        CoreRegister(REGISTER2),
-        CoreRegister(REGISTER3),
-        CoreRegister(REGISTER4),
-        CoreRegister(REGISTER5),
-        CoreRegister(REGISTER6),
-        CoreRegister(REGISTER7),
-        CoreRegister(REGISTER8),
-        CoreRegister(REGISTER9),
-        CoreRegister(REGISTER10),
-        CoreRegister(REGISTER11),
-        CoreRegister(REGISTER12),
-        StackPointer(),
-        LinkRegister(),
-        ProgramCounter(),
-    )
+    fun updateProgramCounter(nextInstructionAddress: Int) {
+        programCounter.nextInstructionAddress = nextInstructionAddress
+    }
 
     val statusRegister: StatusRegister = StatusRegister()
 

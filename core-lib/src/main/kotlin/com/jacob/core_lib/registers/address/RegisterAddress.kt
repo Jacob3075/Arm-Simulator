@@ -2,21 +2,21 @@ package com.jacob.core_lib.registers.address
 
 enum class RegisterAddress(val address: Int) {
 
-    REGISTER1(1),
-    REGISTER2(2),
-    REGISTER3(3),
-    REGISTER4(4),
-    REGISTER5(5),
-    REGISTER6(6),
-    REGISTER7(7),
-    REGISTER8(8),
-    REGISTER9(9),
-    REGISTER10(10),
-    REGISTER11(11),
-    REGISTER12(12),
-    STACKPOINTER(13),
-    LINKREGISTER(14),
-    PROGRAMCOUNTER(15), ;
+    REGISTER_1(1),
+    REGISTER_2(2),
+    REGISTER_3(3),
+    REGISTER_4(4),
+    REGISTER_5(5),
+    REGISTER_6(6),
+    REGISTER_7(7),
+    REGISTER_8(8),
+    REGISTER_9(9),
+    REGISTER_10(10),
+    REGISTER_11(11),
+    REGISTER_12(12),
+    STACK_POINTER(13),
+    LINK_REGISTER(14),
+    PROGRAM_COUNTER(15), ;
 
     override fun toString(): String {
         return "RegisterAddress(address=$address)"

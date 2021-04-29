@@ -1,6 +1,6 @@
 package com.jacob.core_lib.core
 
-class Label(param: Any, index: Int) {
+class Label(val labelName: String, val index: Int) {
     init {
         TODO("Branch Label not done")
     }

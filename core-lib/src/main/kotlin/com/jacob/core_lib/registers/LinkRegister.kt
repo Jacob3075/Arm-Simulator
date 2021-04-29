@@ -5,7 +5,7 @@ import com.jacob.core_lib.word.Word
 
 class LinkRegister : Register {
 
-    val registerNumber: RegisterAddress = RegisterAddress.LINKREGISTER
+    val registerNumber: RegisterAddress = RegisterAddress.LINK_REGISTER
     override fun getRegisterAddress(): RegisterAddress {
         TODO("Not yet implemented")
     }
