@@ -19,4 +19,8 @@ open class Word(private val value: Int) {
     override fun hashCode(): Int {
         return value.hashCode()
     }
+
+    operator fun plus(otherWord: Word): Word {
+        return Word(value + otherWord.value)
+    }
 }

@@ -3,7 +3,7 @@ package com.jacob.core_lib.core
 import com.jacob.core_lib.registers.*
 import com.jacob.core_lib.registers.address.RegisterAddress
 import com.jacob.core_lib.registers.address.RegisterAddress.*
-import com.jacob.core_lib.word.ImmediateValue
+import com.jacob.core_lib.word.Word
 
 class RegisterArray {
     private val registers: List<Register> = listOf(
@@ -31,8 +31,8 @@ class RegisterArray {
             ?: throw IllegalArgumentException("Invalid Register Address")
     }
 
-    fun setValueAtRegister(registerAddress: RegisterAddress, immediateValue: ImmediateValue) {
+    fun setValueAtRegister(registerAddress: RegisterAddress, wordToStore: Word) {
         val registerToUpdate = getRegisterAt(registerAddress)
-        registerToUpdate.setRegisterValue(immediateValue)
+        registerToUpdate.setRegisterValue(wordToStore)
     }
 }
