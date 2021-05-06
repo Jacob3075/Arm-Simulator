@@ -11,24 +11,20 @@ interface Add : Instruction {
             destinationRegister: DestinationRegister,
             sourceRegister1: SourceRegister,
             sourceRegister2: SourceRegister,
-        ): AddRegister {
-            return AddRegister(
-                destinationRegister,
-                sourceRegister1,
-                sourceRegister2
-            )
-        }
+        ) = AddRegister(
+            destinationRegister,
+            sourceRegister1,
+            sourceRegister2
+        )
 
         fun of(
             destinationRegister: DestinationRegister,
             sourceRegister1: SourceRegister,
             immediateValue: ImmediateValue
-        ): Add {
-            return AddImmediate(
-                destinationRegister,
-                sourceRegister1,
-                immediateValue
-            )
-        }
+        ) = AddImmediate(
+            destinationRegister,
+            sourceRegister1,
+            immediateValue
+        )
     }
 }

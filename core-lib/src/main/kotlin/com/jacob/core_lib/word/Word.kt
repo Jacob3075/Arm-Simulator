@@ -1,9 +1,7 @@
 package com.jacob.core_lib.word
 
 open class Word(private val value: Int) {
-    override fun toString(): String {
-        return "Word(value=$value)"
-    }
+    override fun toString() = "Word(value=$value)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -17,11 +15,9 @@ open class Word(private val value: Int) {
         return true
     }
 
-    override fun hashCode(): Int {
-        return value.hashCode()
-    }
+    override fun hashCode() = value.hashCode()
 
-    operator fun plus(otherWord: Word): Word {
-        return Word(value + otherWord.value)
-    }
+    operator fun plus(otherWord: Word) = Word(value + otherWord.value)
+
+    operator fun minus(otherWord: Word) = Word(value - otherWord.value)
 }
