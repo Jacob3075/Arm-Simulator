@@ -4,6 +4,7 @@ import com.jacob.core_lib.instructions.Branch
 import com.jacob.core_lib.instructions.Label
 import com.jacob.core_lib.instructions.Move
 import com.jacob.core_lib.instructions.add.Add
+import com.jacob.core_lib.instructions.sub.Sub
 import com.jacob.core_lib.registers.address.DestinationRegister
 import com.jacob.core_lib.registers.address.RegisterAddress
 import com.jacob.core_lib.registers.address.SourceRegister
@@ -27,6 +28,26 @@ fun createAddInstruction(
     sourceRegister1: RegisterAddress,
     immediateValue: Int,
 ) = Add.of(
+    DestinationRegister(destinationRegister),
+    SourceRegister(sourceRegister1),
+    ImmediateValue(immediateValue)
+)
+
+fun createSubInstruction(
+    destinationRegister: RegisterAddress,
+    sourceRegister1: RegisterAddress,
+    sourceRegister2: RegisterAddress
+) = Sub.of(
+    DestinationRegister(destinationRegister),
+    SourceRegister(sourceRegister1),
+    SourceRegister(sourceRegister2)
+)
+
+fun createSubInstruction(
+    destinationRegister: RegisterAddress,
+    sourceRegister1: RegisterAddress,
+    immediateValue: Int
+) = Sub.of(
     DestinationRegister(destinationRegister),
     SourceRegister(sourceRegister1),
     ImmediateValue(immediateValue)
