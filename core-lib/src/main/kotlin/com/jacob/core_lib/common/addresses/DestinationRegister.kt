@@ -1,4 +1,4 @@
-package com.jacob.core_lib.registers.address
+package com.jacob.core_lib.common.addresses
 
 @JvmInline
 value class DestinationRegister(val registerAddress: RegisterAddress) {

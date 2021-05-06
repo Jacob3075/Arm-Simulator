@@ -1,6 +1,6 @@
 package com.jacob.core_lib.core
 
-import com.jacob.core_lib.registers.address.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.word.ImmediateValue
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.shouldBeEqualTo

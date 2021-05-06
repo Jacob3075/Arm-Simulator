@@ -1,8 +1,8 @@
 package com.jacob.core_lib.core
 
+import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddress.*
 import com.jacob.core_lib.registers.*
-import com.jacob.core_lib.registers.address.RegisterAddress
-import com.jacob.core_lib.registers.address.RegisterAddress.*
 import com.jacob.core_lib.word.Word
 
 class RegisterArray {

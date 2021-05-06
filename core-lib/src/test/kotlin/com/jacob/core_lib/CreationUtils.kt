@@ -1,13 +1,13 @@
 package com.jacob.core_lib
 
+import com.jacob.core_lib.common.addresses.DestinationRegister
+import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Branch
 import com.jacob.core_lib.instructions.Label
 import com.jacob.core_lib.instructions.Move
 import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.instructions.sub.Sub
-import com.jacob.core_lib.registers.address.DestinationRegister
-import com.jacob.core_lib.registers.address.RegisterAddress
-import com.jacob.core_lib.registers.address.SourceRegister
 import com.jacob.core_lib.word.ImmediateValue
 
 fun createMoveInstruction(registerAddress: RegisterAddress, immediateValue: Int) =

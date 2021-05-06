@@ -1,10 +1,10 @@
 package com.jacob.core_lib.instructions.sub
 
+import com.jacob.core_lib.common.addresses.DestinationRegister
+import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
-import com.jacob.core_lib.registers.address.DestinationRegister
-import com.jacob.core_lib.registers.address.SourceRegister
 
 class SubRegister internal constructor(
     private val destinationRegister: DestinationRegister,

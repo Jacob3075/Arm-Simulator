@@ -1,4 +1,4 @@
-package com.jacob.core_lib.registers.address
+package com.jacob.core_lib.common.addresses
 
 enum class RegisterAddress(val address: Int) {
 

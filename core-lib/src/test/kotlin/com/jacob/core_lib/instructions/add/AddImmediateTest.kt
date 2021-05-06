@@ -1,11 +1,11 @@
 package com.jacob.core_lib.instructions.add
 
+import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.createAddInstruction
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.registers.address.RegisterAddress
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
