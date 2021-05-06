@@ -4,8 +4,10 @@ import com.jacob.core_lib.*
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.Load
+import com.jacob.core_lib.instructions.Store
 import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Nested
@@ -332,6 +334,39 @@ internal class CoreTest {
             .getRegisterValue() `should be equal to` Word(10)
 
         registerArray.getRegisterAt(destinationRegister2.registerAddress)
+            .getRegisterValue() `should be equal to` Word(20)
+    }
+
+    @Test
+    internal fun `running store instructions reads and updates correct register and memory addresses`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+
+        val memoryAddress1 = MemoryAddress(0)
+        val memoryAddress2 = MemoryAddress(2)
+        val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
+        val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_2)
+
+        registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
+        registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))
+
+        val store1 = Store(sourceRegister1, memoryAddress1)
+        val store2 = Store(sourceRegister2, memoryAddress2)
+
+        val instructions: List<Instruction> = listOf(
+            store1,
+            store2,
+        )
+        val program = Program(instructions)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(sourceRegister1.registerAddress)
+            .getRegisterValue() `should be equal to` Word(10)
+
+        registerArray.getRegisterAt(sourceRegister2.registerAddress)
             .getRegisterValue() `should be equal to` Word(20)
     }
 }
