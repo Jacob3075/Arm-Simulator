@@ -1,8 +1,9 @@
 package com.jacob.core_lib.registers
 
-class ProgramCounter {
+import com.jacob.core_lib.word.Word
+
+class ProgramCounter : Register {
     var nextInstructionAddress: Int = 0
-        private set
 
     fun nextInstruction() {
         nextInstructionAddress++
@@ -15,4 +16,5 @@ class ProgramCounter {
         this.nextInstructionAddress = nextInstructionAddress
     }
 
+    override fun getRegisterValue(): Word = Word(nextInstructionAddress)
 }

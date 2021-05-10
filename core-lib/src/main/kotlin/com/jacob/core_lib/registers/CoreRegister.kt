@@ -1,25 +1,14 @@
 package com.jacob.core_lib.registers
 
-import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.word.Word
 
-class CoreRegister(private val registerAddress: RegisterAddress) : Register {
-
-    private var value: Word = Word(0)
-
-    override fun getRegisterAddress(): RegisterAddress {
-        return registerAddress
-    }
-
-    override fun setRegisterValue(word: Word) {
-        value = word
-    }
+class CoreRegister(private val value: Word = Word(0)) : Register {
 
     override fun getRegisterValue(): Word {
         return value
     }
 
     override fun toString(): String {
-        return "CoreRegister(registerAddress=$registerAddress, value=$value)"
+        return "CoreRegister(value=$value)"
     }
 }
