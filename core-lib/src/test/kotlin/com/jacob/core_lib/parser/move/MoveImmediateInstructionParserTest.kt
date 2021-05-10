@@ -5,13 +5,11 @@ import com.jacob.core_lib.instructions.move.MoveImmediate
 import com.jacob.core_lib.instructions.move.MoveRegister
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.shouldNotBeNull
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class MoveImmediateInstructionParserTest {
 
     @Test
-    @Disabled
     internal fun `returns move register instruction parser`() {
         val instructionString = "MOV R1, R2"
 

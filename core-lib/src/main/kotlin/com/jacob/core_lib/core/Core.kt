@@ -1,8 +1,8 @@
 package com.jacob.core_lib.core
 
 class Core(
-        private val memoryArray: MemoryArray = MemoryArray(),
-        private val registerArray: RegisterArray = RegisterArray(),
+        val memoryArray: MemoryArray = MemoryArray(),
+        val registerArray: RegisterArray = RegisterArray(),
         private val program: Program,
 ) {
 

@@ -14,4 +14,7 @@ class MemoryArray {
         mainMemory[memoryAddress.memoryAddress] = word
     }
 
+    override fun toString(): String {
+        return "MemoryArray(mainMemory=$mainMemory)"
+    }
 }
