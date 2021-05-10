@@ -5,12 +5,11 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
-import com.jacob.core_lib.instructions.Instruction
 
-class MoveRegister(destinationRegister: DestinationRegister, sourceRegister: SourceRegister) :
-        Instruction {
+class MoveRegister(private val destinationRegister: DestinationRegister, private val sourceRegister: SourceRegister) :
+        Move {
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {
-        TODO("Not yet implemented")
+        val sourceRegisterValue = registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()
+        registerArray.setValueAtRegister(destinationRegister.registerAddress, sourceRegisterValue)
     }
-
 }
