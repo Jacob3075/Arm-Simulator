@@ -15,16 +15,12 @@ class AddRegisterInstructionParser internal constructor(private val instructionS
         val registers: List<RegisterAddress> = instructionString.dropWhile { it != ' ' }
             .split(",")
             .map(String::trim)
-            .map(String::uppercase).map { it.replace("R", "REGISTER_") }
-            .map { RegisterAddress.valueOf(it) }
+            .map { it.replace("R", "REGISTER_") }
+            .map(RegisterAddress::valueOf)
 
-        val destinationRegisterAddress = registers.first()
-        val sourceAddress1 = registers[1]
-        val sourceAddress2 = registers.last()
-
-        val destinationRegister = DestinationRegister(destinationRegisterAddress)
-        val sourceRegister1 = SourceRegister(sourceAddress1)
-        val sourceRegister2 = SourceRegister(sourceAddress2)
+        val destinationRegister = registers.first().let(::DestinationRegister)
+        val sourceRegister1 = registers[1].let(::SourceRegister)
+        val sourceRegister2 = registers.last().let(::SourceRegister)
 
         return Add.of(destinationRegister, sourceRegister1, sourceRegister2)
     }
