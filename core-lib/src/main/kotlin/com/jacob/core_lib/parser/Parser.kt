@@ -6,9 +6,10 @@ import java.net.URI
 
 object Parser {
     fun parseInstructionsFromFile(filePath: URI): List<Instruction> {
-        val file: File = File(filePath)
+        val file = File(filePath)
 
         return file.readLines()
+            .map(String::uppercase)
             .map(::InstructionString)
             .map(InstructionString::parse)
     }

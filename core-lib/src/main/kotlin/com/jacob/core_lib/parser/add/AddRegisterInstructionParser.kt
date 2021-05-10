@@ -1,3 +1,5 @@
+@file:Suppress("DuplicatedCode")
+
 package com.jacob.core_lib.parser.add
 
 import com.jacob.core_lib.common.addresses.DestinationRegister

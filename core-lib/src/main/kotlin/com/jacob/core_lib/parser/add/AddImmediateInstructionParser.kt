@@ -11,10 +11,9 @@ class AddImmediateInstructionParser internal constructor(private val instruction
 
     override fun invoke(): Instruction {
         // ADD r4, r4, #5
-        val operands = instructionString.dropWhile { it != ' ' }
+        val operands = instructionString.removePrefix("ADD")
             .split(",")
             .map(String::trim)
-            .map(String::uppercase)
 
         val immediateInt = operands.last().removePrefix("#").toInt()
         val immediateValue = ImmediateValue(immediateInt)
