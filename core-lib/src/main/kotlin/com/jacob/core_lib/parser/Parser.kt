@@ -5,12 +5,9 @@ import java.io.File
 import java.net.URI
 
 object Parser {
-    fun parseInstructionsFromFile(filePath: URI): List<Instruction> {
-        val file = File(filePath)
-
-        return file.readLines()
-            .map(String::uppercase)
-            .map(::InstructionString)
-            .map(InstructionString::parse)
-    }
+    fun parseInstructionsFromFile(filePath: URI): List<Instruction> = File(filePath).readLines()
+        .map(String::trim)
+        .map(String::uppercase)
+        .map(::InstructionString)
+        .map(InstructionString::parse)
 }

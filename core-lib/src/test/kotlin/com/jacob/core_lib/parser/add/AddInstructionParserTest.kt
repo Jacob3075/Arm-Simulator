@@ -1,6 +1,8 @@
 package com.jacob.core_lib.parser.add
 
-import com.jacob.core_lib.parser.InstructionParser
+import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.add.AddImmediate
+import com.jacob.core_lib.instructions.add.AddRegister
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
@@ -13,8 +15,8 @@ internal class AddInstructionParserTest {
         val addInstructionParser = AddInstructionParser.from(instructionString)
 
         addInstructionParser.shouldNotBeNull()
-        addInstructionParser `should be instance of` InstructionParser::class
-        addInstructionParser `should be instance of` AddRegisterInstructionParser::class
+        addInstructionParser `should be instance of` Instruction::class
+        addInstructionParser `should be instance of` AddRegister::class
     }
 
     @Test
@@ -24,7 +26,7 @@ internal class AddInstructionParserTest {
         val addInstructionParser = AddInstructionParser.from(instructionString)
 
         addInstructionParser.shouldNotBeNull()
-        addInstructionParser `should be instance of` InstructionParser::class
-        addInstructionParser `should be instance of` AddImmediateInstructionParser::class
+        addInstructionParser `should be instance of` Instruction::class
+        addInstructionParser `should be instance of` AddImmediate::class
     }
 }

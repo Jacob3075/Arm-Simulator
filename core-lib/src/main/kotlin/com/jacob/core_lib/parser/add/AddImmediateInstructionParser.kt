@@ -1,3 +1,5 @@
+@file:Suppress("DuplicatedCode")
+
 package com.jacob.core_lib.parser.add
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
@@ -15,8 +17,10 @@ class AddImmediateInstructionParser internal constructor(private val instruction
             .split(",")
             .map(String::trim)
 
-        val immediateInt = operands.last().removePrefix("#").toInt()
-        val immediateValue = ImmediateValue(immediateInt)
+        val immediateValue = operands.last()
+            .removePrefix("#")
+            .toInt()
+            .let(::ImmediateValue)
 
         val registers: List<RegisterAddress> = operands.take(2)
             .map { it.replace("R", "REGISTER_") }
