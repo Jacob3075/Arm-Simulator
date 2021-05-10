@@ -5,6 +5,7 @@ import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.word.ImmediateValue
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -17,7 +18,7 @@ internal class MoveTest {
     internal fun `create new move instruction`() {
         val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_1)
         val immediateValue = ImmediateValue(50)
-        val moveInstruction = Move(destinationRegister, immediateValue)
+        val moveInstruction = Move.of(destinationRegister, immediateValue)
 
         moveInstruction.shouldNotBeNull()
     }
@@ -30,7 +31,7 @@ internal class MoveTest {
         val immediateValue = ImmediateValue(20)
         val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_2)
 
-        val moveInstruction = Move(destinationRegister, immediateValue)
+        val moveInstruction = Move.of(destinationRegister, immediateValue)
         moveInstruction.execute(memoryArray, registerArray, labels)
 
         registerArray.getRegisterAt(destinationRegister.registerAddress)
