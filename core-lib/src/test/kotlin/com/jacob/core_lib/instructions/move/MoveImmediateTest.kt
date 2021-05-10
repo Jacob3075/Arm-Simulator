@@ -39,6 +39,6 @@ internal class MoveImmediateTest {
         moveInstruction.execute(memoryArray, registerArray, labels)
 
         registerArray.getRegisterAt(destinationRegister.registerAddress)
-            .getRegisterValue() `should be equal to` immediateValue
+                .getRegisterValue() `should be equal to` immediateValue
     }
 }

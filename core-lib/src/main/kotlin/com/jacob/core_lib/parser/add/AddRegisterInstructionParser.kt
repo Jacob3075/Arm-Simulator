@@ -13,10 +13,10 @@ class AddRegisterInstructionParser internal constructor(private val instructionS
     override fun invoke(): Instruction {
         // ADD r4, r4, r5
         val registers: List<RegisterAddress> = instructionString.dropWhile { it != ' ' }
-            .split(",")
-            .map(String::trim)
-            .map { it.replace("R", "REGISTER_") }
-            .map(RegisterAddress::valueOf)
+                .split(",")
+                .map(String::trim)
+                .map { it.replace("R", "REGISTER_") }
+                .map(RegisterAddress::valueOf)
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister1 = registers[1].let(::SourceRegister)

@@ -42,10 +42,10 @@ internal class LoadTest {
 
         load1.execute(memoryArray, registerArray, labels)
         registerArray.getRegisterAt(destinationRegister1.registerAddress)
-            .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
         load2.execute(memoryArray, registerArray, labels)
         registerArray.getRegisterAt(destinationRegister2.registerAddress)
-            .getRegisterValue() `should be equal to` Word(20)
+                .getRegisterValue() `should be equal to` Word(20)
     }
 }

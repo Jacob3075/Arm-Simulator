@@ -7,7 +7,7 @@ import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
 
 class Store(private val sourceRegister: SourceRegister, private val destinationAddress: MemoryAddress) :
-    Instruction {
+        Instruction {
 
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {
         val wordFromRegister = registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()

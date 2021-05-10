@@ -12,12 +12,12 @@ class InstructionString(val instruction: String) {
 
     fun parse(): Instruction {
         return when (mnemonic) {
-            ADD   -> AddInstructionParser.from(instruction)
-            SUB   -> SubInstructionParser.from(instruction)
-            MOV   -> MoveInstructionParser.from(instruction)
-            LDR   -> TODO()
-            STR   -> TODO()
-            B     -> TODO()
+            ADD -> AddInstructionParser.from(instruction)
+            SUB -> SubInstructionParser.from(instruction)
+            MOV -> MoveInstructionParser.from(instruction)
+            LDR -> TODO()
+            STR -> TODO()
+            B -> TODO()
             LABEL -> TODO()
         }
     }

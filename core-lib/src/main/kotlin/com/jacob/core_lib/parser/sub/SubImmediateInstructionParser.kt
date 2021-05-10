@@ -15,17 +15,17 @@ class SubImmediateInstructionParser internal constructor(private val instruction
     override fun invoke(): Instruction {
         // SUB r4, r4, #5
         val operands = instructionString.removePrefix("SUB")
-            .split(",")
-            .map(String::trim)
+                .split(",")
+                .map(String::trim)
 
         val immediateValue = operands.last()
-            .removePrefix("#")
-            .toInt()
-            .let(::ImmediateValue)
+                .removePrefix("#")
+                .toInt()
+                .let(::ImmediateValue)
 
         val registers: List<RegisterAddress> = operands.take(2)
-            .map { it.replace("R", "REGISTER_") }
-            .map { RegisterAddress.valueOf(it) }
+                .map { it.replace("R", "REGISTER_") }
+                .map { RegisterAddress.valueOf(it) }
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)

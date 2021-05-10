@@ -42,10 +42,10 @@ internal class StoreTest {
 
         store1.execute(memoryArray, registerArray, labels)
         registerArray.getRegisterAt(sourceRegister1.registerAddress)
-            .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
         store2.execute(memoryArray, registerArray, labels)
         registerArray.getRegisterAt(sourceRegister2.registerAddress)
-            .getRegisterValue() `should be equal to` Word(20)
+                .getRegisterValue() `should be equal to` Word(20)
     }
 }

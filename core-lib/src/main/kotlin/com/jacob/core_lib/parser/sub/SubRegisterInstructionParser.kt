@@ -7,15 +7,15 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.sub.Sub
 
 class SubRegisterInstructionParser internal constructor(private val instructionString: String) :
-    SubInstructionParser {
+        SubInstructionParser {
 
     override fun invoke(): Instruction {
         // SUB r4, r4, r5
         val registers: List<RegisterAddress> = instructionString.removePrefix("SUB")
-            .split(",")
-            .map(String::trim)
-            .map(String::uppercase).map { it.replace("R", "REGISTER_") }
-            .map { RegisterAddress.valueOf(it) }
+                .split(",")
+                .map(String::trim)
+                .map(String::uppercase).map { it.replace("R", "REGISTER_") }
+                .map { RegisterAddress.valueOf(it) }
 
         val destinationRegisterAddress = registers.first()
         val sourceAddress1 = registers[1]
