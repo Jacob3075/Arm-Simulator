@@ -6,7 +6,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.add.Add
 
-class AddRegisterInstructionParser(private val instructionString: String) : AddInstructionParser {
+class AddRegisterInstructionParser internal constructor(private val instructionString: String) : AddInstructionParser {
 
     override fun invoke(): Instruction {
         // ADD r4, r4, r5
