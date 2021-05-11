@@ -11,22 +11,22 @@ class RegisterArray {
         get() = _registers
 
     private val _registers: MutableMap<RegisterAddress, Register> = mutableMapOf(
-            REGISTER_1 to CoreRegister(),
-            REGISTER_2 to CoreRegister(),
-            REGISTER_3 to CoreRegister(),
-            REGISTER_4 to CoreRegister(),
-            REGISTER_5 to CoreRegister(),
-            REGISTER_6 to CoreRegister(),
-            REGISTER_7 to CoreRegister(),
-            REGISTER_8 to CoreRegister(),
-            REGISTER_9 to CoreRegister(),
-            REGISTER_10 to CoreRegister(),
-            REGISTER_11 to CoreRegister(),
-            REGISTER_12 to CoreRegister(),
-            STACK_POINTER to StackPointer(),
-            LINK_REGISTER to LinkRegister(),
-            PROGRAM_COUNTER to ProgramCounter(),
-            STATUS_REGISTER to StatusRegister()
+        REGISTER_1 to CoreRegister(),
+        REGISTER_2 to CoreRegister(),
+        REGISTER_3 to CoreRegister(),
+        REGISTER_4 to CoreRegister(),
+        REGISTER_5 to CoreRegister(),
+        REGISTER_6 to CoreRegister(),
+        REGISTER_7 to CoreRegister(),
+        REGISTER_8 to CoreRegister(),
+        REGISTER_9 to CoreRegister(),
+        REGISTER_10 to CoreRegister(),
+        REGISTER_11 to CoreRegister(),
+        REGISTER_12 to CoreRegister(),
+        STACK_POINTER to StackPointer(),
+        LINK_REGISTER to LinkRegister(),
+        PROGRAM_COUNTER to ProgramCounter(),
+        STATUS_REGISTER to StatusRegister()
     )
 
     private val stackPointer = _registers[STACK_POINTER]!! as StackPointer
@@ -35,7 +35,7 @@ class RegisterArray {
     val programCounter = _registers[PROGRAM_COUNTER]!! as ProgramCounter
 
     fun getRegisterAt(registerAddress: RegisterAddress) = registers[registerAddress]
-            ?: throw IllegalArgumentException("Invalid Register Address")
+        ?: throw IllegalArgumentException("Invalid Register Address")
 
     fun setValueAtRegister(registerAddress: RegisterAddress, wordToStore: Word) {
         _registers.replace(registerAddress, CoreRegister(wordToStore))

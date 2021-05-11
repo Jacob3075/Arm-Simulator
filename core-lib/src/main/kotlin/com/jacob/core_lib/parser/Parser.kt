@@ -5,8 +5,8 @@ import java.io.File
 
 object Parser {
     fun parseInstructionsFromFile(file: File): List<Instruction> = file.readLines()
-            .map(String::trim)
-            .map(String::uppercase)
-            .map(::InstructionString)
-            .map(InstructionString::parse)
+        .map(String::trim)
+        .map(String::uppercase)
+        .map(::InstructionString)
+        .map(InstructionString::parse)
 }

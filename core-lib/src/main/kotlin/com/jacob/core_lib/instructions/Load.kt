@@ -7,7 +7,7 @@ import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
 
 class Load(private val destinationRegister: DestinationRegister, private val sourceAddress: MemoryAddress) :
-        Instruction {
+    Instruction {
 
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {
         val wordFromMemory = memoryArray.getWordAt(sourceAddress)

@@ -8,9 +8,9 @@ import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.word.ImmediateValue
 
 class AddImmediate internal constructor(
-        private val destinationRegister: DestinationRegister,
-        private val sourceRegister: SourceRegister,
-        private val immediateValue: ImmediateValue,
+    private val destinationRegister: DestinationRegister,
+    private val sourceRegister: SourceRegister,
+    private val immediateValue: ImmediateValue,
 ) : Add {
 
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {

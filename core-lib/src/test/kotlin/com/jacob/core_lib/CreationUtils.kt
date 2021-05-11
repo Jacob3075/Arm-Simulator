@@ -11,46 +11,46 @@ import com.jacob.core_lib.instructions.sub.Sub
 import com.jacob.core_lib.word.ImmediateValue
 
 fun createMoveInstruction(registerAddress: RegisterAddress, immediateValue: Int) =
-        Move.of(DestinationRegister(registerAddress), ImmediateValue(immediateValue))
+    Move.of(DestinationRegister(registerAddress), ImmediateValue(immediateValue))
 
 fun createAddInstruction(
-        destinationRegister: RegisterAddress,
-        sourceRegister1: RegisterAddress,
-        sourceRegister2: RegisterAddress,
+    destinationRegister: RegisterAddress,
+    sourceRegister1: RegisterAddress,
+    sourceRegister2: RegisterAddress,
 ) = Add.of(
-        DestinationRegister(destinationRegister),
-        SourceRegister(sourceRegister1),
-        SourceRegister(sourceRegister2)
+    DestinationRegister(destinationRegister),
+    SourceRegister(sourceRegister1),
+    SourceRegister(sourceRegister2)
 )
 
 fun createAddInstruction(
-        destinationRegister: RegisterAddress,
-        sourceRegister1: RegisterAddress,
-        immediateValue: Int,
+    destinationRegister: RegisterAddress,
+    sourceRegister1: RegisterAddress,
+    immediateValue: Int,
 ) = Add.of(
-        DestinationRegister(destinationRegister),
-        SourceRegister(sourceRegister1),
-        ImmediateValue(immediateValue)
+    DestinationRegister(destinationRegister),
+    SourceRegister(sourceRegister1),
+    ImmediateValue(immediateValue)
 )
 
 fun createSubInstruction(
-        destinationRegister: RegisterAddress,
-        sourceRegister1: RegisterAddress,
-        sourceRegister2: RegisterAddress,
+    destinationRegister: RegisterAddress,
+    sourceRegister1: RegisterAddress,
+    sourceRegister2: RegisterAddress,
 ) = Sub.of(
-        DestinationRegister(destinationRegister),
-        SourceRegister(sourceRegister1),
-        SourceRegister(sourceRegister2)
+    DestinationRegister(destinationRegister),
+    SourceRegister(sourceRegister1),
+    SourceRegister(sourceRegister2)
 )
 
 fun createSubInstruction(
-        destinationRegister: RegisterAddress,
-        sourceRegister1: RegisterAddress,
-        immediateValue: Int,
+    destinationRegister: RegisterAddress,
+    sourceRegister1: RegisterAddress,
+    immediateValue: Int,
 ) = Sub.of(
-        DestinationRegister(destinationRegister),
-        SourceRegister(sourceRegister1),
-        ImmediateValue(immediateValue)
+    DestinationRegister(destinationRegister),
+    SourceRegister(sourceRegister1),
+    ImmediateValue(immediateValue)
 )
 
 fun createBranchInstruction(labelName: String) = Branch(labelName)

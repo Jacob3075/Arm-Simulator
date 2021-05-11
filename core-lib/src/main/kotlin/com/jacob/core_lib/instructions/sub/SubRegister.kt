@@ -7,9 +7,9 @@ import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
 
 class SubRegister internal constructor(
-        private val destinationRegister: DestinationRegister,
-        private val sourceRegister1: SourceRegister,
-        private val sourceRegister2: SourceRegister
+    private val destinationRegister: DestinationRegister,
+    private val sourceRegister1: SourceRegister,
+    private val sourceRegister2: SourceRegister
 ) : Sub {
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {
         val registerValue1 = registerArray.getRegisterAt(sourceRegister1.registerAddress).getRegisterValue()

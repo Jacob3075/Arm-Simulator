@@ -7,11 +7,11 @@ import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.word.ImmediateValue
 
 class MoveImmediate internal constructor(
-        private val destinationRegister: DestinationRegister,
-        private val immediateValue:
-        ImmediateValue,
+    private val destinationRegister: DestinationRegister,
+    private val immediateValue:
+    ImmediateValue,
 ) :
-        Move {
+    Move {
 
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {
         registerArray.setValueAtRegister(destinationRegister.registerAddress, immediateValue)

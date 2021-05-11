@@ -42,6 +42,6 @@ internal class MoveRegisterTest {
         moveInstruction.execute(memoryArray, registerArray, labels)
 
         registerArray.getRegisterAt(destinationRegister.registerAddress)
-                .getRegisterValue() `should be equal to` Word(10)
+            .getRegisterValue() `should be equal to` Word(10)
     }
 }

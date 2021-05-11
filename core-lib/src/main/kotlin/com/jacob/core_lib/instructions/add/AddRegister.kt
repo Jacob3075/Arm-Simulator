@@ -7,9 +7,9 @@ import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.RegisterArray
 
 class AddRegister internal constructor(
-        private val destinationRegister: DestinationRegister,
-        private val sourceRegister1: SourceRegister,
-        private val sourceRegister2: SourceRegister
+    private val destinationRegister: DestinationRegister,
+    private val sourceRegister1: SourceRegister,
+    private val sourceRegister2: SourceRegister
 ) : Add {
 
     override fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>) {

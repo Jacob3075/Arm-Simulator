@@ -46,6 +46,6 @@ internal class SubRegisterTest {
         subInstruction.execute(memoryArray, registerArray, labels)
 
         registerArray.getRegisterAt(destinationRegister)
-                .getRegisterValue() `should be equal to` Word(10)
+            .getRegisterValue() `should be equal to` Word(10)
     }
 }

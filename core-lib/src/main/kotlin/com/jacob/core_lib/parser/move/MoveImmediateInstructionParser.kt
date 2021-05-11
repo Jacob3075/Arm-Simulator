@@ -12,18 +12,18 @@ class MoveImmediateInstructionParser internal constructor(private val instructio
     override fun invoke(): Instruction {
         // MOV r1, #5
         val operands = instructionString.removePrefix("MOV")
-                .split(",")
-                .map(String::trim)
+            .split(",")
+            .map(String::trim)
 
         val immediateValue = operands.last()
-                .removePrefix("#")
-                .toInt()
-                .let(::ImmediateValue)
+            .removePrefix("#")
+            .toInt()
+            .let(::ImmediateValue)
 
         val destinationRegister = operands.first()
-                .replace("R", "REGISTER_")
-                .let(RegisterAddress::valueOf)
-                .let(::DestinationRegister)
+            .replace("R", "REGISTER_")
+            .let(RegisterAddress::valueOf)
+            .let(::DestinationRegister)
 
         return Move.of(destinationRegister, immediateValue)
     }

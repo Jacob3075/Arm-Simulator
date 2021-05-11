@@ -9,9 +9,9 @@ interface Move : Instruction {
 
     companion object {
         fun of(destinationRegister: DestinationRegister, immediateValue: ImmediateValue): Instruction =
-                MoveImmediate(destinationRegister, immediateValue)
+            MoveImmediate(destinationRegister, immediateValue)
 
         fun of(destinationRegister: DestinationRegister, sourceRegister: SourceRegister): Instruction =
-                MoveRegister(destinationRegister, sourceRegister)
+            MoveRegister(destinationRegister, sourceRegister)
     }
 }

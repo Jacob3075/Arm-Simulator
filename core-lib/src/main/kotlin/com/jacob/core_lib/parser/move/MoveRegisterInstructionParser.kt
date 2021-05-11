@@ -11,10 +11,10 @@ class MoveRegisterInstructionParser internal constructor(private val instruction
     override fun invoke(): Instruction {
         // MOV r1, r5
         val registers = instructionString.removePrefix("MOV")
-                .split(",")
-                .map(String::trim)
-                .map { it.replace("R", "REGISTER_") }
-                .map(RegisterAddress::valueOf)
+            .split(",")
+            .map(String::trim)
+            .map { it.replace("R", "REGISTER_") }
+            .map(RegisterAddress::valueOf)
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)

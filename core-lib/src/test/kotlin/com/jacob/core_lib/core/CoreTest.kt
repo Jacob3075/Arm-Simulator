@@ -27,8 +27,8 @@ internal class CoreTest {
         val move2 = createMoveInstruction(registerAddress2, 20)
 
         val instructions: List<Instruction> = listOf(
-                move1,
-                move2,
+            move1,
+            move2,
         )
         val program = Program(instructions)
 
@@ -37,10 +37,10 @@ internal class CoreTest {
         core.runProgram()
 
         registerArray.getRegisterAt(registerAddress1)
-                .getRegisterValue() `should be equal to` Word(10)
+            .getRegisterValue() `should be equal to` Word(10)
 
         registerArray.getRegisterAt(registerAddress2)
-                .getRegisterValue() `should be equal to` Word(20)
+            .getRegisterValue() `should be equal to` Word(20)
 
         registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(0)
         registerArray.getRegisterAt(RegisterAddress.REGISTER_4).getRegisterValue() `should be equal to` Word(0)
@@ -72,11 +72,11 @@ internal class CoreTest {
         val label = createLabelInstruction(labelName)
 
         val instructions: List<Instruction> = listOf(
-                move1,
-                branch,
-                move2,
-                label,
-                move3,
+            move1,
+            branch,
+            move2,
+            label,
+            move3,
         )
         val program = Program(instructions)
 
@@ -85,13 +85,13 @@ internal class CoreTest {
         core.runProgram()
 
         registerArray.getRegisterAt(registerAddress1)
-                .getRegisterValue() `should be equal to` Word(10)
+            .getRegisterValue() `should be equal to` Word(10)
 
         registerArray.getRegisterAt(registerAddress3)
-                .getRegisterValue() `should be equal to` Word(30)
+            .getRegisterValue() `should be equal to` Word(30)
 
         registerArray.getRegisterAt(RegisterAddress.REGISTER_2)
-                .getRegisterValue() `should be equal to` Word(0)
+            .getRegisterValue() `should be equal to` Word(0)
 
         registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(0)
         registerArray.getRegisterAt(RegisterAddress.REGISTER_4).getRegisterValue() `should be equal to` Word(0)
@@ -123,8 +123,8 @@ internal class CoreTest {
             val add2 = createAddInstruction(registerAddress4, registerAddress2, registerAddress3)
 
             val instructions: List<Instruction> = listOf(
-                    add1,
-                    add2,
+                add1,
+                add2,
             )
             val program = Program(instructions)
 
@@ -133,16 +133,16 @@ internal class CoreTest {
             core.runProgram()
 
             registerArray.getRegisterAt(registerAddress1)
-                    .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
             registerArray.getRegisterAt(registerAddress2)
-                    .getRegisterValue() `should be equal to` Word(20)
+                .getRegisterValue() `should be equal to` Word(20)
 
             registerArray.getRegisterAt(registerAddress3)
-                    .getRegisterValue() `should be equal to` Word(30)
+                .getRegisterValue() `should be equal to` Word(30)
 
             registerArray.getRegisterAt(registerAddress4)
-                    .getRegisterValue() `should be equal to` Word(50)
+                .getRegisterValue() `should be equal to` Word(50)
 
             registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
             registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
@@ -171,8 +171,8 @@ internal class CoreTest {
             val add2 = createAddInstruction(registerAddress4, registerAddress2, 30)
 
             val instructions: List<Instruction> = listOf(
-                    add1,
-                    add2,
+                add1,
+                add2,
             )
             val program = Program(instructions)
 
@@ -181,16 +181,16 @@ internal class CoreTest {
             core.runProgram()
 
             registerArray.getRegisterAt(registerAddress1)
-                    .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
             registerArray.getRegisterAt(registerAddress2)
-                    .getRegisterValue() `should be equal to` Word(20)
+                .getRegisterValue() `should be equal to` Word(20)
 
             registerArray.getRegisterAt(registerAddress3)
-                    .getRegisterValue() `should be equal to` Word(30)
+                .getRegisterValue() `should be equal to` Word(30)
 
             registerArray.getRegisterAt(registerAddress4)
-                    .getRegisterValue() `should be equal to` Word(50)
+                .getRegisterValue() `should be equal to` Word(50)
 
             registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
             registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
@@ -223,8 +223,8 @@ internal class CoreTest {
             val sub2 = createSubInstruction(registerAddress4, registerAddress3, registerAddress2)
 
             val instructions: List<Instruction> = listOf(
-                    sub1,
-                    sub2,
+                sub1,
+                sub2,
             )
             val program = Program(instructions)
 
@@ -233,16 +233,16 @@ internal class CoreTest {
             core.runProgram()
 
             registerArray.getRegisterAt(registerAddress1)
-                    .getRegisterValue() `should be equal to` Word(30)
+                .getRegisterValue() `should be equal to` Word(30)
 
             registerArray.getRegisterAt(registerAddress2)
-                    .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
             registerArray.getRegisterAt(registerAddress3)
-                    .getRegisterValue() `should be equal to` Word(20)
+                .getRegisterValue() `should be equal to` Word(20)
 
             registerArray.getRegisterAt(registerAddress4)
-                    .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
             registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
             registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
@@ -271,8 +271,8 @@ internal class CoreTest {
             val sub2 = createSubInstruction(registerAddress4, registerAddress2, 10)
 
             val instructions: List<Instruction> = listOf(
-                    sub1,
-                    sub2,
+                sub1,
+                sub2,
             )
 
             val program = Program(instructions)
@@ -282,16 +282,16 @@ internal class CoreTest {
             core.runProgram()
 
             registerArray.getRegisterAt(registerAddress1)
-                    .getRegisterValue() `should be equal to` Word(30)
+                .getRegisterValue() `should be equal to` Word(30)
 
             registerArray.getRegisterAt(registerAddress2)
-                    .getRegisterValue() `should be equal to` Word(20)
+                .getRegisterValue() `should be equal to` Word(20)
 
             registerArray.getRegisterAt(registerAddress3)
-                    .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
             registerArray.getRegisterAt(registerAddress4)
-                    .getRegisterValue() `should be equal to` Word(10)
+                .getRegisterValue() `should be equal to` Word(10)
 
             registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
             registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
@@ -321,8 +321,8 @@ internal class CoreTest {
         val load2 = Load(destinationRegister2, memoryAddress2)
 
         val instructions: List<Instruction> = listOf(
-                load1,
-                load2,
+            load1,
+            load2,
         )
         val program = Program(instructions)
 
@@ -331,10 +331,10 @@ internal class CoreTest {
         core.runProgram()
 
         registerArray.getRegisterAt(destinationRegister1.registerAddress)
-                .getRegisterValue() `should be equal to` Word(10)
+            .getRegisterValue() `should be equal to` Word(10)
 
         registerArray.getRegisterAt(destinationRegister2.registerAddress)
-                .getRegisterValue() `should be equal to` Word(20)
+            .getRegisterValue() `should be equal to` Word(20)
     }
 
     @Test
@@ -354,8 +354,8 @@ internal class CoreTest {
         val store2 = Store(sourceRegister2, memoryAddress2)
 
         val instructions: List<Instruction> = listOf(
-                store1,
-                store2,
+            store1,
+            store2,
         )
         val program = Program(instructions)
 
@@ -364,9 +364,9 @@ internal class CoreTest {
         core.runProgram()
 
         registerArray.getRegisterAt(sourceRegister1.registerAddress)
-                .getRegisterValue() `should be equal to` Word(10)
+            .getRegisterValue() `should be equal to` Word(10)
 
         registerArray.getRegisterAt(sourceRegister2.registerAddress)
-                .getRegisterValue() `should be equal to` Word(20)
+            .getRegisterValue() `should be equal to` Word(20)
     }
 }

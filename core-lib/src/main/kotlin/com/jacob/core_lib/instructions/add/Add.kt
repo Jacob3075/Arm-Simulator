@@ -8,23 +8,23 @@ import com.jacob.core_lib.word.ImmediateValue
 interface Add : Instruction {
     companion object {
         fun of(
-                destinationRegister: DestinationRegister,
-                sourceRegister1: SourceRegister,
-                sourceRegister2: SourceRegister,
+            destinationRegister: DestinationRegister,
+            sourceRegister1: SourceRegister,
+            sourceRegister2: SourceRegister,
         ) = AddRegister(
-                destinationRegister,
-                sourceRegister1,
-                sourceRegister2
+            destinationRegister,
+            sourceRegister1,
+            sourceRegister2
         )
 
         fun of(
-                destinationRegister: DestinationRegister,
-                sourceRegister1: SourceRegister,
-                immediateValue: ImmediateValue
+            destinationRegister: DestinationRegister,
+            sourceRegister1: SourceRegister,
+            immediateValue: ImmediateValue
         ) = AddImmediate(
-                destinationRegister,
-                sourceRegister1,
-                immediateValue
+            destinationRegister,
+            sourceRegister1,
+            immediateValue
         )
     }
 }
