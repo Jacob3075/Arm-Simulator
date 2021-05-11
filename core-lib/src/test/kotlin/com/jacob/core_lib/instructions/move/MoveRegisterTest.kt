@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test
 internal class MoveRegisterTest {
     @Test
     internal fun `can create move instruction with source register`() {
-        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_1)
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_2)
+        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_0)
+        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
 
         val moveInstruction = Move.of(destinationRegister, sourceRegister)
 
@@ -32,8 +32,8 @@ internal class MoveRegisterTest {
         val labels = mockk<List<Label>>()
         val variables = mockk<List<Variable>>()
         val registerArray = RegisterArray()
-        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_1)
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_2)
+        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_0)
+        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
 
         val executionEnvironment = ExecutionEnvironment(
             registerArray = registerArray,
@@ -42,7 +42,7 @@ internal class MoveRegisterTest {
             variables = variables
         )
 
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(10))
+        registerArray.setValueAtRegister(RegisterAddress.REGISTER_0, Word(10))
 
         val moveInstruction = Move.of(destinationRegister, sourceRegister)
         moveInstruction.execute(executionEnvironment)

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 internal class StoreTest {
     @Test
     internal fun `can create store instruction`() {
-        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_1)
+        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_0)
         val destinationAddress = MemoryAddress(0)
 
         val storeInstruction = Store(sourceRegister, destinationAddress)
@@ -38,8 +38,8 @@ internal class StoreTest {
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
-        val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
-        val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_2)
+        val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_0)
+        val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_1)
 
         registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
         registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))

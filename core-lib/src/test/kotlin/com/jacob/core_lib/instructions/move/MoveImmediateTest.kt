@@ -15,7 +15,7 @@ internal class MoveImmediateTest {
 
     @Test
     internal fun `create new move immediate instruction`() {
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_1)
+        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
         val immediateValue = ImmediateValue(50)
         val moveInstruction = Move.of(destinationRegister, immediateValue)
 
@@ -32,7 +32,7 @@ internal class MoveImmediateTest {
         val variables = mockk<List<Variable>>()
         val registerArray = RegisterArray()
         val immediateValue = ImmediateValue(20)
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_2)
+        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
 
         val executionEnvironment = ExecutionEnvironment(
             registerArray = registerArray,

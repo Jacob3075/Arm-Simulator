@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test
 internal class AddRegisterTest {
     @Test
     internal fun `can create new add instruction with 2 source registers`() {
-        val sourceRegister1 = RegisterAddress.REGISTER_1
-        val sourceRegister2 = RegisterAddress.REGISTER_2
-        val destinationRegister = RegisterAddress.REGISTER_3
+        val sourceRegister1 = RegisterAddress.REGISTER_0
+        val sourceRegister2 = RegisterAddress.REGISTER_0
+        val destinationRegister = RegisterAddress.REGISTER_2
 
         val addInstruction = createAddInstruction(destinationRegister, sourceRegister1, sourceRegister2)
 
@@ -40,12 +40,12 @@ internal class AddRegisterTest {
             variables = variables
         )
 
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(10))
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_2, Word(20))
+        registerArray.setValueAtRegister(RegisterAddress.REGISTER_0, Word(10))
+        registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(20))
 
-        val sourceRegister1 = RegisterAddress.REGISTER_1
-        val sourceRegister2 = RegisterAddress.REGISTER_2
-        val destinationRegister = RegisterAddress.REGISTER_3
+        val sourceRegister1 = RegisterAddress.REGISTER_0
+        val sourceRegister2 = RegisterAddress.REGISTER_1
+        val destinationRegister = RegisterAddress.REGISTER_2
 
         val addInstruction = createAddInstruction(destinationRegister, sourceRegister1, sourceRegister2)
 

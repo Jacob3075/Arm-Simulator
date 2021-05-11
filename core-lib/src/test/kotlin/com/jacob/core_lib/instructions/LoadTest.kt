@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 internal class LoadTest {
     @Test
     internal fun `can create new Load instruction`() {
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_1)
+        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
         val sourceAddress = MemoryAddress(1)
 
         val loadInstruction = Load(destinationRegister, sourceAddress)
@@ -38,8 +38,8 @@ internal class LoadTest {
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
-        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_1)
-        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_2)
+        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_0)
+        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_0)
 
         memoryArray.setWordAt(memoryAddress1, Word(10))
         memoryArray.setWordAt(memoryAddress2, Word(20))

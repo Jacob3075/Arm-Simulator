@@ -15,8 +15,8 @@ internal class AddImmediateTest {
 
     @Test
     internal fun `can create new add instruction with source register and immediate value`() {
-        val sourceRegister1 = RegisterAddress.REGISTER_1
-        val destinationRegister = RegisterAddress.REGISTER_3
+        val sourceRegister1 = RegisterAddress.REGISTER_0
+        val destinationRegister = RegisterAddress.REGISTER_2
         val immediateValue = 10
 
         val addInstruction = createAddInstruction(destinationRegister, sourceRegister1, immediateValue)
@@ -41,10 +41,10 @@ internal class AddImmediateTest {
             variables = variables
         )
 
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(10))
+        registerArray.setValueAtRegister(RegisterAddress.REGISTER_0, Word(10))
 
-        val sourceRegister1 = RegisterAddress.REGISTER_1
-        val destinationRegister = RegisterAddress.REGISTER_3
+        val sourceRegister1 = RegisterAddress.REGISTER_0
+        val destinationRegister = RegisterAddress.REGISTER_2
         val immediateValue = 20
 
         val addInstruction = createAddInstruction(destinationRegister, sourceRegister1, immediateValue)

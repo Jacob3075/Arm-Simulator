@@ -11,6 +11,7 @@ class RegisterArray {
         get() = _registers
 
     private val _registers: MutableMap<RegisterAddress, Register> = mutableMapOf(
+        REGISTER_0 to CoreRegister(),
         REGISTER_1 to CoreRegister(),
         REGISTER_2 to CoreRegister(),
         REGISTER_3 to CoreRegister(),

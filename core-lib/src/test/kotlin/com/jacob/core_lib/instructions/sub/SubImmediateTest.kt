@@ -15,8 +15,8 @@ internal class SubImmediateTest {
 
     @Test
     internal fun `can create new sub instruction with source register and immediate value`() {
-        val sourceRegister1 = RegisterAddress.REGISTER_1
-        val destinationRegister = RegisterAddress.REGISTER_3
+        val sourceRegister1 = RegisterAddress.REGISTER_0
+        val destinationRegister = RegisterAddress.REGISTER_2
         val immediateValue = 10
 
         val addInstruction = createSubInstruction(destinationRegister, sourceRegister1, immediateValue)
@@ -41,8 +41,8 @@ internal class SubImmediateTest {
             variables = variables
         )
 
-        val sourceRegister = RegisterAddress.REGISTER_1
-        val destinationRegister = RegisterAddress.REGISTER_3
+        val sourceRegister = RegisterAddress.REGISTER_0
+        val destinationRegister = RegisterAddress.REGISTER_2
         val immediateValue = 10
 
         registerArray.setValueAtRegister(sourceRegister, Word(20))

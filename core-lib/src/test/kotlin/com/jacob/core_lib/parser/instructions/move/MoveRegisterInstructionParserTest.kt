@@ -25,13 +25,13 @@ internal class MoveRegisterInstructionParserTest {
 
         val instructionString = "MOV R2, R1"
 
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(1))
+        registerArray.setValueAtRegister(RegisterAddress.REGISTER_0, Word(1))
 
         val moveRegisterInstruction = MoveRegisterInstructionParser(instructionString).invoke()
 
         moveRegisterInstruction.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_2).getRegisterValue() `should be equal to` Word(1)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_0).getRegisterValue() `should be equal to` Word(1)
     }
 
 }
