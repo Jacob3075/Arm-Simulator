@@ -1,3 +1,5 @@
 package com.jacob.core_lib.core
 
-class Variable
+import com.jacob.core_lib.word.Word
+
+data class Variable(val name: String, val value: Word)
