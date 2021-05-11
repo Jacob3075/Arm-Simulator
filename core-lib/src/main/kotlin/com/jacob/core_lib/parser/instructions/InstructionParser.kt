@@ -1,4 +1,4 @@
-package com.jacob.core_lib.parser
+package com.jacob.core_lib.parser.instructions
 
 import com.jacob.core_lib.instructions.Instruction
 

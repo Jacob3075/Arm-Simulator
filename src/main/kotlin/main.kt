@@ -5,9 +5,9 @@ import java.io.File
 
 fun main() {
     val file = File("./InputFile.txt")
-    val instructionsFromFile = Parser.parseInstructionsFromFile(file)
+    val dataFromFile = Parser.parseDataFromFile(file)
 
-    val core = Core(program = Program(instructionsFromFile))
+    val core = Core(program = Program(dataFromFile.first))
     core.runProgram()
     println(core.registerArray)
     println(core.memoryArray)

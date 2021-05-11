@@ -1,7 +1,7 @@
-package com.jacob.core_lib.parser.add
+package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.parser.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionParser
 
 interface AddInstructionParser : InstructionParser {
 

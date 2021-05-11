@@ -1,4 +1,4 @@
-package com.jacob.core_lib.parser.move
+package com.jacob.core_lib.parser.instructions.move
 
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.move.MoveImmediate

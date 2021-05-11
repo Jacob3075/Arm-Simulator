@@ -1,4 +1,4 @@
-package com.jacob.core_lib.parser.sub
+package com.jacob.core_lib.parser.instructions.sub
 
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.sub.SubImmediate

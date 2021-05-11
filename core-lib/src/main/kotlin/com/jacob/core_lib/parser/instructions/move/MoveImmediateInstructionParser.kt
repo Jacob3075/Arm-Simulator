@@ -1,10 +1,10 @@
-package com.jacob.core_lib.parser.move
+package com.jacob.core_lib.parser.instructions.move
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.move.Move
-import com.jacob.core_lib.parser.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionParser
 import com.jacob.core_lib.word.ImmediateValue
 
 class MoveImmediateInstructionParser internal constructor(private val instructionString: String) : InstructionParser {

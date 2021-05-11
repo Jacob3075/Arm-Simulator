@@ -1,16 +1,17 @@
-package com.jacob.core_lib.parser
+package com.jacob.core_lib.parser.instructions
 
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.parser.InstructionMnemonic.*
-import com.jacob.core_lib.parser.add.AddInstructionParser
-import com.jacob.core_lib.parser.move.MoveInstructionParser
-import com.jacob.core_lib.parser.sub.SubInstructionParser
+import com.jacob.core_lib.parser.Line
+import com.jacob.core_lib.parser.instructions.InstructionMnemonic.*
+import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
+import com.jacob.core_lib.parser.instructions.move.MoveInstructionParser
+import com.jacob.core_lib.parser.instructions.sub.SubInstructionParser
 
-class InstructionString(val instruction: String) {
+class InstructionLine(val instruction: String) : Line {
 
     private val mnemonic: InstructionMnemonic = valueOf(instruction.split(" ").first().uppercase())
 
-    fun parse(): Instruction {
+    override fun parse(): Instruction {
         return when (mnemonic) {
             ADD -> AddInstructionParser.from(instruction)
             SUB -> SubInstructionParser.from(instruction)

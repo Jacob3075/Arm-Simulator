@@ -1,20 +1,19 @@
 @file:Suppress("DuplicatedCode")
 
-package com.jacob.core_lib.parser.sub
+package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.sub.Sub
+import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.word.ImmediateValue
 
-class SubImmediateInstructionParser internal constructor(private val instructionString: String) :
-    SubInstructionParser {
+class AddImmediateInstructionParser internal constructor(private val instructionString: String) : AddInstructionParser {
 
     override fun invoke(): Instruction {
-        // SUB r4, r4, #5
-        val operands = instructionString.removePrefix("SUB")
+        // ADD r4, r4, #5
+        val operands = instructionString.removePrefix("ADD")
             .split(",")
             .map(String::trim)
 
@@ -25,12 +24,11 @@ class SubImmediateInstructionParser internal constructor(private val instruction
 
         val registers: List<RegisterAddress> = operands.take(2)
             .map { it.replace("R", "REGISTER_") }
-            .map { RegisterAddress.valueOf(it) }
+            .map(RegisterAddress::valueOf)
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)
 
-        return Sub.of(destinationRegister, sourceRegister, immediateValue)
+        return Add.of(destinationRegister, sourceRegister, immediateValue)
     }
-
 }

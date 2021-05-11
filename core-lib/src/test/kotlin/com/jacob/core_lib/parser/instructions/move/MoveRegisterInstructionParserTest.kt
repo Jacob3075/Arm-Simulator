@@ -1,4 +1,4 @@
-package com.jacob.core_lib.parser.add
+package com.jacob.core_lib.parser.instructions.move
 
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
@@ -7,14 +7,14 @@ import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
-internal class AddImmediateInstructionParserTest {
+internal class MoveRegisterInstructionParserTest {
 
     @Test
-    internal fun `creates correct add instruction`() {
-        val labels = mockk<List<Label>>()
-        val variables = mockk<List<Variable>>()
+    internal fun `creates correct move register instruction`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+        val labels = mockk<List<Label>>()
+        val variables = mockk<List<Variable>>()
 
         val executionEnvironment = ExecutionEnvironment(
             registerArray = registerArray,
@@ -23,15 +23,15 @@ internal class AddImmediateInstructionParserTest {
             variables = variables
         )
 
-        val instructionString = "ADD R3, R1, #2"
+        val instructionString = "MOV R2, R1"
 
         registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(1))
 
-        val addImmediateInstruction = AddImmediateInstructionParser(instructionString).invoke()
+        val moveRegisterInstruction = MoveRegisterInstructionParser(instructionString).invoke()
 
-        addImmediateInstruction.execute(executionEnvironment)
+        moveRegisterInstruction.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(3)
-
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_2).getRegisterValue() `should be equal to` Word(1)
     }
+
 }
