@@ -1,9 +1,7 @@
 package com.jacob.core_lib.instructions
 
-import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.core.MemoryArray
-import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.core.ExecutionEnvironment
 
 interface Instruction {
-    fun execute(memoryArray: MemoryArray, registerArray: RegisterArray, labels: List<Label>)
+    fun execute(executionEnvironment: ExecutionEnvironment)
 }

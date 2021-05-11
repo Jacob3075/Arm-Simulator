@@ -2,9 +2,7 @@ package com.jacob.core_lib.instructions.move
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
-import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.core.MemoryArray
-import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.word.ImmediateValue
 import io.mockk.mockk
@@ -31,12 +29,20 @@ internal class MoveImmediateTest {
     internal fun `executing instruction updates the register array`() {
         val memoryArray = mockk<MemoryArray>()
         val labels = mockk<List<Label>>()
+        val variables = mockk<List<Variable>>()
         val registerArray = RegisterArray()
         val immediateValue = ImmediateValue(20)
         val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_2)
 
+        val executionEnvironment = ExecutionEnvironment(
+            registerArray = registerArray,
+            memoryArray = memoryArray,
+            labels = labels,
+            variables = variables
+        )
+
         val moveInstruction = Move.of(destinationRegister, immediateValue)
-        moveInstruction.execute(memoryArray, registerArray, labels)
+        moveInstruction.execute(executionEnvironment)
 
         registerArray.getRegisterAt(destinationRegister.registerAddress)
             .getRegisterValue() `should be equal to` immediateValue

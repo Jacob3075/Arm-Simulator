@@ -1,9 +1,7 @@
 package com.jacob.core_lib.instructions.sub
 
 import com.jacob.core_lib.common.addresses.RegisterAddress
-import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.core.MemoryArray
-import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.core.*
 import com.jacob.core_lib.createSubInstruction
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.word.Word
@@ -33,7 +31,15 @@ internal class SubImmediateTest {
     internal fun `executing sub instruction with source register and immediate value reads and updates the correct registers`() {
         val memoryArray = mockk<MemoryArray>()
         val labels = mockk<List<Label>>()
+        val variables = mockk<List<Variable>>()
         val registerArray = RegisterArray()
+
+        val executionEnvironment = ExecutionEnvironment(
+            registerArray = registerArray,
+            memoryArray = memoryArray,
+            labels = labels,
+            variables = variables
+        )
 
         val sourceRegister = RegisterAddress.REGISTER_1
         val destinationRegister = RegisterAddress.REGISTER_3
@@ -43,7 +49,7 @@ internal class SubImmediateTest {
 
         val addInstruction = createSubInstruction(destinationRegister, sourceRegister, immediateValue)
 
-        addInstruction.execute(memoryArray, registerArray, labels)
+        addInstruction.execute(executionEnvironment)
 
         registerArray.getRegisterAt(destinationRegister)
             .getRegisterValue() `should be equal to` Word(10)

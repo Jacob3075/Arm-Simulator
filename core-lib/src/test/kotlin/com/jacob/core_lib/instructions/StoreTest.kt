@@ -3,9 +3,8 @@ package com.jacob.core_lib.instructions
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.core.*
 import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.core.MemoryArray
-import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -26,8 +25,16 @@ internal class StoreTest {
     @Test
     internal fun `reads correct register and updates correct memory address`() {
         val labels = mockk<List<Label>>()
+        val variables = mockk<List<Variable>>()
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+
+        val executionEnvironment = ExecutionEnvironment(
+            registerArray = registerArray,
+            memoryArray = memoryArray,
+            labels = labels,
+            variables = variables
+        )
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
@@ -40,11 +47,11 @@ internal class StoreTest {
         val store1 = Store(sourceRegister1, memoryAddress1)
         val store2 = Store(sourceRegister2, memoryAddress2)
 
-        store1.execute(memoryArray, registerArray, labels)
+        store1.execute(executionEnvironment)
         registerArray.getRegisterAt(sourceRegister1.registerAddress)
             .getRegisterValue() `should be equal to` Word(10)
 
-        store2.execute(memoryArray, registerArray, labels)
+        store2.execute(executionEnvironment)
         registerArray.getRegisterAt(sourceRegister2.registerAddress)
             .getRegisterValue() `should be equal to` Word(20)
     }

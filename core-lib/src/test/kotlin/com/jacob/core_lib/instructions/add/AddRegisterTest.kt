@@ -1,9 +1,7 @@
 package com.jacob.core_lib.instructions.add
 
 import com.jacob.core_lib.common.addresses.RegisterAddress
-import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.core.MemoryArray
-import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.core.*
 import com.jacob.core_lib.createAddInstruction
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.word.Word
@@ -32,7 +30,15 @@ internal class AddRegisterTest {
     internal fun `executing add instruction with register values reads and updates the correct registers`() {
         val memoryArray = mockk<MemoryArray>()
         val labels = mockk<List<Label>>()
+        val variables = mockk<List<Variable>>()
         val registerArray = RegisterArray()
+
+        val executionEnvironment = ExecutionEnvironment(
+            registerArray = registerArray,
+            memoryArray = memoryArray,
+            labels = labels,
+            variables = variables
+        )
 
         registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(10))
         registerArray.setValueAtRegister(RegisterAddress.REGISTER_2, Word(20))
@@ -43,7 +49,7 @@ internal class AddRegisterTest {
 
         val addInstruction = createAddInstruction(destinationRegister, sourceRegister1, sourceRegister2)
 
-        addInstruction.execute(memoryArray, registerArray, labels)
+        addInstruction.execute(executionEnvironment)
 
         registerArray.getRegisterAt(destinationRegister)
             .getRegisterValue() `should be equal to` Word(30)

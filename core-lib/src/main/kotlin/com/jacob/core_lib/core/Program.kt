@@ -4,7 +4,7 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.registers.ProgramCounter
 import com.jacob.core_lib.instructions.Label as InstructionsLabel
 
-class Program(private val instructions: List<Instruction>) {
+class Program(private val instructions: List<Instruction>, val variables: List<Variable> = listOf()) {
 
     private val _labels: ArrayList<Label> = ArrayList()
     val labels: List<Label>

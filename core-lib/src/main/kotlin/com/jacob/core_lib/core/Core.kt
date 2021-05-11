@@ -9,7 +9,15 @@ class Core(
     fun runProgram() {
         while (program.hasMoreInstructions(registerArray.programCounter)) {
             val nextInstruction = program.getInstructionAt(registerArray.programCounter) ?: return
-            nextInstruction.execute(memoryArray, registerArray, program.labels)
+            val executionEnvironment =
+                ExecutionEnvironment(
+                    registerArray = registerArray,
+                    memoryArray = memoryArray,
+                    labels = program.labels,
+                    variables = program.variables
+                )
+
+            nextInstruction.execute(executionEnvironment)
         }
     }
 }

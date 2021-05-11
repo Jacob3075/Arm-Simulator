@@ -1,9 +1,7 @@
 package com.jacob.core_lib.parser.move
 
 import com.jacob.core_lib.common.addresses.RegisterAddress
-import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.core.MemoryArray
-import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.core.*
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -16,6 +14,14 @@ internal class MoveRegisterInstructionParserTest {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
         val labels = mockk<List<Label>>()
+        val variables = mockk<List<Variable>>()
+
+        val executionEnvironment = ExecutionEnvironment(
+            registerArray = registerArray,
+            memoryArray = memoryArray,
+            labels = labels,
+            variables = variables
+        )
 
         val instructionString = "MOV R2, R1"
 
@@ -23,7 +29,7 @@ internal class MoveRegisterInstructionParserTest {
 
         val moveRegisterInstruction = MoveRegisterInstructionParser(instructionString).invoke()
 
-        moveRegisterInstruction.execute(memoryArray, registerArray, labels)
+        moveRegisterInstruction.execute(executionEnvironment)
 
         registerArray.getRegisterAt(RegisterAddress.REGISTER_2).getRegisterValue() `should be equal to` Word(1)
     }
