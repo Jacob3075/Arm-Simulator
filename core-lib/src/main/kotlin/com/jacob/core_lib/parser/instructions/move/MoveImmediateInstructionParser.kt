@@ -10,7 +10,6 @@ import com.jacob.core_lib.word.ImmediateValue
 class MoveImmediateInstructionParser internal constructor(private val instructionString: String) : InstructionParser {
 
     override fun invoke(): Instruction {
-        // MOV r1, #5
         val operands = instructionString.removePrefix("MOV")
             .split(",")
             .map(String::trim)

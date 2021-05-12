@@ -11,7 +11,6 @@ class SubRegisterInstructionParser internal constructor(private val instructionS
     SubInstructionParser {
 
     override fun invoke(): Instruction {
-        // SUB r4, r4, r5
         val registers: List<RegisterAddress> = instructionString.removePrefix("SUB")
             .split(",")
             .map(String::trim)

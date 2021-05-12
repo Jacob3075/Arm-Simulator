@@ -13,7 +13,6 @@ import com.jacob.core_lib.word.ImmediateValue
 class AddImmediateInstructionParser internal constructor(private val instructionString: String) : AddInstructionParser {
 
     override fun invoke(): Instruction {
-        // ADD r4, r4, #5
         val operands = instructionString.removePrefix("ADD")
             .split(",")
             .map(String::trim)

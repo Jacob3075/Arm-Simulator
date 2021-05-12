@@ -8,12 +8,9 @@ import com.jacob.core_lib.instructions.load.Load
 class LoadVariableInstructionParser(private val instructionString: String) :
     LoadInstructionParser {
     override fun invoke(): Instruction {
-        // LDR R0,=A
         val operands = instructionString.removePrefix("LDR")
             .split(",")
             .map(String::trim)
-
-        require(operands.size == 2)
 
         val destinationRegister = operands.first()
             .toRegisterAddress(::DestinationRegister)

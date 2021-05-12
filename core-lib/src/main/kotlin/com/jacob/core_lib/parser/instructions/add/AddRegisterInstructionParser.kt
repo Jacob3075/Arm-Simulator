@@ -12,7 +12,6 @@ import com.jacob.core_lib.instructions.add.Add
 class AddRegisterInstructionParser internal constructor(private val instructionString: String) : AddInstructionParser {
 
     override fun invoke(): Instruction {
-        // ADD r4, r4, r5
         val registers: List<RegisterAddress> = instructionString.dropWhile { it != ' ' }
             .split(",")
             .map(String::trim)
