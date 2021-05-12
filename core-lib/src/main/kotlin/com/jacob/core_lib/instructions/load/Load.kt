@@ -13,8 +13,7 @@ interface Load : Instruction {
         fun of(destinationRegister: DestinationRegister, memoryAddress: MemoryAddress) =
             LoadMemoryAddress(destinationRegister, memoryAddress)
 
-        fun of(destinationRegister: DestinationRegister, sourceRegister: SourceRegister): Instruction {
-            TODO("Not yet implemented")
-        }
+        fun of(destinationRegister: DestinationRegister, sourceRegister: SourceRegister) =
+            LoadRegisterAddress(destinationRegister, sourceRegister)
     }
 }

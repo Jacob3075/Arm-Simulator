@@ -1,6 +1,6 @@
 package com.jacob.core_lib.word
 
-open class Word(private val value: Int) {
+open class Word(val value: Int) {
     override fun toString() = "Word(value=$value)"
 
     override fun equals(other: Any?): Boolean {
