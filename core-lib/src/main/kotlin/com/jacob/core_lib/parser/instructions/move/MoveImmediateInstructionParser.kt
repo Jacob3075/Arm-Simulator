@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.move
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.parser.instructions.InstructionParser
@@ -21,9 +21,7 @@ class MoveImmediateInstructionParser internal constructor(private val instructio
             .let(::ImmediateValue)
 
         val destinationRegister = operands.first()
-            .replace("R", "REGISTER_")
-            .let(RegisterAddress::valueOf)
-            .let(::DestinationRegister)
+            .toRegisterAddress(::DestinationRegister)
 
         return Move.of(destinationRegister, immediateValue)
     }

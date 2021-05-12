@@ -5,6 +5,7 @@ package com.jacob.core_lib.parser.instructions.add
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.word.ImmediateValue
@@ -23,8 +24,7 @@ class AddImmediateInstructionParser internal constructor(private val instruction
             .let(::ImmediateValue)
 
         val registers: List<RegisterAddress> = operands.take(2)
-            .map { it.replace("R", "REGISTER_") }
-            .map(RegisterAddress::valueOf)
+            .toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)

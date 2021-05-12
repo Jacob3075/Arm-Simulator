@@ -1,8 +1,8 @@
 package com.jacob.core_lib.parser.instructions.move
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.parser.instructions.InstructionParser
@@ -13,8 +13,7 @@ class MoveRegisterInstructionParser internal constructor(private val instruction
         val registers = instructionString.removePrefix("MOV")
             .split(",")
             .map(String::trim)
-            .map { it.replace("R", "REGISTER_") }
-            .map(RegisterAddress::valueOf)
+            .toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)
