@@ -11,7 +11,7 @@ internal class VariableLineTest {
         val parse = VariableLine(line).parse()
 
         parse.name `should be equal to` "A"
-        parse.value `should be equal to` 10
+        parse.address `should be equal to` 10
     }
 
     @Test
@@ -21,7 +21,7 @@ internal class VariableLineTest {
         val parse = VariableLine(line).parse()
 
         parse.name `should be equal to` "A"
-        parse.value `should be equal to` -10
+        parse.address `should be equal to` -10
     }
 
     @Test
@@ -31,7 +31,7 @@ internal class VariableLineTest {
         val parse = VariableLine(line).parse()
 
         parse.name `should be equal to` "ABC"
-        parse.value `should be equal to` 10
+        parse.address `should be equal to` 10
     }
 
     @Test
@@ -41,7 +41,7 @@ internal class VariableLineTest {
         val parse = VariableLine(line).parse()
 
         parse.name `should be equal to` "ABC"
-        parse.value `should be equal to` -10
+        parse.address `should be equal to` -10
     }
 
     @Test
@@ -51,6 +51,6 @@ internal class VariableLineTest {
         val parse = VariableLine(line).parse()
 
         parse.name `should be equal to` "ABWORDCD"
-        parse.value `should be equal to` 10
+        parse.address `should be equal to` 10
     }
 }

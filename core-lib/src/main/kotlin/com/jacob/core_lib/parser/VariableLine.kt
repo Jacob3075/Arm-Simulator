@@ -16,6 +16,7 @@ class VariableLine(private val line: String) : Line {
         val variableValue = tokens.last()
             .toInt()
 
-        return Variable(variableName, variableValue)
+        TODO()
+//        return Variable(variableName, MemoryAddress(0))
     }
 }
