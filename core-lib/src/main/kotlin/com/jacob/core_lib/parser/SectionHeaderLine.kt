@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser
 
 enum class SectionType {
-    DATA, TEXT
+    DATA, TEXT, END
 }
 
 class SectionHeaderLine(private val sectionType: SectionType) : Line {

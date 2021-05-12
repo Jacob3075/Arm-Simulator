@@ -1,10 +1,10 @@
-package com.jacob.core_lib.parser
+package com.jacob.core_lib.parser.data
 
-import com.jacob.core_lib.core.Variable
+import com.jacob.core_lib.parser.Line
 
-class VariableLine(private val line: String) : Line {
+class DataLine(private val line: String) : Line {
     //    A: .WORD 64
-    override fun parse(): Variable {
+    override fun parse(): ParsedData {
         val tokens = line.replace(".WORD", "")
             .split(":")
             .map(String::trim)
@@ -16,7 +16,6 @@ class VariableLine(private val line: String) : Line {
         val variableValue = tokens.last()
             .toInt()
 
-        TODO()
-//        return Variable(variableName, MemoryAddress(0))
+        return ParsedData(variableName, variableValue)
     }
 }
