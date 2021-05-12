@@ -5,8 +5,8 @@ import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.word.ImmediateValue
 
 class MoveImmediate internal constructor(
-    private val destinationRegister: DestinationRegister,
-    private val immediateValue:
+    internal val destinationRegister: DestinationRegister,
+    internal val immediateValue:
     ImmediateValue,
 ) :
     Move {

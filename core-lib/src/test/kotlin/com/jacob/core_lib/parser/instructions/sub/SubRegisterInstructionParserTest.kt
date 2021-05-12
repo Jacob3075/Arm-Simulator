@@ -1,37 +1,27 @@
 package com.jacob.core_lib.parser.instructions.sub
 
+import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
-import com.jacob.core_lib.core.*
-import com.jacob.core_lib.word.Word
-import io.mockk.mockk
+import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.instructions.sub.SubRegister
 import org.amshove.kluent.`should be equal to`
+import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 
 internal class SubRegisterInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction`() {
-        val memoryArray = MemoryArray()
-        val registerArray = RegisterArray()
-        val labels = mockk<List<Label>>()
-        val variables = mockk<List<Variable>>()
-
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
-
         val instructionString = "SUB R3, R1, R2"
-
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_1, Word(2))
-        registerArray.setValueAtRegister(RegisterAddress.REGISTER_2, Word(1))
 
         val subRegisterInstruction = SubRegisterInstructionParser(instructionString).invoke()
 
-        subRegisterInstruction.execute(executionEnvironment)
+        subRegisterInstruction `should be instance of` SubRegister::class
 
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(1)
+        subRegisterInstruction as SubRegister
+
+        subRegisterInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
+        subRegisterInstruction.sourceRegister1 `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
+        subRegisterInstruction.sourceRegister2 `should be equal to` SourceRegister(RegisterAddress.REGISTER_2)
     }
 }

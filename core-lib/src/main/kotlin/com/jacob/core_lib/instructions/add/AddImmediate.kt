@@ -6,9 +6,9 @@ import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.word.ImmediateValue
 
 class AddImmediate internal constructor(
-    private val destinationRegister: DestinationRegister,
-    private val sourceRegister: SourceRegister,
-    private val immediateValue: ImmediateValue,
+    internal val destinationRegister: DestinationRegister,
+    internal val sourceRegister: SourceRegister,
+    internal val immediateValue: ImmediateValue,
 ) : Add {
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {

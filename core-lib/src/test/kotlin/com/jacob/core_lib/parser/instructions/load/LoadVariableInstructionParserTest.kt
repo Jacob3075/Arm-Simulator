@@ -18,7 +18,7 @@ internal class LoadVariableInstructionParserTest {
 
         loadInstruction `should be instance of` LoadVariableAddress::class
 
-        (loadInstruction as LoadVariableAddress)
+        loadInstruction as LoadVariableAddress
 
         loadInstruction.destinationRegister.registerAddress `should be equal to` RegisterAddress.REGISTER_0
         loadInstruction.variableName `should be equal to` "A"

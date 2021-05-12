@@ -5,9 +5,9 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
 class AddRegister internal constructor(
-    private val destinationRegister: DestinationRegister,
-    private val sourceRegister1: SourceRegister,
-    private val sourceRegister2: SourceRegister
+    internal val destinationRegister: DestinationRegister,
+    internal val sourceRegister1: SourceRegister,
+    internal val sourceRegister2: SourceRegister,
 ) : Add {
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
