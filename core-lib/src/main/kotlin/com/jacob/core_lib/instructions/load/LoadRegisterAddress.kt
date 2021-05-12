@@ -6,8 +6,8 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
 class LoadRegisterAddress(
-    private val destinationRegister: DestinationRegister,
-    private val sourceRegister: SourceRegister,
+    internal val destinationRegister: DestinationRegister,
+    internal val sourceRegister: SourceRegister,
 ) : Load {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val memoryAddress = executionEnvironment.registerArray
