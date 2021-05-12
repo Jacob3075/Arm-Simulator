@@ -7,7 +7,7 @@ import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.Store
-import com.jacob.core_lib.instructions.load.LoadImmediateAddress
+import com.jacob.core_lib.instructions.load.LoadMemoryAddress
 import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Nested
@@ -317,8 +317,8 @@ internal class CoreTest {
         memoryArray.setWordAt(memoryAddress1, Word(10))
         memoryArray.setWordAt(memoryAddress2, Word(20))
 
-        val load1 = LoadImmediateAddress(destinationRegister1, memoryAddress1)
-        val load2 = LoadImmediateAddress(destinationRegister2, memoryAddress2)
+        val load1 = LoadMemoryAddress(destinationRegister1, memoryAddress1)
+        val load2 = LoadMemoryAddress(destinationRegister2, memoryAddress2)
 
         val instructions: List<Instruction> = listOf(
             load1,

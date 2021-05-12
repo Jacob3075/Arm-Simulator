@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.core.ExecutionEnvironment
 
-class LoadImmediateAddress(
+class LoadMemoryAddress(
     private val destinationRegister: DestinationRegister,
     private val sourceAddress: MemoryAddress
 ) :

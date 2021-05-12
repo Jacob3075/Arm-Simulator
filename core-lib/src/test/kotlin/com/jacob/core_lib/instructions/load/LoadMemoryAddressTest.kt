@@ -1,24 +1,22 @@
-package com.jacob.core_lib.instructions
+package com.jacob.core_lib.instructions.load
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
-import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.instructions.load.LoadImmediateAddress
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
-internal class LoadTest {
+internal class LoadMemoryAddressTest {
     @Test
     internal fun `can create new Load instruction`() {
         val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
         val sourceAddress = MemoryAddress(1)
 
-        val loadInstruction = LoadImmediateAddress(destinationRegister, sourceAddress)
+        val loadInstruction = LoadMemoryAddress(destinationRegister, sourceAddress)
 
         loadInstruction.shouldNotBeNull()
     }
@@ -45,8 +43,8 @@ internal class LoadTest {
         memoryArray.setWordAt(memoryAddress1, Word(10))
         memoryArray.setWordAt(memoryAddress2, Word(20))
 
-        val load1 = LoadImmediateAddress(destinationRegister1, memoryAddress1)
-        val load2 = LoadImmediateAddress(destinationRegister2, memoryAddress2)
+        val load1 = LoadMemoryAddress(destinationRegister1, memoryAddress1)
+        val load2 = LoadMemoryAddress(destinationRegister2, memoryAddress2)
 
         load1.execute(executionEnvironment)
         registerArray.getRegisterAt(destinationRegister1.registerAddress)
