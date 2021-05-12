@@ -7,19 +7,9 @@ import com.jacob.core_lib.core.*
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
-import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
 internal class LoadMemoryAddressTest {
-    @Test
-    internal fun `can create new Load instruction`() {
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
-        val sourceAddress = MemoryAddress(1)
-
-        val loadInstruction = LoadMemoryAddress(destinationRegister, sourceAddress)
-
-        loadInstruction.shouldNotBeNull()
-    }
 
     @Test
     internal fun `reads correct memory location and updates correct register`() {
