@@ -60,6 +60,7 @@ internal class SubRegisterTest {
     internal fun `running sub instructions using registers reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+        val variables = listOf<Variable>()
 
         val registerAddress1 = RegisterAddress.REGISTER_1
         val registerAddress2 = RegisterAddress.REGISTER_2
@@ -76,7 +77,7 @@ internal class SubRegisterTest {
             sub1,
             sub2,
         )
-        val program = Program(instructions)
+        val program = Program(instructions, variables)
 
         val core = Core(memoryArray, registerArray, program)
 

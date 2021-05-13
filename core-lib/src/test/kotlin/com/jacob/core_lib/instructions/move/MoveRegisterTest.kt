@@ -56,6 +56,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+        val variables = listOf<Variable>()
 
         val destinationAddress1 = RegisterAddress.REGISTER_0
         val destinationAddress2 = RegisterAddress.REGISTER_1
@@ -73,7 +74,7 @@ internal class MoveRegisterTest {
             move3,
             move4,
         )
-        val program = Program(instructions)
+        val program = Program(instructions, variables)
 
         val core = Core(memoryArray, registerArray, program)
 

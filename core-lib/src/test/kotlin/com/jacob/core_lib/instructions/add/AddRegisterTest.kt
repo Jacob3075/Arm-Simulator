@@ -59,6 +59,7 @@ internal class AddRegisterTest {
     internal fun `running add instructions using registers reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+        val variables = listOf<Variable>()
 
         val registerAddress1 = RegisterAddress.REGISTER_1
         val registerAddress2 = RegisterAddress.REGISTER_2
@@ -75,7 +76,7 @@ internal class AddRegisterTest {
             add1,
             add2,
         )
-        val program = Program(instructions)
+        val program = Program(instructions, variables)
 
         val core = Core(memoryArray, registerArray, program)
 

@@ -38,6 +38,7 @@ internal class StoreRegisterAddressTest {
     internal fun `running store instructions reads and updates correct register and memory addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+        val variables = listOf<Variable>()
 
         val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
         val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_2)
@@ -56,7 +57,7 @@ internal class StoreRegisterAddressTest {
             store1,
             store2,
         )
-        val program = Program(instructions)
+        val program = Program(instructions, variables)
 
         val core = Core(memoryArray, registerArray, program)
 

@@ -39,6 +39,7 @@ internal class LoadRegisterAddressTest {
     internal fun `running load instructions reads and updates correct memory and register addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
+        val variables = listOf<Variable>()
 
         val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_0)
         val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_3)
@@ -58,7 +59,7 @@ internal class LoadRegisterAddressTest {
             load1,
             load2,
         )
-        val program = Program(instructions)
+        val program = Program(instructions, variables)
 
         val core = Core(memoryArray, registerArray, program)
 
