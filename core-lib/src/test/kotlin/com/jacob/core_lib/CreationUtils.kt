@@ -13,6 +13,9 @@ import com.jacob.core_lib.word.ImmediateValue
 fun createMoveInstruction(registerAddress: RegisterAddress, immediateValue: Int) =
     Move.of(DestinationRegister(registerAddress), ImmediateValue(immediateValue))
 
+fun createMoveInstruction(destinationAddress: RegisterAddress, sourceAddress: RegisterAddress) =
+    Move.of(DestinationRegister(destinationAddress), SourceRegister(sourceAddress))
+
 fun createAddInstruction(
     destinationRegister: RegisterAddress,
     sourceRegister1: RegisterAddress,

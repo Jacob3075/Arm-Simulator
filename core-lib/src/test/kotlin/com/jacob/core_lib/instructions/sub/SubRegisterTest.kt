@@ -54,4 +54,53 @@ internal class SubRegisterTest {
         registerArray.getRegisterAt(destinationRegister)
             .getRegisterValue() `should be equal to` Word(10)
     }
+
+
+    @Test
+    internal fun `running sub instructions using registers reads and updates the correct registers`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+
+        val registerAddress1 = RegisterAddress.REGISTER_1
+        val registerAddress2 = RegisterAddress.REGISTER_2
+        val registerAddress3 = RegisterAddress.REGISTER_3
+        val registerAddress4 = RegisterAddress.REGISTER_4
+
+        registerArray.setValueAtRegister(registerAddress1, Word(30))
+        registerArray.setValueAtRegister(registerAddress2, Word(10))
+
+        val sub1 = createSubInstruction(registerAddress3, registerAddress1, registerAddress2)
+        val sub2 = createSubInstruction(registerAddress4, registerAddress3, registerAddress2)
+
+        val instructions: List<Instruction> = listOf(
+            sub1,
+            sub2,
+        )
+        val program = Program(instructions)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(registerAddress1)
+            .getRegisterValue() `should be equal to` Word(30)
+
+        registerArray.getRegisterAt(registerAddress2)
+            .getRegisterValue() `should be equal to` Word(10)
+
+        registerArray.getRegisterAt(registerAddress3)
+            .getRegisterValue() `should be equal to` Word(20)
+
+        registerArray.getRegisterAt(registerAddress4)
+            .getRegisterValue() `should be equal to` Word(10)
+
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_7).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_8).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_9).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_10).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_11).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_12).getRegisterValue() `should be equal to` Word(0)
+    }
 }

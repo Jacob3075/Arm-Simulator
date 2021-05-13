@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.*
+import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
@@ -50,4 +51,49 @@ internal class MoveRegisterTest {
         registerArray.getRegisterAt(destinationRegister.registerAddress)
             .getRegisterValue() `should be equal to` Word(10)
     }
+
+    @Test
+    internal fun `running move instructions updates the correct registers`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+
+        val destinationAddress1 = RegisterAddress.REGISTER_0
+        val destinationAddress2 = RegisterAddress.REGISTER_1
+        val sourceAddress1 = RegisterAddress.REGISTER_2
+        val sourceAddress2 = RegisterAddress.REGISTER_3
+
+        val move1 = createMoveInstruction(sourceAddress1, 10)
+        val move2 = createMoveInstruction(sourceAddress2, 20)
+        val move3 = createMoveInstruction(destinationAddress1, sourceAddress1)
+        val move4 = createMoveInstruction(destinationAddress2, sourceAddress2)
+
+        val instructions: List<Instruction> = listOf(
+            move1,
+            move2,
+            move3,
+            move4,
+        )
+        val program = Program(instructions)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(destinationAddress1)
+            .getRegisterValue() `should be equal to` Word(10)
+
+        registerArray.getRegisterAt(destinationAddress2)
+            .getRegisterValue() `should be equal to` Word(20)
+
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_4).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_7).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_8).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_9).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_10).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_11).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(RegisterAddress.REGISTER_12).getRegisterValue() `should be equal to` Word(0)
+    }
+
 }

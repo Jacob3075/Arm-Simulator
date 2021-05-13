@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
+import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -44,4 +45,38 @@ internal class LoadMemoryAddressTest {
         registerArray.getRegisterAt(destinationRegister2.registerAddress)
             .getRegisterValue() `should be equal to` Word(20)
     }
+
+    @Test
+    internal fun `running load instructions reads and updates correct memory and register addresses`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+
+        val memoryAddress1 = MemoryAddress(0)
+        val memoryAddress2 = MemoryAddress(2)
+        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_1)
+        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_2)
+
+        memoryArray.setWordAt(memoryAddress1, Word(10))
+        memoryArray.setWordAt(memoryAddress2, Word(20))
+
+        val load1 = LoadMemoryAddress(destinationRegister1, memoryAddress1)
+        val load2 = LoadMemoryAddress(destinationRegister2, memoryAddress2)
+
+        val instructions: List<Instruction> = listOf(
+            load1,
+            load2,
+        )
+        val program = Program(instructions)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(destinationRegister1.registerAddress)
+            .getRegisterValue() `should be equal to` Word(10)
+
+        registerArray.getRegisterAt(destinationRegister2.registerAddress)
+            .getRegisterValue() `should be equal to` Word(20)
+    }
+
 }
