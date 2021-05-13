@@ -1,4 +1,4 @@
-package com.jacob.core_lib.common
+package com.jacob.core_lib.common.regex
 
 class InstructionRegex private constructor() {
 

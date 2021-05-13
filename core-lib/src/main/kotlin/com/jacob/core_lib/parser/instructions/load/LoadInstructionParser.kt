@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.load
 
-import com.jacob.core_lib.common.InstructionRegex.Load.Companion.REGISTER
-import com.jacob.core_lib.common.InstructionRegex.Load.Companion.VARIABLE
+import com.jacob.core_lib.common.regex.InstructionRegex.Load.Companion.REGISTER
+import com.jacob.core_lib.common.regex.InstructionRegex.Load.Companion.VARIABLE
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
 interface LoadInstructionParser : InstructionParser {

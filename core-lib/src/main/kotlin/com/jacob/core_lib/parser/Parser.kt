@@ -20,6 +20,8 @@ object Parser {
             .map(Line::from)
             .groupBy { it::class }
 
+        require(linesByType[SectionHeaderLine::class]?.isNotEmpty() ?: false)
+
         val instructionLines = linesByType[InstructionLine::class]
             ?.map { it as InstructionLine }
             ?.map(InstructionLine::parse)

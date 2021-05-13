@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.add
 
-import com.jacob.core_lib.common.InstructionRegex.Add.Companion.IMMEDIATE
-import com.jacob.core_lib.common.InstructionRegex.Add.Companion.REGISTER
+import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.IMMEDIATE
+import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.REGISTER
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
 interface AddInstructionParser : InstructionParser {

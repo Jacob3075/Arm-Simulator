@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.sub
 
-import com.jacob.core_lib.common.InstructionRegex.Sub.Companion.IMMEDIATE
-import com.jacob.core_lib.common.InstructionRegex.Sub.Companion.REGISTER
+import com.jacob.core_lib.common.regex.InstructionRegex.Sub.Companion.IMMEDIATE
+import com.jacob.core_lib.common.regex.InstructionRegex.Sub.Companion.REGISTER
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
