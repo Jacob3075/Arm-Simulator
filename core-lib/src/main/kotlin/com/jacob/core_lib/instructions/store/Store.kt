@@ -10,9 +10,10 @@ interface Store : Instruction {
         fun of(destinationRegister: MemoryAddress, memoryAddress: SourceRegister) =
             StoreMemoryAddress(destinationRegister, memoryAddress)
 
-        fun of(sourceRegister: SourceRegister, destinationRegister: DestinationRegister): StoreRegisterAddress {
-            return StoreRegisterAddress(sourceRegister, destinationRegister)
-        }
+        fun of(sourceRegister: SourceRegister, destinationRegister: DestinationRegister) =
+            StoreRegisterAddress(sourceRegister, destinationRegister)
 
+        fun of(sourceRegister: SourceRegister, variableName: String) =
+            StoreVariableAddress(sourceRegister, variableName)
     }
 }
