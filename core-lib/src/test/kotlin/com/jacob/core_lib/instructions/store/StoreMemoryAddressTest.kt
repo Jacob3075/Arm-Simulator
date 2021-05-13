@@ -1,23 +1,22 @@
-package com.jacob.core_lib.instructions
+package com.jacob.core_lib.instructions.store
 
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.*
-import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
-internal class StoreTest {
+internal class StoreMemoryAddressTest {
     @Test
     internal fun `can create store instruction`() {
         val sourceRegister = SourceRegister(RegisterAddress.REGISTER_0)
         val destinationAddress = MemoryAddress(0)
 
-        val storeInstruction = Store(sourceRegister, destinationAddress)
+        val storeInstruction = StoreMemoryAddress(destinationAddress, sourceRegister)
 
         storeInstruction.shouldNotBeNull()
     }
@@ -44,8 +43,8 @@ internal class StoreTest {
         registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
         registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))
 
-        val store1 = Store(sourceRegister1, memoryAddress1)
-        val store2 = Store(sourceRegister2, memoryAddress2)
+        val store1 = StoreMemoryAddress(memoryAddress1, sourceRegister1)
+        val store2 = StoreMemoryAddress(memoryAddress2, sourceRegister2)
 
         store1.execute(executionEnvironment)
         registerArray.getRegisterAt(sourceRegister1.registerAddress)

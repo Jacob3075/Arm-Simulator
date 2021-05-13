@@ -6,8 +6,8 @@ import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.Store
 import com.jacob.core_lib.instructions.load.LoadMemoryAddress
+import com.jacob.core_lib.instructions.store.StoreMemoryAddress
 import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Nested
@@ -350,8 +350,8 @@ internal class CoreTest {
         registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
         registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))
 
-        val store1 = Store(sourceRegister1, memoryAddress1)
-        val store2 = Store(sourceRegister2, memoryAddress2)
+        val store1 = StoreMemoryAddress(memoryAddress1, sourceRegister1)
+        val store2 = StoreMemoryAddress(memoryAddress2, sourceRegister2)
 
         val instructions: List<Instruction> = listOf(
             store1,

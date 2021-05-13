@@ -4,7 +4,9 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.Line
 import com.jacob.core_lib.parser.instructions.InstructionMnemonic.*
 import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
+import com.jacob.core_lib.parser.instructions.load.LoadInstructionParser
 import com.jacob.core_lib.parser.instructions.move.MoveInstructionParser
+import com.jacob.core_lib.parser.instructions.store.StoreInstructionParser
 import com.jacob.core_lib.parser.instructions.sub.SubInstructionParser
 
 class InstructionLine(val instruction: String) : Line {
@@ -16,8 +18,8 @@ class InstructionLine(val instruction: String) : Line {
             ADD -> AddInstructionParser.from(instruction)
             SUB -> SubInstructionParser.from(instruction)
             MOV -> MoveInstructionParser.from(instruction)
-            LDR -> TODO()
-            STR -> TODO()
+            LDR -> LoadInstructionParser.from(instruction)
+            STR -> StoreInstructionParser.from(instruction)
             B -> TODO()
             LABEL -> TODO()
         }

@@ -7,8 +7,7 @@ import com.jacob.core_lib.core.ExecutionEnvironment
 class LoadMemoryAddress(
     private val destinationRegister: DestinationRegister,
     private val sourceAddress: MemoryAddress
-) :
-    Load {
+) : Load {
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val wordFromMemory = executionEnvironment.memoryArray.getWordAt(sourceAddress)
