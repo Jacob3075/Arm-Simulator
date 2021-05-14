@@ -1,5 +1,6 @@
 package com.jacob.core_lib.instructions.load
 
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
@@ -14,7 +15,9 @@ data class LoadVariableAddress(
 
         require(variable != null)
 
-        val wordFromMemory = executionEnvironment.memoryArray.getWordAt(variable.address)
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, wordFromMemory)
+        executionEnvironment.registerArray.setValueAtRegister(
+            destinationRegister.registerAddress,
+            variable.address.memoryAddress.W
+        )
     }
 }
