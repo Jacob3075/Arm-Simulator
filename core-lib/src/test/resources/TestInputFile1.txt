@@ -1,0 +1,6 @@
+.TEXT
+    MOV R1, #5
+    MOV R2, #10
+    ADD R3, R1, R2
+    SUB R4, R3, #5
+.END

@@ -9,6 +9,7 @@ import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.instructions.sub.Sub
 import com.jacob.core_lib.word.ImmediateValue
+import java.io.File
 
 fun createMoveInstruction(registerAddress: RegisterAddress, immediateValue: Int) =
     Move.of(DestinationRegister(registerAddress), ImmediateValue(immediateValue))
@@ -59,3 +60,5 @@ fun createSubInstruction(
 fun createBranchInstruction(labelName: String) = Branch(labelName)
 
 fun createLabelInstruction(labelName: String) = Label(labelName)
+
+fun getFile(fileName: String) = File(object {}.javaClass.getResource(fileName)!!.toURI())

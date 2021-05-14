@@ -13,7 +13,8 @@ data class StoreVariableAddress(
             .getRegisterValue()
 
         val variable = executionEnvironment.variables.find { it.name == variableName }
-            ?: throw IllegalArgumentException("Cannot find variable with name $variableName")
+
+        require(variable != null)
 
         executionEnvironment.memoryArray.setWordAt(variable.address, wordFromRegister)
     }
