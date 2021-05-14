@@ -50,6 +50,6 @@ class InstructionRegex private constructor() {
     }
 
     companion object {
-        val LABEL = "^[A-Z]([A-Z]|_|-|\\d)+:$".toRegex() // LABEL_NEW-1:
+        val LABEL = "^[A-Z]([A-Z]|_|-|\\d)*:$".toRegex() // LABEL_NEW-1:
     }
 }
