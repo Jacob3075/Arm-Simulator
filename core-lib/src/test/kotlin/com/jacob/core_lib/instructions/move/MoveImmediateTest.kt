@@ -5,6 +5,7 @@ import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.ImmediateValue
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
@@ -54,7 +55,7 @@ internal class MoveImmediateTest {
     internal fun `running move instructions updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<Variable>()
+        val variables = listOf<ParsedData>()
 
         val registerAddress1 = RegisterAddress.REGISTER_1
         val registerAddress2 = RegisterAddress.REGISTER_2

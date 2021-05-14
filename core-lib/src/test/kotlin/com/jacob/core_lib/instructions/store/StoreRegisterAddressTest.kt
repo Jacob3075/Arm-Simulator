@@ -6,6 +6,7 @@ import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -38,7 +39,7 @@ internal class StoreRegisterAddressTest {
     internal fun `running store instructions reads and updates correct register and memory addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<Variable>()
+        val variables = listOf<ParsedData>()
 
         val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
         val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_2)

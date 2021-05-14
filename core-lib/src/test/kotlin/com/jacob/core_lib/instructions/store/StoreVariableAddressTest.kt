@@ -5,6 +5,7 @@ import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -37,8 +38,8 @@ internal class StoreVariableAddressTest {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
         val variables = listOf(
-            Variable("A", MemoryAddress(1)),
-            Variable("ABC", MemoryAddress(2))
+            ParsedData("A", 0),
+            ParsedData("ABC", 0)
         )
 
         val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
@@ -60,7 +61,7 @@ internal class StoreVariableAddressTest {
 
         core.runProgram()
 
-        memoryArray.getWordAt(MemoryAddress(1)) `should be equal to` Word(10)
-        memoryArray.getWordAt(MemoryAddress(2)) `should be equal to` Word(20)
+        memoryArray.getWordAt(MemoryAddress(0)) `should be equal to` Word(10)
+        memoryArray.getWordAt(MemoryAddress(1)) `should be equal to` Word(20)
     }
 }

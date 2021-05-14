@@ -6,6 +6,7 @@ import com.jacob.core_lib.core.Label
 import com.jacob.core_lib.createBranchInstruction
 import com.jacob.core_lib.createLabelInstruction
 import com.jacob.core_lib.createMoveInstruction
+import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -55,7 +56,7 @@ internal class BranchTest {
     internal fun `running branch instructions jump to the correct point`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<Variable>()
+        val variables = listOf<ParsedData>()
 
         val registerAddress1 = RegisterAddress.REGISTER_1
         val registerAddress2 = RegisterAddress.REGISTER_2

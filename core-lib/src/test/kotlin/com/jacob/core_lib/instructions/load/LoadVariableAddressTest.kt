@@ -5,6 +5,7 @@ import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -38,15 +39,12 @@ internal class LoadVariableAddressTest {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
         val variables = listOf(
-            Variable("A", MemoryAddress(1)),
-            Variable("ABC", MemoryAddress(2))
+            ParsedData("A", 10),
+            ParsedData("ABC", 20)
         )
 
         val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_1)
         val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_2)
-
-        memoryArray.setWordAt(MemoryAddress(1), Word(10))
-        memoryArray.setWordAt(MemoryAddress(2), Word(20))
 
         val load1 = LoadVariableAddress(destinationRegister1, "A")
         val load2 = LoadVariableAddress(destinationRegister2, "ABC")

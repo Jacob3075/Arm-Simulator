@@ -1,11 +1,14 @@
 package com.jacob.core_lib.core
 
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.data.ParsedData
+import com.jacob.core_lib.parser.data.toVariables
 import com.jacob.core_lib.registers.ProgramCounter
 import com.jacob.core_lib.instructions.Label as InstructionsLabel
 
-class Program(private val instructions: List<Instruction>, val variables: List<Variable>) {
+class Program(private val instructions: List<Instruction>, val parsedData: List<ParsedData>) {
 
+    val variables: List<Variable> = parsedData.toVariables()
     private val _labels: ArrayList<Label> = ArrayList()
     val labels: List<Label>
         get() = _labels

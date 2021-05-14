@@ -4,7 +4,6 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.getFile
 import com.jacob.core_lib.parser.Parser
-import com.jacob.core_lib.parser.data.toVariables
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -17,7 +16,7 @@ internal class CoreTest {
         val parseDataFromFile = Parser.parseDataFromFile(file)
 
         val instructions = parseDataFromFile.first
-        val variables = parseDataFromFile.second.toVariables()
+        val variables = parseDataFromFile.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -39,7 +38,7 @@ internal class CoreTest {
         val parseDataFromFile = Parser.parseDataFromFile(file)
 
         val instructions = parseDataFromFile.first
-        val variables = parseDataFromFile.second.toVariables()
+        val variables = parseDataFromFile.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)

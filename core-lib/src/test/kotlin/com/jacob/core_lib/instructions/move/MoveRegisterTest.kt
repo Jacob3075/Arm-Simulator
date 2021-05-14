@@ -6,6 +6,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
@@ -56,7 +57,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<Variable>()
+        val variables = listOf<ParsedData>()
 
         val destinationAddress1 = RegisterAddress.REGISTER_0
         val destinationAddress2 = RegisterAddress.REGISTER_1
