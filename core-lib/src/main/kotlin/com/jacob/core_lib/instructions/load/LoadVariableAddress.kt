@@ -3,7 +3,10 @@ package com.jacob.core_lib.instructions.load
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
-class LoadVariableAddress(internal val destinationRegister: DestinationRegister, internal val variableName: String) :
+data class LoadVariableAddress(
+    internal val destinationRegister: DestinationRegister,
+    internal val variableName: String
+) :
     Load {
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {

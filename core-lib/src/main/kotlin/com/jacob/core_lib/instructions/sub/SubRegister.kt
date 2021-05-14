@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
-class SubRegister internal constructor(
+data class SubRegister internal constructor(
     internal val destinationRegister: DestinationRegister,
     internal val sourceRegister1: SourceRegister,
     internal val sourceRegister2: SourceRegister,

@@ -5,7 +5,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.word.ImmediateValue
 
-class AddImmediate internal constructor(
+data class AddImmediate internal constructor(
     internal val destinationRegister: DestinationRegister,
     internal val sourceRegister: SourceRegister,
     internal val immediateValue: ImmediateValue,

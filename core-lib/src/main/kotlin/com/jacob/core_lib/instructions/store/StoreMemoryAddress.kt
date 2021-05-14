@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
-class StoreMemoryAddress(
+data class StoreMemoryAddress(
     private val destinationAddress: MemoryAddress,
     private val sourceRegister: SourceRegister,
 ) : Store {
