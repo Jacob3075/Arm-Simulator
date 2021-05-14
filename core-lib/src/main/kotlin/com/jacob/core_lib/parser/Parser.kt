@@ -32,6 +32,7 @@ object Parser {
             ?.map(InstructionLine::parse)
             ?: listOf()
 
+        // TODO
         val dataLines = linesByType[DataLine::class]
             ?.map { it as DataLine }
             ?.map(DataLine::parse)

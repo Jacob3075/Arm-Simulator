@@ -19,7 +19,7 @@ class InstructionLine(val instruction: String) : Line {
             instruction.contains(Move.MNEMONIC) -> MoveInstructionParser.from(instruction)
             instruction.contains(Load.MNEMONIC) -> LoadInstructionParser.from(instruction)
             instruction.contains(Store.MNEMONIC) -> StoreInstructionParser.from(instruction)
-            instruction.contains(Branch.MNEMONIC) -> TODO()
+            instruction.contains(Branch.MNEMONIC) -> BranchInstructionParser.from(instruction)
             instruction.contains(LABEL) -> LabelParser.from(instruction)
             else -> throw IllegalArgumentException("Cannot parse instruction: $instruction")
         }

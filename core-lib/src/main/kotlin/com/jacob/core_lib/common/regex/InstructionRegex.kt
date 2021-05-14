@@ -45,6 +45,7 @@ class InstructionRegex private constructor() {
     class Branch private constructor() {
         companion object {
             val MNEMONIC = "^B".toRegex()
+            val LABEL = "^B [A-Z]([A-Z]|_|-|\\d)+$".toRegex() // B LABEL_NAME-28
         }
     }
 
