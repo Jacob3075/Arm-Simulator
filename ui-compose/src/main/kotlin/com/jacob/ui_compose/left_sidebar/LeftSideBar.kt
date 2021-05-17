@@ -1,4 +1,4 @@
-package com.jacob.ui_compose
+package com.jacob.ui_compose.left_sidebar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
