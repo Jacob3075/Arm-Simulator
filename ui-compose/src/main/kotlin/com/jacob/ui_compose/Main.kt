@@ -1,36 +1,33 @@
 package com.jacob.ui_compose
 
 import androidx.compose.desktop.Window
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import com.jacob.core_lib.core.Core
-import com.jacob.core_lib.core.Program
-import com.jacob.core_lib.parser.Parser
-import java.io.File
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.dp
 
-fun main() = Window {
-    val file = File("./InputFile.txt")
-    val dataFromFile = Parser.parseDataFromFile(file)
-    val variables = dataFromFile.second
+fun main() = MyApp {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier.fillMaxSize().size(width = 600.dp, height = 400.dp)
+    ) {
+        LeftSideBar(Modifier.weight(0.40f, true))
+        CodeViewer(Modifier.weight(1.0f, true))
+        RightSideBar(Modifier.weight(0.40f, true))
+    }
+}
 
-    val core = Core(program = Program(dataFromFile.first, variables))
-    core.runProgram()
-
-    println(core.registerArray)
-    println(core.memoryArray)
-
-    var text by remember { mutableStateOf("Hello, World!") }
-
-    MaterialTheme {
-        Button(onClick = {
-            text = "Hello, Desktop!"
-        }) {
-            Text(text)
+private fun MyApp(content: @Composable () -> Unit) {
+    Window(
+        size = IntSize(1200, 800),
+    ) {
+        MaterialTheme {
+            content()
         }
     }
 }
