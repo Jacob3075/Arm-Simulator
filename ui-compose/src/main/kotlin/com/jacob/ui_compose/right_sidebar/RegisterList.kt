@@ -23,10 +23,10 @@ fun RegisterList(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun RegisterItem(register: Register) {
+fun RegisterItem(register: Register, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.padding(8.dp).fillMaxWidth()
+        modifier = modifier.padding(8.dp).fillMaxWidth()
     ) {
         Text(register.name)
         Text(register.value.toString())

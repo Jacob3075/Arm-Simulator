@@ -1,5 +1,6 @@
 package com.jacob.ui_compose
 
+import com.jacob.ui_compose.models.MemoryValue
 import com.jacob.ui_compose.models.Register
 
 
@@ -27,3 +28,5 @@ val cpsrRegister = listOf(
     Register("Negative", 0),
     Register("Zero", 0),
 )
+
+val memoryArray = List(75) { MemoryValue(it, 0) }

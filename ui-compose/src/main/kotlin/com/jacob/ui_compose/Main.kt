@@ -1,13 +1,12 @@
 package com.jacob.ui_compose
 
 import androidx.compose.desktop.Window
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.jacob.ui_compose.left_sidebar.LeftSideBar
@@ -18,9 +17,24 @@ fun main() = MyApp {
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.fillMaxSize().size(width = 600.dp, height = 400.dp)
     ) {
-        LeftSideBar(Modifier.weight(0.40f, true))
-        CodeViewer(Modifier.weight(1.0f, true))
-        RightSideBar(Modifier.weight(0.40f, true))
+        LeftSideBar(
+            modifier = Modifier.weight(0.40f, true)
+                .fillMaxHeight()
+                .background(color = Color.LightGray)
+                .padding(16.dp)
+        )
+        CodeViewer(
+            modifier = Modifier
+                .fillMaxSize()
+                .weight(1.0f, true)
+                .background(color = Color.LightGray)
+        )
+        RightSideBar(
+            modifier = Modifier.weight(0.40f, true)
+                .fillMaxHeight()
+                .background(color = Color.LightGray)
+                .padding(16.dp)
+        )
     }
 }
 
