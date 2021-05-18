@@ -1,4 +1,4 @@
-package com.jacob.ui_compose.left_sidebar
+package com.jacob.ui_compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
@@ -14,10 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jacob.ui_compose.memoryArray
 
 @Composable
 fun LeftSideBar(modifier: Modifier) {
@@ -29,7 +27,7 @@ fun LeftSideBar(modifier: Modifier) {
 }
 
 @Composable
-fun ControlSection(modifier: Modifier) {
+private fun ControlSection(modifier: Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -45,16 +43,15 @@ fun ControlSection(modifier: Modifier) {
 }
 
 @Composable
-fun MemorySection(modifier: Modifier) {
+private fun MemorySection(modifier: Modifier) {
     Title()
     MemoryArrayGrid(modifier = modifier)
 }
 
 @Composable
-fun Title() {
+private fun Title() {
     Text(
         "Memory:",
-        textDecoration = TextDecoration.Underline,
         fontWeight = FontWeight.SemiBold,
         fontSize = 28.sp,
         modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
@@ -63,7 +60,7 @@ fun Title() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MemoryArrayGrid(modifier: Modifier = Modifier) {
+private fun MemoryArrayGrid(modifier: Modifier = Modifier) {
     LazyVerticalGrid(cells = GridCells.Fixed(2), modifier = modifier) {
         items(items = memoryArray) {
             Row(
