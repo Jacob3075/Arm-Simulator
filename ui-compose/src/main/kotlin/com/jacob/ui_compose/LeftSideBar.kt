@@ -1,11 +1,11 @@
 package com.jacob.ui_compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jacob.ui_compose.models.MemoryValue
 
 @Composable
 fun LeftSideBar(modifier: Modifier) {
@@ -45,7 +46,7 @@ private fun ControlSection(modifier: Modifier) {
 @Composable
 private fun MemorySection(modifier: Modifier) {
     Title()
-    MemoryArrayGrid(modifier = modifier)
+    MemoryArray(modifier = modifier)
 }
 
 @Composable
@@ -58,21 +59,54 @@ private fun Title() {
     )
 }
 
+@Composable
+private fun MemoryArray(modifier: Modifier = Modifier) {
+    val state = rememberLazyListState()
+
+    Box(modifier = modifier) {
+        MemoryArrayGrid(state = state)
+        Scrollbar(modifier = Modifier.align(Alignment.CenterEnd).padding(vertical = 8.dp), state = state)
+    }
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun MemoryArrayGrid(modifier: Modifier = Modifier) {
-    LazyVerticalGrid(cells = GridCells.Fixed(2), modifier = modifier) {
+private fun MemoryArrayGrid(state: LazyListState) {
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(2),
+        modifier = Modifier.padding(end = 10.dp),
+        state = state
+    ) {
         items(items = memoryArray) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier
-                    .padding(8.dp)
-                    .border(width = 1.dp, color = Color.Black)
-                    .padding(vertical = 8.dp)
-            ) {
-                Text("${it.address}:")
-                Text("${it.value}")
-            }
+            RowItem(it)
         }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun Scrollbar(modifier: Modifier, state: LazyListState) {
+    val itemCount = (memoryArray.size + 1) / 2
+    VerticalScrollbar(
+        modifier = modifier,
+        adapter = rememberScrollbarAdapter(
+            scrollState = state,
+            itemCount = itemCount,
+            averageItemSize = 49.dp // 32 + extra
+        )
+    )
+}
+
+@Composable
+private fun RowItem(memoryValue: MemoryValue) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier
+            .padding(8.dp)
+            .border(width = 1.dp, color = Color.Black)
+            .padding(vertical = 8.dp)
+    ) {
+        Text("${"%03d".format(memoryValue.address)}:")
+        Text("%02d".format(memoryValue.value))
     }
 }
