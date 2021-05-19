@@ -23,21 +23,18 @@ fun main() = MyApp {
         LeftSideBar(
             modifier = Modifier.weight(0.40f, true)
                 .fillMaxHeight()
-//                .background(color = Color.LightGray)
                 .padding(16.dp),
             onClick = setFile
         )
         CodeViewer(
             modifier = Modifier
                 .fillMaxSize()
-//                .background(color = Color.LightGray)
                 .weight(1.0f, true),
             file.value
         )
         RightSideBar(
             modifier = Modifier.weight(0.40f, true)
                 .fillMaxHeight()
-//                .background(color = Color.LightGray)
                 .padding(16.dp)
         )
     }
