@@ -1,5 +1,6 @@
 package com.jacob.ui_compose
 
+import androidx.compose.desktop.AppManager
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.border
@@ -17,6 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jacob.ui_compose.models.MemoryValue
+import java.awt.FileDialog
+import java.io.File
+import java.io.FilenameFilter
+
 
 @Composable
 fun LeftSideBar(modifier: Modifier) {
@@ -34,12 +39,38 @@ private fun ControlSection(modifier: Modifier) {
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(modifier = Modifier.width(150.dp), onClick = {}) {
+        Button(modifier = Modifier.width(150.dp), onClick = {
+            val selectedFile = selectFile() ?: return@Button
+            selectedFile.readLines().forEach(::println)
+        }) {
             Text("Load new File")
         }
         Button(modifier = Modifier.width(150.dp), onClick = {}) {
             Text("Execute File")
         }
+    }
+}
+
+private fun selectFile(): File? {
+    val current = AppManager.focusedWindow ?: return null
+    val jFrame = current.window
+
+    val fileDialog = FileDialog(jFrame)
+    fileDialog.filenameFilter = FilenameFilter { _, fileName ->
+        fileName.split(".").last() == "s"
+    }
+    fileDialog.isVisible = true
+
+
+    return try {
+        val name = fileDialog.file
+        val dir = fileDialog.directory
+        if (name == null || dir == null) {
+            throw Exception()
+        }
+        File(dir + name)
+    } catch (e: Exception) {
+        null
     }
 }
 
