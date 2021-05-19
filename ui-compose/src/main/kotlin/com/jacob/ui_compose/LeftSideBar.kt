@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,21 +23,27 @@ import java.io.FilenameFilter
 
 
 @Composable
-fun LeftSideBar(modifier: Modifier, onClick: (File) -> Unit) {
+fun LeftSideBar(modifier: Modifier, onClick: (File) -> Unit, fileName: String) {
     Column(modifier = modifier) {
-        ControlSection(modifier = Modifier.weight(0.25f, true), onClick)
+        ControlSection(modifier = Modifier.weight(0.25f, true), onClick, fileName = fileName)
         Divider(color = Color.Gray, modifier = Modifier.padding(top = 16.dp, bottom = 16.dp))
         MemorySection(modifier = Modifier.weight(0.75f, true))
     }
 }
 
 @Composable
-private fun ControlSection(modifier: Modifier, onClick: (File) -> Unit) {
+private fun ControlSection(modifier: Modifier, onClick: (File) -> Unit, fileName: String?) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = fileName ?: "No File Selected",
+            style = TextStyle(fontSize = 24.sp),
+            maxLines = 1,
+            modifier = Modifier.padding(bottom = 12.dp)
+        )
         Button(modifier = Modifier.width(150.dp), onClick = {
             val selectedFile = selectFile() ?: return@Button
             onClick(selectedFile)

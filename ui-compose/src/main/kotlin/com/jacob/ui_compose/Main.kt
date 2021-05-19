@@ -24,7 +24,8 @@ fun main() = MyApp {
             modifier = Modifier.weight(0.40f, true)
                 .fillMaxHeight()
                 .padding(16.dp),
-            onClick = setFile
+            onClick = setFile,
+            fileName = file.value.name
         )
         CodeViewer(
             modifier = Modifier
