@@ -3,9 +3,11 @@ package com.jacob.ui_compose
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -35,10 +37,19 @@ private fun Title() {
 
 @Composable
 private fun RegisterList(modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
-        items(items = registers) {
-            RegisterItem(it)
+    val state = rememberLazyListState()
+    Box(modifier = modifier) {
+        LazyColumn(state = state) {
+            items(items = registers) {
+                RegisterItem(it)
+            }
         }
+        Scrollbar(
+            modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight().then(modifier),
+            state = state,
+            itemCount = registers.size,
+            averageItemSize = 35.dp
+        )
     }
 }
 
