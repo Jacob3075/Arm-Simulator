@@ -1,7 +1,9 @@
 package com.jacob.ui_compose
 
+import com.jacob.ui_compose.models.CodeViewerLine
 import com.jacob.ui_compose.models.MemoryValue
 import com.jacob.ui_compose.models.Register
+import java.io.File
 
 
 val registers = listOf(
@@ -30,3 +32,13 @@ val cpsrRegister = listOf(
 )
 
 val memoryArray = List(75) { MemoryValue(it, 0) }
+
+fun File.convertToCodeLines(): List<CodeViewerLine> {
+    return try {
+        this.readLines()
+            .mapIndexed { index, line -> CodeViewerLine(index + 1, line) }
+    } catch (e: Exception) {
+        println(e)
+        return listOf()
+    }
+}

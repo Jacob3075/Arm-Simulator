@@ -24,16 +24,16 @@ import java.io.FilenameFilter
 
 
 @Composable
-fun LeftSideBar(modifier: Modifier) {
+fun LeftSideBar(modifier: Modifier, onClick: (File) -> Unit) {
     Column(modifier = modifier) {
-        ControlSection(modifier = Modifier.weight(0.25f, true))
+        ControlSection(modifier = Modifier.weight(0.25f, true), onClick)
         Divider(color = Color.Gray, modifier = Modifier.padding(top = 16.dp, bottom = 16.dp))
         MemorySection(modifier = Modifier.weight(0.75f, true))
     }
 }
 
 @Composable
-private fun ControlSection(modifier: Modifier) {
+private fun ControlSection(modifier: Modifier, onClick: (File) -> Unit) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -41,7 +41,7 @@ private fun ControlSection(modifier: Modifier) {
     ) {
         Button(modifier = Modifier.width(150.dp), onClick = {
             val selectedFile = selectFile() ?: return@Button
-            selectedFile.readLines().forEach(::println)
+            onClick(selectedFile)
         }) {
             Text("Load new File")
         }
@@ -65,6 +65,7 @@ private fun selectFile(): File? {
     return try {
         val name = fileDialog.file
         val dir = fileDialog.directory
+        println(dir + name)
         if (name == null || dir == null) {
             throw Exception()
         }

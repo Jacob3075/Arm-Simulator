@@ -1,14 +1,71 @@
 package com.jacob.ui_compose
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.jacob.ui_compose.models.CodeViewerLine
+import java.io.File
 
 @Composable
-fun CodeViewer(modifier: Modifier) {
-    Box(modifier = modifier.border(width = 1.dp, color = Color.DarkGray)) {
+fun CodeViewer(modifier: Modifier, file: File) {
+    val codeLines = file.convertToCodeLines()
+
+    Column(modifier = modifier.border(width = 1.dp, color = Color.DarkGray)) {
+        LazyColumn(modifier = Modifier.padding(8.dp).fillMaxSize()) {
+            items(items = codeLines) {
+                Line(it)
+            }
+        }
     }
+}
+
+@Composable
+private fun Line(codeViewerLine: CodeViewerLine) {
+    Row(
+        modifier = Modifier.fillMaxSize().padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        LineNumber(
+            lineNumber = codeViewerLine.lineNumber,
+            modifier = Modifier.weight(0.1f, false).padding(top = 1.dp)
+        )
+        LineContent(
+            lineContent = codeViewerLine.lineContent,
+            modifier = Modifier.weight(1f, true)
+        )
+    }
+}
+
+@Composable
+private fun LineContent(lineContent: String, modifier: Modifier) {
+    Text(
+        text = lineContent,
+        style = TextStyle(
+            color = Color.DarkGray,
+            fontSize = 16.sp
+        ),
+        modifier = modifier
+    )
+}
+
+@Composable
+private fun LineNumber(lineNumber: Int, modifier: Modifier) {
+    Text(
+        text = "%02d".format(lineNumber),
+        style = TextStyle(
+            color = Color.LightGray,
+            fontSize = 12.sp
+        ),
+        modifier = modifier
+    )
 }
