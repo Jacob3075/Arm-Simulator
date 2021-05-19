@@ -2,11 +2,9 @@ package com.jacob.ui_compose
 
 import androidx.compose.desktop.AppManager
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -97,7 +95,12 @@ private fun MemoryArray(modifier: Modifier = Modifier) {
 
     Box(modifier = modifier) {
         MemoryArrayGrid(state = state)
-        Scrollbar(modifier = Modifier.align(Alignment.CenterEnd).padding(vertical = 8.dp), state = state)
+        Scrollbar(
+            modifier = Modifier.align(Alignment.CenterEnd).padding(vertical = 8.dp),
+            state = state,
+            itemCount = (memoryArray.size + 1) / 2,
+            averageItemSize = 49.dp
+        )
     }
 }
 
@@ -113,20 +116,6 @@ private fun MemoryArrayGrid(state: LazyListState) {
             RowItem(it)
         }
     }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-private fun Scrollbar(modifier: Modifier, state: LazyListState) {
-    val itemCount = (memoryArray.size + 1) / 2
-    VerticalScrollbar(
-        modifier = modifier,
-        adapter = rememberScrollbarAdapter(
-            scrollState = state,
-            itemCount = itemCount,
-            averageItemSize = 49.dp // 32 + extra
-        )
-    )
 }
 
 @Composable
