@@ -3,19 +3,21 @@ package com.jacob.core_lib.parser.instructions.sub
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.instructions.sub.SubImmediate
 import com.jacob.core_lib.word.ImmediateValue
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 
-internal class SubDecImmediateInstructionParserTest {
+internal class SubImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction for positive immediate values`() {
         val instructionString = "SUB R3, R1, #1"
 
-        val subImmediateInstruction = SubDecImmediateInstructionParser(instructionString).invoke()
+        val subImmediateInstruction =
+            SubImmediateInstructionParser(instructionString, String::immediateFromDec).invoke()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -30,7 +32,8 @@ internal class SubDecImmediateInstructionParserTest {
     internal fun `creates correct sub instruction for negative immediate values`() {
         val instructionString = "SUB R3, R1, #-1"
 
-        val subImmediateInstruction = SubDecImmediateInstructionParser(instructionString).invoke()
+        val subImmediateInstruction =
+            SubImmediateInstructionParser(instructionString, String::immediateFromDec).invoke()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
