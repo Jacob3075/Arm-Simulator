@@ -13,6 +13,7 @@ import com.jacob.ui_compose.state.AppState
 
 fun main() = MyApp {
     val appState = remember { AppState() }
+    val fileState = appState.fileFlow.collectAsState()
     val memoryArray = appState.coreFlow.collectAsState().value.memoryArray.convertToMemoryVales()
 
     Row(
@@ -25,14 +26,14 @@ fun main() = MyApp {
                 .padding(16.dp),
             memoryArray = memoryArray,
             loadFile = appState.loadFile,
-            fileName = appState.file.name,
+            fileName = fileState.value.name,
             executeProgram = appState.executeProgram
         )
         CodeViewer(
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1.0f, true),
-            file = appState.file
+            file = fileState.value
         )
         RightSideBar(
             modifier = Modifier.weight(0.40f, true)
