@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 internal class CoreTest {
     @Test
     internal fun `test file 1`() {
-        val file = getFile("/TestInputFile1.txt")
+        val file = getFile("/TestInputFile1.s")
 
         val parseDataFromFile = Parser.parseDataFromFile(file)
 
@@ -34,7 +34,7 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 2`() {
-        val file = getFile("/TestInputFile2.txt")
+        val file = getFile("/TestInputFile2.s")
 
         val parseDataFromFile = Parser.parseDataFromFile(file)
 
@@ -55,7 +55,7 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 3`() {
-        val file = getFile("/TestInputFile3.txt")
+        val file = getFile("/TestInputFile3.s")
 
         val parseDataFromFile = Parser.parseDataFromFile(file)
 
@@ -77,7 +77,7 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 4`() {
-        val file = getFile("/TestInputFile4.txt")
+        val file = getFile("/TestInputFile4.s")
 
         val parseDataFromFile = Parser.parseDataFromFile(file)
 
