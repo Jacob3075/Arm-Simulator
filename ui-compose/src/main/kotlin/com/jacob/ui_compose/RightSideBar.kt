@@ -13,13 +13,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jacob.ui_compose.models.Register
+import com.jacob.ui_compose.models.RegisterValue
 
 @Composable
-fun RightSideBar(modifier: Modifier) {
+fun RightSideBar(modifier: Modifier, registersArray: List<RegisterValue>) {
     Column(modifier = modifier) {
         Title()
-        RegisterList(modifier = Modifier.weight(0.75f, true))
+        RegisterList(modifier = Modifier.weight(0.75f, true), registersArray)
         Divider(color = Color.Gray, modifier = Modifier.padding(top = 16.dp, bottom = 16.dp))
         CpsrRegisters(modifier = Modifier.weight(0.25f, true))
     }
@@ -36,25 +36,25 @@ private fun Title() {
 }
 
 @Composable
-private fun RegisterList(modifier: Modifier = Modifier) {
+private fun RegisterList(modifier: Modifier = Modifier, registersArray: List<RegisterValue>) {
     val state = rememberLazyListState()
     Box(modifier = modifier) {
         LazyColumn(state = state) {
-            items(items = registers) {
+            items(items = registersArray) {
                 RegisterItem(it)
             }
         }
         Scrollbar(
             modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight().then(modifier),
             state = state,
-            itemCount = registers.size,
+            itemCount = registersArray.size,
             averageItemSize = 35.dp
         )
     }
 }
 
 @Composable
-private fun RegisterItem(register: Register, modifier: Modifier = Modifier) {
+private fun RegisterItem(register: RegisterValue, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier.padding(8.dp).fillMaxWidth()

@@ -5,17 +5,23 @@ import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.Parser
 import com.jacob.core_lib.parser.data.ParsedData
+import com.jacob.ui_compose.convertToMemoryVales
+import com.jacob.ui_compose.convertToRegisters
 import com.jacob.ui_compose.emptyCore
+import com.jacob.ui_compose.models.MemoryValue
+import com.jacob.ui_compose.models.RegisterValue
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import java.io.File
 
 class AppState {
     val fileFlow = MutableStateFlow(File(""))
     private val _coreFlow: MutableStateFlow<Core> = MutableStateFlow(emptyCore())
-    val coreFlow: StateFlow<Core>
-        get() = _coreFlow.asStateFlow()
+
+    val memoryArrayFlow: MutableStateFlow<List<MemoryValue>> =
+        MutableStateFlow(_coreFlow.value.memoryArray.convertToMemoryVales())
+
+    val registerArrayFlow: MutableStateFlow<List<RegisterValue>> =
+        MutableStateFlow(_coreFlow.value.registerArray.convertToRegisters())
 
     private fun createCore() {
         val (instructions: List<Instruction>, parsedVariableData: List<ParsedData>) = Parser.parseDataFromFile(fileFlow.value)
@@ -24,6 +30,8 @@ class AppState {
             parsedData = parsedVariableData
         )
         _coreFlow.value = Core(program = program)
+        registerArrayFlow.value = _coreFlow.value.registerArray.convertToRegisters()
+        memoryArrayFlow.value = _coreFlow.value.memoryArray.convertToMemoryVales()
     }
 
     val loadFile: (File) -> Unit = { newFile: File ->
@@ -35,6 +43,7 @@ class AppState {
         println("Called")
         println(_coreFlow.value)
         _coreFlow.value.runProgram()
-        println(_coreFlow.value.memoryArray.mainMemory.size)
+        registerArrayFlow.value = _coreFlow.value.registerArray.convertToRegisters()
+        memoryArrayFlow.value = _coreFlow.value.memoryArray.convertToMemoryVales()
     }
 }

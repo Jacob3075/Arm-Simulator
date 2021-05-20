@@ -14,7 +14,8 @@ import com.jacob.ui_compose.state.AppState
 fun main() = MyApp {
     val appState = remember { AppState() }
     val fileState = appState.fileFlow.collectAsState()
-    val memoryArray = appState.coreFlow.collectAsState().value.memoryArray.convertToMemoryVales()
+    val memoryArrayState = appState.memoryArrayFlow.collectAsState()
+    val registerArrayState = appState.registerArrayFlow.collectAsState()
 
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -24,7 +25,7 @@ fun main() = MyApp {
             modifier = Modifier.weight(0.40f, true)
                 .fillMaxHeight()
                 .padding(16.dp),
-            memoryArray = memoryArray,
+            memoryArray = memoryArrayState.value,
             loadFile = appState.loadFile,
             fileName = fileState.value.name,
             executeProgram = appState.executeProgram
@@ -38,7 +39,8 @@ fun main() = MyApp {
         RightSideBar(
             modifier = Modifier.weight(0.40f, true)
                 .fillMaxHeight()
-                .padding(16.dp)
+                .padding(16.dp),
+            registersArray = registerArrayState.value
         )
     }
 }

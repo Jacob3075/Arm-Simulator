@@ -10,35 +10,36 @@ import androidx.compose.ui.unit.Dp
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
 import com.jacob.ui_compose.models.CodeViewerLine
 import com.jacob.ui_compose.models.MemoryValue
-import com.jacob.ui_compose.models.Register
+import com.jacob.ui_compose.models.RegisterValue
 import java.io.File
 
 
-val registers = listOf(
-    Register("REGISTER 1:", 0),
-    Register("REGISTER 2:", 0),
-    Register("REGISTER 3:", 0),
-    Register("REGISTER 4:", 0),
-    Register("REGISTER 5:", 0),
-    Register("REGISTER 6:", 0),
-    Register("REGISTER 7:", 0),
-    Register("REGISTER 8:", 0),
-    Register("REGISTER 9:", 0),
-    Register("REGISTER 10:", 0),
-    Register("REGISTER 11:", 0),
-    Register("REGISTER 12:", 0),
-    Register("REGISTER 13:", 0),
-    Register("REGISTER 14:", 0),
-    Register("REGISTER 15:", 0),
+val registersArray = listOf(
+    RegisterValue("REGISTER 1:", 0),
+    RegisterValue("REGISTER 2:", 0),
+    RegisterValue("REGISTER 3:", 0),
+    RegisterValue("REGISTER 4:", 0),
+    RegisterValue("REGISTER 5:", 0),
+    RegisterValue("REGISTER 6:", 0),
+    RegisterValue("REGISTER 7:", 0),
+    RegisterValue("REGISTER 8:", 0),
+    RegisterValue("REGISTER 9:", 0),
+    RegisterValue("REGISTER 10:", 0),
+    RegisterValue("REGISTER 11:", 0),
+    RegisterValue("REGISTER 12:", 0),
+    RegisterValue("REGISTER 13:", 0),
+    RegisterValue("REGISTER 14:", 0),
+    RegisterValue("REGISTER 15:", 0),
 )
 
 val cpsrRegister = listOf(
-    Register("Overflow", 0),
-    Register("Carry", 0),
-    Register("Negative", 0),
-    Register("Zero", 0),
+    RegisterValue("Overflow", 0),
+    RegisterValue("Carry", 0),
+    RegisterValue("Negative", 0),
+    RegisterValue("Zero", 0),
 )
 
 val memoryArray = List(75) { MemoryValue(it, 0) }
@@ -67,11 +68,20 @@ fun Scrollbar(modifier: Modifier, state: LazyListState, itemCount: Int, averageI
 }
 
 fun MemoryArray.convertToMemoryVales() =
-    if (this.mainMemory.isEmpty()) memoryArray else mainMemory.mapIndexed { index, word ->
+    if (this.mainMemory.isEmpty()) memoryArray
+    else mainMemory.mapIndexed { index, word ->
         MemoryValue(
             index + 1,
             word?.value ?: 0
         )
+    }
+
+
+fun RegisterArray.convertToRegisters() =
+    if (this.registers.isEmpty()) registersArray
+    else registers.map {
+        // TODO
+        RegisterValue(it.key.name, it.value.getRegisterValue().value)
     }
 
 fun emptyCore(): Core {

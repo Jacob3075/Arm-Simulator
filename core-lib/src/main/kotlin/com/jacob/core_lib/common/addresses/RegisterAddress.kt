@@ -1,6 +1,6 @@
 package com.jacob.core_lib.common.addresses
 
-enum class RegisterAddress(private val address: Int) {
+enum class RegisterAddress(val address: Int) {
 
     REGISTER_0(0),
     REGISTER_1(1),
