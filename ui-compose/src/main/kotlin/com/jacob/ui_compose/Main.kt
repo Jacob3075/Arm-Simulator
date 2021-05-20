@@ -4,17 +4,16 @@ import androidx.compose.desktop.Window
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import java.io.File
+import com.jacob.ui_compose.state.AppState
 
 fun main() = MyApp {
-    val file =
-        remember { mutableStateOf(File("/home/jacob/PES/02 CS252 MPCA/Lab/Week 4/Programs/Week4_Program5_PES2UG19CS902.s")) }
-    val setFile = { newFile: File -> file.value = newFile }
+    val appState = remember { AppState() }
+    val memoryArray = appState.coreFlow.collectAsState().value.memoryArray.convertToMemoryVales()
 
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -24,14 +23,16 @@ fun main() = MyApp {
             modifier = Modifier.weight(0.40f, true)
                 .fillMaxHeight()
                 .padding(16.dp),
-            onClick = setFile,
-            fileName = file.value.name
+            memoryArray = memoryArray,
+            loadFile = appState.loadFile,
+            fileName = appState.file.name,
+            executeProgram = appState.executeProgram
         )
         CodeViewer(
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1.0f, true),
-            file.value
+            file = appState.file
         )
         RightSideBar(
             modifier = Modifier.weight(0.40f, true)
@@ -43,7 +44,7 @@ fun main() = MyApp {
 
 private fun MyApp(content: @Composable () -> Unit) {
     Window(
-        size = IntSize(1200, 800),
+        size = IntSize(1200, 850),
     ) {
         MaterialTheme {
             content()

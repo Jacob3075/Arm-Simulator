@@ -5,16 +5,18 @@ import com.jacob.core_lib.common.padListTill
 import com.jacob.core_lib.word.Word
 
 class MemoryArray {
-    private var mainMemory: MutableList<Word?> = ArrayList()
+    private var _mainMemory: MutableList<Word?> = ArrayList()
+    val mainMemory: List<Word?>
+        get() = _mainMemory
 
-    fun getWordAt(memoryAddress: MemoryAddress): Word = mainMemory[memoryAddress.memoryAddress] ?: Word(0)
+    fun getWordAt(memoryAddress: MemoryAddress): Word = _mainMemory[memoryAddress.memoryAddress] ?: Word(0)
 
     fun setWordAt(memoryAddress: MemoryAddress, word: Word) {
-        mainMemory = mainMemory.padListTill(memoryAddress.memoryAddress + 1)
-        mainMemory[memoryAddress.memoryAddress] = word
+        _mainMemory = _mainMemory.padListTill(memoryAddress.memoryAddress + 1)
+        _mainMemory[memoryAddress.memoryAddress] = word
     }
 
     override fun toString(): String {
-        return "MemoryArray(mainMemory=$mainMemory)"
+        return "MemoryArray(mainMemory=$_mainMemory)"
     }
 }

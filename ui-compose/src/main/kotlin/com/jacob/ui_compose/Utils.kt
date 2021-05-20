@@ -7,6 +7,9 @@ import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
 import com.jacob.ui_compose.models.CodeViewerLine
 import com.jacob.ui_compose.models.MemoryValue
 import com.jacob.ui_compose.models.Register
@@ -61,4 +64,17 @@ fun Scrollbar(modifier: Modifier, state: LazyListState, itemCount: Int, averageI
             averageItemSize = averageItemSize
         )
     )
+}
+
+fun MemoryArray.convertToMemoryVales() =
+    if (this.mainMemory.isEmpty()) memoryArray else mainMemory.mapIndexed { index, word ->
+        MemoryValue(
+            index + 1,
+            word?.value ?: 0
+        )
+    }
+
+fun emptyCore(): Core {
+    val program = Program(emptyList(), emptyList())
+    return Core(program = program)
 }
