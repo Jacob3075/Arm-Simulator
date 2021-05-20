@@ -30,6 +30,10 @@ class AppState {
             parsedData = parsedVariableData
         )
         _coreFlow.value = Core(program = program)
+        updateFlows()
+    }
+
+    private fun updateFlows() {
         registerArrayFlow.value = _coreFlow.value.registerArray.convertToRegisters()
         memoryArrayFlow.value = _coreFlow.value.memoryArray.convertToMemoryVales()
     }
@@ -40,10 +44,7 @@ class AppState {
     }
 
     val executeProgram: () -> Unit = {
-        println("Called")
-        println(_coreFlow.value)
         _coreFlow.value.runProgram()
-        registerArrayFlow.value = _coreFlow.value.registerArray.convertToRegisters()
-        memoryArrayFlow.value = _coreFlow.value.memoryArray.convertToMemoryVales()
+        updateFlows()
     }
 }

@@ -49,7 +49,6 @@ fun File.convertToCodeLines(): List<CodeViewerLine> {
         this.readLines()
             .mapIndexed { index, line -> CodeViewerLine(index + 1, line) }
     } catch (exception: Exception) {
-        println(exception)
         return listOf()
     }
 }

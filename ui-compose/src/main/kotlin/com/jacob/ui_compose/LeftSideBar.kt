@@ -145,10 +145,7 @@ private fun selectFile(): File? {
     return try {
         val name = fileDialog.file
         val dir = fileDialog.directory
-        println(dir + name)
-        if (name == null || dir == null) {
-            throw Exception()
-        }
+        if (name == null || dir == null) throw Exception()
         File(dir + name)
     } catch (e: Exception) {
         null
