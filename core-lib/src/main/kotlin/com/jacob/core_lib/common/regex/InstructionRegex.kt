@@ -5,8 +5,10 @@ class InstructionRegex private constructor() {
     class Add private constructor() {
         companion object {
             val MNEMONIC = """^ADD""".toRegex()
-            val REGISTER = "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // ADD r4, r4, r5
-            val IMMEDIATE = "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // ADD r4, r4, #5
+            val REGISTER = "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // ADD R4, R4, R5
+            val IMMEDIATE_DEC = "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // ADD R4, R4, #5
+            val IMMEDIATE_HEX =
+                "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex() // ADD R4, R4, #0X012AF
         }
     }
 
@@ -14,7 +16,9 @@ class InstructionRegex private constructor() {
         companion object {
             val MNEMONIC = "^SUB".toRegex()
             val REGISTER = "^SUB R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // SUB R4, R4, R5
-            val IMMEDIATE = "^SUB R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#\\d+$".toRegex() // SUB R4, R4, #5
+            val IMMEDIATE_DEC = "^SUB R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#\\d+$".toRegex() // SUB R4, R4, #5
+            val IMMEDIATE_HEX =
+                "^SUB R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex() // SUB R4, R4, #0X012AF
         }
     }
 
@@ -22,7 +26,9 @@ class InstructionRegex private constructor() {
         companion object {
             val MNEMONIC = "^MOV".toRegex()
             val REGISTER = "^MOV R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // MOV R1, R5
-            val IMMEDIATE = "^MOV R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // MOV R1, #5
+            val IMMEDIATE_DEC = "^MOV R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // MOV R1, #5
+            val IMMEDIATE_HEX =
+                "^MOV R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex() // MOV R4, R4, #0X012AF
         }
     }
 

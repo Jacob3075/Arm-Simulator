@@ -38,3 +38,11 @@ val Int.RA: RegisterAddress
         require(this <= 15)
         return RegisterAddress.valueOf("REGISTER_$this")
     }
+
+fun String.immediateFromDec() = this.removePrefix("#")
+    .toInt(16)
+    .let(::ImmediateValue)
+
+fun String.immediateFromHex() = this.removePrefix("#0X")
+    .toInt(16)
+    .let(::ImmediateValue)

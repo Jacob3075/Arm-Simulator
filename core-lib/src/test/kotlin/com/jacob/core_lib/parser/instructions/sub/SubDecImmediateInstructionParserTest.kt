@@ -9,13 +9,13 @@ import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 
-internal class SubImmediateInstructionParserTest {
+internal class SubDecImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction for positive immediate values`() {
         val instructionString = "SUB R3, R1, #1"
 
-        val subImmediateInstruction = SubImmediateInstructionParser(instructionString).invoke()
+        val subImmediateInstruction = SubDecImmediateInstructionParser(instructionString).invoke()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -30,7 +30,7 @@ internal class SubImmediateInstructionParserTest {
     internal fun `creates correct sub instruction for negative immediate values`() {
         val instructionString = "SUB R3, R1, #-1"
 
-        val subImmediateInstruction = SubImmediateInstructionParser(instructionString).invoke()
+        val subImmediateInstruction = SubDecImmediateInstructionParser(instructionString).invoke()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
