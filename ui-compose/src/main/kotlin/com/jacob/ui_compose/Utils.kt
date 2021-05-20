@@ -7,10 +7,12 @@ import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.word.Word
 import com.jacob.ui_compose.models.CodeViewerLine
 import com.jacob.ui_compose.models.MemoryValue
 import com.jacob.ui_compose.models.RegisterValue
@@ -66,20 +68,21 @@ fun Scrollbar(modifier: Modifier, state: LazyListState, itemCount: Int, averageI
     )
 }
 
-fun MemoryArray.convertToMemoryVales() =
+fun MemoryArray.convertToMemoryVales(): List<MemoryValue> =
     if (this.mainMemory.isEmpty()) memoryArray
-    else mainMemory.mapIndexed { index, word ->
-        MemoryValue(
-            index + 1,
-            word?.value ?: 0
-        )
+    else {
+        val maxIndex = maxOf(75, mainMemory.size)
+        (0..maxIndex).asSequence()
+            .map { index ->
+                val wordFromCore: Word = mainMemory.getOrNull(index) ?: 0.W
+                MemoryValue(index, wordFromCore.value)
+            }
+            .toList()
     }
-
 
 fun RegisterArray.convertToRegisters() =
     if (this.registers.isEmpty()) registersArray
     else registers.map {
-        // TODO
         RegisterValue(it.key.name, it.value.getRegisterValue().value)
     }
 
