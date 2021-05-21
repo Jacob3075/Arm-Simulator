@@ -10,17 +10,17 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.word.ImmediateValue
 
-class AddImmediateInstructionParser internal constructor(private val instructionString: String) : AddInstructionParser {
+class AddImmediateInstructionParser internal constructor(
+    private val instructionString: String,
+    private val strategy: (String) -> ImmediateValue
+) : AddInstructionParser {
 
     override fun invoke(): Instruction {
         val operands = instructionString.removePrefix("ADD")
             .split(",")
             .map(String::trim)
 
-        val immediateValue = operands.last()
-            .removePrefix("#")
-            .toInt()
-            .let(::ImmediateValue)
+        val immediateValue = operands.last().let(strategy)
 
         val registers: List<RegisterAddress> = operands.take(2)
             .toRegisterAddresses()
