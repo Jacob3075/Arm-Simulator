@@ -32,6 +32,15 @@ class InstructionRegex private constructor() {
         }
     }
 
+    class Compare private constructor() {
+        companion object {
+            val MNEMONIC = "^CMP".toRegex()
+            val REGISTER = "^CMP R([0-9]|1[0-4]), R([0-9]|1[0-4])".toRegex() // CMP, R1, R2
+            val IMMEDIATE_DEC = "^CMP R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // CMP R1, #1234
+            val IMMEDIATE_HEX = "^CMP R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+".toRegex() // CMP R1, #0X12AFBC
+        }
+    }
+
     class Load private constructor() {
         companion object {
             val MNEMONIC = "^LDR".toRegex()
