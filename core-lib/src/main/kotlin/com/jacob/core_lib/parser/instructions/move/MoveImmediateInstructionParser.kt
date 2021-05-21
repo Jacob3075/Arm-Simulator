@@ -7,17 +7,17 @@ import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.parser.instructions.InstructionParser
 import com.jacob.core_lib.word.ImmediateValue
 
-class MoveImmediateInstructionParser internal constructor(private val instructionString: String) : InstructionParser {
+class MoveImmediateInstructionParser internal constructor(
+    private val instructionString: String,
+    private val strategy: (String) -> ImmediateValue
+) : InstructionParser {
 
     override fun invoke(): Instruction {
         val operands = instructionString.removePrefix("MOV")
             .split(",")
             .map(String::trim)
 
-        val immediateValue = operands.last()
-            .removePrefix("#")
-            .toInt()
-            .let(::ImmediateValue)
+        val immediateValue = operands.last().let(strategy)
 
         val destinationRegister = operands.first()
             .toRegisterAddress(::DestinationRegister)

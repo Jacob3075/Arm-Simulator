@@ -28,7 +28,7 @@ class InstructionRegex private constructor() {
             val REGISTER = "^MOV R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // MOV R1, R5
             val IMMEDIATE_DEC = "^MOV R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // MOV R1, #5
             val IMMEDIATE_HEX =
-                "^MOV R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex() // MOV R4, R4, #0X012AF
+                "^MOV ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex() // MOV R4, R4, #0X012AF
         }
     }
 
