@@ -40,7 +40,7 @@ internal class MoveImmediateInstructionParserTest {
 
     @Test
     internal fun `returns move immediate instruction for hexadecimal immediate values without letters`() {
-        val instructionString = "MOV R1, #123"
+        val instructionString = "MOV R1, #0X123"
 
         val instruction = MoveInstructionParser.from(instructionString)
 

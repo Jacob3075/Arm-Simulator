@@ -15,6 +15,8 @@ object Parser {
     fun parseDataFromFile(file: File): Pair<Instructions, Variables> {
         val linesByType: Map<KClass<out Line>, Lines> = file.readLines()
             .asSequence()
+            .filter(String::isNotEmpty)
+            .filter(String::isNotBlank)
             .map(String::trim)
             .map(String::uppercase)
             .map(Line::from)

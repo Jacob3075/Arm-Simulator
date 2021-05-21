@@ -40,7 +40,7 @@ val Int.RA: RegisterAddress
     }
 
 fun String.immediateFromDec() = this.removePrefix("#")
-    .toInt(16)
+    .toInt()
     .let(::ImmediateValue)
 
 fun String.immediateFromHex() = this.removePrefix("#0X")

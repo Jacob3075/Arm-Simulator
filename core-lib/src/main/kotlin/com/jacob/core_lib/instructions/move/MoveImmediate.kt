@@ -8,8 +8,7 @@ data class MoveImmediate internal constructor(
     internal val destinationRegister: DestinationRegister,
     internal val immediateValue:
     ImmediateValue,
-) :
-    Move {
+) : Move {
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, immediateValue)
