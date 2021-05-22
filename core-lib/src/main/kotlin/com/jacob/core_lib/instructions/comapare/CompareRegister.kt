@@ -4,8 +4,8 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
 class CompareRegister(
-    private val sourceRegister1: SourceRegister,
-    private val sourceRegister2: SourceRegister
+    internal val sourceRegister1: SourceRegister,
+    internal val sourceRegister2: SourceRegister
 ) : Compare {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val (registerArray) = executionEnvironment
