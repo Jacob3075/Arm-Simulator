@@ -32,7 +32,7 @@ class RegisterArray {
 
     private val stackPointer = _registers[STACK_POINTER]!! as StackPointer
     private val linkRegister = _registers[LINK_REGISTER]!! as LinkRegister
-    private val statusRegister = _registers[STATUS_REGISTER]!! as StatusRegister
+    val statusRegister = _registers[STATUS_REGISTER]!! as StatusRegister
     val programCounter = _registers[PROGRAM_COUNTER]!! as ProgramCounter
 
     fun getRegisterAt(registerAddress: RegisterAddress) = registers[registerAddress]
