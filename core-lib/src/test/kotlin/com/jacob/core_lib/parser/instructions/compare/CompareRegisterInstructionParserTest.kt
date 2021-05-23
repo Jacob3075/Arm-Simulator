@@ -21,12 +21,12 @@ internal class CompareRegisterInstructionParserTest {
 
     @Test
     internal fun `created correct compare instruction 2`() {
-        val instructionString = "CMP R1, R2"
+        val instructionString = "CMP R1, R12"
         val instruction = CompareRegisterInstructionParser(instructionString).invoke()
 
         instruction `should be instance of` CompareRegister::class
 
         instruction.sourceRegister1 `should be equal to` SourceRegister(1.RA)
-        instruction.sourceRegister2 `should be equal to` SourceRegister(2.RA)
+        instruction.sourceRegister2 `should be equal to` SourceRegister(12.RA)
     }
 }
