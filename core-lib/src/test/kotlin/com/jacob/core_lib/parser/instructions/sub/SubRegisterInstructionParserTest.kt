@@ -14,7 +14,7 @@ internal class SubRegisterInstructionParserTest {
     internal fun `creates correct sub instruction`() {
         val instructionString = "SUB R3, R1, R2"
 
-        val subRegisterInstruction = SubRegisterInstructionParser(instructionString).invoke()
+        val subRegisterInstruction = SubRegisterInstructionParser(instructionString).parse()
 
         subRegisterInstruction `should be instance of` SubRegister::class
 

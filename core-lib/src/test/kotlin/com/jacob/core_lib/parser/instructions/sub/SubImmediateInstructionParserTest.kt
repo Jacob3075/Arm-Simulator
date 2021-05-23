@@ -20,7 +20,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #1"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromDec).invoke()
+            SubImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -36,7 +36,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #-1"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromDec).invoke()
+            SubImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -52,7 +52,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #0X123"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromHex).invoke()
+            SubImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -68,7 +68,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #0X1A2FC3"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromHex).invoke()
+            SubImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -86,7 +86,7 @@ internal class SubImmediateInstructionParserTest {
             SubImmediateInstructionParser(
                 instructionString,
                 String::immediateFromHex
-            ).invoke()
+            ).parse()
         } `should throw` NumberFormatException::class
     }
 }

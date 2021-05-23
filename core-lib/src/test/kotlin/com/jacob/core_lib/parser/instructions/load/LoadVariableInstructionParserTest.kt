@@ -14,7 +14,7 @@ internal class LoadVariableInstructionParserTest {
     internal fun `creates correct load instruction with single letter variable name`() {
         val line = "LDR R0, =A"
 
-        val loadInstruction = LoadVariableInstructionParser(line).invoke()
+        val loadInstruction = LoadVariableInstructionParser(line).parse()
 
         loadInstruction `should be instance of` LoadVariableAddress::class
 
@@ -28,7 +28,7 @@ internal class LoadVariableInstructionParserTest {
     internal fun `creates correct load instruction with multiple letter variable name`() {
         val line = "LDR R0, =ABCD"
 
-        val loadInstruction = LoadVariableInstructionParser(line).invoke()
+        val loadInstruction = LoadVariableInstructionParser(line).parse()
 
         loadInstruction `should be instance of` LoadVariableAddress::class
 
@@ -42,6 +42,6 @@ internal class LoadVariableInstructionParserTest {
     internal fun `throws exception if invalid register is given`() {
         val line = "LDR R20, =A"
 
-        invoking { LoadVariableInstructionParser(line).invoke() } `should throw` IllegalArgumentException::class
+        invoking { LoadVariableInstructionParser(line).parse() } `should throw` IllegalArgumentException::class
     }
 }

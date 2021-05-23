@@ -6,7 +6,7 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.store.Store
 
 class StoreVariableInstructionParser(private val instructionString: String) : StoreInstructionParser {
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         // STR R2, =STR
         val operands = instructionString.removePrefix("STR")
             .split(",")

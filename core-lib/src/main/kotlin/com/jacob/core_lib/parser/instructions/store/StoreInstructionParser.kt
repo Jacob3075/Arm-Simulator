@@ -7,8 +7,8 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 interface StoreInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: String) = when {
-            instructionString.matches(REGISTER) -> StoreRegisterInstructionParser(instructionString).invoke()
-            instructionString.matches(VARIABLE) -> StoreVariableInstructionParser(instructionString).invoke()
+            instructionString.matches(REGISTER) -> StoreRegisterInstructionParser(instructionString).parse()
+            instructionString.matches(VARIABLE) -> StoreVariableInstructionParser(instructionString).parse()
             else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
         }
     }

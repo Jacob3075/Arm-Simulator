@@ -14,7 +14,7 @@ internal class AddRegisterInstructionParserTest {
     internal fun `creates correct add instruction`() {
         val instructionString = "ADD R3, R1, R2"
 
-        val addRegisterInstruction = AddRegisterInstructionParser(instructionString).invoke()
+        val addRegisterInstruction = AddRegisterInstructionParser(instructionString).parse()
 
         addRegisterInstruction `should be instance of` AddRegister::class
 

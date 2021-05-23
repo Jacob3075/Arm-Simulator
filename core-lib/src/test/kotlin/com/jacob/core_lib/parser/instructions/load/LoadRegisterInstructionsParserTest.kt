@@ -12,7 +12,7 @@ internal class LoadRegisterInstructionsParserTest {
     internal fun `creates correct load instruction`() {
         val line = "LDR R0, [R1]"
 
-        val loadInstruction = LoadRegisterInstructionsParser(line).invoke()
+        val loadInstruction = LoadRegisterInstructionsParser(line).parse()
 
         loadInstruction `should be instance of` LoadRegisterAddress::class
 

@@ -8,7 +8,7 @@ import com.jacob.core_lib.instructions.load.Load
 
 class LoadRegisterInstructionsParser(private val instructionString: String) :
     LoadInstructionParser {
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         val operands = instructionString.removePrefix("LDR")
             .split(",")
             .map(String::trim)

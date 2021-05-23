@@ -6,7 +6,7 @@ import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.instructions.comapare.CompareRegister
 
 class CompareRegisterInstructionParser(private val instruction: String) : CompareInstructionParser {
-    override fun invoke(): CompareRegister {
+    override fun parse(): CompareRegister {
         // CMP R1, R2
         val registers = instruction.removePrefix("CMP")
             .split(",")

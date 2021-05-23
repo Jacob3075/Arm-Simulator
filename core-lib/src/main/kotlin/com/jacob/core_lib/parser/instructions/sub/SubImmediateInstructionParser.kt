@@ -16,7 +16,7 @@ class SubImmediateInstructionParser internal constructor(
 ) :
     SubInstructionParser {
 
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         val operands = instructionString.removePrefix("SUB")
             .split(",")
             .map(String::trim)

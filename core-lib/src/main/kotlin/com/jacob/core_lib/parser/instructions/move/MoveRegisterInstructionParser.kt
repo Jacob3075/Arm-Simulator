@@ -8,7 +8,7 @@ import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
 class MoveRegisterInstructionParser internal constructor(private val instructionString: String) : InstructionParser {
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         val registers = instructionString.removePrefix("MOV")
             .split(",")
             .map(String::trim)

@@ -12,15 +12,15 @@ interface MoveInstructionParser : InstructionParser {
 
     companion object {
         fun from(instructionString: String): Instruction = when {
-            instructionString.matches(REGISTER) -> MoveRegisterInstructionParser(instructionString).invoke()
+            instructionString.matches(REGISTER) -> MoveRegisterInstructionParser(instructionString).parse()
             instructionString.matches(IMMEDIATE_DEC) -> MoveImmediateInstructionParser(
                 instructionString,
                 String::immediateFromDec
-            ).invoke()
+            ).parse()
             instructionString.matches(IMMEDIATE_HEX) -> MoveImmediateInstructionParser(
                 instructionString,
                 String::immediateFromHex
-            ).invoke()
+            ).parse()
             else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
         }
     }

@@ -10,7 +10,7 @@ class CompareImmediateInstructionParser(
     private val instruction: String,
     private val stratergy: (String) -> ImmediateValue
 ) : CompareInstructionParser {
-    override fun invoke(): CompareImmediate {
+    override fun parse(): CompareImmediate {
 //        CMP R1, #10
         val operands = instruction.removePrefix("CMP")
             .split(",")

@@ -11,7 +11,7 @@ internal class CompareRegisterInstructionParserTest {
     @Test
     internal fun `created correct compare instruction 1`() {
         val instructionString = "CMP R1, R2"
-        val instruction = CompareRegisterInstructionParser(instructionString).invoke()
+        val instruction = CompareRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` CompareRegister::class
 
@@ -22,7 +22,7 @@ internal class CompareRegisterInstructionParserTest {
     @Test
     internal fun `created correct compare instruction 2`() {
         val instructionString = "CMP R1, R12"
-        val instruction = CompareRegisterInstructionParser(instructionString).invoke()
+        val instruction = CompareRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` CompareRegister::class
 

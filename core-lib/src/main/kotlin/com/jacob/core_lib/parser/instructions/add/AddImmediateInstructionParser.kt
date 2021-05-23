@@ -15,7 +15,7 @@ class AddImmediateInstructionParser internal constructor(
     private val strategy: (String) -> ImmediateValue
 ) : AddInstructionParser {
 
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         val operands = instructionString.removePrefix("ADD")
             .split(",")
             .map(String::trim)

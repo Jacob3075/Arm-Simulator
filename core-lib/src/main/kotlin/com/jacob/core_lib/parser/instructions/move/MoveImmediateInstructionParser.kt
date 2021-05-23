@@ -12,7 +12,7 @@ class MoveImmediateInstructionParser internal constructor(
     private val strategy: (String) -> ImmediateValue
 ) : InstructionParser {
 
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         val operands = instructionString.removePrefix("MOV")
             .split(",")
             .map(String::trim)

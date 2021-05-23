@@ -11,15 +11,15 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 interface SubInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: String): Instruction = when {
-            instructionString.matches(REGISTER) -> SubRegisterInstructionParser(instructionString).invoke()
+            instructionString.matches(REGISTER) -> SubRegisterInstructionParser(instructionString).parse()
             instructionString.matches(IMMEDIATE_DEC) -> SubImmediateInstructionParser(
                 instructionString,
                 String::immediateFromDec
-            ).invoke()
+            ).parse()
             instructionString.matches(IMMEDIATE_HEX) -> SubImmediateInstructionParser(
                 instructionString,
                 String::immediateFromHex
-            ).invoke()
+            ).parse()
             else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
         }
     }

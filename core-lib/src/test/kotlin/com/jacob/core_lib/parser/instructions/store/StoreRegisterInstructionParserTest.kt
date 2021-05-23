@@ -11,7 +11,7 @@ internal class StoreRegisterInstructionParserTest {
     internal fun `creates correct instruction`() {
         val instructionString = "STR R1, [R0]"
 
-        val instruction = StoreRegisterInstructionParser(instructionString).invoke()
+        val instruction = StoreRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` StoreRegisterAddress::class
 

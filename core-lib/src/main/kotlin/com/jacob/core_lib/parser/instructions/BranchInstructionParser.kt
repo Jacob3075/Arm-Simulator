@@ -7,11 +7,11 @@ class BranchInstructionParser(private val instructionString: String) : Instructi
 
     companion object {
         fun from(instructionString: String) = when {
-            instructionString.matches(LABEL) -> BranchInstructionParser(instructionString).invoke()
+            instructionString.matches(LABEL) -> BranchInstructionParser(instructionString).parse()
             else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
         }
     }
 
     // B LABEL_NAME
-    override fun invoke() = instructionString.removePrefix("B").trim().let(::Branch)
+    override fun parse() = instructionString.removePrefix("B").trim().let(::Branch)
 }

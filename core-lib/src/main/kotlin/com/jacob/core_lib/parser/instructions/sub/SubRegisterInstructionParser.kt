@@ -10,7 +10,7 @@ import com.jacob.core_lib.instructions.sub.Sub
 class SubRegisterInstructionParser internal constructor(private val instructionString: String) :
     SubInstructionParser {
 
-    override fun invoke(): Instruction {
+    override fun parse(): Instruction {
         val registers: List<RegisterAddress> = instructionString.removePrefix("SUB")
             .split(",")
             .map(String::trim)
