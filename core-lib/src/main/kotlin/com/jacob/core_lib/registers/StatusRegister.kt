@@ -24,9 +24,32 @@ class StatusRegister : Register {
 
         negative = value1.operation(value2).sign == -1
         zero = value1.operation(value2).sign == 0
-        // FIXME
-        carry = result < value1 // Subtraction
-        // overFlow = (value1 xor result) and (value2 xor result) and 0x80 != 0
-        // overFlow = (value1 xor value2 and 0x80).inv() and value1 xor result and 0x80 == 0
+        carry = calculateCarryBit(value1, value2, result)
+
+//         TODO
+//        overFlow = (value1.sign == value2.sign) and (value1.sign != result.sign)
+    }
+
+    private fun calculateCarryBit(value1: Int, value2: Int, result: Int): Boolean {
+        val stringLength = 32
+
+        val value1Binary = String.format("%0${stringLength}d", Integer.toBinaryString(value1)!!.toBigInteger())
+        val value2Binary =
+            String.format("%0${stringLength}d", Integer.toBinaryString(value2.twosComplement())!!.toBigInteger())
+
+        val value1MSB = value1Binary.first().digitToInt()
+        val value2MSB = value2Binary.first().digitToInt()
+        val resultExpectedMSB = Integer.toBinaryString(value1MSB + value2MSB)!!.toInt()
+
+        val resultBinary =
+            String.format("%0${stringLength}d", Integer.toBinaryString(result)!!.toBigInteger()).takeLast(stringLength)
+
+        val resultMSB = resultBinary.first().digitToInt()
+
+        return resultExpectedMSB != resultMSB
+    }
+
+    private fun Int.twosComplement(): Int {
+        return this.inv() + 1
     }
 }
