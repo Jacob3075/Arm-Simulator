@@ -7,7 +7,6 @@ import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
-import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -19,7 +18,7 @@ internal class StoreVariableAddressTest {
 
         val registerArray = RegisterArray()
         val memoryArray = MemoryArray()
-        val labels = mockk<List<Label>>()
+        val labels = emptyList<Label>()
         val variable = Variable("A", MemoryAddress(5))
         val variables = listOf(variable)
 

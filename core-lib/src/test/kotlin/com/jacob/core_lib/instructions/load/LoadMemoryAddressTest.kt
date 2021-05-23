@@ -7,7 +7,6 @@ import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
-import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -15,8 +14,8 @@ internal class LoadMemoryAddressTest {
 
     @Test
     internal fun `reads correct memory location and updates correct register`() {
-        val labels = mockk<List<Label>>()
-        val variables = mockk<List<Variable>>()
+        val labels = emptyList<Label>()
+        val variables = emptyList<Variable>()
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
 

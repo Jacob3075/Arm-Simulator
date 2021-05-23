@@ -8,7 +8,6 @@ import com.jacob.core_lib.core.*
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
-import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -22,8 +21,8 @@ internal class LoadRegisterAddressTest {
 
         val registerArray = RegisterArray()
         val memoryArray = MemoryArray()
-        val labels = mockk<List<Label>>()
-        val variables = mockk<List<Variable>>()
+        val labels = emptyList<Label>()
+        val variables = emptyList<Variable>()
 
         registerArray.setValueAtRegister(sourceRegister.registerAddress, Word(5))
         memoryArray.setWordAt(MemoryAddress(5), Word(10))

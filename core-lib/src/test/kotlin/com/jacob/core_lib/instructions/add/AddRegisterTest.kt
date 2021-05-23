@@ -6,7 +6,6 @@ import com.jacob.core_lib.createAddInstruction
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
-import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.shouldNotBeNull
@@ -29,9 +28,9 @@ internal class AddRegisterTest {
 
     @Test
     internal fun `executing add instruction with register values reads and updates the correct registers`() {
-        val memoryArray = mockk<MemoryArray>()
-        val labels = mockk<List<Label>>()
-        val variables = mockk<List<Variable>>()
+        val memoryArray = MemoryArray()
+        val labels = emptyList<Label>()
+        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
 
         val executionEnvironment = ExecutionEnvironment(

@@ -8,7 +8,6 @@ import com.jacob.core_lib.createLabelInstruction
 import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
-import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
@@ -23,8 +22,8 @@ internal class BranchTest {
 
     @Test
     internal fun `running branch instruction should update program counter correctly`() {
-        val memoryArray = mockk<MemoryArray>()
-        val variables = mockk<List<Variable>>()
+        val memoryArray = MemoryArray()
+        val variables = emptyList<Variable>()
         val index1 = 5
         val index2 = 16
         val labelName1 = "LABEL1"
