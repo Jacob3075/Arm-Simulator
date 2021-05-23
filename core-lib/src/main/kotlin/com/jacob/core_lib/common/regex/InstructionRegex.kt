@@ -4,7 +4,7 @@ class InstructionRegex private constructor() {
 
     class Add private constructor() {
         companion object {
-            val MNEMONIC = """^ADD""".toRegex()
+            val MNEMONIC = "^ADD".toRegex()
             val REGISTER = "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // ADD R4, R4, R5
             val IMMEDIATE_DEC = "^ADD R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#-?\\d+$".toRegex() // ADD R4, R4, #5
             val IMMEDIATE_HEX =
@@ -61,6 +61,24 @@ class InstructionRegex private constructor() {
         companion object {
             val MNEMONIC = "^B".toRegex()
             val LABEL = "^B [A-Z]([A-Z]|_|-|\\d)*$".toRegex() // B LABEL_NAME-28
+        }
+    }
+
+    class Shifts private constructor() {
+        companion object {
+            val TYPES = "(LSL|LSR|ASR|ROR|RRX)".toRegex()
+
+            class LeftShift private constructor() {
+                val MNEMONIC = "^LSL".toRegex()
+                val REGISTER = "^LSL R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex()
+                val IMMEDIATE_DEC = "^LSL R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), #-?\\d+$".toRegex()
+                val IMMEDIATE_HEX = "^LSL R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex()
+            }
+
+            val RIGHT_SHIFT = "^LSR".toRegex()
+            val ARITHMETIC_RIGHT_SHIFT = "^ASR".toRegex()
+            val ROTATE_RIGHT = "^ROR".toRegex()
+            val ROTATE_RIGHT_EXTENDED = "^RRX".toRegex()
         }
     }
 

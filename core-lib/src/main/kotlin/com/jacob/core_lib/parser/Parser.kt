@@ -7,13 +7,14 @@ import com.jacob.core_lib.parser.instructions.InstructionLine
 import java.io.File
 import kotlin.reflect.KClass
 
-typealias Instructions = List<Instruction>
-typealias Variables = List<ParsedData>
-typealias Lines = List<Line>
+private typealias Instructions = List<Instruction>
+private typealias Variables = List<ParsedData>
+private typealias Lines = List<Line>
+private typealias LineTypes = KClass<out Line>
 
 object Parser {
     fun parseDataFromFile(file: File): Pair<Instructions, Variables> {
-        val linesByType: Map<KClass<out Line>, Lines> = file.readLines()
+        val linesByType: Map<LineTypes, Lines> = file.readLines()
             .asSequence()
             .filter(String::isNotEmpty)
             .filter(String::isNotBlank)
