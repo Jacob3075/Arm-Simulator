@@ -1,4 +1,4 @@
-package com.jacob.core_lib.instructions
+package com.jacob.core_lib.instructions.shift
 
 import com.jacob.core_lib.common.`**`
 
@@ -16,8 +16,4 @@ class LeftShift(private val shiftAmount: Int) : ShiftOperations {
 
 class RightShift(private val shiftAmount: Int) : ShiftOperations {
     override fun shift(value: Int) = value / (2 `**` shiftAmount)
-}
-
-object None : ShiftOperations {
-    override fun shift(value: Int) = value
 }

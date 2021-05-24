@@ -11,6 +11,7 @@ import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
+// TODO: ADDED TESTS WITH SHIFT OPERATIONS
 internal class AddImmediateTest {
 
     @Test

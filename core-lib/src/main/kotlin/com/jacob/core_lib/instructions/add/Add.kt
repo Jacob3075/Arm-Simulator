@@ -3,7 +3,7 @@ package com.jacob.core_lib.instructions.add
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.ShiftOperations
+import com.jacob.core_lib.instructions.shift.ShiftOperations
 import com.jacob.core_lib.word.ImmediateValue
 
 interface Add : Instruction {
@@ -16,7 +16,8 @@ interface Add : Instruction {
         ) = AddRegister(
             destinationRegister,
             sourceRegister1,
-            sourceRegister2
+            sourceRegister2,
+            shiftOperation,
         )
 
         fun of(
@@ -27,7 +28,8 @@ interface Add : Instruction {
         ) = AddImmediate(
             destinationRegister,
             sourceRegister1,
-            immediateValue
+            immediateValue,
+            shiftOperation,
         )
     }
 }
