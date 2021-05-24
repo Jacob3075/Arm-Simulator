@@ -38,11 +38,11 @@ interface AddInstructionParser : InstructionParser {
         fun from(instructionString: String): Instruction {
             val operationMatch = Shifts.TYPES.find(instructionString) ?: return getInstruction(instructionString)
 
-            val instructionSubString = instructionString.substring(0..operationMatch.range.first)
-            val operationSubString = instructionString.substring(startIndex = operationMatch.range.first)
+            val instructionSubString = instructionString.substring(0 until operationMatch.range.first).trim()
+            val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
 
             val shiftOperation = ShiftOperationParser.from(operationSubString)
-            return getInstruction(instructionString, shiftOperation)
+            return getInstruction(instructionSubString, shiftOperation)
         }
     }
 }

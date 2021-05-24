@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.add
 
+import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.add.AddRegister
 import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser.Companion.None
@@ -9,7 +9,6 @@ import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 
-// TODO: ADD TESTS WITH SHIFT OPERATIONS
 internal class AddRegisterInstructionParserTest {
 
     @Test
@@ -22,9 +21,9 @@ internal class AddRegisterInstructionParserTest {
 
         addRegisterInstruction as AddRegister
 
-        addRegisterInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
-        addRegisterInstruction.sourceRegister1 `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
-        addRegisterInstruction.sourceRegister2 `should be equal to` SourceRegister(RegisterAddress.REGISTER_2)
+        addRegisterInstruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
+        addRegisterInstruction.sourceRegister1 `should be equal to` SourceRegister(1.RA)
+        addRegisterInstruction.sourceRegister2 `should be equal to` SourceRegister(2.RA)
 
     }
 
