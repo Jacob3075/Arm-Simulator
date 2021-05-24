@@ -2,18 +2,18 @@ package com.jacob.core_lib.instructions.shift
 
 import com.jacob.core_lib.common.`**`
 
-sealed interface ShiftOperations {
+sealed interface ShiftOperation {
     fun shift(value: Int): Int
 
-    companion object None : ShiftOperations {
+    companion object None : ShiftOperation {
         override fun shift(value: Int) = value
     }
 }
 
-class LeftShift(private val shiftAmount: Int) : ShiftOperations {
+class LeftShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = value * (2 `**` shiftAmount)
 }
 
-class RightShift(private val shiftAmount: Int) : ShiftOperations {
+class RightShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = value / (2 `**` shiftAmount)
 }
