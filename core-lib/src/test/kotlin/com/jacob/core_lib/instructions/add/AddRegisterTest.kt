@@ -27,8 +27,8 @@ internal class AddRegisterTest {
             variables = variables
         )
 
-        registerArray.setValueAtRegister(0.RA, 10.W)
-        registerArray.setValueAtRegister(1.RA, 20.W)
+        registerArray.setValueAtRegister(1.RA, 10.W)
+        registerArray.setValueAtRegister(2.RA, 20.W)
 
         val sourceRegister1 = 1.RA
         val sourceRegister2 = 2.RA

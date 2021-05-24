@@ -7,7 +7,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.add.AddImmediate
-import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser.Companion.None
+import com.jacob.core_lib.instructions.shift.ShiftOperation.None
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`

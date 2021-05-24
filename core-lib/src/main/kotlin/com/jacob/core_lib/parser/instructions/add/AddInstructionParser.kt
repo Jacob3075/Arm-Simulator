@@ -7,16 +7,26 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.IMMEDIATE_
 import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.REGISTER
 import com.jacob.core_lib.common.regex.InstructionRegex.Shifts
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.parser.instructions.InstructionParser
 import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser
-import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser.Companion.None
 
 interface AddInstructionParser : InstructionParser {
 
     companion object {
+        fun from(instructionString: String): Instruction {
+            val operationMatch = Shifts.TYPES.find(instructionString) ?: return getInstruction(instructionString)
+
+            val instructionSubString = instructionString.substring(0 until operationMatch.range.first).trim()
+            val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
+
+            val shiftOperation = ShiftOperationParser.from(operationSubString).parse()
+            return getInstruction(instructionSubString, shiftOperation)
+        }
+
         private fun getInstruction(
             instructionString: String,
-            shiftOperationParser: ShiftOperationParser = None
+            shiftOperationParser: ShiftOperation = ShiftOperation.None
         ) = when {
             instructionString.matches(REGISTER) -> AddRegisterInstructionParser(
                 instructionString,
@@ -33,16 +43,6 @@ interface AddInstructionParser : InstructionParser {
                 String::immediateFromHex
             ).parse()
             else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
-        }
-
-        fun from(instructionString: String): Instruction {
-            val operationMatch = Shifts.TYPES.find(instructionString) ?: return getInstruction(instructionString)
-
-            val instructionSubString = instructionString.substring(0 until operationMatch.range.first).trim()
-            val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
-
-            val shiftOperation = ShiftOperationParser.from(operationSubString)
-            return getInstruction(instructionSubString, shiftOperation)
         }
     }
 }

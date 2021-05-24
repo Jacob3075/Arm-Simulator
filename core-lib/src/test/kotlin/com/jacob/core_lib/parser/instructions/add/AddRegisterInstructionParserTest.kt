@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.add.AddRegister
-import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser.Companion.None
+import com.jacob.core_lib.instructions.shift.ShiftOperation.None
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
