@@ -5,7 +5,9 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Companion.LABEL
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.Line
 import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
+import com.jacob.core_lib.parser.instructions.branch.BranchInstructionParser
 import com.jacob.core_lib.parser.instructions.compare.CompareInstructionParser
+import com.jacob.core_lib.parser.instructions.label.LabelParser
 import com.jacob.core_lib.parser.instructions.load.LoadInstructionParser
 import com.jacob.core_lib.parser.instructions.move.MoveInstructionParser
 import com.jacob.core_lib.parser.instructions.store.StoreInstructionParser
