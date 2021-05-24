@@ -78,7 +78,16 @@ class InstructionRegex private constructor() {
                 }
             }
 
-            val RIGHT_SHIFT = "^LSR".toRegex()
+            class RightShift private constructor() {
+                companion object {
+                    val MNEMONIC = "^LSR".toRegex()
+                    val REGISTER = "^LSR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex()
+                    val IMMEDIATE_DEC = "^LSR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), #-?\\d+$".toRegex()
+                    val IMMEDIATE_HEX = "^LSR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex()
+                    val OPERATION = "LSR #\\d+".toRegex()
+                }
+            }
+
             val ARITHMETIC_RIGHT_SHIFT = "^ASR".toRegex()
             val ROTATE_RIGHT = "^ROR".toRegex()
             val ROTATE_RIGHT_EXTENDED = "^RRX".toRegex()

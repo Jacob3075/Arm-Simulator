@@ -9,5 +9,4 @@ class LeftShiftOperationParser(private val operationString: String) : ShiftOpera
         .removePrefix("#")
         .toInt()
         .let(::LeftShift)
-
 }
