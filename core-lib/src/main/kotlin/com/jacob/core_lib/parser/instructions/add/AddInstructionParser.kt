@@ -18,13 +18,18 @@ interface AddInstructionParser : InstructionParser {
             instructionString: String,
             shiftOperationParser: ShiftOperationParser = None
         ) = when {
-            instructionString.matches(REGISTER) -> AddRegisterInstructionParser(instructionString).parse()
+            instructionString.matches(REGISTER) -> AddRegisterInstructionParser(
+                instructionString,
+                shiftOperationParser
+            ).parse()
             instructionString.matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
                 instructionString,
+                shiftOperationParser,
                 String::immediateFromDec
             ).parse()
             instructionString.matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
                 instructionString,
+                shiftOperationParser,
                 String::immediateFromHex
             ).parse()
             else -> throw IllegalArgumentException("Cannot parse string: $instructionString")

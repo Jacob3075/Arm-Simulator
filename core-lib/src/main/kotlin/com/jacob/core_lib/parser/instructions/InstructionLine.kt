@@ -15,6 +15,7 @@ import com.jacob.core_lib.parser.instructions.sub.SubInstructionParser
 
 class InstructionLine(val instruction: String) : Line {
 
+    //    TODO: WRAP 'INSTRUCTION' STRING IN OBJECT
     override fun parse(): Instruction {
         return when {
             instruction.contains(Add.MNEMONIC) -> AddInstructionParser.from(instruction)

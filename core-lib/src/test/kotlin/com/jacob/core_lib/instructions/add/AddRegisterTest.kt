@@ -11,7 +11,7 @@ import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
-//TODO: ADDED TESTS WITH SHIFT OPERATIONS
+//TODO: ADD TESTS WITH SHIFT OPERATIONS
 internal class AddRegisterTest {
     @Test
     internal fun `can create new add instruction with 2 source registers`() {

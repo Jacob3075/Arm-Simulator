@@ -8,10 +8,12 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.add.Add
+import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser
 import com.jacob.core_lib.word.ImmediateValue
 
 class AddImmediateInstructionParser internal constructor(
     private val instructionString: String,
+    private val shiftOperationParser: ShiftOperationParser,
     private val strategy: (String) -> ImmediateValue
 ) : AddInstructionParser {
 
@@ -28,6 +30,11 @@ class AddImmediateInstructionParser internal constructor(
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)
 
-        return Add.of(destinationRegister, sourceRegister, immediateValue)
+        return Add.of(
+            destinationRegister = destinationRegister,
+            sourceRegister1 = sourceRegister,
+            immediateValue = immediateValue,
+            shiftOperation = shiftOperationParser.parse()
+        )
     }
 }
