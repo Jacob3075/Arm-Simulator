@@ -29,4 +29,26 @@ internal class SubInstructionParserTest {
         subInstructionParser `should be instance of` Instruction::class
         subInstructionParser `should be instance of` SubImmediate::class
     }
+
+    @Test
+    internal fun `returns sub immediate instruction parser with left shifts`() {
+        val instructionString = "SUB R1, R2, #3 LSL #3"
+
+        val subInstructionParser = SubInstructionParser.from(instructionString)
+
+        subInstructionParser.shouldNotBeNull()
+        subInstructionParser `should be instance of` Instruction::class
+        subInstructionParser `should be instance of` SubImmediate::class
+    }
+
+    @Test
+    internal fun `returns sub immediate instruction parser with right shifts`() {
+        val instructionString = "SUB R1, R2, #3 LSR #3"
+
+        val subInstructionParser = SubInstructionParser.from(instructionString)
+
+        subInstructionParser.shouldNotBeNull()
+        subInstructionParser `should be instance of` Instruction::class
+        subInstructionParser `should be instance of` SubImmediate::class
+    }
 }

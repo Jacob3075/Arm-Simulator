@@ -11,4 +11,12 @@ internal class ShiftOperationParserTest {
 
         operationParser `should be instance of` LeftShiftOperationParser::class
     }
+
+    @Test
+    internal fun `can create right shift operation parser`() {
+        val operationString = "LSR #4"
+        val operationParser = ShiftOperationParser.from(operationString)
+
+        operationParser `should be instance of` RightShiftOperationParser::class
+    }
 }
