@@ -3,6 +3,7 @@ package com.jacob.core_lib.instructions.sub
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.word.ImmediateValue
 
 interface Sub : Instruction {
@@ -12,20 +13,24 @@ interface Sub : Instruction {
             destinationRegister: DestinationRegister,
             sourceRegister1: SourceRegister,
             sourceRegister2: SourceRegister,
+            shiftOperation: ShiftOperation = ShiftOperation.None
         ) = SubRegister(
             destinationRegister,
             sourceRegister1,
-            sourceRegister2
+            sourceRegister2,
+            shiftOperation
         )
 
         fun of(
             destinationRegister: DestinationRegister,
             sourceRegister1: SourceRegister,
-            immediateValue: ImmediateValue
+            immediateValue: ImmediateValue,
+            shiftOperation: ShiftOperation = ShiftOperation.None
         ) = SubImmediate(
             destinationRegister,
             sourceRegister1,
-            immediateValue
+            immediateValue,
+            shiftOperation
         )
     }
 }

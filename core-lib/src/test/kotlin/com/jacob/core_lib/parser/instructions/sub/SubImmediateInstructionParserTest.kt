@@ -6,6 +6,7 @@ import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
+import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubImmediate
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
@@ -20,7 +21,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #1"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
+            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -36,7 +37,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #-1"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
+            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -52,7 +53,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #0X123"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
+            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -68,7 +69,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = "SUB R3, R1, #0X1A2FC3"
 
         val subImmediateInstruction =
-            SubImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
+            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
 
         subImmediateInstruction `should be instance of` SubImmediate::class
 
@@ -85,6 +86,7 @@ internal class SubImmediateInstructionParserTest {
         invoking {
             SubImmediateInstructionParser(
                 instructionString,
+                ShiftOperation.None,
                 String::immediateFromHex
             ).parse()
         } `should throw` NumberFormatException::class

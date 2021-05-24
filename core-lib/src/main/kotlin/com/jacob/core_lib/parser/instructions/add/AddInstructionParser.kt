@@ -26,20 +26,20 @@ interface AddInstructionParser : InstructionParser {
 
         private fun getInstruction(
             instructionString: String,
-            shiftOperationParser: ShiftOperation = ShiftOperation.None
+            shiftOperation: ShiftOperation = ShiftOperation.None
         ) = when {
             instructionString.matches(REGISTER) -> AddRegisterInstructionParser(
                 instructionString,
-                shiftOperationParser
+                shiftOperation
             ).parse()
             instructionString.matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
                 instructionString,
-                shiftOperationParser,
+                shiftOperation,
                 String::immediateFromDec
             ).parse()
             instructionString.matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
                 instructionString,
-                shiftOperationParser,
+                shiftOperation,
                 String::immediateFromHex
             ).parse()
             else -> throw IllegalArgumentException("Cannot parse string: $instructionString")

@@ -3,6 +3,7 @@ package com.jacob.core_lib.parser.instructions.sub
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubRegister
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
@@ -14,7 +15,7 @@ internal class SubRegisterInstructionParserTest {
     internal fun `creates correct sub instruction`() {
         val instructionString = "SUB R3, R1, R2"
 
-        val subRegisterInstruction = SubRegisterInstructionParser(instructionString).parse()
+        val subRegisterInstruction = SubRegisterInstructionParser(instructionString, ShiftOperation.None).parse()
 
         subRegisterInstruction `should be instance of` SubRegister::class
 
