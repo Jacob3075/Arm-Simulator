@@ -11,6 +11,8 @@ import com.jacob.core_lib.instructions.sub.Sub
 import com.jacob.core_lib.word.ImmediateValue
 import java.io.File
 
+// TODO: CREATE HELPER FUNCTION TO GET EXECUTION ENVIRONMENT
+
 fun createMoveInstruction(registerAddress: RegisterAddress, immediateValue: Int) =
     Move.of(DestinationRegister(registerAddress), ImmediateValue(immediateValue))
 

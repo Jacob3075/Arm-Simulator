@@ -1,40 +1,27 @@
 package com.jacob.core_lib.instructions.move
 
+import com.jacob.core_lib.common.I
+import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.shift.LeftShift
+import com.jacob.core_lib.instructions.shift.RightShift
 import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.word.ImmediateValue
-import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
-import org.amshove.kluent.`should be instance of`
-import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
 internal class MoveImmediateTest {
-
-    @Test
-    internal fun `create new move immediate instruction`() {
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
-        val immediateValue = ImmediateValue(50)
-        val moveInstruction = Move.of(destinationRegister, immediateValue)
-
-        moveInstruction.shouldNotBeNull()
-        moveInstruction `should be instance of` Instruction::class
-        moveInstruction `should be instance of` Move::class
-        moveInstruction `should be instance of` MoveImmediate::class
-    }
-
     @Test
     internal fun `executing instruction updates the register array`() {
         val memoryArray = MemoryArray()
         val labels = emptyList<Label>()
         val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
-        val immediateValue = ImmediateValue(20)
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
+        val immediateValue = 20.I
+        val destinationRegister = DestinationRegister(0.RA)
 
         val executionEnvironment = ExecutionEnvironment(
             registerArray = registerArray,
@@ -56,8 +43,8 @@ internal class MoveImmediateTest {
         val registerArray = RegisterArray()
         val variables = listOf<ParsedData>()
 
-        val registerAddress1 = RegisterAddress.REGISTER_1
-        val registerAddress2 = RegisterAddress.REGISTER_2
+        val registerAddress1 = 1.RA
+        val registerAddress2 = 2.RA
 
         val move1 = createMoveInstruction(registerAddress1, 10)
         val move2 = createMoveInstruction(registerAddress2, 20)
@@ -72,22 +59,59 @@ internal class MoveImmediateTest {
 
         core.runProgram()
 
-        registerArray.getRegisterAt(registerAddress1)
-            .getRegisterValue() `should be equal to` Word(10)
-
-        registerArray.getRegisterAt(registerAddress2)
-            .getRegisterValue() `should be equal to` Word(20)
-
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_4).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_7).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_8).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_9).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_10).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_11).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_12).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(registerAddress1).getRegisterValue() `should be equal to` 10.W
+        registerArray.getRegisterAt(registerAddress2).getRegisterValue() `should be equal to` 20.W
     }
 
+    @Test
+    internal fun `running move instructions with left shift updates the correct registers`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+        val variables = listOf<ParsedData>()
+
+        val registerAddress1 = 1.RA
+        val registerAddress2 = 2.RA
+
+        val move1 = Move.of(DestinationRegister(registerAddress1), 10.I, LeftShift(1))
+        val move2 = Move.of(DestinationRegister(registerAddress2), 20.I, LeftShift(3))
+
+        val instructions: List<Instruction> = listOf(
+            move1,
+            move2,
+        )
+        val program = Program(instructions, variables)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(registerAddress1).getRegisterValue() `should be equal to` 20.W
+        registerArray.getRegisterAt(registerAddress2).getRegisterValue() `should be equal to` 160.W
+    }
+
+    @Test
+    internal fun `running move instructions with right shift updates the correct registers`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+        val variables = listOf<ParsedData>()
+
+        val registerAddress1 = 1.RA
+        val registerAddress2 = 2.RA
+
+        val move1 = Move.of(DestinationRegister(registerAddress1), 16.I, RightShift(2))
+        val move2 = Move.of(DestinationRegister(registerAddress2), 160.I, RightShift(3))
+
+        val instructions: List<Instruction> = listOf(
+            move1,
+            move2,
+        )
+        val program = Program(instructions, variables)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(registerAddress1).getRegisterValue() `should be equal to` 4.W
+        registerArray.getRegisterAt(registerAddress2).getRegisterValue() `should be equal to` 20.W
+    }
 }
