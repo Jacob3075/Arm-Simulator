@@ -1,21 +1,22 @@
 @file:Suppress("DuplicatedCode")
 
-package com.jacob.core_lib.parser.instructions.add
+package com.jacob.core_lib.parser.instructions.multiply
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.add.Add
+import com.jacob.core_lib.instructions.multipy.Multiply
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 
-class AddRegisterInstructionParser internal constructor(
+class MultiplyRegisterInstructionParser(
     private val instructionString: String,
-    private val shiftOperationParser: ShiftOperation
-) : AddInstructionParser {
-
+    private val shiftOperation: ShiftOperation
+) :
+    MultiplyInstructionParser {
     override fun parse(): Instruction {
-        val registers = instructionString.removePrefix("ADD")
+//        MUL R1, R2, R3
+        val registers = instructionString.removePrefix("MUL")
             .split(",")
             .map(String::trim)
             .toRegisterAddresses()
@@ -24,12 +25,6 @@ class AddRegisterInstructionParser internal constructor(
         val sourceRegister1 = registers[1].let(::SourceRegister)
         val sourceRegister2 = registers.last().let(::SourceRegister)
 
-        return Add.of(
-            destinationRegister = destinationRegister,
-            sourceRegister1 = sourceRegister1,
-            sourceRegister2 = sourceRegister2,
-            shiftOperation = shiftOperationParser
-        )
+        return Multiply.of(destinationRegister, sourceRegister1, sourceRegister2, shiftOperation)
     }
-
 }
