@@ -20,4 +20,6 @@ open class Word(val value: Int) {
     operator fun plus(otherWord: Word) = Word(value + otherWord.value)
 
     operator fun minus(otherWord: Word) = Word(value - otherWord.value)
+
+    operator fun times(otherWord: ImmediateValue) = Word(value * otherWord.value)
 }
