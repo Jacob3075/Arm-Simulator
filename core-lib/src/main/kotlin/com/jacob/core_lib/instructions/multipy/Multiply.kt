@@ -12,16 +12,12 @@ interface Multiply : Instruction {
             destinationRegister: DestinationRegister,
             sourceRegister: SourceRegister,
             immediateValue: ImmediateValue
-        ): Multiply {
-            return MultiplyImmediate(destinationRegister, sourceRegister, immediateValue)
-        }
+        ) = MultiplyImmediate(destinationRegister, sourceRegister, immediateValue)
 
         fun of(
             destinationRegister: DestinationRegister,
-            sourceRegister: SourceRegister,
-            immediateValue: SourceRegister,
-        ): Multiply {
-            TODO("Not yet implemented")
-        }
+            sourceRegister1: SourceRegister,
+            sourceRegister2: SourceRegister,
+        ) = MultiplyRegister(destinationRegister, sourceRegister1, sourceRegister2)
     }
 }
