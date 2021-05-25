@@ -22,6 +22,16 @@ class InstructionRegex private constructor() {
         }
     }
 
+    class Multiply private constructor() {
+        companion object {
+            val MNEMONIC = "^MUL".toRegex()
+            val REGISTER = "^MUL R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex() // MUL R4, R4, R5
+            val IMMEDIATE_DEC = "^MUL R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#\\d+$".toRegex() // MUL R4, R4, #5
+            val IMMEDIATE_HEX =
+                "^MUL R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex() // MUL R4, R4, #0X012AF
+        }
+    }
+
     class Move private constructor() {
         companion object {
             val MNEMONIC = "^MOV".toRegex()
