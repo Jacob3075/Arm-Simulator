@@ -5,8 +5,12 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.createSubInstruction
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.instructions.shift.RightShift
@@ -17,17 +21,9 @@ import org.junit.jupiter.api.Test
 internal class SubImmediateTest {
     @Test
     internal fun `executing sub instruction with source register and immediate value reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
 
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
         val sourceRegister = 0.RA
         val destinationRegister = 2.RA
@@ -46,7 +42,7 @@ internal class SubImmediateTest {
     internal fun `running sub instructions using immediate value reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA
@@ -78,7 +74,7 @@ internal class SubImmediateTest {
     internal fun `running sub instructions using immediate value with left shit reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA
@@ -111,7 +107,7 @@ internal class SubImmediateTest {
     internal fun `running sub instructions using immediate value with right shit reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA

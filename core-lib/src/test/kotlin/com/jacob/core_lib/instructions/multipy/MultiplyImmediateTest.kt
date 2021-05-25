@@ -5,7 +5,11 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import org.amshove.kluent.`should be equal to`
@@ -14,17 +18,9 @@ import org.junit.jupiter.api.Test
 internal class MultiplyImmediateTest {
     @Test
     internal fun `executing multiply instruction with source register and immediate value reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
 
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
         registerArray.setValueAtRegister(0.RA, 10.W)
 
@@ -44,7 +40,7 @@ internal class MultiplyImmediateTest {
     internal fun `running multiply instructions using immediate value reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA

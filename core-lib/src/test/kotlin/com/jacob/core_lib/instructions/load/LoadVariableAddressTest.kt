@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.core.*
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
@@ -21,12 +22,13 @@ internal class LoadVariableAddressTest {
 
         val registerArray = RegisterArray()
         val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
         val variables = listOf(variable)
 
         memoryArray.setWordAt(variable.address, Word(10))
 
-        val executionEnvironment = ExecutionEnvironment(registerArray, memoryArray, labels, variables)
+        val executionEnvironment =
+            getExecutionEnvironment(registerArray = registerArray, memoryArray = memoryArray, variables = variables)
+
         loadVariableAddress.execute(executionEnvironment)
 
         registerArray.getRegisterAt(destinationRegister.registerAddress)

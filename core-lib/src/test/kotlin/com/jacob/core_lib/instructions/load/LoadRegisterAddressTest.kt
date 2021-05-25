@@ -4,7 +4,11 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
@@ -21,13 +25,11 @@ internal class LoadRegisterAddressTest {
 
         val registerArray = RegisterArray()
         val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
 
         registerArray.setValueAtRegister(sourceRegister.registerAddress, Word(5))
         memoryArray.setWordAt(MemoryAddress(5), Word(10))
 
-        val executionEnvironment = ExecutionEnvironment(registerArray, memoryArray, labels, variables)
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray, memoryArray = memoryArray)
 
         loadRegisterAddress.execute(executionEnvironment)
 
@@ -39,7 +41,7 @@ internal class LoadRegisterAddressTest {
     internal fun `running load instructions reads and updates correct memory and register addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_0)
         val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_3)

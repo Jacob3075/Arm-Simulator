@@ -5,8 +5,11 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.createAddInstruction
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.parser.data.ParsedData
@@ -16,19 +19,10 @@ import org.junit.jupiter.api.Test
 internal class AddImmediateTest {
     @Test
     internal fun `executing add instruction with source register and immediate value reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
-
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
-
         registerArray.setValueAtRegister(0.RA, 10.W)
+
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
         val sourceRegister1 = 0.RA
         val destinationRegister = 2.RA
@@ -43,9 +37,8 @@ internal class AddImmediateTest {
 
     @Test
     internal fun `running add instructions using immediate value reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA
@@ -64,7 +57,7 @@ internal class AddImmediateTest {
         )
         val program = Program(instructions, variables)
 
-        val core = Core(memoryArray, registerArray, program)
+        val core = Core(registerArray = registerArray, program = program)
 
         core.runProgram()
 
@@ -74,9 +67,8 @@ internal class AddImmediateTest {
 
     @Test
     internal fun `running add instructions using immediate value with left shift reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA
@@ -105,7 +97,7 @@ internal class AddImmediateTest {
         )
         val program = Program(instructions, variables)
 
-        val core = Core(memoryArray, registerArray, program)
+        val core = Core(registerArray = registerArray, program = program)
 
         core.runProgram()
 

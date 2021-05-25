@@ -3,38 +3,23 @@ package com.jacob.core_lib.instructions.store
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
-import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
 internal class StoreMemoryAddressTest {
     @Test
-    internal fun `can create store instruction`() {
-        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_0)
-        val destinationAddress = MemoryAddress(0)
-
-        val storeInstruction = StoreMemoryAddress(destinationAddress, sourceRegister)
-
-        storeInstruction.shouldNotBeNull()
-    }
-
-    @Test
     internal fun `reads correct register and updates correct memory address`() {
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
-        val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
 
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
@@ -60,7 +45,7 @@ internal class StoreMemoryAddressTest {
     internal fun `running store instructions reads and updates correct register and memory addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)

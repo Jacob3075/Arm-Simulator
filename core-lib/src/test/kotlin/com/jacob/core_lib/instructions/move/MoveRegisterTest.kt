@@ -5,8 +5,12 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.createMoveInstruction
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.instructions.shift.RightShift
@@ -17,20 +21,11 @@ import org.junit.jupiter.api.Test
 internal class MoveRegisterTest {
     @Test
     internal fun `executing instruction updates the register array`() {
-        val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
         val sourceRegister = SourceRegister(0.RA)
         val destinationRegister = DestinationRegister(0.RA)
 
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
-
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
         registerArray.setValueAtRegister(0.RA, 10.W)
 
         val moveInstruction = Move.of(destinationRegister, sourceRegister)
@@ -43,7 +38,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val destinationAddress1 = 0.RA
         val destinationAddress2 = 1.RA
@@ -74,7 +69,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions with left shift updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val destinationAddress1 = 0.RA
         val destinationAddress2 = 1.RA
@@ -105,7 +100,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions with right shift updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val destinationAddress1 = 0.RA
         val destinationAddress2 = 1.RA

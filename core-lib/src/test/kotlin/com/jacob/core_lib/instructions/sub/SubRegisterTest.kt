@@ -4,8 +4,12 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.MemoryArray
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.createSubInstruction
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.instructions.shift.RightShift
@@ -16,17 +20,9 @@ import org.junit.jupiter.api.Test
 internal class SubRegisterTest {
     @Test
     internal fun `executing sub instruction with register values reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
 
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
         registerArray.setValueAtRegister(0.RA, 20.W)
         registerArray.setValueAtRegister(1.RA, 10.W)

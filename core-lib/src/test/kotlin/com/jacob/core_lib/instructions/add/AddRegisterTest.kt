@@ -4,31 +4,26 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.core.*
+import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.createAddInstruction
+import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.parser.data.ParsedData
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
+// TODO: IMPROVE TESTS
 internal class AddRegisterTest {
     @Test
     internal fun `executing add instruction with register values reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
-        val labels = emptyList<Label>()
-        val variables = emptyList<Variable>()
         val registerArray = RegisterArray()
-
-        val executionEnvironment = ExecutionEnvironment(
-            registerArray = registerArray,
-            memoryArray = memoryArray,
-            labels = labels,
-            variables = variables
-        )
-
         registerArray.setValueAtRegister(1.RA, 10.W)
         registerArray.setValueAtRegister(2.RA, 20.W)
+
+        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
         val sourceRegister1 = 1.RA
         val sourceRegister2 = 2.RA
@@ -43,9 +38,8 @@ internal class AddRegisterTest {
 
     @Test
     internal fun `running add instructions using registers reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA
@@ -64,7 +58,7 @@ internal class AddRegisterTest {
         )
         val program = Program(instructions, variables)
 
-        val core = Core(memoryArray, registerArray, program)
+        val core = Core(registerArray = registerArray, program = program)
 
         core.runProgram()
 
@@ -75,9 +69,8 @@ internal class AddRegisterTest {
 
     @Test
     internal fun `running add instructions using registers with left shifts reads and updates the correct registers`() {
-        val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = emptyList<ParsedData>()
 
         val registerAddress1 = 1.RA
         val registerAddress2 = 2.RA
@@ -106,7 +99,7 @@ internal class AddRegisterTest {
         )
         val program = Program(instructions, variables)
 
-        val core = Core(memoryArray, registerArray, program)
+        val core = Core(registerArray = registerArray, program = program)
 
         core.runProgram()
 
