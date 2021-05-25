@@ -98,9 +98,36 @@ class InstructionRegex private constructor() {
                 }
             }
 
-            val ARITHMETIC_RIGHT_SHIFT = "^ASR".toRegex()
-            val ROTATE_RIGHT = "^ROR".toRegex()
-            val ROTATE_RIGHT_EXTENDED = "^RRX".toRegex()
+            class RightRotateShift private constructor() {
+                companion object {
+                    val MNEMONIC = "^ROR".toRegex()
+                    val REGISTER = "^ROR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex()
+                    val IMMEDIATE_DEC = "^ROR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), #-?\\d+$".toRegex()
+                    val IMMEDIATE_HEX = "^ROR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex()
+                    val OPERATION = "ROR #\\d+".toRegex()
+                }
+            }
+
+            class RightRotateExtendedShift private constructor() {
+                companion object {
+                    val MNEMONIC = "^RRX".toRegex()
+                    val REGISTER = "^RRX R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex()
+                    val IMMEDIATE_DEC = "^RRX R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), #-?\\d+$".toRegex()
+                    val IMMEDIATE_HEX = "^RRX R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex()
+                    val OPERATION = "RRX #\\d+".toRegex()
+                }
+            }
+
+
+            class ArithmeticRightShift private constructor() {
+                companion object {
+                    val MNEMONIC = "^ASR".toRegex()
+                    val REGISTER = "^ASR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?R([0-9]|1[0-4])$".toRegex()
+                    val IMMEDIATE_DEC = "^ASR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), #-?\\d+$".toRegex()
+                    val IMMEDIATE_HEX = "^ASR R([0-9]|1[0-4]), ?R([0-9]|1[0-4]), ?#0X(\\d|[A-F])+$".toRegex()
+                    val OPERATION = "ASR #\\d+".toRegex()
+                }
+            }
         }
     }
 
