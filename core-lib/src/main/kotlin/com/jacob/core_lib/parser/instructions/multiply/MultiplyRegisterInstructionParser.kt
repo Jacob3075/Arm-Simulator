@@ -1,3 +1,4 @@
+// TODO: FIX DUPLICATE CODE
 @file:Suppress("DuplicatedCode")
 
 package com.jacob.core_lib.parser.instructions.multiply
@@ -7,13 +8,8 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.multipy.Multiply
-import com.jacob.core_lib.instructions.shift.ShiftOperation
 
-class MultiplyRegisterInstructionParser(
-    private val instructionString: String,
-    private val shiftOperation: ShiftOperation
-) :
-    MultiplyInstructionParser {
+class MultiplyRegisterInstructionParser(private val instructionString: String) : MultiplyInstructionParser {
     override fun parse(): Instruction {
 //        MUL R1, R2, R3
         val registers = instructionString.removePrefix("MUL")
@@ -25,6 +21,6 @@ class MultiplyRegisterInstructionParser(
         val sourceRegister1 = registers[1].let(::SourceRegister)
         val sourceRegister2 = registers.last().let(::SourceRegister)
 
-        return Multiply.of(destinationRegister, sourceRegister1, sourceRegister2, shiftOperation)
+        return Multiply.of(destinationRegister, sourceRegister1, sourceRegister2)
     }
 }
