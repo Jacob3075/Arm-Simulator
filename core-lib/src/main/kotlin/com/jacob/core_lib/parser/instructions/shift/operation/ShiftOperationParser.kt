@@ -7,7 +7,6 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.RightRo
 import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.RightShift
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 
-//TODO: ADD TESTS
 interface ShiftOperationParser {
     companion object {
         fun from(operationString: String): ShiftOperationParser {
@@ -15,12 +14,10 @@ interface ShiftOperationParser {
                 operationString.contains(LeftShift.MNEMONIC) -> LeftShiftOperationParser(operationString)
                 operationString.contains(RightShift.MNEMONIC) -> RightShiftOperationParser(operationString)
                 operationString.contains(RightRotateShift.MNEMONIC) -> RightRotateShiftOperationParser(operationString)
-                operationString.contains(RightRotateExtendedShift.MNEMONIC) -> RightRotateExtendedShiftOperationParser(
-                    operationString
-                )
-                operationString.contains(ArithmeticRightShift.MNEMONIC) -> ArithmeticRightShiftOperationParser(
-                    operationString
-                )
+                operationString.contains(RightRotateExtendedShift.MNEMONIC) ->
+                    RightRotateExtendedShiftOperationParser(operationString)
+                operationString.contains(ArithmeticRightShift.MNEMONIC) ->
+                    ArithmeticRightShiftOperationParser(operationString)
                 else -> throw IllegalArgumentException()
             }
         }

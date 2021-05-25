@@ -4,7 +4,7 @@ import com.jacob.core_lib.instructions.shift.RightRotateShift
 
 class RightRotateShiftOperationParser(private val operationString: String) :
     ShiftOperationParser {
-    override fun parse() = operationString.removePrefix("ASR")
+    override fun parse() = operationString.removePrefix("ROR")
         .trim()
         .removePrefix("#")
         .toInt()
