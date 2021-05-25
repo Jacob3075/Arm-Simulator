@@ -3,8 +3,6 @@ package com.jacob.core_lib.core
 import com.jacob.core_lib.common.MA
 import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.getFile
-import com.jacob.core_lib.parser.Parser
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -12,12 +10,10 @@ import org.junit.jupiter.api.Test
 internal class CoreTest {
     @Test
     internal fun `test file 1`() {
-        val file = getFile("/TestInputFile1.s")
+        val sampleInputData = test1Data
 
-        val parseDataFromFile = Parser.parseDataFromFile(file)
-
-        val instructions = parseDataFromFile.first
-        val variables = parseDataFromFile.second
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -34,12 +30,10 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 2`() {
-        val file = getFile("/TestInputFile2.s")
+        val sampleInputData = test2Data
 
-        val parseDataFromFile = Parser.parseDataFromFile(file)
-
-        val instructions = parseDataFromFile.first
-        val variables = parseDataFromFile.second
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -55,12 +49,10 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 3`() {
-        val file = getFile("/TestInputFile3.s")
+        val sampleInputData = test3Data
 
-        val parseDataFromFile = Parser.parseDataFromFile(file)
-
-        val instructions = parseDataFromFile.first
-        val variables = parseDataFromFile.second
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -77,12 +69,10 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 4`() {
-        val file = getFile("/TestInputFile4.s")
+        val sampleInputData = test4Data
 
-        val parseDataFromFile = Parser.parseDataFromFile(file)
-
-        val instructions = parseDataFromFile.first
-        val variables = parseDataFromFile.second
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
