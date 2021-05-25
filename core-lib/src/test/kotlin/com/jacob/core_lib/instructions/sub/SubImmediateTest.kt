@@ -1,32 +1,20 @@
 package com.jacob.core_lib.instructions.sub
 
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.I
+import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.W
+import com.jacob.core_lib.common.addresses.DestinationRegister
+import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.createSubInstruction
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.shift.LeftShift
+import com.jacob.core_lib.instructions.shift.RightShift
 import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
-import org.amshove.kluent.`should be instance of`
-import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
 
 internal class SubImmediateTest {
-
-    @Test
-    internal fun `can create new sub instruction with source register and immediate value`() {
-        val sourceRegister1 = RegisterAddress.REGISTER_0
-        val destinationRegister = RegisterAddress.REGISTER_2
-        val immediateValue = 10
-
-        val addInstruction = createSubInstruction(destinationRegister, sourceRegister1, immediateValue)
-
-        addInstruction.shouldNotBeNull()
-        addInstruction `should be instance of` SubImmediate::class
-        addInstruction `should be instance of` Sub::class
-        addInstruction `should be instance of` Instruction::class
-    }
-
     @Test
     internal fun `executing sub instruction with source register and immediate value reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
@@ -41,18 +29,17 @@ internal class SubImmediateTest {
             variables = variables
         )
 
-        val sourceRegister = RegisterAddress.REGISTER_0
-        val destinationRegister = RegisterAddress.REGISTER_2
+        val sourceRegister = 0.RA
+        val destinationRegister = 2.RA
         val immediateValue = 10
 
-        registerArray.setValueAtRegister(sourceRegister, Word(20))
+        registerArray.setValueAtRegister(sourceRegister, 20.W)
 
         val addInstruction = createSubInstruction(destinationRegister, sourceRegister, immediateValue)
 
         addInstruction.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(destinationRegister)
-            .getRegisterValue() `should be equal to` Word(10)
+        registerArray.getRegisterAt(destinationRegister).getRegisterValue() `should be equal to` 10.W
     }
 
     @Test
@@ -61,13 +48,13 @@ internal class SubImmediateTest {
         val registerArray = RegisterArray()
         val variables = listOf<ParsedData>()
 
-        val registerAddress1 = RegisterAddress.REGISTER_1
-        val registerAddress2 = RegisterAddress.REGISTER_2
-        val registerAddress3 = RegisterAddress.REGISTER_3
-        val registerAddress4 = RegisterAddress.REGISTER_4
+        val registerAddress1 = 1.RA
+        val registerAddress2 = 2.RA
+        val registerAddress3 = 3.RA
+        val registerAddress4 = 4.RA
 
-        registerArray.setValueAtRegister(registerAddress1, Word(30))
-        registerArray.setValueAtRegister(registerAddress2, Word(20))
+        registerArray.setValueAtRegister(registerAddress1, 30.W)
+        registerArray.setValueAtRegister(registerAddress2, 20.W)
 
         val sub1 = createSubInstruction(registerAddress3, registerAddress1, 20)
         val sub2 = createSubInstruction(registerAddress4, registerAddress2, 10)
@@ -83,25 +70,72 @@ internal class SubImmediateTest {
 
         core.runProgram()
 
-        registerArray.getRegisterAt(registerAddress1)
-            .getRegisterValue() `should be equal to` Word(30)
+        registerArray.getRegisterAt(registerAddress3).getRegisterValue() `should be equal to` 10.W
+        registerArray.getRegisterAt(registerAddress4).getRegisterValue() `should be equal to` 10.W
+    }
 
-        registerArray.getRegisterAt(registerAddress2)
-            .getRegisterValue() `should be equal to` Word(20)
+    @Test
+    internal fun `running sub instructions using immediate value with left shit reads and updates the correct registers`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+        val variables = listOf<ParsedData>()
 
-        registerArray.getRegisterAt(registerAddress3)
-            .getRegisterValue() `should be equal to` Word(10)
+        val registerAddress1 = 1.RA
+        val registerAddress2 = 2.RA
+        val registerAddress3 = 3.RA
+        val registerAddress4 = 4.RA
 
-        registerArray.getRegisterAt(registerAddress4)
-            .getRegisterValue() `should be equal to` Word(10)
+        registerArray.setValueAtRegister(registerAddress1, 50.W)
+        registerArray.setValueAtRegister(registerAddress2, 100.W)
 
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_6).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_7).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_8).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_9).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_10).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_11).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_12).getRegisterValue() `should be equal to` Word(0)
+        val sub1 = Sub.of(DestinationRegister(registerAddress3), SourceRegister(registerAddress1), 20.I, LeftShift(1))
+        val sub2 = Sub.of(DestinationRegister(registerAddress4), SourceRegister(registerAddress2), 10.I, LeftShift(3))
+
+        val instructions: List<Instruction> = listOf(
+            sub1,
+            sub2,
+        )
+
+        val program = Program(instructions, variables)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(registerAddress3).getRegisterValue() `should be equal to` 10.W
+        registerArray.getRegisterAt(registerAddress4).getRegisterValue() `should be equal to` 20.W
+    }
+
+    @Test
+
+    internal fun `running sub instructions using immediate value with right shit reads and updates the correct registers`() {
+        val memoryArray = MemoryArray()
+        val registerArray = RegisterArray()
+        val variables = listOf<ParsedData>()
+
+        val registerAddress1 = 1.RA
+        val registerAddress2 = 2.RA
+        val registerAddress3 = 3.RA
+        val registerAddress4 = 4.RA
+
+        registerArray.setValueAtRegister(registerAddress1, 50.W)
+        registerArray.setValueAtRegister(registerAddress2, 100.W)
+
+        val sub1 = Sub.of(DestinationRegister(registerAddress3), SourceRegister(registerAddress1), 20.I, RightShift(1))
+        val sub2 = Sub.of(DestinationRegister(registerAddress4), SourceRegister(registerAddress2), 80.I, RightShift(2))
+
+        val instructions: List<Instruction> = listOf(
+            sub1,
+            sub2,
+        )
+
+        val program = Program(instructions, variables)
+
+        val core = Core(memoryArray, registerArray, program)
+
+        core.runProgram()
+
+        registerArray.getRegisterAt(registerAddress3).getRegisterValue() `should be equal to` 40.W
+        registerArray.getRegisterAt(registerAddress4).getRegisterValue() `should be equal to` 80.W
     }
 }
