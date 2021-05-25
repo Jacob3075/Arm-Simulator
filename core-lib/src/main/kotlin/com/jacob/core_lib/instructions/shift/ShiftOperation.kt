@@ -17,3 +17,15 @@ class LeftShift(internal val shiftAmount: Int) : ShiftOperation {
 class RightShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = value / (2 `**` shiftAmount)
 }
+
+class RightRotateShift(internal val shiftAmount: Int) : ShiftOperation {
+    override fun shift(value: Int) = TODO()
+}
+
+class RightRotateExtendedShift(internal val shiftAmount: Int) : ShiftOperation {
+    override fun shift(value: Int) = TODO()
+}
+
+class ArithmeticRightShift(internal val shiftAmount: Int) : ShiftOperation {
+    override fun shift(value: Int) = TODO()
+}

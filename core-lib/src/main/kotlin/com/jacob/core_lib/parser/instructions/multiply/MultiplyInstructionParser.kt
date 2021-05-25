@@ -8,7 +8,7 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 interface MultiplyInstructionParser : InstructionParser {
 
     companion object {
-        private fun from(
+        fun from(
             instructionString: String,
         ) = when {
             instructionString.matches(InstructionRegex.Multiply.REGISTER) -> MultiplyRegisterInstructionParser(
