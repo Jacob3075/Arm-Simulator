@@ -14,9 +14,9 @@ class MultiplyImmediate(
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val (registerArray: RegisterArray) = executionEnvironment
 
-        val wordFromRegister = registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()
+        val wordFromRegister = registerArray.getRegisterAt(sourceRegister).getRegisterValue()
         val result = wordFromRegister * immediateValue
 
-        registerArray.setValueAtRegister(destinationRegister.registerAddress, result)
+        registerArray.setValueAtRegister(destinationRegister, result)
     }
 }

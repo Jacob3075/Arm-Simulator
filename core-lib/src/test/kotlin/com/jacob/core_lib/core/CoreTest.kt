@@ -1,7 +1,7 @@
 package com.jacob.core_lib.core
 
 import com.jacob.core_lib.common.MA
-import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
@@ -21,10 +21,10 @@ internal class CoreTest {
         core.runProgram()
 
         core.apply {
-            registerArray.getRegisterAt(1.RA).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(2.RA).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(3.RA).getRegisterValue() `should be equal to` 15.W
-            registerArray.getRegisterAt(4.RA).getRegisterValue() `should be equal to` 10.W
+            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
+            registerArray.getRegisterAt(3.SR).getRegisterValue() `should be equal to` 15.W
+            registerArray.getRegisterAt(4.SR).getRegisterValue() `should be equal to` 10.W
         }
     }
 
@@ -41,9 +41,9 @@ internal class CoreTest {
         core.runProgram()
 
         core.apply {
-            registerArray.getRegisterAt(1.RA).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(3.RA).getRegisterValue() `should be equal to` 7.W
-            registerArray.getRegisterAt(4.RA).getRegisterValue() `should be equal to` (-2).W
+            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            registerArray.getRegisterAt(3.SR).getRegisterValue() `should be equal to` 7.W
+            registerArray.getRegisterAt(4.SR).getRegisterValue() `should be equal to` (-2).W
         }
     }
 
@@ -60,10 +60,10 @@ internal class CoreTest {
         core.runProgram()
 
         core.apply {
-            registerArray.getRegisterAt(1.RA).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(2.RA).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(4.RA).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(5.RA).getRegisterValue() `should be equal to` 2.W
+            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
+            registerArray.getRegisterAt(4.SR).getRegisterValue() `should be equal to` 5.W
+            registerArray.getRegisterAt(5.SR).getRegisterValue() `should be equal to` 2.W
         }
     }
 
@@ -80,12 +80,12 @@ internal class CoreTest {
         core.runProgram()
 
         core.apply {
-            registerArray.getRegisterAt(1.RA).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(2.RA).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(5.RA).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(6.RA).getRegisterValue() `should be equal to` 15.W
-            registerArray.getRegisterAt(7.RA).getRegisterValue() `should be equal to` 15.W
-            registerArray.getRegisterAt(8.RA).getRegisterValue() `should be equal to` (-5).W
+            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
+            registerArray.getRegisterAt(5.SR).getRegisterValue() `should be equal to` 10.W
+            registerArray.getRegisterAt(6.SR).getRegisterValue() `should be equal to` 15.W
+            registerArray.getRegisterAt(7.SR).getRegisterValue() `should be equal to` 15.W
+            registerArray.getRegisterAt(8.SR).getRegisterValue() `should be equal to` (-5).W
 
             memoryArray.getWordAt(0.MA) `should be equal to` 15.W
             memoryArray.getWordAt(1.MA) `should be equal to` (-5).W

@@ -1,7 +1,7 @@
 package com.jacob.core_lib.instructions.store
 
 import com.jacob.core_lib.common.addresses.MemoryAddress
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
@@ -23,21 +23,21 @@ internal class StoreMemoryAddressTest {
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
-        val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_0)
-        val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_1)
+        val sourceRegister1 = SourceRegister(RegisterAddresses.REGISTER_0)
+        val sourceRegister2 = SourceRegister(RegisterAddresses.REGISTER_1)
 
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))
+        registerArray.setValueAtRegister(sourceRegister1, Word(10))
+        registerArray.setValueAtRegister(sourceRegister2, Word(20))
 
         val store1 = StoreMemoryAddress(memoryAddress1, sourceRegister1)
         val store2 = StoreMemoryAddress(memoryAddress2, sourceRegister2)
 
         store1.execute(executionEnvironment)
-        registerArray.getRegisterAt(sourceRegister1.registerAddress)
+        registerArray.getRegisterAt(sourceRegister1)
             .getRegisterValue() `should be equal to` Word(10)
 
         store2.execute(executionEnvironment)
-        registerArray.getRegisterAt(sourceRegister2.registerAddress)
+        registerArray.getRegisterAt(sourceRegister2)
             .getRegisterValue() `should be equal to` Word(20)
     }
 
@@ -49,11 +49,11 @@ internal class StoreMemoryAddressTest {
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
-        val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
-        val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_2)
+        val sourceRegister1 = SourceRegister(RegisterAddresses.REGISTER_1)
+        val sourceRegister2 = SourceRegister(RegisterAddresses.REGISTER_2)
 
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))
+        registerArray.setValueAtRegister(sourceRegister1, Word(10))
+        registerArray.setValueAtRegister(sourceRegister2, Word(20))
 
         val store1 = StoreMemoryAddress(memoryAddress1, sourceRegister1)
         val store2 = StoreMemoryAddress(memoryAddress2, sourceRegister2)

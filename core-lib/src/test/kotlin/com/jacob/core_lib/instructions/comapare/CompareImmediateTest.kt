@@ -1,9 +1,8 @@
 package com.jacob.core_lib.instructions.comapare
 
 import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.getExecutionEnvironment
 import org.amshove.kluent.`should be`
@@ -14,10 +13,10 @@ internal class CompareImmediateTest {
     internal fun `updates correct flags when both register and immediate are positive and equal`() {
         val registerArray = RegisterArray()
 
-        val sourceRegister = SourceRegister(1.RA)
+        val sourceRegister = 1.SR
         val immediateValue = 5.I
 
-        registerArray.setValueAtRegister(sourceRegister.registerAddress, 5.W)
+        registerArray.setValueAtRegister(sourceRegister, 5.W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
@@ -34,10 +33,10 @@ internal class CompareImmediateTest {
     internal fun `updates correct flags when both register and immediate are negative and equal`() {
         val registerArray = RegisterArray()
 
-        val sourceRegister = SourceRegister(1.RA)
+        val sourceRegister = 1.SR
         val immediateValue = (-5).I
 
-        registerArray.setValueAtRegister(sourceRegister.registerAddress, (-5).W)
+        registerArray.setValueAtRegister(sourceRegister, (-5).W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
@@ -54,10 +53,10 @@ internal class CompareImmediateTest {
     internal fun `updates correct flags when both register and immediate are positive and not equal`() {
         val registerArray = RegisterArray()
 
-        val sourceRegister = SourceRegister(1.RA)
+        val sourceRegister = 1.SR
         val immediateValue = 5.I
 
-        registerArray.setValueAtRegister(sourceRegister.registerAddress, 13.W)
+        registerArray.setValueAtRegister(sourceRegister, 13.W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
@@ -74,10 +73,10 @@ internal class CompareImmediateTest {
     internal fun `updates correct flags when both register and immediate are negative and not equal`() {
         val registerArray = RegisterArray()
 
-        val sourceRegister = SourceRegister(1.RA)
+        val sourceRegister = 1.SR
         val immediateValue = (-5).I
 
-        registerArray.setValueAtRegister(sourceRegister.registerAddress, (-14).W)
+        registerArray.setValueAtRegister(sourceRegister, (-14).W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 

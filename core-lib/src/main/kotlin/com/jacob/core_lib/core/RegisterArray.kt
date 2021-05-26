@@ -1,16 +1,17 @@
 package com.jacob.core_lib.core
 
 import com.jacob.core_lib.common.addresses.RegisterAddress
-import com.jacob.core_lib.common.addresses.RegisterAddress.*
+import com.jacob.core_lib.common.addresses.RegisterAddresses
+import com.jacob.core_lib.common.addresses.RegisterAddresses.*
 import com.jacob.core_lib.registers.*
 import com.jacob.core_lib.word.Word
 
 class RegisterArray {
 
-    val registers: Map<RegisterAddress, Register>
+    val registers: Map<RegisterAddresses, Register>
         get() = _registers
 
-    private val _registers: MutableMap<RegisterAddress, Register> = mutableMapOf(
+    private val _registers: MutableMap<RegisterAddresses, Register> = mutableMapOf(
         REGISTER_0 to CoreRegister(),
         REGISTER_1 to CoreRegister(),
         REGISTER_2 to CoreRegister(),
@@ -35,11 +36,11 @@ class RegisterArray {
     val statusRegister = _registers[STATUS_REGISTER]!! as StatusRegister
     val programCounter = _registers[PROGRAM_COUNTER]!! as ProgramCounter
 
-    fun getRegisterAt(registerAddress: RegisterAddress) = registers[registerAddress]
+    fun getRegisterAt(registerAddress: RegisterAddress) = registers[registerAddress.getRegisterAddress()]
         ?: throw IllegalArgumentException("Invalid Register Address")
 
     fun setValueAtRegister(registerAddress: RegisterAddress, wordToStore: Word) {
-        _registers.replace(registerAddress, CoreRegister(wordToStore))
+        _registers.replace(registerAddress.getRegisterAddress(), CoreRegister(wordToStore))
     }
 
     override fun toString() = """RegisterArray(

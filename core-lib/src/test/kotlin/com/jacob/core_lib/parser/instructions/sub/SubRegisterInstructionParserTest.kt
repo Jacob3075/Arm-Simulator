@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.sub
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubRegister
@@ -21,8 +21,8 @@ internal class SubRegisterInstructionParserTest {
 
         subRegisterInstruction as SubRegister
 
-        subRegisterInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
-        subRegisterInstruction.sourceRegister1 `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
-        subRegisterInstruction.sourceRegister2 `should be equal to` SourceRegister(RegisterAddress.REGISTER_2)
+        subRegisterInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
+        subRegisterInstruction.sourceRegister1 `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
+        subRegisterInstruction.sourceRegister2 `should be equal to` SourceRegister(RegisterAddresses.REGISTER_2)
     }
 }

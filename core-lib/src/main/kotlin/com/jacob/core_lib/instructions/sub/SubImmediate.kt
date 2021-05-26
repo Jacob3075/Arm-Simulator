@@ -15,11 +15,11 @@ data class SubImmediate internal constructor(
 ) : Sub {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val registerValue =
-            executionEnvironment.registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()
+            executionEnvironment.registerArray.getRegisterAt(sourceRegister).getRegisterValue()
 
         val shiftedValue = shiftOperation.shift(immediateValue.value).W
         val result = registerValue - shiftedValue
 
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, result)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, result)
     }
 }

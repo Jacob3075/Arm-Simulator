@@ -16,7 +16,7 @@ data class LoadVariableAddress(
         require(variable != null)
 
         executionEnvironment.registerArray.setValueAtRegister(
-            destinationRegister.registerAddress,
+            destinationRegister,
             variable.address.memoryAddress.W
         )
     }

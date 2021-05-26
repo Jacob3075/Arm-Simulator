@@ -11,7 +11,7 @@ class CompareImmediate(
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val (registerArray) = executionEnvironment
 
-        val wordFromRegister = registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()
+        val wordFromRegister = registerArray.getRegisterAt(sourceRegister).getRegisterValue()
 
         registerArray.statusRegister.updateCPSR(wordFromRegister.value, immediateValue.value, Int::minus)
     }

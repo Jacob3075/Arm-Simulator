@@ -1,15 +1,12 @@
 package com.jacob.core_lib.instructions.move
 
-import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.RA
-import com.jacob.core_lib.common.W
+import com.jacob.core_lib.common.*
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.core.RegisterArray
-import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
@@ -26,12 +23,12 @@ internal class MoveRegisterTest {
         val destinationRegister = DestinationRegister(0.RA)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
-        registerArray.setValueAtRegister(0.RA, 10.W)
+        registerArray.setValueAtRegister(0.DR, 10.W)
 
         val moveInstruction = Move.of(destinationRegister, sourceRegister)
         moveInstruction.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(destinationRegister.registerAddress).getRegisterValue() `should be equal to` 10.W
+        registerArray.getRegisterAt(destinationRegister).getRegisterValue() `should be equal to` 10.W
     }
 
     @Test
@@ -40,16 +37,16 @@ internal class MoveRegisterTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val destinationAddress1 = 0.RA
-        val destinationAddress2 = 1.RA
-        val sourceAddress1 = 2.RA
-        val sourceAddress2 = 3.RA
+        val destinationAddress1 = 0.DR
+        val destinationAddress2 = 1.DR
+        val sourceAddress1 = 2.SR
+        val sourceAddress2 = 3.SR
 
         registerArray.setValueAtRegister(sourceAddress1, 10.I)
         registerArray.setValueAtRegister(sourceAddress2, 20.I)
 
-        val move1 = createMoveInstruction(destinationAddress1, sourceAddress1)
-        val move2 = createMoveInstruction(destinationAddress2, sourceAddress2)
+        val move1 = Move.of(destinationAddress1, sourceAddress1)
+        val move2 = Move.of(destinationAddress2, sourceAddress2)
 
         val instructions: List<Instruction> = listOf(
             move1,
@@ -71,16 +68,16 @@ internal class MoveRegisterTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val destinationAddress1 = 0.RA
-        val destinationAddress2 = 1.RA
-        val sourceAddress1 = 2.RA
-        val sourceAddress2 = 3.RA
+        val destinationAddress1 = 0.DR
+        val destinationAddress2 = 1.DR
+        val sourceAddress1 = 2.SR
+        val sourceAddress2 = 3.SR
 
         registerArray.setValueAtRegister(sourceAddress1, 10.I)
         registerArray.setValueAtRegister(sourceAddress2, 20.I)
 
-        val move1 = Move.of(DestinationRegister(destinationAddress1), SourceRegister(sourceAddress1), LeftShift(1))
-        val move2 = Move.of(DestinationRegister(destinationAddress2), SourceRegister(sourceAddress2), LeftShift(2))
+        val move1 = Move.of(destinationAddress1, sourceAddress1, LeftShift(1))
+        val move2 = Move.of(destinationAddress2, sourceAddress2, LeftShift(2))
 
         val instructions: List<Instruction> = listOf(
             move1,
@@ -102,16 +99,16 @@ internal class MoveRegisterTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val destinationAddress1 = 0.RA
-        val destinationAddress2 = 1.RA
-        val sourceAddress1 = 2.RA
-        val sourceAddress2 = 3.RA
+        val destinationAddress1 = 0.DR
+        val destinationAddress2 = 1.DR
+        val sourceAddress1 = 2.SR
+        val sourceAddress2 = 3.SR
 
         registerArray.setValueAtRegister(sourceAddress1, 10.I)
         registerArray.setValueAtRegister(sourceAddress2, 20.I)
 
-        val move1 = Move.of(DestinationRegister(destinationAddress1), SourceRegister(sourceAddress1), RightShift(1))
-        val move2 = Move.of(DestinationRegister(destinationAddress2), SourceRegister(sourceAddress2), RightShift(2))
+        val move1 = Move.of(destinationAddress1, sourceAddress1, RightShift(1))
+        val move2 = Move.of(destinationAddress2, sourceAddress2, RightShift(2))
 
         val instructions: List<Instruction> = listOf(
             move1,

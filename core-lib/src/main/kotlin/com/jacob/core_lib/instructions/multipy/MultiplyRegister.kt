@@ -13,12 +13,12 @@ class MultiplyRegister(
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val (registerArray: RegisterArray) = executionEnvironment
 
-        val registerValue1 = registerArray.getRegisterAt(sourceRegister1.registerAddress).getRegisterValue()
-        val registerValue2 = registerArray.getRegisterAt(sourceRegister2.registerAddress).getRegisterValue()
+        val registerValue1 = registerArray.getRegisterAt(sourceRegister1).getRegisterValue()
+        val registerValue2 = registerArray.getRegisterAt(sourceRegister2).getRegisterValue()
 
         val result = registerValue1 * registerValue2
 
-        registerArray.setValueAtRegister(destinationRegister.registerAddress, result)
+        registerArray.setValueAtRegister(destinationRegister, result)
     }
 
 }

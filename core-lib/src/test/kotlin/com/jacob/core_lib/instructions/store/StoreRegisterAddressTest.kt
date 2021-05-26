@@ -2,7 +2,7 @@ package com.jacob.core_lib.instructions.store
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
@@ -18,16 +18,16 @@ import org.junit.jupiter.api.Test
 internal class StoreRegisterAddressTest {
     @Test
     internal fun `executing instruction reads and updates correct registers`() {
-        val sourceRegister = SourceRegister(RegisterAddress.REGISTER_1)
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
+        val sourceRegister = SourceRegister(RegisterAddresses.REGISTER_1)
+        val destinationRegister = DestinationRegister(RegisterAddresses.REGISTER_0)
 
         val storeRegisterAddress = StoreRegisterAddress(sourceRegister, destinationRegister)
 
         val registerArray = RegisterArray()
         val memoryArray = MemoryArray()
 
-        registerArray.setValueAtRegister(sourceRegister.registerAddress, Word(10))
-        registerArray.setValueAtRegister(destinationRegister.registerAddress, Word(5))
+        registerArray.setValueAtRegister(sourceRegister, Word(10))
+        registerArray.setValueAtRegister(destinationRegister, Word(5))
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray, memoryArray = memoryArray)
 
@@ -42,15 +42,15 @@ internal class StoreRegisterAddressTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val sourceRegister1 = SourceRegister(RegisterAddress.REGISTER_1)
-        val sourceRegister2 = SourceRegister(RegisterAddress.REGISTER_2)
-        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_3)
-        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_4)
+        val sourceRegister1 = SourceRegister(RegisterAddresses.REGISTER_1)
+        val sourceRegister2 = SourceRegister(RegisterAddresses.REGISTER_2)
+        val destinationRegister1 = DestinationRegister(RegisterAddresses.REGISTER_3)
+        val destinationRegister2 = DestinationRegister(RegisterAddresses.REGISTER_4)
 
-        registerArray.setValueAtRegister(destinationRegister1.registerAddress, Word(1))
-        registerArray.setValueAtRegister(destinationRegister2.registerAddress, Word(2))
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, Word(10))
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, Word(20))
+        registerArray.setValueAtRegister(destinationRegister1, Word(1))
+        registerArray.setValueAtRegister(destinationRegister2, Word(2))
+        registerArray.setValueAtRegister(sourceRegister1, Word(10))
+        registerArray.setValueAtRegister(sourceRegister2, Word(20))
 
         val store1 = StoreRegisterAddress(sourceRegister1, destinationRegister1)
         val store2 = StoreRegisterAddress(sourceRegister2, destinationRegister2)

@@ -15,11 +15,11 @@ data class MoveRegister(
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val sourceRegisterValue = executionEnvironment
             .registerArray
-            .getRegisterAt(sourceRegister.registerAddress)
+            .getRegisterAt(sourceRegister)
             .getRegisterValue()
 
         val shiftedValue = shiftOperation.shift(sourceRegisterValue.value).W
 
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, shiftedValue)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, shiftedValue)
     }
 }

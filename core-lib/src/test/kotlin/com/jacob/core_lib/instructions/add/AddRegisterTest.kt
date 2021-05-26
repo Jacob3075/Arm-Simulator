@@ -1,13 +1,11 @@
 package com.jacob.core_lib.instructions.add
 
-import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.core.RegisterArray
-import com.jacob.core_lib.createAddInstruction
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
@@ -20,16 +18,16 @@ internal class AddRegisterTest {
     @Test
     internal fun `executing add instruction with register values reads and updates the correct registers`() {
         val registerArray = RegisterArray()
-        registerArray.setValueAtRegister(1.RA, 10.W)
-        registerArray.setValueAtRegister(2.RA, 20.W)
+        registerArray.setValueAtRegister(1.DR, 10.W)
+        registerArray.setValueAtRegister(2.DR, 20.W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
-        val sourceRegister1 = 1.RA
-        val sourceRegister2 = 2.RA
-        val destinationRegister = 3.RA
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
+        val destinationRegister = 3.DR
 
-        val addInstruction = createAddInstruction(destinationRegister, sourceRegister1, sourceRegister2)
+        val addInstruction = Add.of(destinationRegister, sourceRegister1, sourceRegister2)
 
         addInstruction.execute(executionEnvironment)
 
@@ -41,16 +39,16 @@ internal class AddRegisterTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
-        val registerAddress3 = 3.RA
-        val registerAddress4 = 4.RA
+        val registerAddress1 = 1.SR
+        val registerAddress2 = 2.SR
+        val registerAddress3 = 3.DR
+        val registerAddress4 = 4.DR
 
         registerArray.setValueAtRegister(registerAddress1, 10.W)
         registerArray.setValueAtRegister(registerAddress2, 20.W)
 
-        val add1 = createAddInstruction(registerAddress3, registerAddress1, registerAddress2)
-        val add2 = createAddInstruction(registerAddress4, registerAddress2, registerAddress3)
+        val add1 = Add.of(registerAddress3, registerAddress1, registerAddress2)
+        val add2 = Add.of(registerAddress4, registerAddress2, 3.SR)
 
         val instructions: List<Instruction> = listOf(
             add1,
@@ -72,24 +70,24 @@ internal class AddRegisterTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
-        val registerAddress3 = 3.RA
-        val registerAddress4 = 4.RA
+        val registerAddress1 = 1.SR
+        val registerAddress2 = 2.SR
+        val registerAddress3 = 3.DR
+        val registerAddress4 = 4.DR
 
         registerArray.setValueAtRegister(registerAddress1, 10.W)
         registerArray.setValueAtRegister(registerAddress2, 10.W)
 
         val add1 = Add.of(
-            DestinationRegister(registerAddress3),
-            SourceRegister(registerAddress1),
-            SourceRegister(registerAddress2),
+            registerAddress3,
+            registerAddress1,
+            registerAddress2,
             LeftShift(1)
         )
         val add2 = Add.of(
-            DestinationRegister(registerAddress4),
-            SourceRegister(registerAddress2),
-            SourceRegister(registerAddress3),
+            registerAddress4,
+            registerAddress2,
+            3.SR,
             LeftShift(3)
         )
 

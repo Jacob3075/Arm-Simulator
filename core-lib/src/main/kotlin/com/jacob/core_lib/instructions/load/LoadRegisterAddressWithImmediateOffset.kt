@@ -13,12 +13,12 @@ class LoadRegisterAddressWithImmediateOffset(
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val (registerArray, memoryArray) = executionEnvironment
 
-        val sourceAddress = registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()
+        val sourceAddress = registerArray.getRegisterAt(sourceRegister).getRegisterValue()
 
         val resultAddress = sourceAddress.value + offset
 
         val wordFromMemory = memoryArray.getWordAt(resultAddress.MA)
 
-        registerArray.setValueAtRegister(destinationRegister.registerAddress, wordFromMemory)
+        registerArray.setValueAtRegister(destinationRegister, wordFromMemory)
     }
 }

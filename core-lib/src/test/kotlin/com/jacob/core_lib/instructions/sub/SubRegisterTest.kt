@@ -1,14 +1,12 @@
 package com.jacob.core_lib.instructions.sub
 
-import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.core.RegisterArray
-import com.jacob.core_lib.createSubInstruction
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
@@ -24,14 +22,14 @@ internal class SubRegisterTest {
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
-        registerArray.setValueAtRegister(0.RA, 20.W)
-        registerArray.setValueAtRegister(1.RA, 10.W)
+        registerArray.setValueAtRegister(0.DR, 20.W)
+        registerArray.setValueAtRegister(1.DR, 10.W)
 
-        val sourceRegister1 = 0.RA
-        val sourceRegister2 = 1.RA
-        val destinationRegister = 2.RA
+        val sourceRegister1 = 0.SR
+        val sourceRegister2 = 1.SR
+        val destinationRegister = 2.DR
 
-        val subInstruction = createSubInstruction(destinationRegister, sourceRegister1, sourceRegister2)
+        val subInstruction = Sub.of(destinationRegister, sourceRegister1, sourceRegister2)
 
         subInstruction.execute(executionEnvironment)
 
@@ -45,16 +43,16 @@ internal class SubRegisterTest {
         val registerArray = RegisterArray()
         val variables = listOf<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
-        val registerAddress3 = 3.RA
-        val registerAddress4 = 4.RA
+        val registerAddress1 = 1.SR
+        val registerAddress2 = 2.SR
+        val registerAddress3 = 3.DR
+        val registerAddress4 = 4.DR
 
         registerArray.setValueAtRegister(registerAddress1, 30.W)
         registerArray.setValueAtRegister(registerAddress2, 10.W)
 
-        val sub1 = createSubInstruction(registerAddress3, registerAddress1, registerAddress2)
-        val sub2 = createSubInstruction(registerAddress4, registerAddress3, registerAddress2)
+        val sub1 = Sub.of(registerAddress3, registerAddress1, registerAddress2)
+        val sub2 = Sub.of(registerAddress4, 3.SR, registerAddress2)
 
         val instructions: List<Instruction> = listOf(
             sub1,
@@ -76,24 +74,24 @@ internal class SubRegisterTest {
         val registerArray = RegisterArray()
         val variables = listOf<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
-        val registerAddress3 = 3.RA
-        val registerAddress4 = 4.RA
+        val registerAddress1 = 1.SR
+        val registerAddress2 = 2.SR
+        val registerAddress3 = 3.DR
+        val registerAddress4 = 4.DR
 
         registerArray.setValueAtRegister(registerAddress1, 100.W)
         registerArray.setValueAtRegister(registerAddress2, 10.W)
 
         val sub1 = Sub.of(
-            DestinationRegister(registerAddress3),
-            SourceRegister(registerAddress1),
-            SourceRegister(registerAddress2),
+            registerAddress3,
+            registerAddress1,
+            registerAddress2,
             LeftShift(1)
         )
         val sub2 = Sub.of(
-            DestinationRegister(registerAddress4),
-            SourceRegister(registerAddress3),
-            SourceRegister(registerAddress2),
+            registerAddress4,
+            3.SR,
+            registerAddress2,
             LeftShift(2)
         )
 
@@ -117,24 +115,24 @@ internal class SubRegisterTest {
         val registerArray = RegisterArray()
         val variables = listOf<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
-        val registerAddress3 = 3.RA
-        val registerAddress4 = 4.RA
+        val registerAddress1 = 1.SR
+        val registerAddress2 = 2.SR
+        val registerAddress3 = 3.DR
+        val registerAddress4 = 4.DR
 
         registerArray.setValueAtRegister(registerAddress1, 100.W)
         registerArray.setValueAtRegister(registerAddress2, 100.W)
 
         val sub1 = Sub.of(
-            DestinationRegister(registerAddress3),
-            SourceRegister(registerAddress1),
-            SourceRegister(registerAddress2),
+            registerAddress3,
+            registerAddress1,
+            registerAddress2,
             RightShift(1)
         )
         val sub2 = Sub.of(
-            DestinationRegister(registerAddress4),
-            SourceRegister(registerAddress3),
-            SourceRegister(registerAddress2),
+            registerAddress4,
+            3.SR,
+            registerAddress2,
             RightShift(2)
         )
 

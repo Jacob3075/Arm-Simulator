@@ -11,13 +11,13 @@ data class LoadRegisterAddress(
 ) : Load {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val memoryAddress = executionEnvironment.registerArray
-            .getRegisterAt(sourceRegister.registerAddress)
+            .getRegisterAt(sourceRegister)
             .getRegisterValue()
             .value
             .let(::MemoryAddress)
 
         val wordFromMemory = executionEnvironment.memoryArray.getWordAt(memoryAddress)
 
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, wordFromMemory)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, wordFromMemory)
     }
 }

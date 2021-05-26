@@ -16,11 +16,11 @@ data class AddImmediate internal constructor(
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val registerValue =
-            executionEnvironment.registerArray.getRegisterAt(sourceRegister.registerAddress).getRegisterValue()
+            executionEnvironment.registerArray.getRegisterAt(sourceRegister).getRegisterValue()
 
         val shiftedValue = shiftOperation.shift(immediateValue.value).W
 
         val result = shiftedValue + registerValue
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, result)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, result)
     }
 }

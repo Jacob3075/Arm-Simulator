@@ -3,7 +3,7 @@
 package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
@@ -24,7 +24,7 @@ class AddImmediateInstructionParser internal constructor(
 
         val immediateValue = operands.last().let(strategy)
 
-        val registers: List<RegisterAddress> = operands.take(2)
+        val registers: List<RegisterAddresses> = operands.take(2)
             .toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)

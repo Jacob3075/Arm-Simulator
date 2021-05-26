@@ -2,7 +2,7 @@ package com.jacob.core_lib.instructions.load
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
@@ -25,8 +25,8 @@ internal class LoadMemoryAddressTest {
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
-        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_0)
-        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_0)
+        val destinationRegister1 = DestinationRegister(RegisterAddresses.REGISTER_0)
+        val destinationRegister2 = DestinationRegister(RegisterAddresses.REGISTER_0)
 
         memoryArray.setWordAt(memoryAddress1, Word(10))
         memoryArray.setWordAt(memoryAddress2, Word(20))
@@ -35,11 +35,11 @@ internal class LoadMemoryAddressTest {
         val load2 = LoadMemoryAddress(destinationRegister2, memoryAddress2)
 
         load1.execute(executionEnvironment)
-        registerArray.getRegisterAt(destinationRegister1.registerAddress)
+        registerArray.getRegisterAt(destinationRegister1)
             .getRegisterValue() `should be equal to` Word(10)
 
         load2.execute(executionEnvironment)
-        registerArray.getRegisterAt(destinationRegister2.registerAddress)
+        registerArray.getRegisterAt(destinationRegister2)
             .getRegisterValue() `should be equal to` Word(20)
     }
 
@@ -51,8 +51,8 @@ internal class LoadMemoryAddressTest {
 
         val memoryAddress1 = MemoryAddress(0)
         val memoryAddress2 = MemoryAddress(2)
-        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_1)
-        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_2)
+        val destinationRegister1 = DestinationRegister(RegisterAddresses.REGISTER_1)
+        val destinationRegister2 = DestinationRegister(RegisterAddresses.REGISTER_2)
 
         memoryArray.setWordAt(memoryAddress1, Word(10))
         memoryArray.setWordAt(memoryAddress2, Word(20))
@@ -70,10 +70,10 @@ internal class LoadMemoryAddressTest {
 
         core.runProgram()
 
-        registerArray.getRegisterAt(destinationRegister1.registerAddress)
+        registerArray.getRegisterAt(destinationRegister1)
             .getRegisterValue() `should be equal to` Word(10)
 
-        registerArray.getRegisterAt(destinationRegister2.registerAddress)
+        registerArray.getRegisterAt(destinationRegister2)
             .getRegisterValue() `should be equal to` Word(20)
     }
 

@@ -1,6 +1,6 @@
 package com.jacob.core_lib.parser.instructions.load
 
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.instructions.load.LoadVariableAddress
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
@@ -20,7 +20,7 @@ internal class LoadVariableInstructionParserTest {
 
         loadInstruction as LoadVariableAddress
 
-        loadInstruction.destinationRegister.registerAddress `should be equal to` RegisterAddress.REGISTER_0
+        loadInstruction.destinationRegister `should be equal to` 0.DR
         loadInstruction.variableName `should be equal to` "A"
     }
 
@@ -34,7 +34,7 @@ internal class LoadVariableInstructionParserTest {
 
         (loadInstruction as LoadVariableAddress)
 
-        loadInstruction.destinationRegister.registerAddress `should be equal to` RegisterAddress.REGISTER_0
+        loadInstruction.destinationRegister `should be equal to` 0.DR
         loadInstruction.variableName `should be equal to` "ABCD"
     }
 

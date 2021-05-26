@@ -1,9 +1,8 @@
 package com.jacob.core_lib.instructions.multipy
 
-import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
@@ -21,17 +20,17 @@ internal class MultiplyRegisterTest {
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
-        registerArray.setValueAtRegister(1.RA, 10.W)
-        registerArray.setValueAtRegister(2.RA, 20.W)
+        registerArray.setValueAtRegister(1.DR, 10.W)
+        registerArray.setValueAtRegister(2.DR, 20.W)
 
-        val sourceRegister1 = 1.RA
-        val sourceRegister2 = 2.RA
-        val destinationRegister = 3.RA
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
+        val destinationRegister = 3.DR
 
         val multiplyInstruction = Multiply.of(
-            DestinationRegister(destinationRegister),
-            SourceRegister(sourceRegister1),
-            SourceRegister(sourceRegister2)
+            destinationRegister,
+            sourceRegister1,
+            sourceRegister2
         )
 
         multiplyInstruction.execute(executionEnvironment)
@@ -45,23 +44,23 @@ internal class MultiplyRegisterTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
-        val registerAddress3 = 3.RA
-        val registerAddress4 = 4.RA
+        val registerAddress1 = 1.SR
+        val registerAddress2 = 2.SR
+        val registerAddress3 = 3.DR
+        val registerAddress4 = 4.DR
 
         registerArray.setValueAtRegister(registerAddress1, 10.W)
         registerArray.setValueAtRegister(registerAddress2, 2.W)
 
         val multiply1 = Multiply.of(
-            DestinationRegister(registerAddress3),
-            SourceRegister(registerAddress1),
-            SourceRegister(registerAddress2)
+            registerAddress3,
+            registerAddress1,
+            registerAddress2
         )
         val multiply2 = Multiply.of(
-            DestinationRegister(registerAddress4),
-            SourceRegister(registerAddress3),
-            SourceRegister(registerAddress2)
+            registerAddress4,
+            3.SR,
+            registerAddress2
         )
 
         val instructions: List<Instruction> = listOf(

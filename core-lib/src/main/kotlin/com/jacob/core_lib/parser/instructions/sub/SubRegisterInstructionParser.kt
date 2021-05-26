@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.sub
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
@@ -14,7 +14,7 @@ class SubRegisterInstructionParser internal constructor(
 ) : SubInstructionParser {
 
     override fun parse(): Instruction {
-        val registers: List<RegisterAddress> = instructionString.removePrefix("SUB")
+        val registers: List<RegisterAddresses> = instructionString.removePrefix("SUB")
             .split(",")
             .map(String::trim)
             .toRegisterAddresses()

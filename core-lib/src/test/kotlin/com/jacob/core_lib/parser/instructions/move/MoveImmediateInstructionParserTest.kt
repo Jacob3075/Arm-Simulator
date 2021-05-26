@@ -3,7 +3,7 @@ package com.jacob.core_lib.parser.instructions.move
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.instructions.move.MoveImmediate
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
@@ -21,7 +21,7 @@ internal class MoveImmediateInstructionParserTest {
         instruction as MoveImmediate
 
         instruction.immediateValue `should be equal to` 2.I
-        instruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_1)
+        instruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_1)
     }
 
     @Test

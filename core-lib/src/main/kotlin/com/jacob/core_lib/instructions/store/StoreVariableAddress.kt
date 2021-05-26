@@ -9,7 +9,7 @@ data class StoreVariableAddress(
 ) : Store {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val wordFromRegister = executionEnvironment.registerArray
-            .getRegisterAt(sourceRegister.registerAddress)
+            .getRegisterAt(sourceRegister)
             .getRegisterValue()
 
         val variable = executionEnvironment.variables.find { it.name == variableName }

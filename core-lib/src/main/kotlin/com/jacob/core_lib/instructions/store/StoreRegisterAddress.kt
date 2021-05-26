@@ -11,11 +11,11 @@ data class StoreRegisterAddress(
 ) : Store {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val wordFromRegister = executionEnvironment.registerArray
-            .getRegisterAt(sourceRegister.registerAddress)
+            .getRegisterAt(sourceRegister)
             .getRegisterValue()
 
         val destinationMemoryAddress = executionEnvironment.registerArray
-            .getRegisterAt(destinationRegister.registerAddress)
+            .getRegisterAt(destinationRegister)
             .getRegisterValue()
             .value
             .let(::MemoryAddress)

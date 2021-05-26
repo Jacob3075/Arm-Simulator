@@ -11,6 +11,6 @@ data class LoadMemoryAddress(
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val wordFromMemory = executionEnvironment.memoryArray.getWordAt(sourceAddress)
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, wordFromMemory)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, wordFromMemory)
     }
 }

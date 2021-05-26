@@ -13,6 +13,6 @@ data class MoveImmediate internal constructor(
 ) : Move {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val shiftedValue = shiftOperation.shift(immediateValue.value).I
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, shiftedValue)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, shiftedValue)
     }
 }

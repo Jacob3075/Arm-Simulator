@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.move
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.move.MoveRegister
 import org.amshove.kluent.`should be equal to`
@@ -20,8 +20,8 @@ internal class MoveRegisterInstructionParserTest {
 
         moveInstructionParser as MoveRegister
 
-        moveInstructionParser.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_1)
-        moveInstructionParser.sourceRegister `should be equal to` SourceRegister(RegisterAddress.REGISTER_2)
+        moveInstructionParser.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_1)
+        moveInstructionParser.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_2)
     }
 
 }

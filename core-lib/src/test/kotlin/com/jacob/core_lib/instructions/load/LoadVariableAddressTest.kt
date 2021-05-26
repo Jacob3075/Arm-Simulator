@@ -2,7 +2,7 @@ package com.jacob.core_lib.instructions.load
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
@@ -15,7 +15,7 @@ internal class LoadVariableAddressTest {
 
     @Test
     internal fun `executing instruction should read and update correct address`() {
-        val destinationRegister = DestinationRegister(RegisterAddress.REGISTER_0)
+        val destinationRegister = DestinationRegister(RegisterAddresses.REGISTER_0)
         val variable = Variable("A", MemoryAddress(0))
 
         val loadVariableAddress = LoadVariableAddress(destinationRegister, variable.name)
@@ -31,7 +31,7 @@ internal class LoadVariableAddressTest {
 
         loadVariableAddress.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(destinationRegister.registerAddress)
+        registerArray.getRegisterAt(destinationRegister)
             .getRegisterValue() `should be equal to` Word(0)
     }
 
@@ -44,8 +44,8 @@ internal class LoadVariableAddressTest {
             ParsedData("ABC", 20)
         )
 
-        val destinationRegister1 = DestinationRegister(RegisterAddress.REGISTER_1)
-        val destinationRegister2 = DestinationRegister(RegisterAddress.REGISTER_2)
+        val destinationRegister1 = DestinationRegister(RegisterAddresses.REGISTER_1)
+        val destinationRegister2 = DestinationRegister(RegisterAddresses.REGISTER_2)
 
         val load1 = LoadVariableAddress(destinationRegister1, "A")
         val load2 = LoadVariableAddress(destinationRegister2, "ABC")
@@ -60,10 +60,7 @@ internal class LoadVariableAddressTest {
 
         core.runProgram()
 
-        registerArray.getRegisterAt(destinationRegister1.registerAddress)
-            .getRegisterValue() `should be equal to` Word(0)
-
-        registerArray.getRegisterAt(destinationRegister2.registerAddress)
-            .getRegisterValue() `should be equal to` Word(1)
+        registerArray.getRegisterAt(destinationRegister1).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(destinationRegister2).getRegisterValue() `should be equal to` Word(1)
     }
 }

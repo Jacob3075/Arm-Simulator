@@ -1,14 +1,14 @@
 package com.jacob.core_lib.instructions
 
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.I
+import com.jacob.core_lib.common.SR
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.core.Label
-import com.jacob.core_lib.createBranchInstruction
-import com.jacob.core_lib.createLabelInstruction
-import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.getExecutionEnvironment
+import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.shouldNotBeNull
 import org.junit.jupiter.api.Test
@@ -51,17 +51,17 @@ internal class BranchTest {
         val registerArray = RegisterArray()
         val variables = listOf<ParsedData>()
 
-        val registerAddress1 = RegisterAddress.REGISTER_1
-        val registerAddress2 = RegisterAddress.REGISTER_2
-        val registerAddress3 = RegisterAddress.REGISTER_6
+        val registerAddress1 = 1.DR
+        val registerAddress2 = 2.DR
+        val registerAddress3 = 6.DR
 
         val labelName = "LABEL1"
 
-        val move1 = createMoveInstruction(registerAddress1, 10)
-        val move2 = createMoveInstruction(registerAddress2, 20)
-        val move3 = createMoveInstruction(registerAddress3, 30)
-        val branch = createBranchInstruction(labelName)
-        val label = createLabelInstruction(labelName)
+        val move1 = Move.of(registerAddress1, 10.I)
+        val move2 = Move.of(registerAddress2, 20.I)
+        val move3 = Move.of(registerAddress3, 30.I)
+        val branch = Branch(labelName)
+        val label = Label(labelName)
 
         val instructions: List<Instruction> = listOf(
             move1,
@@ -76,23 +76,8 @@ internal class BranchTest {
 
         core.runProgram()
 
-        registerArray.getRegisterAt(registerAddress1)
-            .getRegisterValue() `should be equal to` Word(10)
-
-        registerArray.getRegisterAt(registerAddress3)
-            .getRegisterValue() `should be equal to` Word(30)
-
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_2)
-            .getRegisterValue() `should be equal to` Word(0)
-
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_3).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_4).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_5).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_7).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_8).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_9).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_10).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_11).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(RegisterAddress.REGISTER_12).getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(registerAddress1).getRegisterValue() `should be equal to` 10.W
+        registerArray.getRegisterAt(registerAddress3).getRegisterValue() `should be equal to` 30.W
+        registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 0.W
     }
 }

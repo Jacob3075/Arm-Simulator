@@ -15,13 +15,13 @@ data class AddRegister internal constructor(
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val registerValue1 =
-            executionEnvironment.registerArray.getRegisterAt(sourceRegister1.registerAddress).getRegisterValue()
+            executionEnvironment.registerArray.getRegisterAt(sourceRegister1).getRegisterValue()
         val registerValue2 =
-            executionEnvironment.registerArray.getRegisterAt(sourceRegister2.registerAddress).getRegisterValue()
+            executionEnvironment.registerArray.getRegisterAt(sourceRegister2).getRegisterValue()
 
         val shiftedValue = shiftOperation.shift(registerValue2.value).W
 
         val resultWord = registerValue1 + shiftedValue
-        executionEnvironment.registerArray.setValueAtRegister(destinationRegister.registerAddress, resultWord)
+        executionEnvironment.registerArray.setValueAtRegister(destinationRegister, resultWord)
     }
 }

@@ -1,5 +1,6 @@
 package com.jacob.core_lib.instructions.move
 
+import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
@@ -8,7 +9,6 @@ import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.core.RegisterArray
-import com.jacob.core_lib.createMoveInstruction
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
@@ -29,7 +29,7 @@ internal class MoveImmediateTest {
         val moveInstruction = Move.of(destinationRegister, immediateValue)
         moveInstruction.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(destinationRegister.registerAddress)
+        registerArray.getRegisterAt(destinationRegister)
             .getRegisterValue() `should be equal to` immediateValue
     }
 
@@ -39,11 +39,11 @@ internal class MoveImmediateTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
+        val registerAddress1 = 1.DR
+        val registerAddress2 = 2.DR
 
-        val move1 = createMoveInstruction(registerAddress1, 10)
-        val move2 = createMoveInstruction(registerAddress2, 20)
+        val move1 = Move.of(registerAddress1, 10.I)
+        val move2 = Move.of(registerAddress2, 20.I)
 
         val instructions: List<Instruction> = listOf(
             move1,
@@ -65,11 +65,11 @@ internal class MoveImmediateTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
+        val registerAddress1 = 1.DR
+        val registerAddress2 = 2.DR
 
-        val move1 = Move.of(DestinationRegister(registerAddress1), 10.I, LeftShift(1))
-        val move2 = Move.of(DestinationRegister(registerAddress2), 20.I, LeftShift(3))
+        val move1 = Move.of(registerAddress1, 10.I, LeftShift(1))
+        val move2 = Move.of(registerAddress2, 20.I, LeftShift(3))
 
         val instructions: List<Instruction> = listOf(
             move1,
@@ -91,11 +91,11 @@ internal class MoveImmediateTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val registerAddress1 = 1.RA
-        val registerAddress2 = 2.RA
+        val registerAddress1 = 1.DR
+        val registerAddress2 = 2.DR
 
-        val move1 = Move.of(DestinationRegister(registerAddress1), 16.I, RightShift(2))
-        val move2 = Move.of(DestinationRegister(registerAddress2), 160.I, RightShift(3))
+        val move1 = Move.of(registerAddress1, 16.I, RightShift(2))
+        val move2 = Move.of(registerAddress2, 160.I, RightShift(3))
 
         val instructions: List<Instruction> = listOf(
             move1,

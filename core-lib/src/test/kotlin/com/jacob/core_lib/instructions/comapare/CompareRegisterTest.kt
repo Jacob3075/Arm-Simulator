@@ -1,8 +1,7 @@
 package com.jacob.core_lib.instructions.comapare
 
-import com.jacob.core_lib.common.RA
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.getExecutionEnvironment
 import org.amshove.kluent.`should be`
@@ -13,11 +12,11 @@ internal class CompareRegisterTest {
     internal fun `updates correct flags when register values are positive and equal`() {
         val registerArray = RegisterArray()
 
-        val sourceRegister1 = SourceRegister(1.RA)
-        val sourceRegister2 = SourceRegister(2.RA)
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
 
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, 5.W)
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, 5.W)
+        registerArray.setValueAtRegister(sourceRegister1, 5.W)
+        registerArray.setValueAtRegister(sourceRegister2, 5.W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
@@ -34,11 +33,11 @@ internal class CompareRegisterTest {
     internal fun `updates correct flags when one register value is negative and equal to the other `() {
         val registerArray = RegisterArray()
 
-        val sourceRegister1 = SourceRegister(1.RA)
-        val sourceRegister2 = SourceRegister(2.RA)
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
 
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, 5.W)
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, (-5).W)
+        registerArray.setValueAtRegister(sourceRegister1, 5.W)
+        registerArray.setValueAtRegister(sourceRegister2, (-5).W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
@@ -55,11 +54,11 @@ internal class CompareRegisterTest {
     internal fun `updates correct flags when one register value is negative and not equal to the other `() {
         val registerArray = RegisterArray()
 
-        val sourceRegister1 = SourceRegister(1.RA)
-        val sourceRegister2 = SourceRegister(2.RA)
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
 
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, 5.W)
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, (-10).W)
+        registerArray.setValueAtRegister(sourceRegister1, 5.W)
+        registerArray.setValueAtRegister(sourceRegister2, (-10).W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
@@ -76,11 +75,11 @@ internal class CompareRegisterTest {
     internal fun `updates correct flags when register values are positive and not equal`() {
         val registerArray = RegisterArray()
 
-        val sourceRegister1 = SourceRegister(1.RA)
-        val sourceRegister2 = SourceRegister(2.RA)
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
 
-        registerArray.setValueAtRegister(sourceRegister1.registerAddress, 5.W)
-        registerArray.setValueAtRegister(sourceRegister2.registerAddress, 9.W)
+        registerArray.setValueAtRegister(sourceRegister1, 5.W)
+        registerArray.setValueAtRegister(sourceRegister2, 9.W)
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 

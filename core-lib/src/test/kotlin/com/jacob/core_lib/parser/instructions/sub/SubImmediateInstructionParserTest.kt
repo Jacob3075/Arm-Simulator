@@ -2,7 +2,7 @@ package com.jacob.core_lib.parser.instructions.sub
 
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddress
+import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
@@ -27,8 +27,8 @@ internal class SubImmediateInstructionParserTest {
 
         subImmediateInstruction as SubImmediate
 
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
+        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
+        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
         subImmediateInstruction.immediateValue `should be equal to` 1.I
     }
 
@@ -43,8 +43,8 @@ internal class SubImmediateInstructionParserTest {
 
         subImmediateInstruction as SubImmediate
 
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
+        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
+        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
         subImmediateInstruction.immediateValue `should be equal to` (-1).I
     }
 
@@ -59,8 +59,8 @@ internal class SubImmediateInstructionParserTest {
 
         subImmediateInstruction as SubImmediate
 
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
+        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
+        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
         subImmediateInstruction.immediateValue `should be equal to` 291.I
     }
 
@@ -75,8 +75,8 @@ internal class SubImmediateInstructionParserTest {
 
         subImmediateInstruction as SubImmediate
 
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddress.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddress.REGISTER_1)
+        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
+        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
         subImmediateInstruction.immediateValue `should be equal to` 1716163.I
     }
 
