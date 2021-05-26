@@ -2,9 +2,7 @@ package com.jacob.core_lib.instructions.move
 
 import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.W
-import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
@@ -22,7 +20,7 @@ internal class MoveImmediateTest {
     internal fun `executing instruction updates the register array`() {
         val registerArray = RegisterArray()
         val immediateValue = 20.I
-        val destinationRegister = DestinationRegister(0.RA)
+        val destinationRegister = 0.DR
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 

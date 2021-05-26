@@ -1,13 +1,12 @@
 package com.jacob.core_lib.instructions.load
 
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.MemoryAddress
-import com.jacob.core_lib.common.addresses.RegisterAddresses
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.MA
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -15,8 +14,8 @@ internal class LoadVariableAddressTest {
 
     @Test
     internal fun `executing instruction should read and update correct address`() {
-        val destinationRegister = DestinationRegister(RegisterAddresses.REGISTER_0)
-        val variable = Variable("A", MemoryAddress(0))
+        val destinationRegister = 0.DR
+        val variable = Variable("A", 0.MA)
 
         val loadVariableAddress = LoadVariableAddress(destinationRegister, variable.name)
 
@@ -24,15 +23,14 @@ internal class LoadVariableAddressTest {
         val memoryArray = MemoryArray()
         val variables = listOf(variable)
 
-        memoryArray.setWordAt(variable.address, Word(10))
+        memoryArray.setWordAt(variable.address, 10.W)
 
         val executionEnvironment =
             getExecutionEnvironment(registerArray = registerArray, memoryArray = memoryArray, variables = variables)
 
         loadVariableAddress.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(destinationRegister)
-            .getRegisterValue() `should be equal to` Word(0)
+        registerArray.getRegisterAt(destinationRegister).getRegisterValue() `should be equal to` 0.W
     }
 
     @Test
@@ -44,8 +42,8 @@ internal class LoadVariableAddressTest {
             ParsedData("ABC", 20)
         )
 
-        val destinationRegister1 = DestinationRegister(RegisterAddresses.REGISTER_1)
-        val destinationRegister2 = DestinationRegister(RegisterAddresses.REGISTER_2)
+        val destinationRegister1 = 1.DR
+        val destinationRegister2 = 2.DR
 
         val load1 = LoadVariableAddress(destinationRegister1, "A")
         val load2 = LoadVariableAddress(destinationRegister2, "ABC")
@@ -60,7 +58,7 @@ internal class LoadVariableAddressTest {
 
         core.runProgram()
 
-        registerArray.getRegisterAt(destinationRegister1).getRegisterValue() `should be equal to` Word(0)
-        registerArray.getRegisterAt(destinationRegister2).getRegisterValue() `should be equal to` Word(1)
+        registerArray.getRegisterAt(destinationRegister1).getRegisterValue() `should be equal to` 0.W
+        registerArray.getRegisterAt(destinationRegister2).getRegisterValue() `should be equal to` 1.W
     }
 }

@@ -1,8 +1,8 @@
 package com.jacob.core_lib.instructions.store
 
-import com.jacob.core_lib.common.addresses.MemoryAddress
-import com.jacob.core_lib.common.addresses.RegisterAddresses
-import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.MA
+import com.jacob.core_lib.common.SR
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
@@ -10,7 +10,6 @@ import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.word.Word
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -21,24 +20,22 @@ internal class StoreMemoryAddressTest {
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
 
-        val memoryAddress1 = MemoryAddress(0)
-        val memoryAddress2 = MemoryAddress(2)
-        val sourceRegister1 = SourceRegister(RegisterAddresses.REGISTER_0)
-        val sourceRegister2 = SourceRegister(RegisterAddresses.REGISTER_1)
+        val memoryAddress1 = 0.MA
+        val memoryAddress2 = 2.MA
+        val sourceRegister1 = 0.SR
+        val sourceRegister2 = 1.SR
 
-        registerArray.setValueAtRegister(sourceRegister1, Word(10))
-        registerArray.setValueAtRegister(sourceRegister2, Word(20))
+        registerArray.setValueAtRegister(sourceRegister1, 10.W)
+        registerArray.setValueAtRegister(sourceRegister2, 20.W)
 
         val store1 = StoreMemoryAddress(memoryAddress1, sourceRegister1)
         val store2 = StoreMemoryAddress(memoryAddress2, sourceRegister2)
 
         store1.execute(executionEnvironment)
-        registerArray.getRegisterAt(sourceRegister1)
-            .getRegisterValue() `should be equal to` Word(10)
+        registerArray.getRegisterAt(sourceRegister1).getRegisterValue() `should be equal to` 10.W
 
         store2.execute(executionEnvironment)
-        registerArray.getRegisterAt(sourceRegister2)
-            .getRegisterValue() `should be equal to` Word(20)
+        registerArray.getRegisterAt(sourceRegister2).getRegisterValue() `should be equal to` 20.W
     }
 
     @Test
@@ -47,13 +44,13 @@ internal class StoreMemoryAddressTest {
         val registerArray = RegisterArray()
         val variables = emptyList<ParsedData>()
 
-        val memoryAddress1 = MemoryAddress(0)
-        val memoryAddress2 = MemoryAddress(2)
-        val sourceRegister1 = SourceRegister(RegisterAddresses.REGISTER_1)
-        val sourceRegister2 = SourceRegister(RegisterAddresses.REGISTER_2)
+        val memoryAddress1 = 0.MA
+        val memoryAddress2 = 2.MA
+        val sourceRegister1 = 1.SR
+        val sourceRegister2 = 2.SR
 
-        registerArray.setValueAtRegister(sourceRegister1, Word(10))
-        registerArray.setValueAtRegister(sourceRegister2, Word(20))
+        registerArray.setValueAtRegister(sourceRegister1, 10.W)
+        registerArray.setValueAtRegister(sourceRegister2, 20.W)
 
         val store1 = StoreMemoryAddress(memoryAddress1, sourceRegister1)
         val store2 = StoreMemoryAddress(memoryAddress2, sourceRegister2)
@@ -68,7 +65,7 @@ internal class StoreMemoryAddressTest {
 
         core.runProgram()
 
-        memoryArray.getWordAt(memoryAddress1) `should be equal to` Word(10)
-        memoryArray.getWordAt(memoryAddress2) `should be equal to` Word(20)
+        memoryArray.getWordAt(memoryAddress1) `should be equal to` 10.W
+        memoryArray.getWordAt(memoryAddress2) `should be equal to` 20.W
     }
 }

@@ -1,8 +1,9 @@
 package com.jacob.core_lib.instructions.move
 
-import com.jacob.core_lib.common.*
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.I
+import com.jacob.core_lib.common.SR
+import com.jacob.core_lib.common.W
 import com.jacob.core_lib.core.Core
 import com.jacob.core_lib.core.MemoryArray
 import com.jacob.core_lib.core.Program
@@ -19,8 +20,8 @@ internal class MoveRegisterTest {
     @Test
     internal fun `executing instruction updates the register array`() {
         val registerArray = RegisterArray()
-        val sourceRegister = SourceRegister(0.RA)
-        val destinationRegister = DestinationRegister(0.RA)
+        val sourceRegister = 0.SR
+        val destinationRegister = 0.DR
 
         val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
         registerArray.setValueAtRegister(0.DR, 10.W)
