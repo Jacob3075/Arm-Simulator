@@ -1,11 +1,13 @@
 package com.jacob.core_lib.instructions.load
 
+import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.OffsetTypes.*
+import com.jacob.core_lib.word.ImmediateValue
 
 interface Load : Instruction {
     companion object {
@@ -21,7 +23,7 @@ interface Load : Instruction {
         fun of(
             destinationRegister: DestinationRegister,
             sourceRegister: SourceRegister,
-            offset: Int = 0,
+            offset: ImmediateValue = 0.I,
             offsetType: OffsetTypes = IMMEDIATE
         ): Load = when (offsetType) {
             IMMEDIATE -> LoadRegisterAddressWithImmediateOffset(destinationRegister, sourceRegister, offset)
