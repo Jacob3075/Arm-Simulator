@@ -27,10 +27,8 @@ interface Load : Instruction {
             offsetType: OffsetTypes = IMMEDIATE
         ): Load = when (offsetType) {
             IMMEDIATE -> LoadRegisterAddressWithImmediateOffset(destinationRegister, sourceRegister, offset)
-//            POST -> LoadRegisterAddressWithPostOffset(destinationRegister, sourceRegister, offset)
+            POST -> LoadRegisterAddressWithPostOffset(destinationRegister, sourceRegister, offset)
             PRE -> LoadRegisterAddressWithPreOffset(destinationRegister, sourceRegister, offset)
-            POST -> TODO()
-            PRE -> TODO()
         }
     }
 }
