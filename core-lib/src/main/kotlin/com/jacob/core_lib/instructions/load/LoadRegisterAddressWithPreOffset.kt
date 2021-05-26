@@ -1,5 +1,6 @@
 package com.jacob.core_lib.instructions.load
 
+import com.jacob.core_lib.common.MA
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
@@ -11,6 +12,15 @@ class LoadRegisterAddressWithPreOffset(
     internal val offset: ImmediateValue
 ) : Load {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
-        TODO("Not yet implemented")
+        val (registerArray, memoryArray) = executionEnvironment
+
+        val sourceAddress = registerArray.getRegisterAt(sourceRegister).getRegisterValue()
+
+        val resultAddress = sourceAddress + offset
+        registerArray.setValueAtRegister(sourceRegister, resultAddress)
+
+        val wordFromMemory = memoryArray.getWordAt(resultAddress.value.MA)
+
+        registerArray.setValueAtRegister(destinationRegister, wordFromMemory)
     }
 }

@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser.instructions.load
 
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.load.LoadRegisterAddress
+import com.jacob.core_lib.instructions.load.LoadRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.instructions.load.LoadVariableAddress
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -34,6 +34,6 @@ internal class LoadInstructionParserTest {
         val loadInstruction = LoadInstructionParser.from(instructionString)
 
         loadInstruction `should be instance of` Instruction::class
-        loadInstruction `should be instance of` LoadRegisterAddress::class
+        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
     }
 }
