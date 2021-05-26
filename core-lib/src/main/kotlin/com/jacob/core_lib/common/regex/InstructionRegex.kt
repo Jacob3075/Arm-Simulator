@@ -54,7 +54,10 @@ class InstructionRegex private constructor() {
     class Load private constructor() {
         companion object {
             val MNEMONIC = "^LDR".toRegex()
-            val REGISTER = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])]$".toRegex() // LDR R1, [R0]
+            val REGISTER_IMMEDIATE_OFFSET =
+                "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#\\d+)?]$".toRegex() // LDR R1, [R0]
+            val REGISTER_PRE = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#\\d+)?]!$".toRegex() // LDR R1, [R0]
+            val REGISTER_POST = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])](, ?#\\d+)?$".toRegex() // LDR R1, [R0]
             val VARIABLE = "^LDR R([0-9]|1[0-4]), ?=[A-Z]+$".toRegex() // LDR R0,=A
         }
     }
@@ -62,7 +65,10 @@ class InstructionRegex private constructor() {
     class Store private constructor() {
         companion object {
             val MNEMONIC = "^STR".toRegex()
-            val REGISTER = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])]$".toRegex()
+            val REGISTER_IMMEDIATE_OFFSET =
+                "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#\\d+)?]$".toRegex() // STR R1, [R0]
+            val REGISTER_PRE = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#\\d+)?]!$".toRegex() // STR R1, [R0]
+            val REGISTER_POST = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])](, ?#\\d+)?$".toRegex() // STR R1, [R0]
             val VARIABLE = "^STR R([0-9]|1[0-4]), ?=[A-Z]+$".toRegex()
         }
     }
