@@ -4,6 +4,8 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.OffsetTypes
+import com.jacob.core_lib.instructions.OffsetTypes.*
 
 interface Load : Instruction {
     companion object {
@@ -15,5 +17,18 @@ interface Load : Instruction {
 
         fun of(destinationRegister: DestinationRegister, sourceRegister: SourceRegister) =
             LoadRegisterAddress(destinationRegister, sourceRegister)
+
+        fun of(
+            destinationRegister: DestinationRegister,
+            sourceRegister: SourceRegister,
+            offset: Int = 0,
+            offsetType: OffsetTypes = IMMEDIATE
+        ): Load = when (offsetType) {
+            IMMEDIATE -> LoadRegisterAddressWithImmediateOffset(destinationRegister, sourceRegister, offset)
+//            POST -> LoadRegisterAddressWithPostOffset(destinationRegister, sourceRegister, offset)
+//            PRE -> LoadRegisterAddressWithPreOffset(destinationRegister, sourceRegister, offset)
+            POST -> TODO()
+            PRE -> TODO()
+        }
     }
 }
