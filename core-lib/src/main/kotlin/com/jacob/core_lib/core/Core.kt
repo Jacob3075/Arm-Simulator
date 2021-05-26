@@ -14,18 +14,26 @@ class Core(
         }
     }
 
+    fun runNextInstruction(): Boolean {
+        val nextInstruction = program.getInstructionAt(registerArray.programCounter) ?: return false
+        val executionEnvironment =
+            ExecutionEnvironment(
+                registerArray = registerArray,
+                memoryArray = memoryArray,
+                labels = program.labels,
+                variables = program.variables
+            )
+
+        nextInstruction.execute(executionEnvironment)
+
+        return true
+    }
+
     fun runProgram() {
         while (program.hasMoreInstructions(registerArray.programCounter)) {
-            val nextInstruction = program.getInstructionAt(registerArray.programCounter) ?: return
-            val executionEnvironment =
-                ExecutionEnvironment(
-                    registerArray = registerArray,
-                    memoryArray = memoryArray,
-                    labels = program.labels,
-                    variables = program.variables
-                )
-
-            nextInstruction.execute(executionEnvironment)
+            runNextInstruction()
         }
     }
+
+    fun resetProgramCounter() = registerArray.programCounter.updateProgramCounter(0)
 }
