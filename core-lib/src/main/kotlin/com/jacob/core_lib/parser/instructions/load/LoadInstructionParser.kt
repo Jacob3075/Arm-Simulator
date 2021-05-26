@@ -10,7 +10,7 @@ interface LoadInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: String) = when {
             instructionString.matches(REGISTER_IMMEDIATE_OFFSET) -> LoadRegisterImmediateOffsetParser(instructionString).parse()
-            instructionString.matches(REGISTER_PRE) -> LoadRegisterImmediateOffsetParser(instructionString).parse()
+            instructionString.matches(REGISTER_PRE) -> LoadRegisterPreOffsetParser(instructionString).parse()
             instructionString.matches(REGISTER_POST) -> LoadRegisterImmediateOffsetParser(instructionString).parse()
             instructionString.matches(VARIABLE) -> LoadVariableInstructionParser(instructionString).parse()
             else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
