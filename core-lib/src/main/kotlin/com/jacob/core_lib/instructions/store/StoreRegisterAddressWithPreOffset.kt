@@ -6,8 +6,8 @@ import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.word.ImmediateValue
 
 class StoreRegisterAddressWithPreOffset(
-    internal val destinationRegister: DestinationRegister,
     internal val sourceRegister: SourceRegister,
+    internal val destinationRegister: DestinationRegister,
     internal val offset: ImmediateValue
 ) : Store {
     override fun execute(executionEnvironment: ExecutionEnvironment) {

@@ -1,5 +1,6 @@
 package com.jacob.core_lib.instructions.store
 
+import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.SourceRegister
@@ -13,21 +14,18 @@ interface Store : Instruction {
         fun of(destinationRegister: MemoryAddress, memoryAddress: SourceRegister) =
             StoreMemoryAddress(destinationRegister, memoryAddress)
 
-        fun of(sourceRegister: SourceRegister, destinationRegister: DestinationRegister) =
-            StoreRegisterAddress(sourceRegister, destinationRegister)
-
         fun of(sourceRegister: SourceRegister, variableName: String) =
             StoreVariableAddress(sourceRegister, variableName)
 
         fun of(
             sourceRegister: SourceRegister,
             destinationRegister: DestinationRegister,
-            offset: ImmediateValue,
+            offset: ImmediateValue = 0.I,
             offsetType: OffsetTypes = IMMEDIATE
         ): Store = when (offsetType) {
-            IMMEDIATE -> StoreRegisterAddressWithImmediateOffset(destinationRegister, sourceRegister, offset)
-            OffsetTypes.POST -> StoreRegisterAddressWithPostOffset(destinationRegister, sourceRegister, offset)
-            OffsetTypes.PRE -> StoreRegisterAddressWithPreOffset(destinationRegister, sourceRegister, offset)
+            IMMEDIATE -> StoreRegisterAddressWithImmediateOffset(sourceRegister, destinationRegister, offset)
+            OffsetTypes.POST -> StoreRegisterAddressWithPostOffset(sourceRegister, destinationRegister, offset)
+            OffsetTypes.PRE -> StoreRegisterAddressWithPreOffset(sourceRegister, destinationRegister, offset)
         }
     }
 }

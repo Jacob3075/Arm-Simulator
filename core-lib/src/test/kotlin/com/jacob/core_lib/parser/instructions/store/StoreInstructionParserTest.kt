@@ -1,6 +1,6 @@
 package com.jacob.core_lib.parser.instructions.store
 
-import com.jacob.core_lib.instructions.store.StoreRegisterAddress
+import com.jacob.core_lib.instructions.store.StoreRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.instructions.store.StoreVariableAddress
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`
@@ -32,7 +32,7 @@ internal class StoreInstructionParserTest {
 
         val instruction = StoreInstructionParser.from(instructionString)
 
-        instruction `should be instance of` StoreRegisterAddress::class
+        instruction `should be instance of` StoreRegisterAddressWithImmediateOffset::class
     }
 
     @Test
