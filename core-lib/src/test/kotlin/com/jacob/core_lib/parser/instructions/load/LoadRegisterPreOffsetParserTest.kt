@@ -9,22 +9,6 @@ import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 
 internal class LoadRegisterPreOffsetParserTest {
-
-    @Test
-    internal fun `creates correct load instruction`() {
-        val line = "LDR R0, [R1]!"
-
-        val loadInstruction = LoadRegisterPreOffsetParser(line).parse()
-
-        loadInstruction `should be instance of` LoadRegisterAddressWithPreOffset::class
-
-        loadInstruction as LoadRegisterAddressWithPreOffset
-
-        loadInstruction.destinationRegister `should be equal to` 0.DR
-        loadInstruction.sourceRegister `should be equal to` 1.SR
-        loadInstruction.offset `should be equal to` 0.I
-    }
-
     @Test
     internal fun `creates correct load instruction with single digit positive offset`() {
         val line = "LDR R0, [R1, #3]!"
