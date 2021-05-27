@@ -26,7 +26,7 @@ interface Store : Instruction {
             offsetType: OffsetTypes = IMMEDIATE
         ): Store = when (offsetType) {
             IMMEDIATE -> StoreRegisterAddressWithImmediateOffset(destinationRegister, sourceRegister, offset)
-//            OffsetTypes.POST -> LoadRegisterAddressWithPostOffset(destinationRegister, sourceRegister, offset)
+            OffsetTypes.POST -> StoreRegisterAddressWithPostOffset(destinationRegister, sourceRegister, offset)
 //            OffsetTypes.PRE -> LoadRegisterAddressWithPreOffset(destinationRegister, sourceRegister, offset)
             POST -> TODO()
             PRE -> TODO()
