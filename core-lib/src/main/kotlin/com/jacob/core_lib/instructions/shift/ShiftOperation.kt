@@ -10,22 +10,22 @@ sealed interface ShiftOperation {
     }
 }
 
-class LeftShift(internal val shiftAmount: Int) : ShiftOperation {
+data class LeftShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = value * (2 `**` shiftAmount)
 }
 
-class RightShift(internal val shiftAmount: Int) : ShiftOperation {
+data class RightShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = value / (2 `**` shiftAmount)
 }
 
-class RightRotateShift(internal val shiftAmount: Int) : ShiftOperation {
+data class RightRotateShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = TODO()
 }
 
-class RightRotateExtendedShift(internal val shiftAmount: Int) : ShiftOperation {
+data class RightRotateExtendedShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = TODO()
 }
 
-class ArithmeticRightShift(internal val shiftAmount: Int) : ShiftOperation {
+data class ArithmeticRightShift(internal val shiftAmount: Int) : ShiftOperation {
     override fun shift(value: Int) = TODO()
 }

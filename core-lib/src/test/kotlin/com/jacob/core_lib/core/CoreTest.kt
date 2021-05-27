@@ -20,11 +20,11 @@ internal class CoreTest {
 
         core.runProgram()
 
-        core.apply {
-            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(3.SR).getRegisterValue() `should be equal to` 15.W
-            registerArray.getRegisterAt(4.SR).getRegisterValue() `should be equal to` 10.W
+        core.registerArray.apply {
+            getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
+            getRegisterAt(3.SR).getRegisterValue() `should be equal to` 15.W
+            getRegisterAt(4.SR).getRegisterValue() `should be equal to` 10.W
         }
     }
 
@@ -40,10 +40,10 @@ internal class CoreTest {
 
         core.runProgram()
 
-        core.apply {
-            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(3.SR).getRegisterValue() `should be equal to` 7.W
-            registerArray.getRegisterAt(4.SR).getRegisterValue() `should be equal to` (-2).W
+        core.registerArray.apply {
+            getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            getRegisterAt(3.SR).getRegisterValue() `should be equal to` 7.W
+            getRegisterAt(4.SR).getRegisterValue() `should be equal to` (-2).W
         }
     }
 
@@ -59,11 +59,11 @@ internal class CoreTest {
 
         core.runProgram()
 
-        core.apply {
-            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(4.SR).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(5.SR).getRegisterValue() `should be equal to` 2.W
+        core.registerArray.apply {
+            getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+            getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
+            getRegisterAt(4.SR).getRegisterValue() `should be equal to` 5.W
+            getRegisterAt(5.SR).getRegisterValue() `should be equal to` 2.W
         }
     }
 
@@ -80,15 +80,88 @@ internal class CoreTest {
         core.runProgram()
 
         core.apply {
-            registerArray.getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
-            registerArray.getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(5.SR).getRegisterValue() `should be equal to` 10.W
-            registerArray.getRegisterAt(6.SR).getRegisterValue() `should be equal to` 15.W
-            registerArray.getRegisterAt(7.SR).getRegisterValue() `should be equal to` 15.W
-            registerArray.getRegisterAt(8.SR).getRegisterValue() `should be equal to` (-5).W
+            registerArray.apply {
+                getRegisterAt(1.SR).getRegisterValue() `should be equal to` 5.W
+                getRegisterAt(2.SR).getRegisterValue() `should be equal to` 10.W
+                getRegisterAt(5.SR).getRegisterValue() `should be equal to` 10.W
+                getRegisterAt(6.SR).getRegisterValue() `should be equal to` 15.W
+                getRegisterAt(7.SR).getRegisterValue() `should be equal to` 15.W
+                getRegisterAt(8.SR).getRegisterValue() `should be equal to` (-5).W
+            }
 
-            memoryArray.getWordAt(0.MA) `should be equal to` 15.W
-            memoryArray.getWordAt(1.MA) `should be equal to` (-5).W
+            memoryArray.apply {
+                getWordAt(0.MA) `should be equal to` 15.W
+                getWordAt(1.MA) `should be equal to` (-5).W
+            }
+        }
+    }
+
+    @Test
+    internal fun `test file 5`() {
+        val sampleInputData = test5Data
+
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
+
+        val program = Program(instructions, variables)
+        val core = Core(program = program)
+
+        core.runProgram()
+
+        core.apply {
+            registerArray.apply {
+                getRegisterAt(1.SR).getRegisterValue() `should be equal to` 0.W
+                getRegisterAt(2.SR).getRegisterValue() `should be equal to` 1.W
+                getRegisterAt(3.SR).getRegisterValue() `should be equal to` 2.W
+                getRegisterAt(4.SR).getRegisterValue() `should be equal to` 3.W
+
+                getRegisterAt(5.SR).getRegisterValue() `should be equal to` 30.W
+                getRegisterAt(6.SR).getRegisterValue() `should be equal to` 21.W
+                getRegisterAt(7.SR).getRegisterValue() `should be equal to` (-30).W
+                getRegisterAt(8.SR).getRegisterValue() `should be equal to` 38.W
+
+            }
+
+            memoryArray.apply {
+                getWordAt(0.MA) `should be equal to` 30.W
+                getWordAt(1.MA) `should be equal to` 21.W
+                getWordAt(2.MA) `should be equal to` (-30).W
+                getWordAt(3.MA) `should be equal to` 38.W
+            }
+        }
+    }
+
+    @Test
+    internal fun `test file 6`() {
+        val sampleInputData = test6Data
+
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
+
+        val program = Program(instructions, variables)
+        val core = Core(program = program)
+
+        core.runProgram()
+
+        core.apply {
+            registerArray.apply {
+                getRegisterAt(1.SR).getRegisterValue() `should be equal to` 1.W
+                getRegisterAt(2.SR).getRegisterValue() `should be equal to` 1.W
+                getRegisterAt(3.SR).getRegisterValue() `should be equal to` 0.W
+                getRegisterAt(4.SR).getRegisterValue() `should be equal to` 1.W
+
+                getRegisterAt(5.SR).getRegisterValue() `should be equal to` 20.W
+                getRegisterAt(6.SR).getRegisterValue() `should be equal to` 10.W
+                getRegisterAt(7.SR).getRegisterValue() `should be equal to` 10.W
+                getRegisterAt(8.SR).getRegisterValue() `should be equal to` 20.W
+                getRegisterAt(9.SR).getRegisterValue() `should be equal to` 0.W
+
+            }
+
+            memoryArray.apply {
+                getWordAt(0.MA) `should be equal to` 10.W
+                getWordAt(1.MA) `should be equal to` 20.W
+            }
         }
     }
 }

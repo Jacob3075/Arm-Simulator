@@ -7,8 +7,7 @@ import com.jacob.core_lib.core.ExecutionEnvironment
 data class LoadVariableAddress(
     internal val destinationRegister: DestinationRegister,
     internal val variableName: String
-) :
-    Load {
+) : Load {
 
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val variable = executionEnvironment.variables.find { it.name == variableName }
