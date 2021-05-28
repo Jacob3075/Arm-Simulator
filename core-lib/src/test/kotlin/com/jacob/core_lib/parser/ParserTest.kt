@@ -172,4 +172,37 @@ internal class ParserTest {
         ParsedData("A", 10) `should be in` parseDataFromFile.second
         ParsedData("B", 20) `should be in` parseDataFromFile.second
     }
+
+    @Test
+    internal fun `test file 7`() {
+        val file = getFile("/TestInputFile7.s")
+
+        val parseDataFromFile = Parser.parseDataFromFile(file)
+
+        val instructions = parseDataFromFile.first
+        val variables = parseDataFromFile.second.toVariables()
+
+        instructions.size `should be equal to` 17
+        variables.size `should be equal to` 0
+
+        Move.of(1.DR, 3.I) `should be in` instructions
+        Move.of(2.DR, 7.I) `should be in` instructions
+        Move.of(3.DR, 5.I) `should be in` instructions
+        Move.of(4.DR, 13.I) `should be in` instructions
+        Move.of(5.DR, 17.I) `should be in` instructions
+
+        Move.of(6.DR, 4.I) `should be in` instructions
+        Move.of(7.DR, 5.I) `should be in` instructions
+        Move.of(8.DR, 6.I) `should be in` instructions
+        Move.of(9.DR, 7.I) `should be in` instructions
+        Move.of(10.DR, 8.I) `should be in` instructions
+
+        Store.of(1.SR, 6.DR, 3.I, OffsetTypes.IMMEDIATE) `should be in` instructions
+        Store.of(2.SR, 7.DR, 7.I, OffsetTypes.PRE) `should be in` instructions
+        Store.of(3.SR, 8.DR, 18.I, OffsetTypes.IMMEDIATE) `should be in` instructions
+        Store.of(4.SR, 9.DR, (-3).I, OffsetTypes.POST) `should be in` instructions
+        Store.of(5.SR, 10.DR, 5.I, OffsetTypes.POST) `should be in` instructions
+        Store.of(3.SR, 6.DR, 13.I, OffsetTypes.PRE) `should be in` instructions
+        Store.of(2.SR, 7.DR, (-5).I, OffsetTypes.PRE) `should be in` instructions
+    }
 }

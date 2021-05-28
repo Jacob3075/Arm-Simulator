@@ -55,9 +55,9 @@ class InstructionRegex private constructor() {
         companion object {
             val MNEMONIC = "^LDR".toRegex()
             val REGISTER_IMMEDIATE_OFFSET =
-                "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#-?\\d+)?]$".toRegex() // LDR R1, [R0]
-            val REGISTER_PRE = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#-?\\d+)?]!$".toRegex() // LDR R1, [R0]
-            val REGISTER_POST = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])](, ?#-?\\d+)?$".toRegex() // LDR R1, [R0]
+                "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])(, ?#-?\\d+)?]$".toRegex() // LDR R1, [R0]
+            val REGISTER_PRE = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])(, ?#-?\\d+)?]!$".toRegex() // LDR R1, [R0]
+            val REGISTER_POST = "^LDR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])](, ?#-?\\d+)?$".toRegex() // LDR R1, [R0]
             val VARIABLE = "^LDR R([0-9]|1[0-4]), ?=[A-Z]+$".toRegex() // LDR R0,=A
         }
     }
@@ -66,9 +66,9 @@ class InstructionRegex private constructor() {
         companion object {
             val MNEMONIC = "^STR".toRegex()
             val REGISTER_IMMEDIATE_OFFSET =
-                "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#-?\\d+)?]$".toRegex() // STR R1, [R0]
-            val REGISTER_PRE = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])(, ?#-?\\d+)?]!$".toRegex() // STR R1, [R0]
-            val REGISTER_POST = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4]])](, ?#-?\\d+)?$".toRegex() // STR R1, [R0]
+                "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])(, ?#-?\\d+)?]$".toRegex() // STR R1, [R0]
+            val REGISTER_PRE = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])(, ?#-?\\d+)?]!$".toRegex() // STR R1, [R0]
+            val REGISTER_POST = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])](, ?#-?\\d+)?$".toRegex() // STR R1, [R0]
             val VARIABLE = "^STR R([0-9]|1[0-4]), ?=[A-Z]+$".toRegex()
         }
     }
