@@ -164,4 +164,35 @@ internal class CoreTest {
             }
         }
     }
+
+    @Test
+    internal fun `test file 7`() {
+        val sampleInputData = test7Data
+
+        val instructions = sampleInputData.first
+        val variables = sampleInputData.second
+
+        val program = Program(instructions, variables)
+        val core = Core(program = program)
+
+        core.runProgram()
+
+        core.apply {
+            registerArray.apply {
+                getRegisterAt(6.SR).getRegisterValue() `should be equal to` 17.W
+                getRegisterAt(7.SR).getRegisterValue() `should be equal to` 7.W
+                getRegisterAt(8.SR).getRegisterValue() `should be equal to` 6.W
+                getRegisterAt(9.SR).getRegisterValue() `should be equal to` 4.W
+                getRegisterAt(10.SR).getRegisterValue() `should be equal to` 13.W
+            }
+
+            memoryArray.apply {
+                getWordAt(7.MA) `should be equal to` 7.W
+                getWordAt(24.MA) `should be equal to` 5.W
+                getWordAt(8.MA) `should be equal to` 17.W
+                getWordAt(17.MA) `should be equal to` 5.W
+                getWordAt(12.MA) `should be equal to` 7.W
+            }
+        }
+    }
 }

@@ -118,3 +118,28 @@ val test6Data = Pair(
         ParsedData("B", 20),
     )
 )
+
+val test7Data = Pair<List<Instruction>, List<ParsedData>>(
+    listOf(
+        Move.of(1.DR, 3.I),
+        Move.of(2.DR, 7.I),
+        Move.of(3.DR, 5.I),
+        Move.of(4.DR, 13.I),
+        Move.of(5.DR, 17.I),
+
+        Move.of(6.DR, 4.I),
+        Move.of(7.DR, 5.I),
+        Move.of(8.DR, 6.I),
+        Move.of(9.DR, 7.I),
+        Move.of(10.DR, 8.I),
+
+        Store.of(1.SR, 6.DR, 3.I, OffsetTypes.IMMEDIATE),
+        Store.of(2.SR, 7.DR, 7.I, OffsetTypes.PRE),
+        Store.of(3.SR, 8.DR, 18.I, OffsetTypes.IMMEDIATE),
+        Store.of(4.SR, 9.DR, (-3).I, OffsetTypes.POST),
+        Store.of(5.SR, 10.DR, 5.I, OffsetTypes.POST),
+        Store.of(3.SR, 6.DR, 13.I, OffsetTypes.PRE),
+        Store.of(2.SR, 7.DR, (-5).I, OffsetTypes.PRE),
+    ),
+    emptyList()
+)
