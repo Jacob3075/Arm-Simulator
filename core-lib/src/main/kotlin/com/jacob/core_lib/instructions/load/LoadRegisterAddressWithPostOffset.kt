@@ -20,6 +20,5 @@ data class LoadRegisterAddressWithPostOffset(
 
         val resultAddress = sourceAddress + offset
         registerArray.setValueAtRegister(sourceRegister, resultAddress)
-
     }
 }

@@ -20,6 +20,5 @@ data class StoreRegisterAddressWithImmediateOffset(
         val resultAddress = addressFromRegister + offset
 
         memoryArray.setWordAt(resultAddress.value.MA, valueToSave)
-
     }
 }
