@@ -9,6 +9,7 @@ import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.instructions.shift.ShiftOperation
+import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.word.ImmediateValue
 
 class AddImmediateInstructionParser internal constructor(
@@ -18,9 +19,12 @@ class AddImmediateInstructionParser internal constructor(
 ) : AddInstructionParser {
 
     override fun parse(): Instruction {
-        val operands = instructionString.removePrefix("ADD")
-            .split(",")
-            .map(String::trim)
+//        val operands = instructionString.removePrefix("ADD")
+//            .split(",")
+//            .map(String::trim)
+
+        val instructionString1 = InstructionString(instructionString)
+        val operands = instructionString1.operands!!
 
         val immediateValue = operands.last().let(strategy)
 

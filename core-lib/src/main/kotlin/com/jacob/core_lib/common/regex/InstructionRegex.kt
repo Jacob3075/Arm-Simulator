@@ -137,6 +137,12 @@ class InstructionRegex private constructor() {
         }
     }
 
+    class Conditionals private constructor() {
+        companion object {
+            val TYPES = "(EQ|NE|CS|CC|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)".toRegex()
+        }
+    }
+
     companion object {
         val LABEL = "^[A-Z]([A-Z]|_|-|\\d)*:$".toRegex() // LABEL_NEW-1:
     }

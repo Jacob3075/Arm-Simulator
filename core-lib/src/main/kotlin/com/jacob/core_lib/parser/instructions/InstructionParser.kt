@@ -17,8 +17,9 @@ interface InstructionParser {
                     ShiftOperation.None
                 )
 
-            val instructionSubString =
-                instructionString.substring(0 until operationMatch.range.first).trim().removeSuffix(",")
+            val instructionSubString = instructionString.substring(0 until operationMatch.range.first)
+                .trim()
+                .removeSuffix(",")
             val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
 
             val shiftOperation = ShiftOperationParser.from(operationSubString).parse()
