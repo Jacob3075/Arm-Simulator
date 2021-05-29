@@ -24,7 +24,7 @@ class InstructionLine(val instruction: String) : Line {
             instruction.contains(Sub.MNEMONIC) -> SubInstructionParser.from(InstructionString(instruction))
             instruction.contains(Multiply.MNEMONIC) -> MultiplyInstructionParser.from(instruction)
             instruction.contains(Move.MNEMONIC) -> MoveInstructionParser.from(instruction)
-            instruction.contains(Load.MNEMONIC) -> LoadInstructionParser.from(instruction)
+            instruction.contains(Load.MNEMONIC) -> LoadInstructionParser.from(InstructionString(instruction))
             instruction.contains(Compare.MNEMONIC) -> CompareInstructionParser.from(instruction)
             instruction.contains(Store.MNEMONIC) -> StoreInstructionParser.from(instruction)
             instruction.contains(Branch.MNEMONIC) -> BranchInstructionParser.from(instruction)

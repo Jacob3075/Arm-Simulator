@@ -10,15 +10,12 @@ import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.load.Load
+import com.jacob.core_lib.parser.InstructionString
 
-class LoadRegisterPostOffsetParser(private val instructionString: String) : LoadInstructionParser {
+class LoadRegisterPostOffsetParser(private val instructionString: InstructionString) : LoadInstructionParser {
     override fun parse(): Instruction {
 //        LDR R1. [R2], #3
-        val operands = instructionString.removePrefix("LDR")
-            .replace("[", "")
-            .replace("]", "")
-            .split(",")
-            .map(String::trim)
+        val operands = instructionString.operands
 
         val destinationRegister = operands.first().toRegisterAddress(::DestinationRegister)
         val sourceRegister = operands[1].toRegisterAddress(::SourceRegister)

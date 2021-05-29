@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.instructions.load.LoadRegisterAddressWithPostOffset
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test
 internal class LoadRegisterPostOffsetParserTest {
     @Test
     internal fun `creates correct load instruction with single digit positive offset`() {
-        val line = "LDR R0, [R1], #3"
+        val line = InstructionString("LDR R0, [R1], #3")
 
         val loadInstruction = LoadRegisterPostOffsetParser(line).parse()
 
@@ -26,7 +27,7 @@ internal class LoadRegisterPostOffsetParserTest {
 
     @Test
     internal fun `creates correct load instruction with multiple digit positive offset`() {
-        val line = "LDR R0, [R1], #30"
+        val line = InstructionString("LDR R0, [R1], #30")
 
         val loadInstruction = LoadRegisterPostOffsetParser(line).parse()
 
@@ -41,7 +42,7 @@ internal class LoadRegisterPostOffsetParserTest {
 
     @Test
     internal fun `creates correct load instruction with single digit negative offset`() {
-        val line = "LDR R0, [R1], #-3"
+        val line = InstructionString("LDR R0, [R1], #-3")
 
         val loadInstruction = LoadRegisterPostOffsetParser(line).parse()
 
@@ -56,7 +57,7 @@ internal class LoadRegisterPostOffsetParserTest {
 
     @Test
     internal fun `creates correct load instruction with multiple digit negative offset`() {
-        val line = "LDR R0, [R1], #-30"
+        val line = InstructionString("LDR R0, [R1], #-30")
 
         val loadInstruction = LoadRegisterPostOffsetParser(line).parse()
 

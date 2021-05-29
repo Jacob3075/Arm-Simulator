@@ -2,6 +2,7 @@ package com.jacob.core_lib.parser.instructions.load
 
 import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.instructions.load.LoadVariableAddress
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`
@@ -12,7 +13,7 @@ internal class LoadVariableInstructionParserTest {
 
     @Test
     internal fun `creates correct load instruction with single letter variable name`() {
-        val line = "LDR R0, =A"
+        val line = InstructionString("LDR R0, =A")
 
         val loadInstruction = LoadVariableInstructionParser(line).parse()
 
@@ -26,7 +27,7 @@ internal class LoadVariableInstructionParserTest {
 
     @Test
     internal fun `creates correct load instruction with multiple letter variable name`() {
-        val line = "LDR R0, =ABCD"
+        val line = InstructionString("LDR R0, =ABCD")
 
         val loadInstruction = LoadVariableInstructionParser(line).parse()
 
@@ -40,7 +41,7 @@ internal class LoadVariableInstructionParserTest {
 
     @Test
     internal fun `throws exception if invalid register is given`() {
-        val line = "LDR R20, =A"
+        val line = InstructionString("LDR R20, =A")
 
         invoking { LoadVariableInstructionParser(line).parse() } `should throw` IllegalArgumentException::class
     }

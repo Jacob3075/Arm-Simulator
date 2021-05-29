@@ -33,7 +33,7 @@ internal class AddInstructionParserTest {
 
     @Test
     internal fun `returns add register instruction parser with shift operation 1`() {
-        val instructionString = InstructionString("ADD R1, R2, R3 LSL #2")
+        val instructionString = InstructionString("ADD R1, R2, R3, LSL #2")
 
         val addInstructionParser = AddInstructionParser.from(instructionString)
 
@@ -43,7 +43,7 @@ internal class AddInstructionParserTest {
 
     @Test
     internal fun `returns add register instruction parser with shift operation 2`() {
-        val instructionString = InstructionString("ADD R1, R2, R11 LSL #11")
+        val instructionString = InstructionString("ADD R1, R2, R11, LSL #11")
 
         val addInstructionParser = AddInstructionParser.from(instructionString)
 
