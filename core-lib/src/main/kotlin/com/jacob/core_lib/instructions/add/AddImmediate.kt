@@ -3,6 +3,7 @@ package com.jacob.core_lib.instructions.add
 import com.jacob.core_lib.common.W
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.toInt
 import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.word.ImmediateValue
@@ -18,7 +19,10 @@ data class AddImmediate internal constructor(
         val registerValue =
             executionEnvironment.registerArray.getRegisterAt(sourceRegister).getRegisterValue()
 
-        val shiftedValue = shiftOperation.shift(immediateValue.value).W
+        val shiftedValue = shiftOperation.shift(
+            immediateValue.value,
+            executionEnvironment.registerArray.statusRegister.carry.toInt()
+        ).W
 
         val result = shiftedValue + registerValue
         executionEnvironment.registerArray.setValueAtRegister(destinationRegister, result)
