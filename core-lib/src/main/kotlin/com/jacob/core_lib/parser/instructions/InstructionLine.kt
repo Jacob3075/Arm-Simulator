@@ -17,7 +17,6 @@ import com.jacob.core_lib.parser.instructions.sub.SubInstructionParser
 
 class InstructionLine(val instruction: String) : Line {
 
-    //    TODO: WRAP 'INSTRUCTION' STRING IN OBJECT
     override fun parse(): Instruction {
         return when {
             instruction.contains(Add.MNEMONIC) -> AddInstructionParser.from(InstructionString(instruction))
@@ -25,9 +24,9 @@ class InstructionLine(val instruction: String) : Line {
             instruction.contains(Multiply.MNEMONIC) -> MultiplyInstructionParser.from(InstructionString(instruction))
             instruction.contains(Move.MNEMONIC) -> MoveInstructionParser.from(InstructionString(instruction))
             instruction.contains(Load.MNEMONIC) -> LoadInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Compare.MNEMONIC) -> CompareInstructionParser.from(instruction)
-            instruction.contains(Store.MNEMONIC) -> StoreInstructionParser.from(instruction)
-            instruction.contains(Branch.MNEMONIC) -> BranchInstructionParser.from(instruction)
+            instruction.contains(Compare.MNEMONIC) -> CompareInstructionParser.from(InstructionString(instruction))
+            instruction.contains(Store.MNEMONIC) -> StoreInstructionParser.from(InstructionString(instruction))
+            instruction.contains(Branch.MNEMONIC) -> BranchInstructionParser.from(InstructionString(instruction))
             instruction.contains(LABEL) -> LabelParser.from(instruction)
             else -> throw IllegalArgumentException("Cannot parse instruction: $instruction")
         }

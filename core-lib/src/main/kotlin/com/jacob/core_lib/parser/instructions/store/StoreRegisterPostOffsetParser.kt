@@ -9,15 +9,12 @@ import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.store.Store
+import com.jacob.core_lib.parser.InstructionString
 
-class StoreRegisterPostOffsetParser(private val instructionString: String) : StoreInstructionParser {
+class StoreRegisterPostOffsetParser(private val instructionString: InstructionString) : StoreInstructionParser {
     override fun parse(): Store {
 //        STR R1. [R2], #3
-        val operands = instructionString.removePrefix("STR")
-            .replace("[", "")
-            .replace("]", "")
-            .split(",")
-            .map(String::trim)
+        val operands = instructionString.operands
 
         val sourceRegister = operands.first().toRegisterAddress(::SourceRegister)
         val destinationRegister = operands[1].toRegisterAddress(::DestinationRegister)

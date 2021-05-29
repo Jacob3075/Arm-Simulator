@@ -24,7 +24,7 @@ data class InstructionString(private var instructionString: String) {
         shiftOperation = matchResult?.let { getShiftOperation(it) } ?: ShiftOperation.None
         mnemonic = instructionString.split(" ").first().trim()
         conditionalCode = getConditional()
-        operands = coreInstruction.replace(mnemonic, "")
+        operands = coreInstruction.replaceFirst(mnemonic, "")
             .replace("[", "")
             .replace("]", "")
             .replace("!", "")

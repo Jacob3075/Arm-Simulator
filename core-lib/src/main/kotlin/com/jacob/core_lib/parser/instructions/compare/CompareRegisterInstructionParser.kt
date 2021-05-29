@@ -4,13 +4,12 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.instructions.comapare.CompareRegister
+import com.jacob.core_lib.parser.InstructionString
 
-class CompareRegisterInstructionParser(private val instruction: String) : CompareInstructionParser {
+class CompareRegisterInstructionParser(private val instruction: InstructionString) : CompareInstructionParser {
     override fun parse(): CompareRegister {
         // CMP R1, R2
-        val registers = instruction.removePrefix("CMP")
-            .split(",")
-            .map(String::trim)
+        val registers = instruction.operands
             .toRegisterAddresses()
             .map(::SourceRegister)
 

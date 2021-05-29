@@ -4,13 +4,12 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.store.Store
+import com.jacob.core_lib.parser.InstructionString
 
-class StoreVariableInstructionParser(private val instructionString: String) : StoreInstructionParser {
+class StoreVariableInstructionParser(private val instructionString: InstructionString) : StoreInstructionParser {
     override fun parse(): Instruction {
         // STR R2, =STR
-        val operands = instructionString.removePrefix("STR")
-            .split(",")
-            .map(String::trim)
+        val operands = instructionString.operands
 
         val sourceRegister = operands.first()
             .toRegisterAddress(::SourceRegister)

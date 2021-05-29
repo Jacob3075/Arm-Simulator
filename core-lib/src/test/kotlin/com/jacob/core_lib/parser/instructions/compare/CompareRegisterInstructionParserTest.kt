@@ -3,6 +3,7 @@ package com.jacob.core_lib.parser.instructions.compare
 import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.comapare.CompareRegister
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test
 internal class CompareRegisterInstructionParserTest {
     @Test
     internal fun `created correct compare instruction 1`() {
-        val instructionString = "CMP R1, R2"
+        val instructionString = InstructionString("CMP R1, R2")
         val instruction = CompareRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` CompareRegister::class
@@ -21,7 +22,7 @@ internal class CompareRegisterInstructionParserTest {
 
     @Test
     internal fun `created correct compare instruction 2`() {
-        val instructionString = "CMP R1, R12"
+        val instructionString = InstructionString("CMP R1, R12")
         val instruction = CompareRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` CompareRegister::class

@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.instructions.store.StoreRegisterAddressWithPostOffset
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test
 internal class StoreRegisterPostOffsetParserTest {
     @Test
     internal fun `creates correct store instruction with single digit positive offset`() {
-        val line = "STR R0, [R1], #3"
+        val line = InstructionString("STR R0, [R1], #3")
 
         val loadInstruction = StoreRegisterPostOffsetParser(line).parse()
 
@@ -26,7 +27,7 @@ internal class StoreRegisterPostOffsetParserTest {
 
     @Test
     internal fun `creates correct store instruction with multiple digit positive offset`() {
-        val line = "STR R0, [R1], #30"
+        val line = InstructionString("STR R0, [R1], #30")
 
         val loadInstruction = StoreRegisterPostOffsetParser(line).parse()
 
@@ -41,7 +42,7 @@ internal class StoreRegisterPostOffsetParserTest {
 
     @Test
     internal fun `creates correct store instruction with single digit negative offset`() {
-        val line = "STR R0, [R1], #-3"
+        val line = InstructionString("STR R0, [R1], #-3")
 
         val loadInstruction = StoreRegisterPostOffsetParser(line).parse()
 
@@ -56,7 +57,7 @@ internal class StoreRegisterPostOffsetParserTest {
 
     @Test
     internal fun `creates correct store instruction with multiple digit negative offset`() {
-        val line = "STR R0, [R1], #-30"
+        val line = InstructionString("STR R0, [R1], #-30")
 
         val loadInstruction = StoreRegisterPostOffsetParser(line).parse()
 

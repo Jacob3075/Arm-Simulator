@@ -2,6 +2,7 @@ package com.jacob.core_lib.parser.instructions.store
 
 import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.instructions.store.StoreVariableAddress
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test
 internal class StoreVariableInstructionParserTest {
     @Test
     internal fun `creates correct instruction for single letter variable names`() {
-        val instructionString = "STR R1, =A"
+        val instructionString = InstructionString("STR R1, =A")
 
         val instruction = StoreVariableInstructionParser(instructionString).parse()
 
@@ -23,7 +24,7 @@ internal class StoreVariableInstructionParserTest {
 
     @Test
     internal fun `creates correct instruction for multiple letter variable names`() {
-        val instructionString = "STR R1, =ABC"
+        val instructionString = InstructionString("STR R1, =ABC")
 
         val instruction = StoreVariableInstructionParser(instructionString).parse()
 

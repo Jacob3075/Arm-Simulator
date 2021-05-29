@@ -6,6 +6,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.comapare.CompareImmediate
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test
 internal class CompareImmediateInstructionParserTest {
     @Test
     internal fun `created correct compare instruction with positive decimal values`() {
-        val instructionString = "CMP R1, #6"
+        val instructionString = InstructionString("CMP R1, #6")
         val instruction = CompareImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
 
         instruction `should be instance of` CompareImmediate::class
@@ -24,7 +25,7 @@ internal class CompareImmediateInstructionParserTest {
 
     @Test
     internal fun `created correct compare instruction negative decimal values`() {
-        val instructionString = "CMP R1, #-7"
+        val instructionString = InstructionString("CMP R1, #-7")
         val instruction = CompareImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
 
         instruction `should be instance of` CompareImmediate::class
@@ -35,7 +36,7 @@ internal class CompareImmediateInstructionParserTest {
 
     @Test
     internal fun `created correct compare instruction with hex values`() {
-        val instructionString = "CMP R1, #0XCE1CA2"
+        val instructionString = InstructionString("CMP R1, #0XCE1CA2")
         val instruction = CompareImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
 
         instruction `should be instance of` CompareImmediate::class
