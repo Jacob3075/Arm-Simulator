@@ -33,11 +33,13 @@ data class InstructionString(private var instructionString: String) {
     }
 
     private fun getMainInstruction(matchResult: MatchResult?): String {
-        return matchResult?.let {
+        val temp = matchResult?.let {
             instructionString.substring(0 until matchResult.range.first)
         } ?: instructionString
-            .trim()
+
+        return temp.trim()
             .removeSuffix(",")
+            .trim()
     }
 
     private fun getShiftOperation(operationMatch: MatchResult): ShiftOperation {
