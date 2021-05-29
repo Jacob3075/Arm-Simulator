@@ -13,12 +13,12 @@ interface MoveInstructionParser : InstructionParser {
 
     companion object {
         fun from(instructionString: InstructionString): Instruction = when {
-            instructionString.coreInstruction.matches(REGISTER) -> MoveRegisterInstructionParser(instructionString).parse()
-            instructionString.coreInstruction.matches(IMMEDIATE_DEC) -> MoveImmediateInstructionParser(
+            instructionString.mainInstruction.matches(REGISTER) -> MoveRegisterInstructionParser(instructionString).parse()
+            instructionString.mainInstruction.matches(IMMEDIATE_DEC) -> MoveImmediateInstructionParser(
                 instructionString,
                 String::immediateFromDec
             ).parse()
-            instructionString.coreInstruction.matches(IMMEDIATE_HEX) -> MoveImmediateInstructionParser(
+            instructionString.mainInstruction.matches(IMMEDIATE_HEX) -> MoveImmediateInstructionParser(
                 instructionString,
                 String::immediateFromHex
             ).parse()

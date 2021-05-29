@@ -9,7 +9,7 @@ class BranchInstructionParser(private val instructionString: InstructionString) 
 
     companion object {
         fun from(instructionString: InstructionString) = when {
-            instructionString.coreInstruction.matches(LABEL) -> BranchInstructionParser(instructionString).parse()
+            instructionString.mainInstruction.matches(LABEL) -> BranchInstructionParser(instructionString).parse()
             else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
         }
     }

@@ -10,12 +10,12 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 interface LoadInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: InstructionString) = when {
-            instructionString.coreInstruction.matches(REGISTER_IMMEDIATE_OFFSET) -> LoadRegisterImmediateOffsetParser(
+            instructionString.mainInstruction.matches(REGISTER_IMMEDIATE_OFFSET) -> LoadRegisterImmediateOffsetParser(
                 instructionString
             ).parse()
-            instructionString.coreInstruction.matches(REGISTER_PRE) -> LoadRegisterPreOffsetParser(instructionString).parse()
-            instructionString.coreInstruction.matches(REGISTER_POST) -> LoadRegisterPostOffsetParser(instructionString).parse()
-            instructionString.coreInstruction.matches(VARIABLE) -> LoadVariableInstructionParser(instructionString).parse()
+            instructionString.mainInstruction.matches(REGISTER_PRE) -> LoadRegisterPreOffsetParser(instructionString).parse()
+            instructionString.mainInstruction.matches(REGISTER_POST) -> LoadRegisterPostOffsetParser(instructionString).parse()
+            instructionString.mainInstruction.matches(VARIABLE) -> LoadVariableInstructionParser(instructionString).parse()
             else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
         }
     }

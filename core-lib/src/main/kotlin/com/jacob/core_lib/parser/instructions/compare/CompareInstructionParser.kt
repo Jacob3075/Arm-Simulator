@@ -11,12 +11,12 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 interface CompareInstructionParser : InstructionParser {
     companion object {
         fun from(instruction: InstructionString) = when {
-            instruction.coreInstruction.matches(REGISTER) -> CompareRegisterInstructionParser(instruction).parse()
-            instruction.coreInstruction.matches(IMMEDIATE_DEC) -> CompareImmediateInstructionParser(
+            instruction.mainInstruction.matches(REGISTER) -> CompareRegisterInstructionParser(instruction).parse()
+            instruction.mainInstruction.matches(IMMEDIATE_DEC) -> CompareImmediateInstructionParser(
                 instruction,
                 String::immediateFromDec
             ).parse()
-            instruction.coreInstruction.matches(IMMEDIATE_HEX) -> CompareImmediateInstructionParser(
+            instruction.mainInstruction.matches(IMMEDIATE_HEX) -> CompareImmediateInstructionParser(
                 instruction,
                 String::immediateFromHex
             ).parse()

@@ -12,14 +12,14 @@ interface MultiplyInstructionParser : InstructionParser {
         fun from(
             instructionString: InstructionString,
         ) = when {
-            instructionString.coreInstruction.matches(InstructionRegex.Multiply.REGISTER) -> MultiplyRegisterInstructionParser(
+            instructionString.mainInstruction.matches(InstructionRegex.Multiply.REGISTER) -> MultiplyRegisterInstructionParser(
                 instructionString,
             ).parse()
-            instructionString.coreInstruction.matches(InstructionRegex.Multiply.IMMEDIATE_DEC) -> MultiplyImmediateInstructionParser(
+            instructionString.mainInstruction.matches(InstructionRegex.Multiply.IMMEDIATE_DEC) -> MultiplyImmediateInstructionParser(
                 instructionString,
                 String::immediateFromDec
             ).parse()
-            instructionString.coreInstruction.matches(InstructionRegex.Multiply.IMMEDIATE_HEX) -> MultiplyImmediateInstructionParser(
+            instructionString.mainInstruction.matches(InstructionRegex.Multiply.IMMEDIATE_HEX) -> MultiplyImmediateInstructionParser(
                 instructionString,
                 String::immediateFromHex
             ).parse()

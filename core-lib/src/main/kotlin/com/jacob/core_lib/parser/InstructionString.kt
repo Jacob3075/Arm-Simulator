@@ -13,26 +13,30 @@ data class InstructionString(private var instructionString: String) {
     // ADD R1, R2, #3, LSL #4
     // ADDEQ R1, R2, #3, LSL #4
     var mnemonic: String
-    var conditionalCode: String
-    var coreInstruction: String
+    var conditional: String
+    var mainInstruction: String
     var operands: List<String>
     var shiftOperation: ShiftOperation
 
     init {
         val matchResult = InstructionRegex.Shifts.TYPES.find(instructionString)
-        coreInstruction = getMainInstruction(matchResult)
-        shiftOperation = matchResult?.let { getShiftOperation(it) } ?: ShiftOperation.None
-        mnemonic = instructionString.split(" ").first().trim()
-        conditionalCode = getConditional()
-        operands = coreInstruction.replaceFirst(mnemonic, "")
-            .replace("[", "")
-            .replace("]", "")
-            .replace("!", "")
-            .split(",")
-            .map(String::trim)
+        mainInstruction = processMainInstruction(matchResult)
+        shiftOperation = processShiftOperation(matchResult)
+        mnemonic = processMnemonic()
+        conditional = processConditional()
+        operands = processOperands()
     }
 
-    private fun getMainInstruction(matchResult: MatchResult?): String {
+    private fun processMnemonic() = instructionString.split(" ").first().trim()
+
+    private fun processOperands() = mainInstruction.replaceFirst(mnemonic, "")
+        .replace("[", "")
+        .replace("]", "")
+        .replace("!", "")
+        .split(",")
+        .map(String::trim)
+
+    private fun processMainInstruction(matchResult: MatchResult?): String {
         val temp = matchResult?.let {
             instructionString.substring(0 until matchResult.range.first)
         } ?: instructionString
@@ -42,13 +46,12 @@ data class InstructionString(private var instructionString: String) {
             .trim()
     }
 
-    private fun getShiftOperation(operationMatch: MatchResult): ShiftOperation {
-        val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
+    private fun processShiftOperation(operationMatch: MatchResult?): ShiftOperation {
+        operationMatch ?: return ShiftOperation.None
 
+        val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
         return ShiftOperationParser.from(operationSubString).parse()
     }
 
-    private fun getConditional(): String {
-        return if (mnemonic.contains(Conditionals.TYPES)) mnemonic.takeLast(2) else ""
-    }
+    private fun processConditional() = if (mnemonic.contains(Conditionals.TYPES)) mnemonic.takeLast(2) else ""
 }

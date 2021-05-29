@@ -1,3 +1,5 @@
+@file:Suppress("DuplicatedCode")
+
 package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.immediateFromDec
@@ -12,16 +14,16 @@ interface AddInstructionParser : InstructionParser {
 
     companion object {
         fun from(instructionString: InstructionString) = when {
-            instructionString.coreInstruction.matches(REGISTER) -> AddRegisterInstructionParser(
+            instructionString.mainInstruction.matches(REGISTER) -> AddRegisterInstructionParser(
                 instructionString,
                 instructionString.shiftOperation
             ).parse()
-            instructionString.coreInstruction.matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
+            instructionString.mainInstruction.matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
                 instructionString,
                 instructionString.shiftOperation,
                 String::immediateFromDec
             ).parse()
-            instructionString.coreInstruction.matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
+            instructionString.mainInstruction.matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
                 instructionString,
                 instructionString.shiftOperation,
                 String::immediateFromHex
