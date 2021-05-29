@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.multipy.MultiplyRegister
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test
 internal class MultiplyRegisterInstructionParserTest {
     @Test
     internal fun `creates correct multiply instruction`() {
-        val instructionString = "MUL R3, R1, R2"
+        val instructionString = InstructionString("MUL R3, R1, R2")
 
         val multiplyRegisterInstruction = MultiplyRegisterInstructionParser(instructionString).parse()
 

@@ -8,14 +8,12 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.multipy.Multiply
+import com.jacob.core_lib.parser.InstructionString
 
-class MultiplyRegisterInstructionParser(private val instructionString: String) : MultiplyInstructionParser {
+class MultiplyRegisterInstructionParser(private val instructionString: InstructionString) : MultiplyInstructionParser {
     override fun parse(): Instruction {
 //        MUL R1, R2, R3
-        val registers = instructionString.removePrefix("MUL")
-            .split(",")
-            .map(String::trim)
-            .toRegisterAddresses()
+        val registers = instructionString.operands.toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister1 = registers[1].let(::SourceRegister)

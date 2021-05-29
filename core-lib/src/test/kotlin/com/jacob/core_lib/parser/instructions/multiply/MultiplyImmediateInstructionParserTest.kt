@@ -7,6 +7,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.multipy.MultiplyImmediate
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`
@@ -16,7 +17,7 @@ import org.junit.jupiter.api.Test
 internal class MultiplyImmediateInstructionParserTest {
     @Test
     internal fun `creates correct multiply instruction for positive decimal immediate values`() {
-        val instructionString = "MUL R3, R1, #2"
+        val instructionString = InstructionString("MUL R3, R1, #2")
 
         val multiplyImmediateInstruction =
             MultiplyImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
@@ -32,7 +33,7 @@ internal class MultiplyImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct multiply instruction for negative decimal immediate values`() {
-        val instructionString = "MUL R3, R1, #-2"
+        val instructionString = InstructionString("MUL R3, R1, #-2")
 
         val multiplyImmediateInstruction =
             MultiplyImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
@@ -48,7 +49,7 @@ internal class MultiplyImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct multiply instruction for hexadecimal immediate values without letters`() {
-        val instructionString = "MUL R3, R1, #0X123"
+        val instructionString = InstructionString("MUL R3, R1, #0X123")
 
         val instruction =
             MultiplyImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
@@ -64,7 +65,7 @@ internal class MultiplyImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct multiply instruction for hexadecimal immediate values with letters`() {
-        val instructionString = "MUL R3, R1, #0X1A2FC3"
+        val instructionString = InstructionString("MUL R3, R1, #0X1A2FC3")
 
         val instruction =
             MultiplyImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
@@ -80,7 +81,7 @@ internal class MultiplyImmediateInstructionParserTest {
 
     @Test
     internal fun `throws exception when given invalid hexadecimal value`() {
-        val instructionString = "MUL R1, R2, #0XABCEFGHI"
+        val instructionString = InstructionString("MUL R1, R2, #0XABCEFGHI")
         invoking {
             MultiplyImmediateInstructionParser(
                 instructionString,

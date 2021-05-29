@@ -5,14 +5,13 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.move.Move
+import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
-class MoveRegisterInstructionParser internal constructor(private val instructionString: String) : InstructionParser {
+class MoveRegisterInstructionParser internal constructor(private val instructionString: InstructionString) :
+    InstructionParser {
     override fun parse(): Instruction {
-        val registers = instructionString.removePrefix("MOV")
-            .split(",")
-            .map(String::trim)
-            .toRegisterAddresses()
+        val registers = instructionString.operands.toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)

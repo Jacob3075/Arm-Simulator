@@ -6,18 +6,19 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Move.Companion.IMMEDIATE
 import com.jacob.core_lib.common.regex.InstructionRegex.Move.Companion.IMMEDIATE_HEX
 import com.jacob.core_lib.common.regex.InstructionRegex.Move.Companion.REGISTER
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
 interface MoveInstructionParser : InstructionParser {
 
     companion object {
-        fun from(instructionString: String): Instruction = when {
-            instructionString.matches(REGISTER) -> MoveRegisterInstructionParser(instructionString).parse()
-            instructionString.matches(IMMEDIATE_DEC) -> MoveImmediateInstructionParser(
+        fun from(instructionString: InstructionString): Instruction = when {
+            instructionString.coreInstruction.matches(REGISTER) -> MoveRegisterInstructionParser(instructionString).parse()
+            instructionString.coreInstruction.matches(IMMEDIATE_DEC) -> MoveImmediateInstructionParser(
                 instructionString,
                 String::immediateFromDec
             ).parse()
-            instructionString.matches(IMMEDIATE_HEX) -> MoveImmediateInstructionParser(
+            instructionString.coreInstruction.matches(IMMEDIATE_HEX) -> MoveImmediateInstructionParser(
                 instructionString,
                 String::immediateFromHex
             ).parse()
