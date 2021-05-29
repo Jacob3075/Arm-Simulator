@@ -9,18 +9,17 @@ import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.Sub
+import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.word.ImmediateValue
 
 class SubImmediateInstructionParser internal constructor(
-    private val instructionString: String,
+    private val instructionString: InstructionString,
     private val shiftOperation: ShiftOperation,
     private val strategy: (String) -> ImmediateValue
 ) : SubInstructionParser {
 
     override fun parse(): Instruction {
-        val operands = instructionString.removePrefix("SUB")
-            .split(",")
-            .map(String::trim)
+        val operands = instructionString.operands
 
         val immediateValue = operands.last().let(strategy)
 

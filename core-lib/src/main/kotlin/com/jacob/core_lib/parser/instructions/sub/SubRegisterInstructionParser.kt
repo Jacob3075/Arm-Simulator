@@ -7,16 +7,15 @@ import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.Sub
+import com.jacob.core_lib.parser.InstructionString
 
 class SubRegisterInstructionParser internal constructor(
-    private val instructionString: String,
+    private val instructionString: InstructionString,
     private val shiftOperation: ShiftOperation
 ) : SubInstructionParser {
 
     override fun parse(): Instruction {
-        val registers: List<RegisterAddresses> = instructionString.removePrefix("SUB")
-            .split(",")
-            .map(String::trim)
+        val registers: List<RegisterAddresses> = instructionString.operands
             .toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)

@@ -5,6 +5,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.add.AddRegister
 import com.jacob.core_lib.instructions.shift.ShiftOperation.None
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -13,7 +14,7 @@ internal class AddRegisterInstructionParserTest {
 
     @Test
     internal fun `creates correct add instruction`() {
-        val instructionString = "ADD R3, R1, R2"
+        val instructionString = InstructionString("ADD R3, R1, R2")
 
         val addRegisterInstruction = AddRegisterInstructionParser(instructionString, None).parse()
 

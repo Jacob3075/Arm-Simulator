@@ -8,6 +8,7 @@ import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubImmediate
+import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`
@@ -18,7 +19,7 @@ internal class SubImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction for positive decimal immediate values`() {
-        val instructionString = "SUB R3, R1, #1"
+        val instructionString = InstructionString("SUB R3, R1, #1")
 
         val subImmediateInstruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
@@ -34,7 +35,7 @@ internal class SubImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction for negative decimal immediate values`() {
-        val instructionString = "SUB R3, R1, #-1"
+        val instructionString = InstructionString("SUB R3, R1, #-1")
 
         val subImmediateInstruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
@@ -50,7 +51,7 @@ internal class SubImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction for hexadecimal immediate values without letters`() {
-        val instructionString = "SUB R3, R1, #0X123"
+        val instructionString = InstructionString("SUB R3, R1, #0X123")
 
         val subImmediateInstruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
@@ -66,7 +67,7 @@ internal class SubImmediateInstructionParserTest {
 
     @Test
     internal fun `creates correct sub instruction for hexadecimal immediate values with letters`() {
-        val instructionString = "SUB R3, R1, #0X1A2FC3"
+        val instructionString = InstructionString("SUB R3, R1, #0X1A2FC3")
 
         val subImmediateInstruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
@@ -82,7 +83,7 @@ internal class SubImmediateInstructionParserTest {
 
     @Test
     internal fun `throws exception when given invalid hexadecimal value`() {
-        val instructionString = "SUB R1, R2, #0XABCEFGHI"
+        val instructionString = InstructionString("SUB R1, R2, #0XABCEFGHI")
         invoking {
             SubImmediateInstructionParser(
                 instructionString,

@@ -13,18 +13,13 @@ import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.word.ImmediateValue
 
 class AddImmediateInstructionParser internal constructor(
-    private val instructionString: String,
+    private val instructionString: InstructionString,
     private val shiftOperationParser: ShiftOperation,
     private val strategy: (String) -> ImmediateValue
 ) : AddInstructionParser {
 
     override fun parse(): Instruction {
-//        val operands = instructionString.removePrefix("ADD")
-//            .split(",")
-//            .map(String::trim)
-
-        val instructionString1 = InstructionString(instructionString)
-        val operands = instructionString1.operands!!
+        val operands = instructionString.operands
 
         val immediateValue = operands.last().let(strategy)
 

@@ -3,6 +3,7 @@ package com.jacob.core_lib.parser.instructions
 import com.jacob.core_lib.common.regex.InstructionRegex.*
 import com.jacob.core_lib.common.regex.InstructionRegex.Companion.LABEL
 import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.Line
 import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
 import com.jacob.core_lib.parser.instructions.branch.BranchInstructionParser
@@ -19,8 +20,8 @@ class InstructionLine(val instruction: String) : Line {
     //    TODO: WRAP 'INSTRUCTION' STRING IN OBJECT
     override fun parse(): Instruction {
         return when {
-            instruction.contains(Add.MNEMONIC) -> AddInstructionParser.from(instruction)
-            instruction.contains(Sub.MNEMONIC) -> SubInstructionParser.from(instruction)
+            instruction.contains(Add.MNEMONIC) -> AddInstructionParser.from(InstructionString(instruction))
+            instruction.contains(Sub.MNEMONIC) -> SubInstructionParser.from(InstructionString(instruction))
             instruction.contains(Multiply.MNEMONIC) -> MultiplyInstructionParser.from(instruction)
             instruction.contains(Move.MNEMONIC) -> MoveInstructionParser.from(instruction)
             instruction.contains(Load.MNEMONIC) -> LoadInstructionParser.from(instruction)

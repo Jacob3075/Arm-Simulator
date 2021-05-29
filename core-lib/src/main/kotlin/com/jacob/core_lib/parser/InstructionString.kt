@@ -6,34 +6,42 @@ import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser
 
 class InstructionString(private var instructionString: String) {
+
     // ADD R1, R2, R3
     // ADD R1, R2, #3
-    // ADD R1, R2, #3, LSL #4
     // ADDEQ R1, R2, #3
-    var mnemonic: String? = null
-    var conditionalCode: String? = null
-    var operands: List<String>? = null
-    var shiftOperation: ShiftOperation? = null
+    // ADD R1, R2, #3, LSL #4
+    // ADDEQ R1, R2, #3, LSL #4
+    var mnemonic: String
+    var conditionalCode: String
+    var coreInstruction: String
+    var operands: List<String>
+    var shiftOperation: ShiftOperation
 
     init {
-        InstructionRegex.Shifts.TYPES.find(instructionString)?.let(::getShiftOperation)
+        val matchResult = InstructionRegex.Shifts.TYPES.find(instructionString)
+        coreInstruction = matchResult?.let { getMainInstruction(it) } ?: instructionString
+        shiftOperation = matchResult?.let { getShiftOperation(it) } ?: ShiftOperation.None
         mnemonic = instructionString.split(" ").first().trim()
-        getConditionalCode()
-        operands = instructionString.replace(mnemonic!!, "")
+        conditionalCode = getConditional()
+        operands = coreInstruction.replace(mnemonic, "")
             .split(",")
             .map(String::trim)
     }
 
-    private fun getShiftOperation(operationMatch: MatchResult) {
-        instructionString = instructionString.substring(0 until operationMatch.range.first)
+    private fun getMainInstruction(matchResult: MatchResult): String {
+        return instructionString.substring(0 until matchResult.range.first)
             .trim()
             .removeSuffix(",")
-        val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
-
-        shiftOperation = ShiftOperationParser.from(operationSubString).parse()
     }
 
-    private fun getConditionalCode() {
-        if (mnemonic!!.contains(Conditionals.TYPES)) conditionalCode = mnemonic?.takeLast(2)
+    private fun getShiftOperation(operationMatch: MatchResult): ShiftOperation {
+        val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
+
+        return ShiftOperationParser.from(operationSubString).parse()
+    }
+
+    private fun getConditional(): String {
+        return if (mnemonic.contains(Conditionals.TYPES)) mnemonic.takeLast(2) else ""
     }
 }

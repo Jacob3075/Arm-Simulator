@@ -8,17 +8,15 @@ import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.instructions.shift.ShiftOperation
+import com.jacob.core_lib.parser.InstructionString
 
 class AddRegisterInstructionParser internal constructor(
-    private val instructionString: String,
+    private val instructionString: InstructionString,
     private val shiftOperationParser: ShiftOperation
 ) : AddInstructionParser {
 
     override fun parse(): Instruction {
-        val registers = instructionString.removePrefix("ADD")
-            .split(",")
-            .map(String::trim)
-            .toRegisterAddresses()
+        val registers = instructionString.operands.toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister1 = registers[1].let(::SourceRegister)
