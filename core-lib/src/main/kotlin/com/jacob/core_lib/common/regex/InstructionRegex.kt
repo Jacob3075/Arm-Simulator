@@ -137,9 +137,13 @@ class InstructionRegex private constructor() {
         }
     }
 
-    class Conditionals private constructor() {
+    class Conditional private constructor() {
         companion object {
             val TYPES = "(EQ|NE|CS|CC|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)".toRegex()
+            val Equal = "^EQ$".toRegex()
+            val NotEqual = "^NE$".toRegex()
+            val CarrySet = "^CS$".toRegex()
+            val CarryClear = "^CC$".toRegex()
         }
     }
 
