@@ -1,8 +1,10 @@
 package com.jacob.core_lib.parser
 
 import com.jacob.core_lib.common.regex.InstructionRegex
-import com.jacob.core_lib.common.regex.InstructionRegex.Conditionals
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.Companion.TYPES
+import com.jacob.core_lib.instructions.conditionals.Conditionals
 import com.jacob.core_lib.instructions.shift.ShiftOperation
+import com.jacob.core_lib.parser.conditional.ConditionalParser
 import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser
 
 data class InstructionString(private var instructionString: String) {
@@ -12,11 +14,11 @@ data class InstructionString(private var instructionString: String) {
     // ADDEQ R1, R2, #3
     // ADD R1, R2, #3, LSL #4
     // ADDEQ R1, R2, #3, LSL #4
-    var mnemonic: String
-    var conditional: String
-    var mainInstruction: String
-    var operands: List<String>
-    var shiftOperation: ShiftOperation
+    val mnemonic: String
+    val conditional: Conditionals
+    val mainInstruction: String
+    val operands: List<String>
+    val shiftOperation: ShiftOperation
 
     init {
         val matchResult = InstructionRegex.Shifts.TYPES.find(instructionString)
@@ -53,5 +55,8 @@ data class InstructionString(private var instructionString: String) {
         return ShiftOperationParser.from(operationSubString).parse()
     }
 
-    private fun processConditional() = if (mnemonic.contains(Conditionals.TYPES)) mnemonic.takeLast(2) else ""
+    private fun processConditional(): Conditionals {
+        val conditionalString = if (mnemonic.contains(TYPES)) mnemonic.takeLast(2) else ""
+        return ConditionalParser.parseConditional(conditionalString)
+    }
 }
