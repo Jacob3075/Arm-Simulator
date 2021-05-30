@@ -26,7 +26,8 @@ class AddRegisterInstructionParser internal constructor(
             destinationRegister = destinationRegister,
             sourceRegister1 = sourceRegister1,
             sourceRegister2 = sourceRegister2,
-            shiftOperation = shiftOperationParser
+            shiftOperation = shiftOperationParser,
+            conditional = instructionString.conditional
         )
     }
 

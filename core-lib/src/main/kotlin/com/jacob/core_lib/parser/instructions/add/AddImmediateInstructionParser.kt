@@ -33,7 +33,8 @@ class AddImmediateInstructionParser internal constructor(
             destinationRegister = destinationRegister,
             sourceRegister1 = sourceRegister,
             immediateValue = immediateValue,
-            shiftOperation = shiftOperationParser
+            shiftOperation = shiftOperationParser,
+            instructionString.conditional
         )
     }
 }

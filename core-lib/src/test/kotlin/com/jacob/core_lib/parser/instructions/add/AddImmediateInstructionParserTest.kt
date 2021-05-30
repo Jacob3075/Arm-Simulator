@@ -7,6 +7,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.add.AddImmediate
+import com.jacob.core_lib.instructions.conditionals.Conditional
 import com.jacob.core_lib.instructions.shift.ShiftOperation.None
 import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
@@ -21,32 +22,36 @@ internal class AddImmediateInstructionParserTest {
     internal fun `creates correct add instruction for positive decimal immediate values`() {
         val instructionString = InstructionString("ADD R3, R1, #2")
 
-        val addImmediateInstruction =
+        val instruction =
             AddImmediateInstructionParser(instructionString, None, String::immediateFromDec).parse()
 
-        addImmediateInstruction `should be instance of` AddImmediate::class
+        instruction `should be instance of` Conditional::class
 
-        addImmediateInstruction as AddImmediate
+        instruction as Conditional
 
-        addImmediateInstruction.immediateValue `should be equal to` 2.I
-        addImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        addImmediateInstruction.sourceRegister `should be equal to` SourceRegister(1.RA)
+        instruction.instruction `should be instance of` AddImmediate::class
+
+        (instruction.instruction as AddImmediate).immediateValue `should be equal to` 2.I
+        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
+        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
     }
 
     @Test
     internal fun `creates correct add instruction for negative decimal immediate values`() {
         val instructionString = InstructionString("ADD R3, R1, #-2")
 
-        val addImmediateInstruction =
+        val instruction =
             AddImmediateInstructionParser(instructionString, None, String::immediateFromDec).parse()
 
-        addImmediateInstruction `should be instance of` AddImmediate::class
+        instruction `should be instance of` Conditional::class
 
-        addImmediateInstruction as AddImmediate
+        instruction as Conditional
 
-        addImmediateInstruction.immediateValue `should be equal to` (-2).I
-        addImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        addImmediateInstruction.sourceRegister `should be equal to` SourceRegister(1.RA)
+        instruction.instruction `should be instance of` AddImmediate::class
+
+        (instruction.instruction as AddImmediate).immediateValue `should be equal to` (-2).I
+        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
+        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
     }
 
     @Test
@@ -56,13 +61,15 @@ internal class AddImmediateInstructionParserTest {
         val instruction =
             AddImmediateInstructionParser(instructionString, None, String::immediateFromHex).parse()
 
-        instruction `should be instance of` AddImmediate::class
+        instruction `should be instance of` Conditional::class
 
-        instruction as AddImmediate
+        instruction as Conditional
 
-        instruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
-        instruction.immediateValue `should be equal to` 291.I
+        instruction.instruction `should be instance of` AddImmediate::class
+
+        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
+        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
+        (instruction.instruction as AddImmediate).immediateValue `should be equal to` 291.I
     }
 
     @Test
@@ -72,13 +79,15 @@ internal class AddImmediateInstructionParserTest {
         val instruction =
             AddImmediateInstructionParser(instructionString, None, String::immediateFromHex).parse()
 
-        instruction `should be instance of` AddImmediate::class
+        instruction `should be instance of` Conditional::class
 
-        instruction as AddImmediate
+        instruction as Conditional
 
-        instruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
-        instruction.immediateValue `should be equal to` 1716163.I
+        instruction.instruction `should be instance of` AddImmediate::class
+
+        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
+        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
+        (instruction.instruction as AddImmediate).immediateValue `should be equal to` 1716163.I
     }
 
     @Test
