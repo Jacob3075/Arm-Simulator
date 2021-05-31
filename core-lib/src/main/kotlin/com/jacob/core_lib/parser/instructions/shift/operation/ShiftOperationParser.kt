@@ -1,10 +1,10 @@
 package com.jacob.core_lib.parser.instructions.shift.operation
 
-import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.ArithmeticRightShift
-import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.LeftShift
-import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.RightRotateExtendedShift
-import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.RightRotateShift
-import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.Companion.RightShift
+import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.ArithmeticRightShift
+import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.LeftShift
+import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.RightRotateExtendedShift
+import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.RightRotateShift
+import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.RightShift
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 
 interface ShiftOperationParser {

@@ -1,9 +1,9 @@
 package com.jacob.core_lib.parser.instructions.load
 
-import com.jacob.core_lib.common.regex.InstructionRegex.Load.Companion.REGISTER_IMMEDIATE_OFFSET
-import com.jacob.core_lib.common.regex.InstructionRegex.Load.Companion.REGISTER_POST
-import com.jacob.core_lib.common.regex.InstructionRegex.Load.Companion.REGISTER_PRE
-import com.jacob.core_lib.common.regex.InstructionRegex.Load.Companion.VARIABLE
+import com.jacob.core_lib.common.regex.InstructionRegex.Load.REGISTER_IMMEDIATE_OFFSET
+import com.jacob.core_lib.common.regex.InstructionRegex.Load.REGISTER_POST
+import com.jacob.core_lib.common.regex.InstructionRegex.Load.REGISTER_PRE
+import com.jacob.core_lib.common.regex.InstructionRegex.Load.VARIABLE
 import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
 

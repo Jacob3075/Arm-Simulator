@@ -1,7 +1,14 @@
 package com.jacob.core_lib.parser.instructions
 
-import com.jacob.core_lib.common.regex.InstructionRegex.*
-import com.jacob.core_lib.common.regex.InstructionRegex.Companion.LABEL
+import com.jacob.core_lib.common.regex.InstructionRegex.Add
+import com.jacob.core_lib.common.regex.InstructionRegex.Branch
+import com.jacob.core_lib.common.regex.InstructionRegex.Compare
+import com.jacob.core_lib.common.regex.InstructionRegex.LABEL
+import com.jacob.core_lib.common.regex.InstructionRegex.Load
+import com.jacob.core_lib.common.regex.InstructionRegex.Move
+import com.jacob.core_lib.common.regex.InstructionRegex.Multiply
+import com.jacob.core_lib.common.regex.InstructionRegex.Store
+import com.jacob.core_lib.common.regex.InstructionRegex.Sub
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.Line

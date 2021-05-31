@@ -1,7 +1,7 @@
 package com.jacob.core_lib.parser
 
 import com.jacob.core_lib.common.regex.InstructionRegex
-import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.Companion.TYPES
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.TYPES
 import com.jacob.core_lib.instructions.conditionals.Conditionals
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.parser.conditional.ConditionalParser

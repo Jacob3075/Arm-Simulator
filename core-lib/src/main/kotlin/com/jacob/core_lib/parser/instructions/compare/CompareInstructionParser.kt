@@ -2,9 +2,9 @@ package com.jacob.core_lib.parser.instructions.compare
 
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
-import com.jacob.core_lib.common.regex.InstructionRegex.Compare.Companion.IMMEDIATE_DEC
-import com.jacob.core_lib.common.regex.InstructionRegex.Compare.Companion.IMMEDIATE_HEX
-import com.jacob.core_lib.common.regex.InstructionRegex.Compare.Companion.REGISTER
+import com.jacob.core_lib.common.regex.InstructionRegex.Compare.IMMEDIATE_DEC
+import com.jacob.core_lib.common.regex.InstructionRegex.Compare.IMMEDIATE_HEX
+import com.jacob.core_lib.common.regex.InstructionRegex.Compare.REGISTER
 import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
 

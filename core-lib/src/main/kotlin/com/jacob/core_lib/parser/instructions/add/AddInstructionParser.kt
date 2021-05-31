@@ -4,9 +4,9 @@ package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
-import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.IMMEDIATE_DEC
-import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.IMMEDIATE_HEX
-import com.jacob.core_lib.common.regex.InstructionRegex.Add.Companion.REGISTER
+import com.jacob.core_lib.common.regex.InstructionRegex.Add.IMMEDIATE_DEC
+import com.jacob.core_lib.common.regex.InstructionRegex.Add.IMMEDIATE_HEX
+import com.jacob.core_lib.common.regex.InstructionRegex.Add.REGISTER
 import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
 
