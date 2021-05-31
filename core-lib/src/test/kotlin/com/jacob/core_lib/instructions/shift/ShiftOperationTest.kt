@@ -131,10 +131,10 @@ internal class ShiftOperationTest {
     }
 
     @Nested
+    @Disabled
     inner class RotateRightExtendedTest {
         // https://onlinetoolz.net/bitshift
         @Test
-        @Disabled
         internal fun `returns correct result when given positive value and carry is 1`() {
             val rightRotateExtended = RightRotateExtendedShift(2)
             val result = rightRotateExtended.shift(93, 1)
@@ -147,7 +147,6 @@ internal class ShiftOperationTest {
         }
 
         @Test
-        @Disabled
         internal fun `returns correct result when given positive value and carry is 0`() {
             val rightRotateExtended = RightRotateExtendedShift(2)
             val result = rightRotateExtended.shift(200999999, 0)

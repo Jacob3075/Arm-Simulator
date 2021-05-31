@@ -5,15 +5,23 @@ import com.jacob.core_lib.common.toInt
 import com.jacob.core_lib.word.Word
 import kotlin.math.sign
 
-class StatusRegister : Register {
-    var negative: Boolean = false
-        private set
-    var zero: Boolean = false
-        private set
-    var carry: Boolean = false
-        private set
-    var overFlow: Boolean = false
-        private set
+class StatusRegister(
+    negative: Boolean = false,
+    zero: Boolean = false,
+    carry: Boolean = false,
+    overFlow: Boolean = false,
+) : Register {
+    var negative: Boolean private set
+    var zero: Boolean private set
+    var carry: Boolean private set
+    var overFlow: Boolean private set
+
+    init {
+        this.negative = negative
+        this.zero = zero
+        this.carry = carry
+        this.overFlow = overFlow
+    }
 
     override fun getRegisterValue(): Word {
         return "${negative.toInt()}${zero.toInt()}${carry.toInt()}${overFlow.toInt()}".toInt().W

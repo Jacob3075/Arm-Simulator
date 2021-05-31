@@ -6,7 +6,12 @@ import com.jacob.core_lib.common.addresses.RegisterAddresses.*
 import com.jacob.core_lib.registers.*
 import com.jacob.core_lib.word.Word
 
-class RegisterArray {
+class RegisterArray(
+    private val stackPointer: StackPointer = StackPointer(),
+    private val linkRegister: LinkRegister = LinkRegister(),
+    val programCounter: ProgramCounter = ProgramCounter(),
+    val statusRegister: StatusRegister = StatusRegister(),
+) {
 
     val registers: Map<RegisterAddresses, Register>
         get() = _registers
@@ -25,16 +30,11 @@ class RegisterArray {
         REGISTER_10 to CoreRegister(),
         REGISTER_11 to CoreRegister(),
         REGISTER_12 to CoreRegister(),
-        STACK_POINTER to StackPointer(),
-        LINK_REGISTER to LinkRegister(),
-        PROGRAM_COUNTER to ProgramCounter(),
-        STATUS_REGISTER to StatusRegister()
+        STACK_POINTER to stackPointer,
+        LINK_REGISTER to linkRegister,
+        PROGRAM_COUNTER to programCounter,
+        STATUS_REGISTER to statusRegister
     )
-
-    private val stackPointer = _registers[STACK_POINTER]!! as StackPointer
-    private val linkRegister = _registers[LINK_REGISTER]!! as LinkRegister
-    val statusRegister = _registers[STATUS_REGISTER]!! as StatusRegister
-    val programCounter = _registers[PROGRAM_COUNTER]!! as ProgramCounter
 
     fun getRegisterAt(registerAddress: RegisterAddress) = registers[registerAddress.getRegisterAddress()]
         ?: throw IllegalArgumentException("Invalid Register Address")
