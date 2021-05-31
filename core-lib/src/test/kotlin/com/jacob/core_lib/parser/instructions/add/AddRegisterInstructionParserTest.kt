@@ -4,7 +4,6 @@ import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.instructions.add.AddRegister
 import com.jacob.core_lib.instructions.conditionals.Always
-import com.jacob.core_lib.instructions.shift.ShiftOperation.None
 import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
@@ -16,7 +15,7 @@ internal class AddRegisterInstructionParserTest {
     internal fun `creates correct add instruction`() {
         val instructionString = InstructionString("ADD R3, R1, R2")
 
-        val instruction = AddRegisterInstructionParser(instructionString, None).parse()
+        val instruction = AddRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` Always::class
         instruction as Always
