@@ -52,7 +52,7 @@ object InstructionRegex {
 
     object Store {
         val MNEMONIC = "^STR".toRegex()
-        val REGISTER_IMMEDIATE_OFFSET =
+        val IMMEDIATE_OFFSET =
             "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])(, ?#-?\\d+)?]$".toRegex() // STR R1, [R0]
         val REGISTER_PRE = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])(, ?#-?\\d+)?]!$".toRegex() // STR R1, [R0]
         val REGISTER_POST = "^STR R([0-9]|1[0-4]), ?\\[R([0-9]|1[0-4])](, ?#-?\\d+)?$".toRegex() // STR R1, [R0]

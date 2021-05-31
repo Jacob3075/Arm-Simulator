@@ -9,14 +9,14 @@ import com.jacob.core_lib.word.ImmediateValue
 
 class CompareImmediateInstructionParser(
     private val instruction: InstructionString,
-    private val stratergy: (String) -> ImmediateValue
+    private val strategy: (String) -> ImmediateValue
 ) : CompareInstructionParser {
     override fun parse(): CompareImmediate {
 //        CMP R1, #10
         val operands = instruction.operands
 
         val sourceRegister = operands.first().toRegisterAddress(::SourceRegister)
-        val immediateValue = operands.last().let(stratergy)
+        val immediateValue = operands.last().let(strategy)
 
         return Compare.from(sourceRegister, immediateValue)
     }

@@ -10,17 +10,19 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 
 interface CompareInstructionParser : InstructionParser {
     companion object {
-        fun from(instruction: InstructionString) = when {
-            instruction.mainInstruction.matches(REGISTER) -> CompareRegisterInstructionParser(instruction).parse()
-            instruction.mainInstruction.matches(IMMEDIATE_DEC) -> CompareImmediateInstructionParser(
-                instruction,
-                String::immediateFromDec
-            ).parse()
-            instruction.mainInstruction.matches(IMMEDIATE_HEX) -> CompareImmediateInstructionParser(
-                instruction,
-                String::immediateFromHex
-            ).parse()
-            else -> throw IllegalArgumentException("Cannot parse instruction: $instruction")
+        fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
+            when {
+                matches(REGISTER) -> CompareRegisterInstructionParser(instructionString).parse()
+                matches(IMMEDIATE_DEC) -> CompareImmediateInstructionParser(
+                    instructionString,
+                    String::immediateFromDec
+                ).parse()
+                matches(IMMEDIATE_HEX) -> CompareImmediateInstructionParser(
+                    instructionString,
+                    String::immediateFromHex
+                ).parse()
+                else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
+            }
         }
     }
 }

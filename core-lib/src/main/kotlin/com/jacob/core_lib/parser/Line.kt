@@ -6,12 +6,14 @@ import com.jacob.core_lib.parser.instructions.InstructionLine
 
 interface Line {
     companion object {
-        fun from(line: String) = when {
-            line.matches(General.Headers.DATA) -> SectionHeaderLine(SectionType.DATA)
-            line.matches(General.Headers.TEXT) -> SectionHeaderLine(SectionType.TEXT)
-            line.matches(General.Headers.END) -> SectionHeaderLine(SectionType.END)
-            line.matches(General.WORD) -> DataLine(line)
-            else -> InstructionLine(line)
+        fun from(line: String) = with(line) {
+            when {
+                matches(General.Headers.DATA) -> SectionHeaderLine(SectionType.DATA)
+                matches(General.Headers.TEXT) -> SectionHeaderLine(SectionType.TEXT)
+                matches(General.Headers.END) -> SectionHeaderLine(SectionType.END)
+                matches(General.WORD) -> DataLine(line)
+                else -> InstructionLine(InstructionString(line))
+            }
         }
     }
 

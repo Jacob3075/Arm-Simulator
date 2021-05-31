@@ -13,17 +13,19 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 interface AddInstructionParser : InstructionParser {
 
     companion object {
-        fun from(instructionString: InstructionString) = when {
-            instructionString.mainInstruction.matches(REGISTER) -> AddRegisterInstructionParser(instructionString).parse()
-            instructionString.mainInstruction.matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
-                instructionString,
-                String::immediateFromDec
-            ).parse()
-            instructionString.mainInstruction.matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
-                instructionString,
-                String::immediateFromHex
-            ).parse()
-            else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
+        fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
+            when {
+                matches(REGISTER) -> AddRegisterInstructionParser(instructionString).parse()
+                matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
+                    instructionString,
+                    String::immediateFromDec
+                ).parse()
+                matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
+                    instructionString,
+                    String::immediateFromHex
+                ).parse()
+                else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
+            }
         }
     }
 }

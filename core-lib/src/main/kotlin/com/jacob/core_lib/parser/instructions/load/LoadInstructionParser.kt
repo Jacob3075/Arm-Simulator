@@ -9,14 +9,14 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 
 interface LoadInstructionParser : InstructionParser {
     companion object {
-        fun from(instructionString: InstructionString) = when {
-            instructionString.mainInstruction.matches(REGISTER_IMMEDIATE_OFFSET) -> LoadRegisterImmediateOffsetParser(
-                instructionString
-            ).parse()
-            instructionString.mainInstruction.matches(REGISTER_PRE) -> LoadRegisterPreOffsetParser(instructionString).parse()
-            instructionString.mainInstruction.matches(REGISTER_POST) -> LoadRegisterPostOffsetParser(instructionString).parse()
-            instructionString.mainInstruction.matches(VARIABLE) -> LoadVariableInstructionParser(instructionString).parse()
-            else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
+        fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
+            when {
+                matches(REGISTER_IMMEDIATE_OFFSET) -> LoadRegisterImmediateOffsetParser(instructionString).parse()
+                matches(REGISTER_PRE) -> LoadRegisterPreOffsetParser(instructionString).parse()
+                matches(REGISTER_POST) -> LoadRegisterPostOffsetParser(instructionString).parse()
+                matches(VARIABLE) -> LoadVariableInstructionParser(instructionString).parse()
+                else -> throw IllegalArgumentException("Cannot parse string: $this")
+            }
         }
     }
 }

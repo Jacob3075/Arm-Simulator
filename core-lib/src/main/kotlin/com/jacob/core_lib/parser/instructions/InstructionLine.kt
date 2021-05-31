@@ -9,7 +9,6 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Move
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply
 import com.jacob.core_lib.common.regex.InstructionRegex.Store
 import com.jacob.core_lib.common.regex.InstructionRegex.Sub
-import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.Line
 import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
@@ -22,19 +21,19 @@ import com.jacob.core_lib.parser.instructions.multiply.MultiplyInstructionParser
 import com.jacob.core_lib.parser.instructions.store.StoreInstructionParser
 import com.jacob.core_lib.parser.instructions.sub.SubInstructionParser
 
-class InstructionLine(val instruction: String) : Line {
+class InstructionLine(val instruction: InstructionString) : Line {
 
-    override fun parse(): Instruction {
-        return when {
-            instruction.contains(Add.MNEMONIC) -> AddInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Sub.MNEMONIC) -> SubInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Multiply.MNEMONIC) -> MultiplyInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Move.MNEMONIC) -> MoveInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Load.MNEMONIC) -> LoadInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Compare.MNEMONIC) -> CompareInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Store.MNEMONIC) -> StoreInstructionParser.from(InstructionString(instruction))
-            instruction.contains(Branch.MNEMONIC) -> BranchInstructionParser.from(InstructionString(instruction))
-            instruction.contains(LABEL) -> LabelParser.from(instruction)
+    override fun parse() = with(instruction.mnemonic) {
+        when {
+            contains(Add.MNEMONIC) -> AddInstructionParser.from(instruction)
+            contains(Sub.MNEMONIC) -> SubInstructionParser.from(instruction)
+            contains(Multiply.MNEMONIC) -> MultiplyInstructionParser.from(instruction)
+            contains(Move.MNEMONIC) -> MoveInstructionParser.from(instruction)
+            contains(Load.MNEMONIC) -> LoadInstructionParser.from(instruction)
+            contains(Compare.MNEMONIC) -> CompareInstructionParser.from(instruction)
+            contains(Store.MNEMONIC) -> StoreInstructionParser.from(instruction)
+            contains(Branch.MNEMONIC) -> BranchInstructionParser.from(instruction)
+            contains(LABEL) -> LabelParser.from(instruction)
             else -> throw IllegalArgumentException("Cannot parse instruction: $instruction")
         }
     }

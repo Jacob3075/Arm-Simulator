@@ -2,7 +2,6 @@ package com.jacob.core_lib.parser.instructions.sub
 
 import com.jacob.core_lib.common.*
 import com.jacob.core_lib.instructions.conditionals.Always
-import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubImmediate
 import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
@@ -17,7 +16,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = InstructionString("SUB R3, R1, #1")
 
         val instruction =
-            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
+            SubImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
 
         instruction `should be instance of` Always::class
         instruction as Always
@@ -35,7 +34,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = InstructionString("SUB R3, R1, #-1")
 
         val instruction =
-            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
+            SubImmediateInstructionParser(instructionString, String::immediateFromDec).parse()
 
         instruction `should be instance of` Always::class
         instruction as Always
@@ -54,7 +53,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = InstructionString("SUB R3, R1, #0X123")
 
         val instruction =
-            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
+            SubImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
 
         instruction `should be instance of` Always::class
         instruction as Always
@@ -73,7 +72,7 @@ internal class SubImmediateInstructionParserTest {
         val instructionString = InstructionString("SUB R3, R1, #0X1A2FC3")
 
         val instruction =
-            SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
+            SubImmediateInstructionParser(instructionString, String::immediateFromHex).parse()
 
         instruction `should be instance of` Always::class
         instruction as Always
@@ -93,7 +92,6 @@ internal class SubImmediateInstructionParserTest {
         invoking {
             SubImmediateInstructionParser(
                 instructionString,
-                ShiftOperation.None,
                 String::immediateFromHex
             ).parse()
         } `should throw` NumberFormatException::class

@@ -11,11 +11,8 @@ class StoreVariableInstructionParser(private val instructionString: InstructionS
         // STR R2, =STR
         val operands = instructionString.operands
 
-        val sourceRegister = operands.first()
-            .toRegisterAddress(::SourceRegister)
-
-        val variableName = operands.last()
-            .removePrefix("=")
+        val sourceRegister = operands.first().toRegisterAddress(::SourceRegister)
+        val variableName = operands.last().removePrefix("=")
 
         return Store.of(sourceRegister, variableName)
     }

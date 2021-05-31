@@ -5,13 +5,11 @@ import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.Sub
 import com.jacob.core_lib.parser.InstructionString
 
 class SubRegisterInstructionParser internal constructor(
     private val instructionString: InstructionString,
-    private val shiftOperation: ShiftOperation
 ) : SubInstructionParser {
 
     override fun parse(): Instruction {
@@ -22,7 +20,7 @@ class SubRegisterInstructionParser internal constructor(
         val sourceRegister1 = registers[1].let(::SourceRegister)
         val sourceRegister2 = registers.last().let(::SourceRegister)
 
-        return Sub.of(destinationRegister, sourceRegister1, sourceRegister2, shiftOperation)
+        return Sub.of(destinationRegister, sourceRegister1, sourceRegister2, instructionString.shiftOperation)
     }
 
 }

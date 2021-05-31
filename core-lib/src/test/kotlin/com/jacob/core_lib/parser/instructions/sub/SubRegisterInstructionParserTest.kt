@@ -3,7 +3,6 @@ package com.jacob.core_lib.parser.instructions.sub
 import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.instructions.conditionals.Always
-import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubRegister
 import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
@@ -15,7 +14,7 @@ internal class SubRegisterInstructionParserTest {
     internal fun `creates correct sub instruction`() {
         val instructionString = InstructionString("SUB R3, R1, R12")
 
-        val instruction = SubRegisterInstructionParser(instructionString, ShiftOperation.None).parse()
+        val instruction = SubRegisterInstructionParser(instructionString).parse()
 
         instruction `should be instance of` Always::class
         instruction as Always

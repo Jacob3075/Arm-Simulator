@@ -1,16 +1,19 @@
 package com.jacob.core_lib.parser.conditional
 
-import com.jacob.core_lib.common.regex.InstructionRegex.Conditional
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.CarryClear
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.CarrySet
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.Equal
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.NotEqual
 import com.jacob.core_lib.instructions.conditionals.Conditionals
 
 object ConditionalParser {
-    fun parseConditional(conditionalString: String): Conditionals {
-        return when {
-            conditionalString.isEmpty() -> Conditionals.AL
-            conditionalString.matches(Conditional.Equal) -> Conditionals.EQ
-            conditionalString.matches(Conditional.NotEqual) -> Conditionals.NE
-            conditionalString.matches(Conditional.CarrySet) -> Conditionals.CS
-            conditionalString.matches(Conditional.CarryClear) -> Conditionals.CC
+    fun parseConditional(conditionalString: String) = with(conditionalString) {
+        when {
+            isEmpty() -> Conditionals.AL
+            matches(Equal) -> Conditionals.EQ
+            matches(NotEqual) -> Conditionals.NE
+            matches(CarrySet) -> Conditionals.CS
+            matches(CarryClear) -> Conditionals.CC
             else -> throw IllegalArgumentException("Cannot parse conditional code: $conditionalString")
         }
     }
