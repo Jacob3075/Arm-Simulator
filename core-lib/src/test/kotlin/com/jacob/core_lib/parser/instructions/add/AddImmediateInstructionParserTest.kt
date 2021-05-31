@@ -1,11 +1,6 @@
 package com.jacob.core_lib.parser.instructions.add
 
-import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.RA
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.common.immediateFromDec
-import com.jacob.core_lib.common.immediateFromHex
+import com.jacob.core_lib.common.*
 import com.jacob.core_lib.instructions.add.AddImmediate
 import com.jacob.core_lib.instructions.conditionals.Conditional
 import com.jacob.core_lib.instructions.shift.ShiftOperation.None
@@ -26,14 +21,16 @@ internal class AddImmediateInstructionParserTest {
             AddImmediateInstructionParser(instructionString, None, String::immediateFromDec).parse()
 
         instruction `should be instance of` Conditional::class
-
         instruction as Conditional
 
-        instruction.instruction `should be instance of` AddImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` AddImmediate::class
+            this as AddImmediate
 
-        (instruction.instruction as AddImmediate).immediateValue `should be equal to` 2.I
-        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
-        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
+            immediateValue `should be equal to` 2.I
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+        }
     }
 
     @Test
@@ -44,14 +41,16 @@ internal class AddImmediateInstructionParserTest {
             AddImmediateInstructionParser(instructionString, None, String::immediateFromDec).parse()
 
         instruction `should be instance of` Conditional::class
-
         instruction as Conditional
 
-        instruction.instruction `should be instance of` AddImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` AddImmediate::class
+            this as AddImmediate
 
-        (instruction.instruction as AddImmediate).immediateValue `should be equal to` (-2).I
-        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
-        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
+            immediateValue `should be equal to` (-2).I
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+        }
     }
 
     @Test
@@ -62,14 +61,16 @@ internal class AddImmediateInstructionParserTest {
             AddImmediateInstructionParser(instructionString, None, String::immediateFromHex).parse()
 
         instruction `should be instance of` Conditional::class
-
         instruction as Conditional
 
-        instruction.instruction `should be instance of` AddImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` AddImmediate::class
+            this as AddImmediate
 
-        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
-        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
-        (instruction.instruction as AddImmediate).immediateValue `should be equal to` 291.I
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 291.I
+        }
     }
 
     @Test
@@ -80,14 +81,16 @@ internal class AddImmediateInstructionParserTest {
             AddImmediateInstructionParser(instructionString, None, String::immediateFromHex).parse()
 
         instruction `should be instance of` Conditional::class
-
         instruction as Conditional
 
-        instruction.instruction `should be instance of` AddImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` AddImmediate::class
+            this as AddImmediate
 
-        (instruction.instruction as AddImmediate).destinationRegister `should be equal to` DestinationRegister(3.RA)
-        (instruction.instruction as AddImmediate).sourceRegister `should be equal to` SourceRegister(1.RA)
-        (instruction.instruction as AddImmediate).immediateValue `should be equal to` 1716163.I
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 1716163.I
+        }
     }
 
     @Test

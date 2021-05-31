@@ -7,6 +7,7 @@ import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 
+// TODO: TESTS WITH CONDITIONALS
 internal class AddInstructionParserTest {
     @Test
     internal fun `returns add register instruction parser`() {

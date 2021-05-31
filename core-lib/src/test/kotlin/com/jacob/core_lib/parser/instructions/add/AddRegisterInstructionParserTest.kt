@@ -1,10 +1,9 @@
 package com.jacob.core_lib.parser.instructions.add
 
-import com.jacob.core_lib.common.RA
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.DR
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.instructions.add.AddRegister
-import com.jacob.core_lib.instructions.conditionals.Conditional
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.shift.ShiftOperation.None
 import com.jacob.core_lib.parser.InstructionString
 import org.amshove.kluent.`should be equal to`
@@ -17,16 +16,18 @@ internal class AddRegisterInstructionParserTest {
     internal fun `creates correct add instruction`() {
         val instructionString = InstructionString("ADD R3, R1, R2")
 
-        val addRegisterInstruction = AddRegisterInstructionParser(instructionString, None).parse()
+        val instruction = AddRegisterInstructionParser(instructionString, None).parse()
 
-        addRegisterInstruction `should be instance of` Conditional::class
-        addRegisterInstruction as Conditional
-        addRegisterInstruction.instruction `should be instance of` AddRegister::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        (addRegisterInstruction.instruction as AddRegister).destinationRegister `should be equal to` DestinationRegister(
-            3.RA
-        )
-        (addRegisterInstruction.instruction as AddRegister).sourceRegister1 `should be equal to` SourceRegister(1.RA)
-        (addRegisterInstruction.instruction as AddRegister).sourceRegister2 `should be equal to` SourceRegister(2.RA)
+        instruction.instruction.apply {
+            this `should be instance of` AddRegister::class
+            this as AddRegister
+
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister1 `should be equal to` 1.SR
+            sourceRegister2 `should be equal to` 2.SR
+        }
     }
 }
