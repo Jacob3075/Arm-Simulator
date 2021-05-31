@@ -1,13 +1,9 @@
 package com.jacob.core_lib.instructions.add
 
-import com.jacob.core_lib.common.DR
-import com.jacob.core_lib.common.SR
-import com.jacob.core_lib.common.W
+import com.jacob.core_lib.common.*
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.conditionals.Conditionals
-import com.jacob.core_lib.instructions.shift.LeftShift
-import com.jacob.core_lib.instructions.shift.RightShift
 import com.jacob.core_lib.registers.StatusRegister
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Nested
@@ -75,7 +71,7 @@ internal class AddRegisterTest {
                 registerArray.setValueAtRegister(2.DR, 10.W)
             }
 
-            val addInstruction = Add.of(3.DR, 1.SR, 2.SR, LeftShift(2))
+            val addInstruction = Add.of(3.DR, 1.SR, 2.SR, 2.LS)
             addInstruction.execute(executionEnvironment)
 
             executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 55.W
@@ -88,7 +84,7 @@ internal class AddRegisterTest {
                 registerArray.setValueAtRegister(2.DR, (-12).W)
             }
 
-            val addInstruction = Add.of(3.DR, 1.SR, 2.SR, RightShift(2))
+            val addInstruction = Add.of(3.DR, 1.SR, 2.SR, 2.RS)
             addInstruction.execute(executionEnvironment)
 
             executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 1073741831.W

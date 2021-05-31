@@ -1,7 +1,6 @@
 package com.jacob.core_lib.instructions.shift
 
 import org.amshove.kluent.`should be equal to`
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -130,11 +129,9 @@ internal class ShiftOperationTest {
         }
     }
 
-    @Nested
-    @Disabled
+    // TODO
     inner class RotateRightExtendedTest {
         // https://onlinetoolz.net/bitshift
-        @Test
         internal fun `returns correct result when given positive value and carry is 1`() {
             val rightRotateExtended = RightRotateExtendedShift(2)
             val result = rightRotateExtended.shift(93, 1)
@@ -146,7 +143,6 @@ internal class ShiftOperationTest {
             result `should be equal to` -1073741801
         }
 
-        @Test
         internal fun `returns correct result when given positive value and carry is 0`() {
             val rightRotateExtended = RightRotateExtendedShift(2)
             val result = rightRotateExtended.shift(200999999, 0)

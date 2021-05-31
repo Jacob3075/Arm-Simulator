@@ -1,105 +1,115 @@
 package com.jacob.core_lib.instructions.add
 
-import com.jacob.core_lib.common.DR
-import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.SR
-import com.jacob.core_lib.common.W
-import com.jacob.core_lib.core.Core
-import com.jacob.core_lib.core.Program
+import com.jacob.core_lib.common.*
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.getExecutionEnvironment
-import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.instructions.shift.LeftShift
-import com.jacob.core_lib.parser.data.ParsedData
+import com.jacob.core_lib.instructions.conditionals.Conditionals
+import com.jacob.core_lib.registers.StatusRegister
 import org.amshove.kluent.`should be equal to`
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 internal class AddImmediateTest {
     @Test
-    internal fun `executing add instruction with source register and immediate value reads and updates the correct registers`() {
-        val registerArray = RegisterArray()
-        registerArray.setValueAtRegister(0.DR, 10.W)
+    internal fun `add register with positive values in register calculates correct value`() {
+        val executionEnvironment = getExecutionEnvironment().apply {
+            registerArray.setValueAtRegister(1.DR, 10.W)
+        }
 
-        val executionEnvironment = getExecutionEnvironment(registerArray = registerArray)
-
-        val sourceRegister1 = 0.SR
-        val destinationRegister = 2.DR
-        val immediateValue = 20.I
-
-        val addInstruction = Add.of(destinationRegister, sourceRegister1, immediateValue)
-
+        val addInstruction = Add.of(3.DR, 1.SR, 20.I)
         addInstruction.execute(executionEnvironment)
 
-        registerArray.getRegisterAt(destinationRegister).getRegisterValue() `should be equal to` 30.W
+        executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
     }
 
     @Test
-    internal fun `running add instructions using immediate value reads and updates the correct registers`() {
-        val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+    internal fun `add register with one positive and one negative value in register calculates correct value`() {
+        val executionEnvironment = getExecutionEnvironment().apply {
+            registerArray.setValueAtRegister(1.DR, 10.W)
+        }
 
-        val registerAddress1 = 1.SR
-        val registerAddress2 = 2.SR
-        val registerAddress3 = 3.DR
-        val registerAddress4 = 4.DR
+        val addInstruction = Add.of(3.DR, 1.SR, (-15).I)
+        addInstruction.execute(executionEnvironment)
 
-        registerArray.setValueAtRegister(registerAddress1, 10.W)
-        registerArray.setValueAtRegister(registerAddress2, 20.W)
-
-        val add1 = Add.of(registerAddress3, registerAddress1, 20.I)
-        val add2 = Add.of(registerAddress4, registerAddress2, 30.I)
-
-        val instructions: List<Instruction> = listOf(
-            add1,
-            add2,
-        )
-        val program = Program(instructions, variables)
-
-        val core = Core(registerArray = registerArray, program = program)
-
-        core.runProgram()
-
-        registerArray.getRegisterAt(registerAddress3).getRegisterValue() `should be equal to` 30.W
-        registerArray.getRegisterAt(registerAddress4).getRegisterValue() `should be equal to` 50.W
+        executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` (-5).W
     }
 
     @Test
-    internal fun `running add instructions using immediate value with left shift reads and updates the correct registers`() {
-        val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+    internal fun `add register with one negative and one positive value in register calculates correct value`() {
+        val executionEnvironment = getExecutionEnvironment().apply {
+            registerArray.setValueAtRegister(1.DR, (-15).W)
+        }
 
-        val registerAddress1 = 1.SR
-        val registerAddress2 = 2.SR
-        val registerAddress3 = 3.DR
-        val registerAddress4 = 4.DR
+        val addInstruction = Add.of(3.DR, 1.SR, 10.I)
+        addInstruction.execute(executionEnvironment)
 
-        registerArray.setValueAtRegister(registerAddress1, 10.W)
-        registerArray.setValueAtRegister(registerAddress2, 20.W)
+        executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` (-5).W
+    }
 
-        val add1 = Add.of(
-            destinationRegister = registerAddress3,
-            sourceRegister1 = registerAddress1,
-            immediateValue = 10.I,
-            shiftOperation = LeftShift(1)
-        )
-        val add2 = Add.of(
-            destinationRegister = registerAddress4,
-            sourceRegister1 = registerAddress2,
-            immediateValue = 10.I,
-            shiftOperation = LeftShift(3)
-        )
+    @Test
+    internal fun `add register with negative values in register calculates correct value`() {
+        val executionEnvironment = getExecutionEnvironment().apply {
+            registerArray.setValueAtRegister(1.DR, (-15).W)
+        }
 
-        val instructions: List<Instruction> = listOf(
-            add1,
-            add2,
-        )
-        val program = Program(instructions, variables)
+        val addInstruction = Add.of(3.DR, 1.SR, (-10).I)
+        addInstruction.execute(executionEnvironment)
 
-        val core = Core(registerArray = registerArray, program = program)
+        executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` (-25).W
+    }
 
-        core.runProgram()
+    @Nested
+    inner class WithShiftOperations {
+        @Test
+        internal fun `applying left shift to register with positive value`() {
+            val executionEnvironment = getExecutionEnvironment().apply {
+                registerArray.setValueAtRegister(1.DR, 15.W)
+            }
 
-        registerArray.getRegisterAt(registerAddress3).getRegisterValue() `should be equal to` 30.W
-        registerArray.getRegisterAt(registerAddress4).getRegisterValue() `should be equal to` 100.W
+            val addInstruction = Add.of(3.DR, 1.SR, 10.I, 2.LS)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 55.W
+        }
+
+        @Test
+        internal fun `applying right shift to register with negative value`() {
+            val executionEnvironment = getExecutionEnvironment().apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, (-12).I, 2.RS)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 1073741831.W
+        }
+    }
+
+    @Nested
+    inner class WithConditionals {
+        @Test
+        internal fun `instruction with equals conditional and its satisfied`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(zero = true))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = Conditionals.EQ)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
+        }
+
+        @Test
+        internal fun `instruction with equals conditional and its not satisfied`() {
+            val executionEnvironment = getExecutionEnvironment().apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = Conditionals.EQ)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 0.W
+        }
     }
 }
