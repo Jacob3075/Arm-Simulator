@@ -131,7 +131,7 @@ internal class ParserTest {
         Add.of(5.DR, 5.SR, 5.SR, 1.LS) `should be in` instructions
         Add.of(6.DR, 6.SR, 6.SR, 4.RS) `should be in` instructions
         Sub.of(7.DR, 7.SR, 7.SR, 1.LS) `should be in` instructions
-        Sub.of(8.DR, 8.SR, 8.SR, 4.RS) `should be in` instructions.filterIsInstance<Sub>()
+        Sub.of(8.DR, 8.SR, 8.SR, 4.RS) `should be in` instructions
 
         Store.of(5.SR, 1.DR) `should be in` instructions
         Store.of(6.SR, 2.DR) `should be in` instructions

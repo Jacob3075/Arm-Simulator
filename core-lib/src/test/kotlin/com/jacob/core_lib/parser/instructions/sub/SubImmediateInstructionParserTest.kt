@@ -1,11 +1,7 @@
 package com.jacob.core_lib.parser.instructions.sub
 
-import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.addresses.DestinationRegister
-import com.jacob.core_lib.common.addresses.RegisterAddresses
-import com.jacob.core_lib.common.addresses.SourceRegister
-import com.jacob.core_lib.common.immediateFromDec
-import com.jacob.core_lib.common.immediateFromHex
+import com.jacob.core_lib.common.*
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.instructions.sub.SubImmediate
 import com.jacob.core_lib.parser.InstructionString
@@ -16,69 +12,79 @@ import org.amshove.kluent.invoking
 import org.junit.jupiter.api.Test
 
 internal class SubImmediateInstructionParserTest {
-
     @Test
     internal fun `creates correct sub instruction for positive decimal immediate values`() {
         val instructionString = InstructionString("SUB R3, R1, #1")
 
-        val subImmediateInstruction =
+        val instruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
 
-        subImmediateInstruction `should be instance of` SubImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        subImmediateInstruction as SubImmediate
-
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
-        subImmediateInstruction.immediateValue `should be equal to` 1.I
+        instruction.instruction.apply {
+            this as SubImmediate
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 1.I
+        }
     }
 
     @Test
     internal fun `creates correct sub instruction for negative decimal immediate values`() {
         val instructionString = InstructionString("SUB R3, R1, #-1")
 
-        val subImmediateInstruction =
+        val instruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromDec).parse()
 
-        subImmediateInstruction `should be instance of` SubImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        subImmediateInstruction as SubImmediate
-
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
-        subImmediateInstruction.immediateValue `should be equal to` (-1).I
+        instruction.instruction.apply {
+            this `should be instance of` SubImmediate::class
+            this as SubImmediate
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` (-1).I
+        }
     }
 
     @Test
     internal fun `creates correct sub instruction for hexadecimal immediate values without letters`() {
         val instructionString = InstructionString("SUB R3, R1, #0X123")
 
-        val subImmediateInstruction =
+        val instruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
 
-        subImmediateInstruction `should be instance of` SubImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        subImmediateInstruction as SubImmediate
-
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
-        subImmediateInstruction.immediateValue `should be equal to` 291.I
+        instruction.instruction.apply {
+            this `should be instance of` SubImmediate::class
+            this as SubImmediate
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 291.I
+        }
     }
 
     @Test
     internal fun `creates correct sub instruction for hexadecimal immediate values with letters`() {
         val instructionString = InstructionString("SUB R3, R1, #0X1A2FC3")
 
-        val subImmediateInstruction =
+        val instruction =
             SubImmediateInstructionParser(instructionString, ShiftOperation.None, String::immediateFromHex).parse()
 
-        subImmediateInstruction `should be instance of` SubImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        subImmediateInstruction as SubImmediate
-
-        subImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(RegisterAddresses.REGISTER_3)
-        subImmediateInstruction.sourceRegister `should be equal to` SourceRegister(RegisterAddresses.REGISTER_1)
-        subImmediateInstruction.immediateValue `should be equal to` 1716163.I
+        instruction.instruction.apply {
+            this `should be instance of` SubImmediate::class
+            this as SubImmediate
+            destinationRegister `should be equal to` 3.DR
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 1716163.I
+        }
     }
 
     @Test
