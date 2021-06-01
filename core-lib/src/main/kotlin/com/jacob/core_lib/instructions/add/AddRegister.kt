@@ -13,7 +13,6 @@ data class AddRegister internal constructor(
     internal val sourceRegister2: SourceRegister,
     internal val shiftOperation: ShiftOperation,
 ) : Add {
-
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val registerValue1 =
             executionEnvironment.registerArray.getRegisterAt(sourceRegister1).getRegisterValue()

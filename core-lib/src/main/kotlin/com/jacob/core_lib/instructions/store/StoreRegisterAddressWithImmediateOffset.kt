@@ -6,7 +6,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.word.ImmediateValue
 
-data class StoreRegisterAddressWithImmediateOffset(
+data class StoreRegisterAddressWithImmediateOffset internal constructor(
     internal val sourceRegister: SourceRegister,
     internal val destinationRegister: DestinationRegister,
     internal val offset: ImmediateValue

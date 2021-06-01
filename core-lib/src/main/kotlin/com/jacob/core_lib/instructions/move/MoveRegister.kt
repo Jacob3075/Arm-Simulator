@@ -7,12 +7,11 @@ import com.jacob.core_lib.common.toInt
 import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 
-data class MoveRegister(
+data class MoveRegister internal constructor(
     internal val destinationRegister: DestinationRegister,
     internal val sourceRegister: SourceRegister,
     internal val shiftOperation: ShiftOperation
-) :
-    Move {
+) : Move {
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val sourceRegisterValue = executionEnvironment
             .registerArray

@@ -14,7 +14,6 @@ data class AddImmediate internal constructor(
     internal val immediateValue: ImmediateValue,
     internal val shiftOperation: ShiftOperation,
 ) : Add {
-
     override fun execute(executionEnvironment: ExecutionEnvironment) {
         val registerValue =
             executionEnvironment.registerArray.getRegisterAt(sourceRegister).getRegisterValue()

@@ -6,7 +6,7 @@ import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.word.ImmediateValue
 
-class MultiplyImmediate(
+class MultiplyImmediate internal constructor(
     internal val destinationRegister: DestinationRegister,
     internal val sourceRegister: SourceRegister,
     internal val immediateValue: ImmediateValue

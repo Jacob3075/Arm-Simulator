@@ -13,12 +13,18 @@ interface Compare : Instruction {
             sourceRegister1: SourceRegister,
             sourceRegister2: SourceRegister,
             conditional: Conditionals = Conditionals.AL
-        ) = instructionWithConditional(CompareRegister(sourceRegister1, sourceRegister2), conditional)
+        ) = instructionWithConditional(
+            CompareRegister(sourceRegister1, sourceRegister2),
+            conditional
+        )
 
         fun from(
             sourceRegister: SourceRegister,
             immediateValue: ImmediateValue,
             conditional: Conditionals = Conditionals.AL
-        ) = instructionWithConditional(CompareImmediate(sourceRegister, immediateValue), conditional)
+        ) = instructionWithConditional(
+            CompareImmediate(sourceRegister, immediateValue),
+            conditional
+        )
     }
 }

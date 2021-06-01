@@ -3,7 +3,7 @@ package com.jacob.core_lib.instructions.store
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
-data class StoreVariableAddress(
+data class StoreVariableAddress internal constructor(
     internal val sourceRegister: SourceRegister,
     internal val variableName: String
 ) : Store {
