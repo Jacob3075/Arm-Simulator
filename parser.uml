@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/jacob/Projects/Kotlin/Arm Simulator/core-lib/src/main/kotlin/com/jacob/core_lib/parser</OriginalElement>
+  <nodes>
+    <node x="2061.810810810811" y="84.0">com.jacob.core_lib.parser.instructions.multiply.MultiplyInstructionParser</node>
+    <node x="2252.75" y="168.0">com.jacob.core_lib.parser.instructions.multiply.MultiplyImmediateInstructionParser</node>
+    <node x="275.75" y="168.0">com.jacob.core_lib.parser.instructions.sub.SubImmediateInstructionParser</node>
+    <node x="5424.5" y="84.0">com.jacob.core_lib.parser.instructions.move.MoveInstructionParser</node>
+    <node x="2698.75" y="168.0">com.jacob.core_lib.parser.instructions.compare.CompareRegisterInstructionParser</node>
+    <node x="3416.0" y="247.0">com.jacob.core_lib.parser.conditional.ConditionalParser</node>
+    <node x="1641.0" y="331.0">com.jacob.core_lib.parser.instructions.shift.operation.RightRotateShiftOperationParser</node>
+    <node x="4394.75" y="168.0">com.jacob.core_lib.parser.instructions.store.StoreRegisterPreOffsetParser</node>
+    <node x="2239.0" y="331.0">com.jacob.core_lib.parser.SectionHeaderLine</node>
+    <node x="4235.0" y="84.0">com.jacob.core_lib.parser.instructions.store.StoreInstructionParser</node>
+    <node x="4202.0" y="247.0">com.jacob.core_lib.parser.SectionType</node>
+    <node x="4420.0" y="247.0">com.jacob.core_lib.parser.ParserKt</node>
+    <node x="1140.0" y="331.0">com.jacob.core_lib.parser.instructions.shift.operation.RightRotateExtendedShiftOperationParser</node>
+    <node x="1817.7499999999998" y="168.0">com.jacob.core_lib.parser.instructions.multiply.MultiplyRegisterInstructionParser</node>
+    <node x="3700.0" y="247.0">com.jacob.core_lib.parser.data.ParsedData</node>
+    <node x="6589.25" y="84.0">com.jacob.core_lib.parser.instructions.load.LoadInstructionParser</node>
+    <node x="3110.0" y="247.0">com.jacob.core_lib.parser.SectionHeader</node>
+    <node x="1580.047297297297" y="0.0">com.jacob.core_lib.parser.instructions.InstructionParser</node>
+    <node x="6729.75" y="168.0">com.jacob.core_lib.parser.instructions.load.LoadRegisterImmediateOffsetParser</node>
+    <node x="4605.0" y="247.0">com.jacob.core_lib.parser.Parser</node>
+    <node x="336.0" y="331.0">com.jacob.core_lib.parser.instructions.shift.operation.ArithmeticRightShiftOperationParser</node>
+    <node x="1437.7499999999998" y="168.0">com.jacob.core_lib.parser.instructions.add.AddRegisterInstructionParser</node>
+    <node x="4003.75" y="168.0">com.jacob.core_lib.parser.instructions.store.StoreRegisterPostOffsetParser</node>
+    <node x="1046.75" y="168.0">com.jacob.core_lib.parser.instructions.add.AddImmediateInstructionParser</node>
+    <node x="2498.0" y="331.0">com.jacob.core_lib.parser.instructions.InstructionLine</node>
+    <node x="518.0" y="84.0">com.jacob.core_lib.parser.instructions.sub.SubInstructionParser</node>
+    <node x="4774.75" y="168.0">com.jacob.core_lib.parser.instructions.store.StoreVariableInstructionParser</node>
+    <node x="820.5" y="247.0">com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser</node>
+    <node x="0.0" y="84.0">com.jacob.core_lib.parser.instructions.branch.BranchInstructionParser</node>
+    <node x="7164.75" y="168.0">com.jacob.core_lib.parser.instructions.load.LoadRegisterPostOffsetParser</node>
+    <node x="2942.810810810811" y="84.0">com.jacob.core_lib.parser.instructions.compare.CompareInstructionParser</node>
+    <node x="3557.75" y="168.0">com.jacob.core_lib.parser.instructions.store.StoreRegisterImmediateOffsetParser</node>
+    <node x="793.0" y="331.0">com.jacob.core_lib.parser.instructions.shift.operation.RightShiftOperationParser</node>
+    <node x="5578.75" y="168.0">com.jacob.core_lib.parser.instructions.move.MoveRegisterInstructionParser</node>
+    <node x="3122.75" y="168.0">com.jacob.core_lib.parser.instructions.compare.CompareImmediateInstructionParser</node>
+    <node x="0.0" y="331.0">com.jacob.core_lib.parser.instructions.shift.operation.LeftShiftOperationParser</node>
+    <node x="3973.0" y="247.0">com.jacob.core_lib.parser.data.ParsedDataKt</node>
+    <node x="6338.75" y="168.0">com.jacob.core_lib.parser.instructions.load.LoadVariableInstructionParser</node>
+    <node x="5176.75" y="168.0">com.jacob.core_lib.parser.instructions.move.MoveImmediateInstructionParser</node>
+    <node x="666.75" y="168.0">com.jacob.core_lib.parser.instructions.sub.SubRegisterInstructionParser</node>
+    <node x="325.0" y="84.0">com.jacob.core_lib.parser.instructions.label.LabelParser</node>
+    <node x="2079.0" y="331.0">com.jacob.core_lib.parser.data.DataLine</node>
+    <node x="2760.0" y="247.0">com.jacob.core_lib.parser.InstructionString</node>
+    <node x="5969.75" y="168.0">com.jacob.core_lib.parser.instructions.load.LoadRegisterPreOffsetParser</node>
+    <node x="2310.5" y="247.0">com.jacob.core_lib.parser.Line</node>
+    <node x="1289.0" y="84.0">com.jacob.core_lib.parser.instructions.add.AddInstructionParser</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.jacob.core_lib.parser.instructions.add.AddRegisterInstructionParser" target="com.jacob.core_lib.parser.instructions.add.AddInstructionParser" relationship="REALIZATION">
+      <point x="-172.5" y="-17.0" />
+      <point x="20.249999999999773" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.store.StoreVariableInstructionParser" target="com.jacob.core_lib.parser.instructions.store.StoreInstructionParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="4965.75" y="101.0" />
+      <point x="147.0" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.move.MoveRegisterInstructionParser" target="com.jacob.core_lib.parser.instructions.move.MoveInstructionParser" relationship="REALIZATION">
+      <point x="-178.0" y="-17.0" />
+      <point x="20.25" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.shift.operation.RightRotateShiftOperationParser" target="com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="1837.5" y="264.0" />
+      <point x="136.0" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.sub.SubImmediateInstructionParser" target="com.jacob.core_lib.parser.instructions.sub.SubInstructionParser" relationship="REALIZATION">
+      <point x="178.0" y="-17.0" />
+      <point x="-14.75" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.store.StoreRegisterPostOffsetParser" target="com.jacob.core_lib.parser.instructions.store.StoreInstructionParser" relationship="REALIZATION">
+      <point x="177.75" y="-17.0" />
+      <point x="-15.0" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.sub.SubRegisterInstructionParser" target="com.jacob.core_lib.parser.instructions.sub.SubInstructionParser" relationship="REALIZATION">
+      <point x="-172.5" y="-17.0" />
+      <point x="20.25" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.load.LoadRegisterPostOffsetParser" target="com.jacob.core_lib.parser.instructions.load.LoadInstructionParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="7344.75" y="101.0" />
+      <point x="141.5" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.label.LabelParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="411.5" y="2.0" />
+      <point x="-119.5" y="-15.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.multiply.MultiplyInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="-163.5" y="0.0" />
+      <point x="1714.547" y="101.0" />
+      <point x="14.999702702702962" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.move.MoveInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="5566.0" y="17.0" />
+      <point x="119.5" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.move.MoveImmediateInstructionParser" target="com.jacob.core_lib.parser.instructions.move.MoveInstructionParser" relationship="REALIZATION">
+      <point x="183.5" y="-17.0" />
+      <point x="-14.75" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.add.AddInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="136.0" y="0.0" />
+      <point x="1699.547" y="101.0" />
+      <point x="-2.9729729703831254E-4" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.branch.BranchInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="152.5" y="-17.5" />
+      <point x="1699.547297297297" y="-17.5" />
+      <point x="0.0" y="-17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.shift.operation.RightRotateExtendedShiftOperationParser" target="com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="1380.5" y="279.0" />
+      <point x="136.0" y="15.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.load.LoadRegisterImmediateOffsetParser" target="com.jacob.core_lib.parser.instructions.load.LoadInstructionParser" relationship="REALIZATION">
+      <point x="-191.5" y="-17.0" />
+      <point x="15.0" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.data.DataLine" target="com.jacob.core_lib.parser.Line" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="2149.0" y="264.0" />
+      <point x="-48.0" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.shift.operation.ArithmeticRightShiftOperationParser" target="com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="554.5" y="279.0" />
+      <point x="-136.0" y="15.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.compare.CompareImmediateInstructionParser" target="com.jacob.core_lib.parser.instructions.compare.CompareInstructionParser" relationship="REALIZATION">
+      <point x="-200.0" y="-17.0" />
+      <point x="29.439189189189165" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.compare.CompareInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="3100.810810810811" y="57.0" />
+      <point x="1729.547" y="57.0" />
+      <point x="29.99970270270296" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.shift.operation.LeftShiftOperationParser" target="com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="158.0" y="264.0" />
+      <point x="-136.0" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.store.StoreInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="4382.0" y="32.0" />
+      <point x="119.5" y="15.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.load.LoadInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="6730.75" y="2.0" />
+      <point x="119.5" y="-15.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.multiply.MultiplyImmediateInstructionParser" target="com.jacob.core_lib.parser.instructions.multiply.MultiplyInstructionParser" relationship="REALIZATION">
+      <point x="-205.5" y="-17.0" />
+      <point x="34.939189189189165" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.compare.CompareRegisterInstructionParser" target="com.jacob.core_lib.parser.instructions.compare.CompareInstructionParser" relationship="REALIZATION">
+      <point x="185.06100000000015" y="-17.0" />
+      <point x="-14.999810810810686" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.shift.operation.RightShiftOperationParser" target="com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="0.0" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.SectionHeaderLine" target="com.jacob.core_lib.parser.Line" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="0.0" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.sub.SubInstructionParser" target="com.jacob.core_lib.parser.instructions.InstructionParser" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="654.0" y="32.0" />
+      <point x="-119.5" y="15.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.load.LoadRegisterPreOffsetParser" target="com.jacob.core_lib.parser.instructions.load.LoadInstructionParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="6144.25" y="101.0" />
+      <point x="-141.5" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.store.StoreRegisterImmediateOffsetParser" target="com.jacob.core_lib.parser.instructions.store.StoreInstructionParser" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="3770.75" y="101.0" />
+      <point x="-147.0" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.InstructionLine" target="com.jacob.core_lib.parser.Line" relationship="REALIZATION">
+      <point x="0.0" y="-17.0" />
+      <point x="2606.5" y="264.0" />
+      <point x="48.0" y="0.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.multiply.MultiplyRegisterInstructionParser" target="com.jacob.core_lib.parser.instructions.multiply.MultiplyInstructionParser" relationship="REALIZATION">
+      <point x="185.06100000000038" y="-17.0" />
+      <point x="-14.999810810810686" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.store.StoreRegisterPreOffsetParser" target="com.jacob.core_lib.parser.instructions.store.StoreInstructionParser" relationship="REALIZATION">
+      <point x="-172.5" y="-17.0" />
+      <point x="20.25" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.add.AddImmediateInstructionParser" target="com.jacob.core_lib.parser.instructions.add.AddInstructionParser" relationship="REALIZATION">
+      <point x="178.0" y="-17.0" />
+      <point x="-14.75" y="17.0" />
+    </edge>
+    <edge source="com.jacob.core_lib.parser.instructions.load.LoadVariableInstructionParser" target="com.jacob.core_lib.parser.instructions.load.LoadInstructionParser" relationship="REALIZATION">
+      <point x="178.0" y="-17.0" />
+      <point x="-28.5" y="17.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6099734923790592" showDependencies="false" x="1148.3622911683265" y="394.21905994297185" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,8 +1,8 @@
 package com.jacob.core_lib.parser
 
+import com.jacob.core_lib.core.ParsedData
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.DataLine
-import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.core_lib.parser.instructions.InstructionLine
 import java.io.File
 import kotlin.reflect.KClass

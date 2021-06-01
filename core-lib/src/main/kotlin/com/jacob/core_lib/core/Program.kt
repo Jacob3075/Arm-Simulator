@@ -1,8 +1,6 @@
 package com.jacob.core_lib.core
 
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.parser.data.toVariables
 import com.jacob.core_lib.registers.ProgramCounter
 import com.jacob.core_lib.instructions.Label as InstructionsLabel
 

@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser.data
 
+import com.jacob.core_lib.core.ParsedData
 import com.jacob.core_lib.parser.Line
 
 class DataLine(private val line: String) : Line {

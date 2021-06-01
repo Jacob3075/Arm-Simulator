@@ -1,6 +1,8 @@
 package com.jacob.core_lib.parser
 
 import com.jacob.core_lib.common.*
+import com.jacob.core_lib.core.ParsedData
+import com.jacob.core_lib.core.toVariables
 import com.jacob.core_lib.getFile
 import com.jacob.core_lib.instructions.Branch
 import com.jacob.core_lib.instructions.Label
@@ -10,8 +12,6 @@ import com.jacob.core_lib.instructions.load.Load
 import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.instructions.store.Store
 import com.jacob.core_lib.instructions.sub.Sub
-import com.jacob.core_lib.parser.data.ParsedData
-import com.jacob.core_lib.parser.data.toVariables
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be in`
 import org.junit.jupiter.api.Test

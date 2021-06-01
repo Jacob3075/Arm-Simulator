@@ -15,15 +15,9 @@ interface SubInstructionParser : InstructionParser {
 
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
-                matches(REGISTER) -> SubRegisterInstructionParser(instructionString).parse()
-                matches(IMMEDIATE_DEC) -> SubImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromDec
-                ).parse()
-                matches(IMMEDIATE_HEX) -> SubImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromHex
-                ).parse()
+                matches(REGISTER) -> SubRegisterParser(instructionString).parse()
+                matches(IMMEDIATE_DEC) -> SubImmediateParser(instructionString, String::immediateFromDec).parse()
+                matches(IMMEDIATE_HEX) -> SubImmediateParser(instructionString, String::immediateFromHex).parse()
                 else -> throw IllegalArgumentException("Cannot parse string: $this")
             }
         }

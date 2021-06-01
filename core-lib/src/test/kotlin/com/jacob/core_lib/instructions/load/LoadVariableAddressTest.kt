@@ -6,7 +6,6 @@ import com.jacob.core_lib.common.W
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.getExecutionEnvironment
 import com.jacob.core_lib.instructions.Instruction
-import com.jacob.core_lib.parser.data.ParsedData
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 

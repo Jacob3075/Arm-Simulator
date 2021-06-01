@@ -15,15 +15,9 @@ interface AddInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
-                matches(REGISTER) -> AddRegisterInstructionParser(instructionString).parse()
-                matches(IMMEDIATE_DEC) -> AddImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromDec
-                ).parse()
-                matches(IMMEDIATE_HEX) -> AddImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromHex
-                ).parse()
+                matches(REGISTER) -> AddRegisterParser(instructionString).parse()
+                matches(IMMEDIATE_DEC) -> AddImmediateParser(instructionString, String::immediateFromDec).parse()
+                matches(IMMEDIATE_HEX) -> AddImmediateParser(instructionString, String::immediateFromHex).parse()
                 else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
             }
         }

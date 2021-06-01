@@ -10,7 +10,6 @@ import com.jacob.core_lib.instructions.load.Load
 import com.jacob.core_lib.instructions.move.Move
 import com.jacob.core_lib.instructions.store.Store
 import com.jacob.core_lib.instructions.sub.Sub
-import com.jacob.core_lib.parser.data.ParsedData
 
 val test1Data = Pair<List<Instruction>, List<ParsedData>>(
     listOf(

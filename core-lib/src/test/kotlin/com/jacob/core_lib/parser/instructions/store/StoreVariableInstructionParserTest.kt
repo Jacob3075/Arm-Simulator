@@ -12,7 +12,7 @@ internal class StoreVariableInstructionParserTest {
     internal fun `creates correct instruction for single letter variable names`() {
         val instructionString = InstructionString("STR R1, =A")
 
-        val instruction = StoreVariableInstructionParser(instructionString).parse()
+        val instruction = StoreVariableParser(instructionString).parse()
 
         instruction `should be instance of` StoreVariableAddress::class
 
@@ -26,7 +26,7 @@ internal class StoreVariableInstructionParserTest {
     internal fun `creates correct instruction for multiple letter variable names`() {
         val instructionString = InstructionString("STR R1, =ABC")
 
-        val instruction = StoreVariableInstructionParser(instructionString).parse()
+        val instruction = StoreVariableParser(instructionString).parse()
 
         instruction `should be instance of` StoreVariableAddress::class
 

@@ -9,7 +9,7 @@ internal class ShiftOperationParserTest {
         val operationString = "LSL #4"
         val operationParser = ShiftOperationParser.from(operationString)
 
-        operationParser `should be instance of` LeftShiftOperationParser::class
+        operationParser `should be instance of` LeftShiftParser::class
     }
 
     @Test
@@ -17,6 +17,6 @@ internal class ShiftOperationParserTest {
         val operationString = "LSR #4"
         val operationParser = ShiftOperationParser.from(operationString)
 
-        operationParser `should be instance of` RightShiftOperationParser::class
+        operationParser `should be instance of` RightShiftParser::class
     }
 }

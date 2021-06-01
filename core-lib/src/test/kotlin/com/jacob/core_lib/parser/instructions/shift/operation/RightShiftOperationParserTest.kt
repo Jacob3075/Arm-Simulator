@@ -7,7 +7,7 @@ internal class RightShiftOperationParserTest {
     @Test
     internal fun `creates correct shift operation 1`() {
         val operationString = "LSR #4"
-        val rightShift = RightShiftOperationParser(operationString).parse()
+        val rightShift = RightShiftParser(operationString).parse()
 
         rightShift.shiftAmount `should be equal to` 4
     }
@@ -15,7 +15,7 @@ internal class RightShiftOperationParserTest {
     @Test
     internal fun `creates correct shift operation 2`() {
         val operationString = "LSR #14"
-        val rightShift = RightShiftOperationParser(operationString).parse()
+        val rightShift = RightShiftParser(operationString).parse()
 
         rightShift.shiftAmount `should be equal to` 14
     }

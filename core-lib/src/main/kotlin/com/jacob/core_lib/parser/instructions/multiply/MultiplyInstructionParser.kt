@@ -13,15 +13,9 @@ interface MultiplyInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
-                matches(REGISTER) -> MultiplyRegisterInstructionParser(instructionString).parse()
-                matches(IMMEDIATE_DEC) -> MultiplyImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromDec
-                ).parse()
-                matches(IMMEDIATE_HEX) -> MultiplyImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromHex
-                ).parse()
+                matches(REGISTER) -> MultiplyRegisterParser(instructionString).parse()
+                matches(IMMEDIATE_DEC) -> MultiplyImmediateParser(instructionString, String::immediateFromDec).parse()
+                matches(IMMEDIATE_HEX) -> MultiplyImmediateParser(instructionString, String::immediateFromHex).parse()
                 else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
             }
         }

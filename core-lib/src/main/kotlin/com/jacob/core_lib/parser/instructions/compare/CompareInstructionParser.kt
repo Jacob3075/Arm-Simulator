@@ -12,15 +12,9 @@ interface CompareInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
-                matches(REGISTER) -> CompareRegisterInstructionParser(instructionString).parse()
-                matches(IMMEDIATE_DEC) -> CompareImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromDec
-                ).parse()
-                matches(IMMEDIATE_HEX) -> CompareImmediateInstructionParser(
-                    instructionString,
-                    String::immediateFromHex
-                ).parse()
+                matches(REGISTER) -> CompareRegisterParser(instructionString).parse()
+                matches(IMMEDIATE_DEC) -> CompareImmediateParser(instructionString, String::immediateFromDec).parse()
+                matches(IMMEDIATE_HEX) -> CompareImmediateParser(instructionString, String::immediateFromHex).parse()
                 else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
             }
         }
