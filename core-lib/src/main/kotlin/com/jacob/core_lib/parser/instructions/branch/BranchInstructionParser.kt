@@ -2,8 +2,8 @@ package com.jacob.core_lib.parser.instructions.branch
 
 import com.jacob.core_lib.common.regex.InstructionRegex.Branch.LABEL
 import com.jacob.core_lib.instructions.Branch
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 class BranchInstructionParser(private val instructionString: InstructionString) : InstructionParser {
 

@@ -1,6 +1,6 @@
 package com.jacob.core_lib.parser.instructions.branch
 
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 
@@ -20,5 +20,4 @@ internal class BranchInstructionParserTest {
 
         branch.labelName `should be equal to` "ABC_A-D1_A"
     }
-
 }

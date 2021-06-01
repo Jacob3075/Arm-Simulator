@@ -3,7 +3,7 @@ package com.jacob.core_lib.parser.instructions.sub
 import com.jacob.core_lib.common.*
 import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.sub.SubImmediate
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`

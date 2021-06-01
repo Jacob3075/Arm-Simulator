@@ -4,8 +4,8 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Load.REGISTER_IMMEDIATE_
 import com.jacob.core_lib.common.regex.InstructionRegex.Load.REGISTER_POST
 import com.jacob.core_lib.common.regex.InstructionRegex.Load.REGISTER_PRE
 import com.jacob.core_lib.common.regex.InstructionRegex.Load.VARIABLE
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface LoadInstructionParser : InstructionParser {
     companion object {

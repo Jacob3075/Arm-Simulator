@@ -3,7 +3,7 @@ package com.jacob.core_lib.parser.instructions.load
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.load.LoadRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.instructions.load.LoadVariableAddress
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
 

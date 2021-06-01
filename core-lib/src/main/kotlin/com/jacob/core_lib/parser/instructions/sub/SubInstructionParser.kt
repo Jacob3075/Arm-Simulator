@@ -7,8 +7,8 @@ import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.common.regex.InstructionRegex.Sub.IMMEDIATE_DEC
 import com.jacob.core_lib.common.regex.InstructionRegex.Sub.IMMEDIATE_HEX
 import com.jacob.core_lib.common.regex.InstructionRegex.Sub.REGISTER
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface SubInstructionParser : InstructionParser {
     companion object {

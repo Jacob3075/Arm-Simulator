@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.store.Store
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 class StoreVariableParser(private val instructionString: InstructionString) : StoreInstructionParser {
     override fun parse(): Instruction {

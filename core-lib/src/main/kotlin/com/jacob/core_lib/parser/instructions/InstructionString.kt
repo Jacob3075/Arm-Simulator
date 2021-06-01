@@ -1,4 +1,4 @@
-package com.jacob.core_lib.parser
+package com.jacob.core_lib.parser.instructions
 
 import com.jacob.core_lib.common.regex.InstructionRegex
 import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.TYPES

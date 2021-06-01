@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.instructions.comapare.CompareRegister
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 class CompareRegisterParser(private val instruction: InstructionString) : CompareInstructionParser {
     override fun parse(): CompareRegister {

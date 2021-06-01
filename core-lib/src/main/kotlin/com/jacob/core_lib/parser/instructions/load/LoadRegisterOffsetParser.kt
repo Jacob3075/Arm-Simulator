@@ -9,7 +9,7 @@ import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.load.Load
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 class LoadRegisterOffsetParser(private val instructionString: InstructionString) : LoadInstructionParser {
     override fun parse(): Load {

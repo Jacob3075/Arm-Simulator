@@ -3,7 +3,7 @@ package com.jacob.core_lib.parser.instructions.move
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.move.MoveImmediate
 import com.jacob.core_lib.instructions.move.MoveRegister
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`
 import org.amshove.kluent.invoking

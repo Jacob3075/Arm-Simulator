@@ -5,8 +5,8 @@ import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.common.regex.InstructionRegex.Compare.IMMEDIATE_DEC
 import com.jacob.core_lib.common.regex.InstructionRegex.Compare.IMMEDIATE_HEX
 import com.jacob.core_lib.common.regex.InstructionRegex.Compare.REGISTER
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface CompareInstructionParser : InstructionParser {
     companion object {

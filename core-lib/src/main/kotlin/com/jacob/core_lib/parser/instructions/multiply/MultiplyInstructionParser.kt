@@ -5,8 +5,8 @@ import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply.IMMEDIATE_DEC
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply.IMMEDIATE_HEX
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply.REGISTER
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface MultiplyInstructionParser : InstructionParser {
 

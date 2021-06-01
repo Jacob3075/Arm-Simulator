@@ -4,8 +4,8 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Store.IMMEDIATE_OFFSET
 import com.jacob.core_lib.common.regex.InstructionRegex.Store.REGISTER_POST
 import com.jacob.core_lib.common.regex.InstructionRegex.Store.REGISTER_PRE
 import com.jacob.core_lib.common.regex.InstructionRegex.Store.VARIABLE
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.instructions.InstructionParser
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface StoreInstructionParser : InstructionParser {
     companion object {

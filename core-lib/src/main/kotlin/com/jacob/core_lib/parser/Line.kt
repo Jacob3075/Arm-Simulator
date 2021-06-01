@@ -3,6 +3,7 @@ package com.jacob.core_lib.parser
 import com.jacob.core_lib.common.regex.General
 import com.jacob.core_lib.parser.data.DataLine
 import com.jacob.core_lib.parser.instructions.InstructionLine
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface Line {
     companion object {

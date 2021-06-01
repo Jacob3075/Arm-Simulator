@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.instructions.comapare.CompareImmediate
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import com.jacob.core_lib.word.ImmediateValue
 
 class CompareImmediateParser(

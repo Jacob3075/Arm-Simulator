@@ -2,7 +2,7 @@ package com.jacob.core_lib.parser.instructions.load
 
 import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.instructions.load.LoadVariableAddress
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`

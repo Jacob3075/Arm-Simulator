@@ -7,7 +7,7 @@ import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.toRegisterAddress
 import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.store.Store
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 class StoreRegisterPreOffsetParser(private val instructionString: InstructionString) : StoreInstructionParser {
     override fun parse(): Store {

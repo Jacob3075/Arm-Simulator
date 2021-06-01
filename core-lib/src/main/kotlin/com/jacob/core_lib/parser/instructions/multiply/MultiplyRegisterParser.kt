@@ -8,7 +8,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.toRegisterAddresses
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.multipy.Multiply
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 
 class MultiplyRegisterParser(private val instructionString: InstructionString) : MultiplyInstructionParser {
     override fun parse(): Instruction {

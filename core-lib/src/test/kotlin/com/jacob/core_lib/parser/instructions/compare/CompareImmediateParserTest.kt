@@ -1,12 +1,11 @@
 package com.jacob.core_lib.parser.instructions.compare
 
 import com.jacob.core_lib.common.I
-import com.jacob.core_lib.common.RA
-import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.comapare.CompareImmediate
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
 import org.junit.jupiter.api.Test
@@ -19,7 +18,7 @@ internal class CompareImmediateParserTest {
 
         instruction `should be instance of` CompareImmediate::class
 
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
+        instruction.sourceRegister `should be equal to` 1.SR
         instruction.immediateValue `should be equal to` 6.I
     }
 
@@ -30,7 +29,7 @@ internal class CompareImmediateParserTest {
 
         instruction `should be instance of` CompareImmediate::class
 
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
+        instruction.sourceRegister `should be equal to` 1.SR
         instruction.immediateValue `should be equal to` (-7).I
     }
 
@@ -41,8 +40,7 @@ internal class CompareImmediateParserTest {
 
         instruction `should be instance of` CompareImmediate::class
 
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
-        instruction.immediateValue `should be equal to` (13507746).I
+        instruction.sourceRegister `should be equal to` 1.SR
+        instruction.immediateValue `should be equal to` 13507746.I
     }
-
 }

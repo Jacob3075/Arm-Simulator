@@ -1,6 +1,6 @@
 package com.jacob.core_lib.parser.instructions.label
 
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.Test
 

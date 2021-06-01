@@ -9,7 +9,6 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Move
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply
 import com.jacob.core_lib.common.regex.InstructionRegex.Store
 import com.jacob.core_lib.common.regex.InstructionRegex.Sub
-import com.jacob.core_lib.parser.InstructionString
 import com.jacob.core_lib.parser.Line
 import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
 import com.jacob.core_lib.parser.instructions.branch.BranchInstructionParser

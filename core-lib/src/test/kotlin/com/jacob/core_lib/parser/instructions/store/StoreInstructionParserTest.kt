@@ -2,7 +2,7 @@ package com.jacob.core_lib.parser.instructions.store
 
 import com.jacob.core_lib.instructions.store.StoreRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.instructions.store.StoreVariableAddress
-import com.jacob.core_lib.parser.InstructionString
+import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be instance of`
 import org.amshove.kluent.`should throw`
 import org.amshove.kluent.invoking
