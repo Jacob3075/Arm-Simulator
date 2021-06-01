@@ -5,6 +5,7 @@ import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.instructions.comapare.CompareImmediate
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be instance of`
@@ -16,10 +17,15 @@ internal class CompareImmediateParserTest {
         val instructionString = InstructionString("CMP R1, #6")
         val instruction = CompareImmediateParser(instructionString, String::immediateFromDec).parse()
 
-        instruction `should be instance of` CompareImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        instruction.sourceRegister `should be equal to` 1.SR
-        instruction.immediateValue `should be equal to` 6.I
+        instruction.instruction.apply {
+            this `should be instance of` CompareImmediate::class
+            this as CompareImmediate
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 6.I
+        }
     }
 
     @Test
@@ -27,10 +33,15 @@ internal class CompareImmediateParserTest {
         val instructionString = InstructionString("CMP R1, #-7")
         val instruction = CompareImmediateParser(instructionString, String::immediateFromDec).parse()
 
-        instruction `should be instance of` CompareImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        instruction.sourceRegister `should be equal to` 1.SR
-        instruction.immediateValue `should be equal to` (-7).I
+        instruction.instruction.apply {
+            this `should be instance of` CompareImmediate::class
+            this as CompareImmediate
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` (-7).I
+        }
     }
 
     @Test
@@ -38,9 +49,14 @@ internal class CompareImmediateParserTest {
         val instructionString = InstructionString("CMP R1, #0XCE1CA2")
         val instruction = CompareImmediateParser(instructionString, String::immediateFromHex).parse()
 
-        instruction `should be instance of` CompareImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        instruction.sourceRegister `should be equal to` 1.SR
-        instruction.immediateValue `should be equal to` 13507746.I
+        instruction.instruction.apply {
+            this `should be instance of` CompareImmediate::class
+            this as CompareImmediate
+            sourceRegister `should be equal to` 1.SR
+            immediateValue `should be equal to` 13507746.I
+        }
     }
 }
