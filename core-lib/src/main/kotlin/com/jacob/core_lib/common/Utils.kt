@@ -8,12 +8,9 @@ import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.instructions.shift.RightShift
 import com.jacob.core_lib.word.ImmediateValue
 import com.jacob.core_lib.word.Word
-import kotlin.math.pow
 import kotlin.reflect.KFunction1
 
 fun Boolean.toInt() = if (this) 1 else 0
-
-infix fun Int.`**`(exponent: Int): Int = toDouble().pow(exponent).toInt()
 
 fun <T> List<T?>.padListTill(newLength: Int): MutableList<T?> =
     List(maxOf(newLength, size)) { index -> getOrNull(index) }.toMutableList()

@@ -4,6 +4,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.conditionals.Conditionals
+import com.jacob.core_lib.instructions.conditionals.instructionWithConditional
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.word.ImmediateValue
 
@@ -16,12 +17,15 @@ interface Sub : Instruction {
             sourceRegister2: SourceRegister,
             shiftOperation: ShiftOperation = ShiftOperation.None,
             conditional: Conditionals = Conditionals.AL,
-        ) = SubRegister(
-            destinationRegister,
-            sourceRegister1,
-            sourceRegister2,
-            shiftOperation
-        ).withConditional(conditional)
+        ) = instructionWithConditional(
+            SubRegister(
+                destinationRegister,
+                sourceRegister1,
+                sourceRegister2,
+                shiftOperation
+            ),
+            conditional
+        )
 
         fun of(
             destinationRegister: DestinationRegister,
@@ -29,11 +33,14 @@ interface Sub : Instruction {
             immediateValue: ImmediateValue,
             shiftOperation: ShiftOperation = ShiftOperation.None,
             conditional: Conditionals = Conditionals.AL,
-        ) = SubImmediate(
-            destinationRegister,
-            sourceRegister1,
-            immediateValue,
-            shiftOperation
-        ).withConditional(conditional)
+        ) = instructionWithConditional(
+            SubImmediate(
+                destinationRegister,
+                sourceRegister1,
+                immediateValue,
+                shiftOperation
+            ),
+            conditional
+        )
     }
 }

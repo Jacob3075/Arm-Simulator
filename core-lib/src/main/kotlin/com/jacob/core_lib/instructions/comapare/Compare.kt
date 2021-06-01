@@ -3,6 +3,7 @@ package com.jacob.core_lib.instructions.comapare
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.conditionals.Conditionals
+import com.jacob.core_lib.instructions.conditionals.instructionWithConditional
 import com.jacob.core_lib.word.ImmediateValue
 
 interface Compare : Instruction {
@@ -12,14 +13,12 @@ interface Compare : Instruction {
             sourceRegister1: SourceRegister,
             sourceRegister2: SourceRegister,
             conditional: Conditionals = Conditionals.AL
-        ) =
-            CompareRegister(sourceRegister1, sourceRegister2).withConditional(conditional)
+        ) = instructionWithConditional(CompareRegister(sourceRegister1, sourceRegister2), conditional)
 
         fun from(
             sourceRegister: SourceRegister,
             immediateValue: ImmediateValue,
             conditional: Conditionals = Conditionals.AL
-        ) =
-            CompareImmediate(sourceRegister, immediateValue).withConditional(conditional)
+        ) = instructionWithConditional(CompareImmediate(sourceRegister, immediateValue), conditional)
     }
 }
