@@ -3,6 +3,7 @@ package com.jacob.core_lib.parser.instructions.load
 import com.jacob.core_lib.common.DR
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.SR
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.load.LoadRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
@@ -15,74 +16,95 @@ internal class LoadRegisterOffsetParserTest {
     internal fun `creates correct load instruction`() {
         val line = InstructionString("LDR R0, [R1]")
 
-        val loadInstruction = LoadRegisterOffsetParser(line).parse()
+        val instruction = LoadRegisterOffsetParser(line).parse()
 
-        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
 
-        loadInstruction as LoadRegisterAddressWithImmediateOffset
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        loadInstruction.destinationRegister `should be equal to` 0.DR
-        loadInstruction.sourceRegister `should be equal to` 1.SR
-        loadInstruction.offset `should be equal to` 0.I
+        instruction.instruction.apply {
+            this `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+            this as LoadRegisterAddressWithImmediateOffset
+
+            destinationRegister `should be equal to` 0.DR
+            sourceRegister `should be equal to` 1.SR
+            offset `should be equal to` 0.I
+        }
     }
 
     @Test
     internal fun `creates correct load instruction with single digit positive offset`() {
         val line = InstructionString("LDR R0, [R1, #3]")
 
-        val loadInstruction = LoadRegisterOffsetParser(line).parse()
+        val instruction = LoadRegisterOffsetParser(line).parse()
 
-        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        loadInstruction as LoadRegisterAddressWithImmediateOffset
+        instruction.instruction.apply {
+            this `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+            this as LoadRegisterAddressWithImmediateOffset
 
-        loadInstruction.destinationRegister `should be equal to` 0.DR
-        loadInstruction.sourceRegister `should be equal to` 1.SR
-        loadInstruction.offset `should be equal to` 3.I
+            destinationRegister `should be equal to` 0.DR
+            sourceRegister `should be equal to` 1.SR
+            offset `should be equal to` 3.I
+        }
     }
 
     @Test
     internal fun `creates correct load instruction with multiple digit positive offset`() {
         val line = InstructionString("LDR R0, [R1, #30]")
 
-        val loadInstruction = LoadRegisterOffsetParser(line).parse()
+        val instruction = LoadRegisterOffsetParser(line).parse()
 
-        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        loadInstruction as LoadRegisterAddressWithImmediateOffset
+        instruction.instruction.apply {
+            this `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+            this as LoadRegisterAddressWithImmediateOffset
 
-        loadInstruction.destinationRegister `should be equal to` 0.DR
-        loadInstruction.sourceRegister `should be equal to` 1.SR
-        loadInstruction.offset `should be equal to` 30.I
+            destinationRegister `should be equal to` 0.DR
+            sourceRegister `should be equal to` 1.SR
+            offset `should be equal to` 30.I
+        }
     }
 
     @Test
     internal fun `creates correct load instruction with single digit negative offset`() {
         val line = InstructionString("LDR R0, [R1, #-3]")
 
-        val loadInstruction = LoadRegisterOffsetParser(line).parse()
+        val instruction = LoadRegisterOffsetParser(line).parse()
 
-        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        loadInstruction as LoadRegisterAddressWithImmediateOffset
+        instruction.instruction.apply {
+            this `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+            this as LoadRegisterAddressWithImmediateOffset
 
-        loadInstruction.destinationRegister `should be equal to` 0.DR
-        loadInstruction.sourceRegister `should be equal to` 1.SR
-        loadInstruction.offset `should be equal to` (-3).I
+            destinationRegister `should be equal to` 0.DR
+            sourceRegister `should be equal to` 1.SR
+            offset `should be equal to` (-3).I
+        }
     }
 
     @Test
     internal fun `creates correct load instruction with multiple digit negative offset`() {
         val line = InstructionString("LDR R0, [R1, #-30]")
 
-        val loadInstruction = LoadRegisterOffsetParser(line).parse()
+        val instruction = LoadRegisterOffsetParser(line).parse()
 
-        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+        instruction `should be instance of` Always::class
+        instruction as Always
 
-        loadInstruction as LoadRegisterAddressWithImmediateOffset
+        instruction.instruction.apply {
+            this `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+            this as LoadRegisterAddressWithImmediateOffset
 
-        loadInstruction.destinationRegister `should be equal to` 0.DR
-        loadInstruction.sourceRegister `should be equal to` 1.SR
-        loadInstruction.offset `should be equal to` (-30).I
+            destinationRegister `should be equal to` 0.DR
+            sourceRegister `should be equal to` 1.SR
+            offset `should be equal to` (-30).I
+        }
     }
 }

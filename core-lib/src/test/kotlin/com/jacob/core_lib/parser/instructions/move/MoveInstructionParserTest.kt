@@ -1,6 +1,6 @@
 package com.jacob.core_lib.parser.instructions.move
 
-import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.move.MoveImmediate
 import com.jacob.core_lib.instructions.move.MoveRegister
 import com.jacob.core_lib.parser.instructions.InstructionString
@@ -13,28 +13,34 @@ internal class MoveInstructionParserTest {
     @Test
     internal fun `creates correct instruction when given postive immediate value`() {
         val instructionString = InstructionString("MOV R1, #5")
-        val moveInstruction = MoveInstructionParser.from(instructionString)
+        val instruction = MoveInstructionParser.from(instructionString)
 
-        moveInstruction `should be instance of` Instruction::class
-        moveInstruction `should be instance of` MoveImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
+
+        instruction.instruction `should be instance of` MoveImmediate::class
     }
 
     @Test
     internal fun `creates correct instruction when given negative immediate value`() {
         val instructionString = InstructionString("MOV R1, #-5")
-        val moveInstruction = MoveInstructionParser.from(instructionString)
+        val instruction = MoveInstructionParser.from(instructionString)
 
-        moveInstruction `should be instance of` Instruction::class
-        moveInstruction `should be instance of` MoveImmediate::class
+        instruction `should be instance of` Always::class
+        instruction as Always
+
+        instruction.instruction `should be instance of` MoveImmediate::class
     }
 
     @Test
     internal fun `creates correct instruction when given register value`() {
         val instructionString = InstructionString("MOV R1, R5")
-        val moveInstruction = MoveInstructionParser.from(instructionString)
+        val instruction = MoveInstructionParser.from(instructionString)
 
-        moveInstruction `should be instance of` Instruction::class
-        moveInstruction `should be instance of` MoveRegister::class
+        instruction `should be instance of` Always::class
+        instruction as Always
+
+        instruction.instruction `should be instance of` MoveRegister::class
     }
 
     @Test

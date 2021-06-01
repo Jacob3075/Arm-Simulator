@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser.instructions.store
 
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.store.StoreRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.instructions.store.StoreVariableAddress
 import com.jacob.core_lib.parser.instructions.InstructionString
@@ -15,7 +16,10 @@ internal class StoreInstructionParserTest {
 
         val instruction = StoreInstructionParser.from(instructionString)
 
-        instruction `should be instance of` StoreVariableAddress::class
+        instruction `should be instance of` Always::class
+        instruction as Always
+
+        instruction.instruction `should be instance of` StoreVariableAddress::class
     }
 
     @Test
@@ -24,7 +28,10 @@ internal class StoreInstructionParserTest {
 
         val instruction = StoreInstructionParser.from(instructionString)
 
-        instruction `should be instance of` StoreVariableAddress::class
+        instruction `should be instance of` Always::class
+        instruction as Always
+
+        instruction.instruction `should be instance of` StoreVariableAddress::class
     }
 
     @Test
@@ -33,7 +40,10 @@ internal class StoreInstructionParserTest {
 
         val instruction = StoreInstructionParser.from(instructionString)
 
-        instruction `should be instance of` StoreRegisterAddressWithImmediateOffset::class
+        instruction `should be instance of` Always::class
+        instruction as Always
+
+        instruction.instruction `should be instance of` StoreRegisterAddressWithImmediateOffset::class
     }
 
     @Test

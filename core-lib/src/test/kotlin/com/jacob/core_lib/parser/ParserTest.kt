@@ -65,8 +65,8 @@ internal class ParserTest {
 
         Move.of(1.DR, 5.I) `should be in` instructions
         Move.of(2.DR, 10.I) `should be in` instructions
-        Branch("LABEL_1") `should be in` instructions
-        Branch("LABEL_2") `should be in` instructions
+        Branch.of("LABEL_1") `should be in` instructions
+        Branch.of("LABEL_2") `should be in` instructions
         Label("LABEL_1") `should be in` instructions
         Label("LABEL_2") `should be in` instructions
 
