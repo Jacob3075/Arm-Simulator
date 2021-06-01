@@ -1,11 +1,11 @@
 package com.jacob.core_lib.parser.instructions
 
-import com.jacob.core_lib.common.regex.InstructionRegex
-import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.TYPES
 import com.jacob.core_lib.instructions.conditionals.Conditionals
 import com.jacob.core_lib.instructions.shift.ShiftOperation
 import com.jacob.core_lib.parser.conditional.ConditionalParser
 import com.jacob.core_lib.parser.instructions.shift.operation.ShiftOperationParser
+import com.jacob.core_lib.common.regex.InstructionRegex.Conditional.TYPES as ConditionalTYPES
+import com.jacob.core_lib.common.regex.InstructionRegex.Shifts.TYPES as ShiftTYPES
 
 data class InstructionString(private var instructionString: String) {
 
@@ -21,42 +21,29 @@ data class InstructionString(private var instructionString: String) {
     val shiftOperation: ShiftOperation
 
     init {
-        val matchResult = InstructionRegex.Shifts.TYPES.find(instructionString)
-        mainInstruction = processMainInstruction(matchResult)
-        shiftOperation = processShiftOperation(matchResult)
-        mnemonic = processMnemonic()
-        conditional = processConditional()
-        operands = processOperands()
-    }
+        var tempString = instructionString
 
-    private fun processMnemonic() = instructionString.split(" ").first().trim()
+        val shiftOperationString = "$ShiftTYPES #(0X)?\\d+".toRegex().find(tempString)?.value ?: ""
 
-    private fun processOperands() = mainInstruction.replaceFirst(mnemonic, "")
-        .replace("[", "")
-        .replace("]", "")
-        .replace("!", "")
-        .split(",")
-        .map(String::trim)
+        tempString = tempString.replace(shiftOperationString, "").trim().removeSuffix(",").trim()
 
-    private fun processMainInstruction(matchResult: MatchResult?): String {
-        val temp = matchResult?.let {
-            instructionString.substring(0 until matchResult.range.first)
-        } ?: instructionString
+        val tempList = tempString.replace("[", "")
+            .replace("]", "")
+            .replace("!", "")
+            .split(",", " ")
+            .filter(String::isNotEmpty)
+            .filter(String::isNotBlank)
+            .map(String::trim)
 
-        return temp.trim()
-            .removeSuffix(",")
-            .trim()
-    }
+        val name = tempList.first()
 
-    private fun processShiftOperation(operationMatch: MatchResult?): ShiftOperation {
-        operationMatch ?: return ShiftOperation.None
+        val conditionalString = "$ConditionalTYPES".toRegex().find(name)?.value ?: ""
+        tempString = tempString.replace(conditionalString, "")
 
-        val operationSubString = instructionString.substring(startIndex = operationMatch.range.first).trim()
-        return ShiftOperationParser.from(operationSubString).parse()
-    }
-
-    private fun processConditional(): Conditionals {
-        val conditionalString = if (mnemonic.contains(TYPES)) mnemonic.takeLast(2) else ""
-        return ConditionalParser.parseConditional(conditionalString)
+        operands = tempList.drop(1)
+        conditional = ConditionalParser.parseConditional(conditionalString)
+        shiftOperation = ShiftOperationParser.from(shiftOperationString)
+        mnemonic = name.replace(conditionalString, "")
+        mainInstruction = tempString
     }
 }

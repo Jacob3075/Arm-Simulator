@@ -11,11 +11,13 @@ interface ShiftOperationParser {
     companion object {
         fun from(operationString: String) = with(operationString) {
             when {
-                contains(LeftShift.MNEMONIC) -> LeftShiftParser(operationString)
-                contains(RightShift.MNEMONIC) -> RightShiftParser(operationString)
-                contains(RightRotateShift.MNEMONIC) -> RightRotateShiftParser(operationString)
-                contains(RightRotateExtendedShift.MNEMONIC) -> RightRotateExtendedShiftParser(operationString)
-                contains(ArithmeticRightShift.MNEMONIC) -> ArithmeticRightShiftParser(operationString)
+                isEmpty() -> ShiftOperation.None
+                isBlank() -> ShiftOperation.None
+                contains(LeftShift.MNEMONIC) -> LeftShiftParser(operationString).parse()
+                contains(RightShift.MNEMONIC) -> RightShiftParser(operationString).parse()
+                contains(RightRotateShift.MNEMONIC) -> RightRotateShiftParser(operationString).parse()
+                contains(RightRotateExtendedShift.MNEMONIC) -> RightRotateExtendedShiftParser(operationString).parse()
+                contains(ArithmeticRightShift.MNEMONIC) -> ArithmeticRightShiftParser(operationString).parse()
                 else -> throw IllegalArgumentException("Cannot parse shift operation: $operationString")
             }
         }

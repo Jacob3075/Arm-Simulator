@@ -111,6 +111,7 @@ object InstructionRegex {
 
     object Conditional {
         val TYPES = "(EQ|NE|CS|CC|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)".toRegex()
+        val Always = "^AL$".toRegex()
         val Equal = "^EQ$".toRegex()
         val NotEqual = "^NE$".toRegex()
         val CarrySet = "^CS$".toRegex()
