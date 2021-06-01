@@ -11,16 +11,17 @@ class MoveImmediateParser internal constructor(
     private val instructionString: InstructionString,
     private val strategy: (String) -> ImmediateValue
 ) : MoveInstructionParser {
-
     override fun parse(): Instruction {
         val operands = instructionString.operands
 
         val immediateValue = operands.last().let(strategy)
+        val destinationRegister = operands.first().toRegisterAddress(::DestinationRegister)
 
-        val destinationRegister = operands.first()
-            .toRegisterAddress(::DestinationRegister)
-
-        return Move.of(destinationRegister, immediateValue)
+        return Move.of(
+            destinationRegister,
+            immediateValue,
+            instructionString.shiftOperation,
+            instructionString.conditional
+        )
     }
-
 }

@@ -6,12 +6,11 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.parser.instructions.InstructionString
 
-class CompareRegisterParser(private val instruction: InstructionString) : CompareInstructionParser {
+class CompareRegisterParser internal constructor(private val instruction: InstructionString) :
+    CompareInstructionParser {
     override fun parse(): Instruction {
         // CMP R1, R2
-        val registers = instruction.operands
-            .toRegisterAddresses()
-            .map(::SourceRegister)
+        val registers = instruction.operands.toRegisterAddresses().map(::SourceRegister)
 
         return Compare.from(registers.first(), registers.last(), instruction.conditional)
     }

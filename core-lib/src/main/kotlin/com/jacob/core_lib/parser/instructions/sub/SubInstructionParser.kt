@@ -1,5 +1,3 @@
-@file:Suppress("DuplicatedCode")
-
 package com.jacob.core_lib.parser.instructions.sub
 
 import com.jacob.core_lib.common.immediateFromDec
@@ -12,7 +10,6 @@ import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface SubInstructionParser : InstructionParser {
     companion object {
-
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
                 matches(REGISTER) -> SubRegisterParser(instructionString).parse()

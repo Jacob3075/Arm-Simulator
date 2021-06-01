@@ -1,5 +1,3 @@
-@file:Suppress("DuplicatedCode")
-
 package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
@@ -11,7 +9,6 @@ import com.jacob.core_lib.parser.instructions.InstructionString
 
 class AddRegisterParser internal constructor(private val instructionString: InstructionString) :
     AddInstructionParser {
-
     override fun parse(): Instruction {
         val registers = instructionString.operands.toRegisterAddresses()
 

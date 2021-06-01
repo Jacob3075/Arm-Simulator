@@ -6,14 +6,14 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.load.Load
 import com.jacob.core_lib.parser.instructions.InstructionString
 
-class LoadVariableParser(private val instructionString: InstructionString) : LoadInstructionParser {
+class LoadVariableParser internal constructor(private val instructionString: InstructionString) :
+    LoadInstructionParser {
     override fun parse(): Instruction {
         val operands = instructionString.operands
 
         val destinationRegister = operands.first().toRegisterAddress(::DestinationRegister)
         val variableName = operands.last().removePrefix("=")
 
-        return Load.of(destinationRegister, variableName)
+        return Load.of(destinationRegister, variableName, instructionString.conditional)
     }
-
 }

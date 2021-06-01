@@ -11,16 +11,20 @@ import com.jacob.core_lib.parser.instructions.InstructionString
 class SubRegisterParser internal constructor(
     private val instructionString: InstructionString,
 ) : SubInstructionParser {
-
     override fun parse(): Instruction {
-        val registers: List<RegisterAddresses> = instructionString.operands
-            .toRegisterAddresses()
+        val registers: List<RegisterAddresses> = instructionString.operands.toRegisterAddresses()
 
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister1 = registers[1].let(::SourceRegister)
         val sourceRegister2 = registers.last().let(::SourceRegister)
 
-        return Sub.of(destinationRegister, sourceRegister1, sourceRegister2, instructionString.shiftOperation)
+        return Sub.of(
+            destinationRegister,
+            sourceRegister1,
+            sourceRegister2,
+            instructionString.shiftOperation,
+            instructionString.conditional
+        )
     }
 
 }

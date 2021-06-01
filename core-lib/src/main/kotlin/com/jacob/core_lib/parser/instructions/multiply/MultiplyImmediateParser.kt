@@ -9,9 +9,9 @@ import com.jacob.core_lib.parser.instructions.InstructionString
 import com.jacob.core_lib.word.ImmediateValue
 import kotlin.reflect.KFunction1
 
-class MultiplyImmediateParser(
+class MultiplyImmediateParser internal constructor(
     private val instructionString: InstructionString,
-    private val statergy: KFunction1<String, ImmediateValue>
+    private val strategy: KFunction1<String, ImmediateValue>
 ) : MultiplyInstructionParser {
     override fun parse(): Instruction {
 //        MUL R1, R2, #3
@@ -19,8 +19,8 @@ class MultiplyImmediateParser(
 
         val destinationRegister = operands.first().toRegisterAddress(::DestinationRegister)
         val sourceRegister = operands[1].toRegisterAddress(::SourceRegister)
-        val immediateValue = operands.last().let(statergy)
+        val immediateValue = operands.last().let(strategy)
 
-        return Multiply.of(destinationRegister, sourceRegister, immediateValue)
+        return Multiply.of(destinationRegister, sourceRegister, immediateValue, instructionString.conditional)
     }
 }

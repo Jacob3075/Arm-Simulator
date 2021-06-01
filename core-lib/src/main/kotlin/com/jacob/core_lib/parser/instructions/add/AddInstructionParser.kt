@@ -1,5 +1,3 @@
-@file:Suppress("DuplicatedCode")
-
 package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.immediateFromDec
@@ -11,7 +9,6 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface AddInstructionParser : InstructionParser {
-
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {

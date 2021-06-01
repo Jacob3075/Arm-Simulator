@@ -10,7 +10,8 @@ import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.load.Load
 import com.jacob.core_lib.parser.instructions.InstructionString
 
-class LoadRegisterPreOffsetParser(private val instructionString: InstructionString) : LoadInstructionParser {
+class LoadRegisterPreOffsetParser internal constructor(private val instructionString: InstructionString) :
+    LoadInstructionParser {
     override fun parse(): Instruction {
 //        LDR R1. [R2, #3]!
         val operands = instructionString.operands
@@ -19,6 +20,12 @@ class LoadRegisterPreOffsetParser(private val instructionString: InstructionStri
         val sourceRegister = operands[1].toRegisterAddress(::SourceRegister)
         val immediateOffset = operands.getOrNull(2)?.immediateFromDec() ?: 0.I
 
-        return Load.of(destinationRegister, sourceRegister, immediateOffset, OffsetTypes.PRE)
+        return Load.of(
+            destinationRegister,
+            sourceRegister,
+            immediateOffset,
+            OffsetTypes.PRE,
+            instructionString.conditional
+        )
     }
 }

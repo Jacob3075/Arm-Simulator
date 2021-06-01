@@ -7,7 +7,7 @@ import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.parser.instructions.InstructionString
 import com.jacob.core_lib.word.ImmediateValue
 
-class CompareImmediateParser(
+class CompareImmediateParser internal constructor(
     private val instruction: InstructionString,
     private val strategy: (String) -> ImmediateValue
 ) : CompareInstructionParser {

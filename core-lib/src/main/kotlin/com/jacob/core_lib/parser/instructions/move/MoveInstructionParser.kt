@@ -9,7 +9,6 @@ import com.jacob.core_lib.parser.instructions.InstructionParser
 import com.jacob.core_lib.parser.instructions.InstructionString
 
 interface MoveInstructionParser : InstructionParser {
-
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {

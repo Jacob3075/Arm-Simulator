@@ -15,7 +15,11 @@ class MoveRegisterParser internal constructor(private val instructionString: Ins
         val destinationRegister = registers.first().let(::DestinationRegister)
         val sourceRegister = registers.last().let(::SourceRegister)
 
-        return Move.of(destinationRegister, sourceRegister)
+        return Move.of(
+            destinationRegister,
+            sourceRegister,
+            instructionString.shiftOperation,
+            instructionString.conditional
+        )
     }
-
 }

@@ -1,5 +1,3 @@
-@file:Suppress("DuplicatedCode")
-
 package com.jacob.core_lib.parser.instructions.add
 
 import com.jacob.core_lib.common.addresses.DestinationRegister
@@ -14,7 +12,6 @@ class AddImmediateParser internal constructor(
     private val instructionString: InstructionString,
     private val strategy: (String) -> ImmediateValue
 ) : AddInstructionParser {
-
     override fun parse(): Instruction {
         val operands = instructionString.operands
 
