@@ -129,4 +129,120 @@ internal class ConditionalsTest {
             executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
         }
     }
+
+    @Nested
+    inner class `When Negative Set Condition is Given` {
+        @Test
+        internal fun `and negative bit is set, instruction should be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(negative = true))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = MI)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
+        }
+
+        @Test
+        internal fun `and negative bit is not set, instruction should be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(negative = false))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = MI)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 0.W
+        }
+    }
+
+    @Nested
+    inner class `When Negative Clear Condition is Given` {
+        @Test
+        internal fun `and negative bit is set, instruction should not be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(negative = true))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = PL)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 0.W
+        }
+
+        @Test
+        internal fun `and negative bit is not set, instruction should be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(negative = false))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = PL)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
+        }
+    }
+
+    @Nested
+    inner class `When Overflow Set Condition is Given` {
+        @Test
+        internal fun `and overFlow bit is set, instruction should be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(overFlow = true))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = VS)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
+        }
+
+        @Test
+        internal fun `and overFlow bit is not set, instruction should be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(overFlow = false))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = VS)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 0.W
+        }
+    }
+
+    @Nested
+    inner class `When Overflow Clear Condition is Given` {
+        @Test
+        internal fun `and overFlow bit is set, instruction should not be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(overFlow = true))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = VC)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 0.W
+        }
+
+        @Test
+        internal fun `and overFlow bit is not set, instruction should be executed`() {
+            val registerArray = RegisterArray(statusRegister = StatusRegister(overFlow = false))
+            val executionEnvironment = getExecutionEnvironment(registerArray = registerArray).apply {
+                registerArray.setValueAtRegister(1.DR, 10.W)
+            }
+
+            val addInstruction = Add.of(3.DR, 1.SR, 20.I, conditional = VC)
+            addInstruction.execute(executionEnvironment)
+
+            executionEnvironment.registerArray.getRegisterAt(3.DR).getRegisterValue() `should be equal to` 30.W
+        }
+    }
 }
