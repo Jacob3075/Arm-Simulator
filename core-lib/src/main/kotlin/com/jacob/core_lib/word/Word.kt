@@ -6,7 +6,7 @@ open class Word(val value: Int) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         other ?: return false
-        if (javaClass != other.javaClass && javaClass.isAssignableFrom(other.javaClass)) return false
+        if (javaClass != other.javaClass && other !is Word) return false
 
         other as Word
 

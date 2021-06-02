@@ -4,7 +4,7 @@ import com.jacob.core_lib.common.*
 import com.jacob.core_lib.instructions.Branch
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.Label
-import com.jacob.core_lib.instructions.OffsetTypes
+import com.jacob.core_lib.instructions.OffsetTypes.*
 import com.jacob.core_lib.instructions.add.Add
 import com.jacob.core_lib.instructions.comapare.Compare
 import com.jacob.core_lib.instructions.conditionals.Conditionals.EQ
@@ -109,11 +109,11 @@ val test6Data = Pair(
         Load.of(3.DR, "A"),
         Load.of(4.DR, "B"),
 
-        Load.of(5.DR, 3.SR, 1.I, OffsetTypes.IMMEDIATE),
-        Load.of(6.DR, 4.SR, (-1).I, OffsetTypes.IMMEDIATE),
-        Load.of(7.DR, 0.SR, (-3).I, OffsetTypes.PRE),
-        Load.of(8.DR, 1.SR, 9.I, OffsetTypes.PRE),
-        Load.of(9.DR, 2.SR, (-10).I, OffsetTypes.POST),
+        Load.of(5.DR, 3.SR, 1.I, IMMEDIATE),
+        Load.of(6.DR, 4.SR, (-1).I, IMMEDIATE),
+        Load.of(7.DR, 0.SR, (-3).I, PRE),
+        Load.of(8.DR, 1.SR, 9.I, PRE),
+        Load.of(9.DR, 2.SR, (-10).I, POST),
     ),
     listOf(
         ParsedData("A", 10),
@@ -135,13 +135,13 @@ val test7Data = Pair<List<Instruction>, List<ParsedData>>(
         Move.of(9.DR, 7.I),
         Move.of(10.DR, 8.I),
 
-        Store.of(1.SR, 6.DR, 3.I, OffsetTypes.IMMEDIATE),
-        Store.of(2.SR, 7.DR, 7.I, OffsetTypes.PRE),
-        Store.of(3.SR, 8.DR, 18.I, OffsetTypes.IMMEDIATE),
-        Store.of(4.SR, 9.DR, (-3).I, OffsetTypes.POST),
-        Store.of(5.SR, 10.DR, 5.I, OffsetTypes.POST),
-        Store.of(3.SR, 6.DR, 13.I, OffsetTypes.PRE),
-        Store.of(2.SR, 7.DR, (-5).I, OffsetTypes.PRE),
+        Store.of(1.SR, 6.DR, 3.I, IMMEDIATE),
+        Store.of(2.SR, 7.DR, 7.I, PRE),
+        Store.of(3.SR, 8.DR, 18.I, IMMEDIATE),
+        Store.of(4.SR, 9.DR, (-3).I, POST),
+        Store.of(5.SR, 10.DR, 5.I, POST),
+        Store.of(3.SR, 6.DR, 13.I, PRE),
+        Store.of(2.SR, 7.DR, (-5).I, PRE),
     ),
     emptyList()
 )

@@ -1,5 +1,6 @@
 package com.jacob.core_lib.core
 
+import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.MA
 import com.jacob.core_lib.common.SR
 import com.jacob.core_lib.common.W
@@ -10,10 +11,8 @@ import org.junit.jupiter.api.Test
 internal class CoreTest {
     @Test
     internal fun `test file 1`() {
-        val sampleInputData = test1Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test1Data.first
+        val variables = test1Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -30,10 +29,8 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 2`() {
-        val sampleInputData = test2Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test2Data.first
+        val variables = test2Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -49,10 +46,8 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 3`() {
-        val sampleInputData = test3Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test3Data.first
+        val variables = test3Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -69,10 +64,8 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 4`() {
-        val sampleInputData = test4Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test4Data.first
+        val variables = test4Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -98,10 +91,8 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 5`() {
-        val sampleInputData = test5Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test5Data.first
+        val variables = test5Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -133,10 +124,8 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 6`() {
-        val sampleInputData = test6Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test6Data.first
+        val variables = test6Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -167,10 +156,8 @@ internal class CoreTest {
 
     @Test
     internal fun `test file 7`() {
-        val sampleInputData = test7Data
-
-        val instructions = sampleInputData.first
-        val variables = sampleInputData.second
+        val instructions = test7Data.first
+        val variables = test7Data.second
 
         val program = Program(instructions, variables)
         val core = Core(program = program)
@@ -193,6 +180,25 @@ internal class CoreTest {
                 getWordAt(17.MA) `should be equal to` 5.W
                 getWordAt(12.MA) `should be equal to` 7.W
             }
+        }
+    }
+
+    @Test
+    internal fun `test file 8`() {
+        val instructions = test8Data.first
+        val variables = test8Data.second
+
+        val program = Program(instructions, variables)
+        val core = Core(program = program)
+
+        core.runProgram()
+
+        core.registerArray.apply {
+            getRegisterAt(4.SR).getRegisterValue() `should be equal to` 10.I
+            getRegisterAt(5.SR).getRegisterValue() `should be equal to` 0.I
+            getRegisterAt(6.SR).getRegisterValue() `should be equal to` 0.I
+            getRegisterAt(7.SR).getRegisterValue() `should be equal to` 0.I
+            getRegisterAt(8.SR).getRegisterValue() `should be equal to` 25.I
         }
     }
 }
