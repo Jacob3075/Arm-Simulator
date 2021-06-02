@@ -6,6 +6,7 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.multipy.MultiplyImmediate
 import com.jacob.core_lib.parser.instructions.InstructionString
 import org.amshove.kluent.`should be equal to`
@@ -19,16 +20,17 @@ internal class MultiplyImmediateParserTest {
     internal fun `creates correct multiply instruction for positive decimal immediate values`() {
         val instructionString = InstructionString("MUL R3, R1, #2")
 
-        val multiplyImmediateInstruction =
-            MultiplyImmediateParser(instructionString, String::immediateFromDec).parse()
+        val instruction =
+            MultiplyImmediateParser(instructionString, String::immediateFromDec).parse() as Always
 
-        multiplyImmediateInstruction `should be instance of` MultiplyImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` MultiplyImmediate::class
+            this as MultiplyImmediate
 
-        multiplyImmediateInstruction as MultiplyImmediate
-
-        multiplyImmediateInstruction.immediateValue `should be equal to` 2.I
-        multiplyImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        multiplyImmediateInstruction.sourceRegister `should be equal to` SourceRegister(1.RA)
+            immediateValue `should be equal to` 2.I
+            destinationRegister `should be equal to` DestinationRegister(3.RA)
+            sourceRegister `should be equal to` SourceRegister(1.RA)
+        }
     }
 
     @Test
@@ -36,15 +38,16 @@ internal class MultiplyImmediateParserTest {
         val instructionString = InstructionString("MUL R3, R1, #-2")
 
         val multiplyImmediateInstruction =
-            MultiplyImmediateParser(instructionString, String::immediateFromDec).parse()
+            MultiplyImmediateParser(instructionString, String::immediateFromDec).parse() as Always
 
-        multiplyImmediateInstruction `should be instance of` MultiplyImmediate::class
+        multiplyImmediateInstruction.instruction.apply {
+            this `should be instance of` MultiplyImmediate::class
+            this as MultiplyImmediate
 
-        multiplyImmediateInstruction as MultiplyImmediate
-
-        multiplyImmediateInstruction.immediateValue `should be equal to` (-2).I
-        multiplyImmediateInstruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        multiplyImmediateInstruction.sourceRegister `should be equal to` SourceRegister(1.RA)
+            immediateValue `should be equal to` (-2).I
+            destinationRegister `should be equal to` DestinationRegister(3.RA)
+            sourceRegister `should be equal to` SourceRegister(1.RA)
+        }
     }
 
     @Test
@@ -52,15 +55,16 @@ internal class MultiplyImmediateParserTest {
         val instructionString = InstructionString("MUL R3, R1, #0X123")
 
         val instruction =
-            MultiplyImmediateParser(instructionString, String::immediateFromHex).parse()
+            MultiplyImmediateParser(instructionString, String::immediateFromHex).parse() as Always
 
-        instruction `should be instance of` MultiplyImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` MultiplyImmediate::class
+            this as MultiplyImmediate
 
-        instruction as MultiplyImmediate
-
-        instruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
-        instruction.immediateValue `should be equal to` 291.I
+            destinationRegister `should be equal to` DestinationRegister(3.RA)
+            sourceRegister `should be equal to` SourceRegister(1.RA)
+            immediateValue `should be equal to` 291.I
+        }
     }
 
     @Test
@@ -68,15 +72,16 @@ internal class MultiplyImmediateParserTest {
         val instructionString = InstructionString("MUL R3, R1, #0X1A2FC3")
 
         val instruction =
-            MultiplyImmediateParser(instructionString, String::immediateFromHex).parse()
+            MultiplyImmediateParser(instructionString, String::immediateFromHex).parse() as Always
 
-        instruction `should be instance of` MultiplyImmediate::class
+        instruction.instruction.apply {
+            this `should be instance of` MultiplyImmediate::class
+            this as MultiplyImmediate
 
-        instruction as MultiplyImmediate
-
-        instruction.destinationRegister `should be equal to` DestinationRegister(3.RA)
-        instruction.sourceRegister `should be equal to` SourceRegister(1.RA)
-        instruction.immediateValue `should be equal to` 1716163.I
+            destinationRegister `should be equal to` DestinationRegister(3.RA)
+            sourceRegister `should be equal to` SourceRegister(1.RA)
+            immediateValue `should be equal to` 1716163.I
+        }
     }
 
     @Test

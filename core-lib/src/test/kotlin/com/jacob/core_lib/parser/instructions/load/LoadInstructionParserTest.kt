@@ -1,6 +1,6 @@
 package com.jacob.core_lib.parser.instructions.load
 
-import com.jacob.core_lib.instructions.Instruction
+import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.instructions.load.LoadRegisterAddressWithImmediateOffset
 import com.jacob.core_lib.instructions.load.LoadVariableAddress
 import com.jacob.core_lib.parser.instructions.InstructionString
@@ -14,8 +14,10 @@ internal class LoadInstructionParserTest {
 
         val loadInstruction = LoadInstructionParser.from(instructionString)
 
-        loadInstruction `should be instance of` Instruction::class
-        loadInstruction `should be instance of` LoadVariableAddress::class
+        loadInstruction `should be instance of` Always::class
+        loadInstruction as Always
+
+        loadInstruction.instruction `should be instance of` LoadVariableAddress::class
     }
 
     @Test
@@ -24,8 +26,10 @@ internal class LoadInstructionParserTest {
 
         val loadInstruction = LoadInstructionParser.from(instructionString)
 
-        loadInstruction `should be instance of` Instruction::class
-        loadInstruction `should be instance of` LoadVariableAddress::class
+        loadInstruction `should be instance of` Always::class
+        loadInstruction as Always
+
+        loadInstruction.instruction `should be instance of` LoadVariableAddress::class
     }
 
     @Test
@@ -34,7 +38,9 @@ internal class LoadInstructionParserTest {
 
         val loadInstruction = LoadInstructionParser.from(instructionString)
 
-        loadInstruction `should be instance of` Instruction::class
-        loadInstruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
+        loadInstruction `should be instance of` Always::class
+        loadInstruction as Always
+
+        loadInstruction.instruction `should be instance of` LoadRegisterAddressWithImmediateOffset::class
     }
 }
