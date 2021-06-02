@@ -8,7 +8,7 @@ sealed interface Conditional {
 }
 
 enum class Conditionals {
-    EQ, NE, AL, CS, CC
+    EQ, NE, AL, CS, CC, MI, PL, VS, VC
 }
 
 fun instructionWithConditional(instruction: Instruction, conditional: Conditionals): Instruction = when (conditional) {
@@ -17,4 +17,8 @@ fun instructionWithConditional(instruction: Instruction, conditional: Conditiona
     NE -> NotEqual(instruction)
     CS -> CarrySet(instruction)
     CC -> CarryClear(instruction)
+    MI -> Negative(instruction)
+    PL -> PositiveOrZero(instruction)
+    VS -> Overflow(instruction)
+    VC -> NonOverflow(instruction)
 }
