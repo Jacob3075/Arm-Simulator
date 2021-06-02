@@ -18,6 +18,6 @@ class CompareImmediateParser internal constructor(
         val sourceRegister = operands.first().toRegisterAddress(::SourceRegister)
         val immediateValue = operands.last().let(strategy)
 
-        return Compare.from(sourceRegister, immediateValue, instruction.conditional)
+        return Compare.of(sourceRegister, immediateValue, instruction.conditional)
     }
 }

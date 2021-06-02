@@ -9,7 +9,7 @@ import com.jacob.core_lib.word.ImmediateValue
 interface Compare : Instruction {
 
     companion object {
-        fun from(
+        fun of(
             sourceRegister1: SourceRegister,
             sourceRegister2: SourceRegister,
             conditional: Conditionals = Conditionals.AL
@@ -18,7 +18,7 @@ interface Compare : Instruction {
             conditional
         )
 
-        fun from(
+        fun of(
             sourceRegister: SourceRegister,
             immediateValue: ImmediateValue,
             conditional: Conditionals = Conditionals.AL

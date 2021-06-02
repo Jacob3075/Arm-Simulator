@@ -3,7 +3,7 @@ package com.jacob.core_lib.instructions.comapare
 import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 
-class CompareRegister internal constructor(
+data class CompareRegister internal constructor(
     internal val sourceRegister1: SourceRegister,
     internal val sourceRegister2: SourceRegister
 ) : Compare {

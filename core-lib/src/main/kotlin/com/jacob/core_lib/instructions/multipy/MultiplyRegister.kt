@@ -5,7 +5,7 @@ import com.jacob.core_lib.common.addresses.SourceRegister
 import com.jacob.core_lib.core.ExecutionEnvironment
 import com.jacob.core_lib.core.RegisterArray
 
-class MultiplyRegister internal constructor(
+data class MultiplyRegister internal constructor(
     internal val destinationRegister: DestinationRegister,
     internal val sourceRegister1: SourceRegister,
     internal val sourceRegister2: SourceRegister

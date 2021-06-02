@@ -3,7 +3,7 @@
     MOV R2, #10
     B Label_1
     ADD R3, R1, #2
-    ADD R3, R1, R2
+    ADD R4, R1, R2
     Label_1:
     SUB R4, R1, R3
     B Label_2

@@ -6,8 +6,11 @@ import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.Label
 import com.jacob.core_lib.instructions.OffsetTypes
 import com.jacob.core_lib.instructions.add.Add
+import com.jacob.core_lib.instructions.comapare.Compare
+import com.jacob.core_lib.instructions.conditionals.Conditionals.EQ
 import com.jacob.core_lib.instructions.load.Load
 import com.jacob.core_lib.instructions.move.Move
+import com.jacob.core_lib.instructions.multipy.Multiply
 import com.jacob.core_lib.instructions.store.Store
 import com.jacob.core_lib.instructions.sub.Sub
 
@@ -34,12 +37,12 @@ val test3Data = Pair<List<Instruction>, List<ParsedData>>(
     listOf(
         Move.of(1.DR, 5.I),
         Move.of(2.DR, 10.I),
-        Branch("LABEL_1"),
+        Branch.of("LABEL_1"),
         Add.of(3.DR, 1.SR, 2.I),
         Add.of(4.DR, 1.SR, 2.SR),
         Label("LABEL_1"),
         Sub.of(4.DR, 1.SR, 3.SR),
-        Branch("LABEL_2"),
+        Branch.of("LABEL_2"),
         Move.of(3.DR, 15.I),
         Move.of(4.DR, 1.I),
         Label("LABEL_2"),
@@ -139,6 +142,31 @@ val test7Data = Pair<List<Instruction>, List<ParsedData>>(
         Store.of(5.SR, 10.DR, 5.I, OffsetTypes.POST),
         Store.of(3.SR, 6.DR, 13.I, OffsetTypes.PRE),
         Store.of(2.SR, 7.DR, (-5).I, OffsetTypes.PRE),
+    ),
+    emptyList()
+)
+
+val test8Data = Pair<List<Instruction>, List<ParsedData>>(
+    listOf(
+        Move.of(0.DR, 5.I),
+        Move.of(1.DR, 5.I),
+        Move.of(2.DR, 10.I),
+        Move.of(3.DR, (-5).I),
+
+        Compare.of(0.SR, 1.SR),
+        Add.of(4.DR, 0.SR, 1.SR, conditional = EQ),
+
+        Compare.of(1.SR, 2.SR),
+        Add.of(5.DR, 1.SR, 2.SR, conditional = EQ),
+
+        Compare.of(1.SR, 3.SR),
+        Sub.of(6.DR, 1.SR, 3.SR, conditional = EQ),
+
+        Compare.of(1.SR, 0.SR),
+        Branch.of("LABEL", conditional = EQ),
+        Add.of(7.DR, 1.SR, 0.SR),
+        Label("LABEL"),
+        Multiply.of(8.DR, 1.SR, 0.SR),
     ),
     emptyList()
 )

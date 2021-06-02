@@ -12,6 +12,6 @@ class CompareRegisterParser internal constructor(private val instruction: Instru
         // CMP R1, R2
         val registers = instruction.operands.toRegisterAddresses().map(::SourceRegister)
 
-        return Compare.from(registers.first(), registers.last(), instruction.conditional)
+        return Compare.of(registers.first(), registers.last(), instruction.conditional)
     }
 }
