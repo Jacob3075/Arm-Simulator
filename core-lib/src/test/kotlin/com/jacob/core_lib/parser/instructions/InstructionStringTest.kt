@@ -6,6 +6,7 @@ import com.jacob.core_lib.instructions.shift.ShiftOperation
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should contain all`
 import org.amshove.kluent.`should contain`
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 internal class InstructionStringTest {
@@ -119,6 +120,99 @@ internal class InstructionStringTest {
             mainInstruction `should be equal to` "B SOME_LABEL-12"
             conditional `should be equal to` Conditionals.EQ
             shiftOperation `should be equal to` ShiftOperation.None
+        }
+    }
+
+    @Nested
+    inner class `Instructions With Offset Tests` {
+        @Test
+        internal fun `memory instruction with immediate offset`() {
+            val instructionString = InstructionString("LDR R1, [R2, #3]")
+
+            instructionString.apply {
+                mnemonic `should be equal to` "LDR"
+                mainInstruction `should be equal to` "LDR R1, [R2, #3]"
+                conditional `should be equal to` Conditionals.AL
+                shiftOperation `should be equal to` ShiftOperation.None
+
+                operands.apply {
+                    this `should contain` "R1"
+                    this `should contain` "R2"
+                    this `should be equal to` listOf("R1", "R2", "#3")
+                }
+            }
+        }
+
+        @Test
+        internal fun `memory instruction with post offset`() {
+            val instructionString = InstructionString("LDR R1, [R2], #3")
+
+            instructionString.apply {
+                mnemonic `should be equal to` "LDR"
+                mainInstruction `should be equal to` "LDR R1, [R2], #3"
+                conditional `should be equal to` Conditionals.AL
+                shiftOperation `should be equal to` ShiftOperation.None
+
+                operands.apply {
+                    this `should contain` "R1"
+                    this `should contain` "R2"
+                    this `should be equal to` listOf("R1", "R2", "#3")
+                }
+            }
+        }
+
+        @Test
+        internal fun `memory instruction with pre offset`() {
+            val instructionString = InstructionString("STR R1, [R2, #3]!")
+
+            instructionString.apply {
+                mnemonic `should be equal to` "STR"
+                mainInstruction `should be equal to` "STR R1, [R2, #3]!"
+                conditional `should be equal to` Conditionals.AL
+                shiftOperation `should be equal to` ShiftOperation.None
+
+                operands.apply {
+                    this `should contain` "R1"
+                    this `should contain` "R2"
+                    this `should be equal to` listOf("R1", "R2", "#3")
+                }
+            }
+        }
+
+        @Test
+        internal fun `memory instruction with pre offset with conditional`() {
+            val instructionString = InstructionString("STREQ R1, [R2, #3]!")
+
+            instructionString.apply {
+                mnemonic `should be equal to` "STR"
+                mainInstruction `should be equal to` "STR R1, [R2, #3]!"
+                conditional `should be equal to` Conditionals.EQ
+                shiftOperation `should be equal to` ShiftOperation.None
+
+                operands.apply {
+                    this `should contain` "R1"
+                    this `should contain` "R2"
+                    this `should be equal to` listOf("R1", "R2", "#3")
+                }
+            }
+        }
+
+        @Test
+        internal fun `memory instruction with post offset with offset`() {
+            val instructionString = InstructionString("LDREQ R1, [R2], #3")
+
+            instructionString.apply {
+                mnemonic `should be equal to` "LDR"
+                mainInstruction `should be equal to` "LDR R1, [R2], #3"
+                conditional `should be equal to` Conditionals.EQ
+                shiftOperation `should be equal to` ShiftOperation.None
+
+                operands.apply {
+                    this `should contain` "R1"
+                    this `should contain` "R2"
+                    this `should be equal to` listOf("R1", "R2", "#3")
+                }
+            }
         }
     }
 }
