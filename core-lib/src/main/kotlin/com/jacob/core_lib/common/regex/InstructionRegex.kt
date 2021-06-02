@@ -111,11 +111,11 @@ object InstructionRegex {
 
     object Conditional {
         val TYPES = "(EQ|NE|CS|CC|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)".toRegex()
-        val Always = "^AL$".toRegex()
-        val Equal = "^EQ$".toRegex()
-        val NotEqual = "^NE$".toRegex()
-        val CarrySet = "^CS$".toRegex()
-        val CarryClear = "^CC$".toRegex()
+        val ALWAYS = "^AL$".toRegex()
+        val EQUAL = "^EQ$".toRegex()
+        val NOTEQUAL = "^NE$".toRegex()
+        val CARRY_SET = "^CS$".toRegex()
+        val CARRY_CLEAR = "^CC$".toRegex()
     }
 
     val LABEL = "^[A-Z]([A-Z]|_|-|\\d)*:$".toRegex() // LABEL_NEW-1:

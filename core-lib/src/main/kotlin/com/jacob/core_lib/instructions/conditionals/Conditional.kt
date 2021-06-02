@@ -7,14 +7,14 @@ sealed interface Conditional {
     val instruction: Instruction
 }
 
+enum class Conditionals {
+    EQ, NE, AL, CS, CC
+}
+
 fun instructionWithConditional(instruction: Instruction, conditional: Conditionals): Instruction = when (conditional) {
     AL -> Always(instruction)
     EQ -> Equal(instruction)
-    NE -> TODO()
-    CS -> TODO()
-    CC -> TODO()
-}
-
-enum class Conditionals {
-    EQ, NE, AL, CS, CC
+    NE -> NotEqual(instruction)
+    CS -> CarrySet(instruction)
+    CC -> CarryClear(instruction)
 }
