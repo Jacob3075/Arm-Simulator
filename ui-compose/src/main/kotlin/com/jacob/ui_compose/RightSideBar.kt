@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jacob.ui_compose.models.CpsrRegister
 import com.jacob.ui_compose.models.RegisterValue
 
 @Composable
@@ -21,7 +22,7 @@ fun RightSideBar(modifier: Modifier, registersArray: List<RegisterValue>) {
         Title()
         RegisterList(modifier = Modifier.weight(0.75f, true), registersArray)
         Divider(color = Color.Gray, modifier = Modifier.padding(top = 16.dp, bottom = 16.dp))
-        CpsrRegisters(modifier = Modifier.weight(0.25f, true))
+        CpsrRegisters(modifier = Modifier.weight(0.25f, true), registersArray.last().toCpsrRegister())
     }
 }
 
@@ -65,7 +66,13 @@ private fun RegisterItem(register: RegisterValue, modifier: Modifier = Modifier)
 }
 
 @Composable
-private fun CpsrRegisters(modifier: Modifier = Modifier) {
+private fun CpsrRegisters(modifier: Modifier = Modifier, cpsrRegister: CpsrRegister) {
+    val cpsrRegisterArray = listOf(
+        RegisterValue("Negative: ", cpsrRegister.negative),
+        RegisterValue("Zero: ", cpsrRegister.zero),
+        RegisterValue("Carry: ", cpsrRegister.carry),
+        RegisterValue("OverFlow: ", cpsrRegister.overFlow),
+    )
     Column(modifier = modifier) {
         Text(
             "CPSR Registers:",
@@ -73,7 +80,7 @@ private fun CpsrRegisters(modifier: Modifier = Modifier) {
             fontSize = 24.sp,
         )
         LazyColumn {
-            items(items = cpsrRegister) {
+            items(items = cpsrRegisterArray) {
                 RegisterItem(it)
             }
         }

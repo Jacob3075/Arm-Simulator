@@ -1,10 +1,10 @@
 package com.jacob.ui_compose.state
 
 import com.jacob.core_lib.core.Core
+import com.jacob.core_lib.core.ParsedData
 import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.Parser
-import com.jacob.core_lib.parser.data.ParsedData
 import com.jacob.ui_compose.convertToMemoryVales
 import com.jacob.ui_compose.convertToRegisters
 import com.jacob.ui_compose.emptyCore

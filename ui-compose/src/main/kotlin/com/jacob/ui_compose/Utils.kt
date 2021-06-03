@@ -14,6 +14,7 @@ import com.jacob.core_lib.core.Program
 import com.jacob.core_lib.core.RegisterArray
 import com.jacob.core_lib.word.Word
 import com.jacob.ui_compose.models.CodeViewerLine
+import com.jacob.ui_compose.models.CpsrRegister
 import com.jacob.ui_compose.models.MemoryValue
 import com.jacob.ui_compose.models.RegisterValue
 import java.io.File
@@ -85,6 +86,15 @@ fun RegisterArray.convertToRegisters() =
     else registers.map {
         RegisterValue(it.key.name, it.value.getRegisterValue().value)
     }
+
+@OptIn(ExperimentalStdlibApi::class)
+fun RegisterValue.toCpsrRegister() = value.toString().let {
+    val negative = it.getOrNull(0)?.digitToInt() ?: 0
+    val zero = it.getOrNull(1)?.digitToInt() ?: 0
+    val carry = it.getOrNull(2)?.digitToInt() ?: 0
+    val overFlow = it.getOrNull(3)?.digitToInt() ?: 0
+    return@let CpsrRegister(negative, zero, carry, overFlow)
+}
 
 fun emptyCore(): Core {
     val program = Program(emptyList(), emptyList())
