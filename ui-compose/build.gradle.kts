@@ -2,13 +2,17 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm")
-    id("org.jetbrains.compose") version "0.4.0"
+    kotlin("jvm") version "1.4.32"
+    id("org.jetbrains.compose") version "0.3.2"
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs = listOf(
+            "-P",
+            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+        )
     }
 }
 
@@ -27,7 +31,7 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "Arm Simulator"
+            packageName = "Example"
             packageVersion = "1.0.0"
         }
     }
