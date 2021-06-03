@@ -43,6 +43,16 @@ class AppState {
         createCore()
     }
 
+    val executeNextInstruction: () -> Unit = {
+        _coreFlow.value.runNextInstruction()
+        updateFlows()
+    }
+
+    val resetProgram: () -> Unit = {
+        _coreFlow.value.resetProgram()
+        updateFlows()
+    }
+
     val executeProgram: () -> Unit = {
         _coreFlow.value.runProgram()
         updateFlows()

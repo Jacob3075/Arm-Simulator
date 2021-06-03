@@ -4,28 +4,35 @@ import com.jacob.core_lib.common.MA
 import com.jacob.core_lib.common.W
 
 class Core(
-    val memoryArray: MemoryArray = MemoryArray(),
-    val registerArray: RegisterArray = RegisterArray(),
+    _memoryArray: MemoryArray = MemoryArray(),
+    _registerArray: RegisterArray = RegisterArray(),
     private val program: Program,
 ) {
+    var memoryArray: MemoryArray private set
+    var registerArray: RegisterArray private set
+
     init {
+        memoryArray = processMemoryArray(_memoryArray)
+        registerArray = _registerArray
+    }
+
+    private fun processMemoryArray(_memoryArray: MemoryArray): MemoryArray {
         program.parsedData.forEachIndexed { index, parsedData ->
-            memoryArray.setWordAt(index.MA, parsedData.variableValue.W)
+            _memoryArray.setWordAt(index.MA, parsedData.variableValue.W)
         }
+        return _memoryArray
     }
 
     fun runNextInstruction(): Boolean {
         val nextInstruction = program.getInstructionAt(registerArray.programCounter) ?: return false
-        val executionEnvironment =
-            ExecutionEnvironment(
-                registerArray = registerArray,
-                memoryArray = memoryArray,
-                labels = program.labels,
-                variables = program.variables
-            )
+        val executionEnvironment = ExecutionEnvironment(
+            registerArray = registerArray,
+            memoryArray = memoryArray,
+            labels = program.labels,
+            variables = program.variables
+        )
 
         nextInstruction.execute(executionEnvironment)
-
         return true
     }
 
@@ -35,5 +42,8 @@ class Core(
         }
     }
 
-    fun resetProgramCounter() = registerArray.programCounter.updateProgramCounter(0)
+    fun resetProgram() {
+        memoryArray = processMemoryArray(MemoryArray())
+        registerArray = RegisterArray()
+    }
 }

@@ -28,7 +28,9 @@ fun main() = MyApp {
             memoryArray = memoryArrayState.value,
             loadFile = appState.loadFile,
             fileName = fileState.value.name,
-            executeProgram = appState.executeProgram
+            executeProgram = appState.executeProgram,
+            executeNextInstruction = appState.executeNextInstruction,
+            resetProgram = appState.resetProgram
         )
         CodeViewer(
             modifier = Modifier
@@ -54,3 +56,5 @@ private fun MyApp(content: @Composable () -> Unit) {
         }
     }
 }
+
+// TODO: CHANGE BACKGROUND COLOR OF ITEMS THAT HAVE CHANGED

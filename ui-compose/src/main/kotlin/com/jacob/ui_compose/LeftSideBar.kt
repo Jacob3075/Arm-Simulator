@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,14 +29,18 @@ fun LeftSideBar(
     loadFile: (File) -> Unit,
     fileName: String,
     memoryArray: List<MemoryValue>,
-    executeProgram: () -> Unit
+    executeProgram: () -> Unit,
+    executeNextInstruction: () -> Unit,
+    resetProgram: () -> Unit,
 ) {
     Column(modifier = modifier) {
         ControlSection(
             modifier = Modifier.weight(0.25f, true),
             loadFile,
             fileName = fileName,
-            executeProgram = executeProgram
+            executeProgram = executeProgram,
+            executeNextInstruction = executeNextInstruction,
+            resetProgram = resetProgram
         )
         Divider(color = Color.Gray, modifier = Modifier.padding(top = 16.dp, bottom = 16.dp))
         MemorySection(modifier = Modifier.weight(0.75f, true), memoryArray = memoryArray)
@@ -43,7 +48,14 @@ fun LeftSideBar(
 }
 
 @Composable
-private fun ControlSection(modifier: Modifier, loadFile: (File) -> Unit, fileName: String, executeProgram: () -> Unit) {
+private fun ControlSection(
+    modifier: Modifier,
+    loadFile: (File) -> Unit,
+    fileName: String,
+    executeProgram: () -> Unit,
+    executeNextInstruction: () -> Unit,
+    resetProgram: () -> Unit
+) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -56,7 +68,7 @@ private fun ControlSection(modifier: Modifier, loadFile: (File) -> Unit, fileNam
             modifier = Modifier.padding(bottom = 12.dp)
         )
         Button(
-            modifier = Modifier.width(150.dp),
+            modifier = Modifier.width(175.dp),
             onClick = {
                 val selectedFile = selectFile() ?: return@Button
                 loadFile(selectedFile)
@@ -65,10 +77,27 @@ private fun ControlSection(modifier: Modifier, loadFile: (File) -> Unit, fileNam
             Text("Load new File")
         }
         Button(
-            modifier = Modifier.width(150.dp),
+            modifier = Modifier.width(175.dp),
             onClick = executeProgram
         ) {
-            Text("Execute File")
+            Text("Execute Program")
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(30.dp),
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            OutlinedButton(
+                onClick = executeNextInstruction,
+                modifier = Modifier.widthIn(max = 40.dp)
+            ) {
+                Text("N")
+            }
+            OutlinedButton(
+                onClick = resetProgram,
+                modifier = Modifier.widthIn(max = 40.dp)
+            ) {
+                Text("S")
+            }
         }
     }
 }
