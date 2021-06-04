@@ -2,7 +2,10 @@ package com.jacob.ui_compose
 
 import androidx.compose.desktop.Window
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
@@ -16,6 +19,17 @@ fun main() = MyApp {
     val fileState = appState.fileFlow.collectAsState()
     val memoryArrayState = appState.memoryArrayFlow.collectAsState()
     val registerArrayState = appState.registerArrayFlow.collectAsState()
+    val errorsState = appState.errorsFlow.collectAsState()
+
+    if (errorsState.value.isNotEmpty()) {
+        Window {
+            LazyColumn {
+                items(items = errorsState.value) {
+                    Text(it.toString())
+                }
+            }
+        }
+    }
 
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,

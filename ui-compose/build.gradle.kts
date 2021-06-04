@@ -20,6 +20,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(project(":core-lib"))
     implementation(compose.desktop.currentOs)
+    implementation("io.arrow-kt:arrow-core:0.13.2")
 }
 
 tasks.test {
