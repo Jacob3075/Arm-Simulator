@@ -2,18 +2,16 @@ package com.jacob.core_lib.parser
 
 import arrow.core.*
 import com.jacob.core_lib.common.Errors
-import com.jacob.core_lib.core.ParsedVariable
+import com.jacob.core_lib.common.Instructions
+import com.jacob.core_lib.common.ParsedData
+import com.jacob.core_lib.common.Variables
 import com.jacob.core_lib.core.Program
-import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.data.DataLine
 import com.jacob.core_lib.parser.instructions.InstructionLine
 import java.io.File
 import kotlin.collections.flatten
 import kotlin.reflect.KClass
 
-typealias Instructions = List<Instruction>
-typealias Variables = List<ParsedVariable>
-typealias ParsedData = Pair<Instructions, Variables>
 private typealias Lines = List<Line>
 private typealias LineTypes = KClass<out Line>
 

@@ -4,11 +4,17 @@ import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.MemoryAddress
 import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
+import com.jacob.core_lib.core.ParsedVariable
+import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.instructions.shift.LeftShift
 import com.jacob.core_lib.instructions.shift.RightShift
 import com.jacob.core_lib.word.ImmediateValue
 import com.jacob.core_lib.word.Word
 import kotlin.reflect.KFunction1
+
+typealias Instructions = List<Instruction>
+typealias Variables = List<ParsedVariable>
+typealias ParsedData = Pair<Instructions, Variables>
 
 fun Boolean.toInt() = if (this) 1 else 0
 
