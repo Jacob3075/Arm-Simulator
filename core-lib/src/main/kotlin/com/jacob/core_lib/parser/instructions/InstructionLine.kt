@@ -1,5 +1,8 @@
 package com.jacob.core_lib.parser.instructions
 
+import arrow.core.ValidatedNel
+import arrow.core.invalidNel
+import com.jacob.core_lib.common.Errors.InvalidInstruction
 import com.jacob.core_lib.common.regex.InstructionRegex.Add
 import com.jacob.core_lib.common.regex.InstructionRegex.Branch
 import com.jacob.core_lib.common.regex.InstructionRegex.Compare
@@ -9,6 +12,7 @@ import com.jacob.core_lib.common.regex.InstructionRegex.Move
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply
 import com.jacob.core_lib.common.regex.InstructionRegex.Store
 import com.jacob.core_lib.common.regex.InstructionRegex.Sub
+import com.jacob.core_lib.instructions.Instruction
 import com.jacob.core_lib.parser.Line
 import com.jacob.core_lib.parser.instructions.add.AddInstructionParser
 import com.jacob.core_lib.parser.instructions.branch.BranchInstructionParser
@@ -22,7 +26,7 @@ import com.jacob.core_lib.parser.instructions.sub.SubInstructionParser
 
 class InstructionLine(val instruction: InstructionString) : Line {
 
-    override fun parse() = with(instruction.mnemonic) {
+    override fun parse(): ValidatedNel<InvalidInstruction, Instruction> = with(instruction.mnemonic) {
         when {
             contains(Add.MNEMONIC) -> AddInstructionParser.from(instruction)
             contains(Sub.MNEMONIC) -> SubInstructionParser.from(instruction)
@@ -33,7 +37,7 @@ class InstructionLine(val instruction: InstructionString) : Line {
             contains(Store.MNEMONIC) -> StoreInstructionParser.from(instruction)
             contains(Branch.MNEMONIC) -> BranchInstructionParser.from(instruction)
             contains(LABEL) -> LabelParser.from(instruction)
-            else -> throw IllegalArgumentException("Cannot parse instruction: $instruction")
+            else -> InvalidInstruction("Cannot parse instruction: $instruction").invalidNel()
         }
     }
 }

@@ -37,8 +37,8 @@ internal class LoadVariableAddressTest {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
         val variables = listOf(
-            ParsedData("A", 10),
-            ParsedData("ABC", 20)
+            ParsedVariable("A", 10),
+            ParsedVariable("ABC", 20)
         )
 
         val destinationRegister1 = 1.DR

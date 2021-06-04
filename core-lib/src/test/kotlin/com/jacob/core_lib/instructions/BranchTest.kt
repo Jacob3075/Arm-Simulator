@@ -48,7 +48,7 @@ internal class BranchTest {
     internal fun `running branch instructions jump to the correct point`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = listOf<ParsedData>()
+        val variables = listOf<ParsedVariable>()
 
         val registerAddress1 = 1.DR
         val registerAddress2 = 2.DR

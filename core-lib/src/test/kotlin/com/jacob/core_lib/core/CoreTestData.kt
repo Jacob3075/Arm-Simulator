@@ -14,7 +14,7 @@ import com.jacob.core_lib.instructions.multipy.Multiply
 import com.jacob.core_lib.instructions.store.Store
 import com.jacob.core_lib.instructions.sub.Sub
 
-val test1Data = Pair<List<Instruction>, List<ParsedData>>(
+val test1Data = Pair<List<Instruction>, List<ParsedVariable>>(
     listOf(
         Move.of(1.DR, 5.I),
         Move.of(2.DR, 10.I),
@@ -24,7 +24,7 @@ val test1Data = Pair<List<Instruction>, List<ParsedData>>(
     emptyList()
 )
 
-val test2Data = Pair<List<Instruction>, List<ParsedData>>(
+val test2Data = Pair<List<Instruction>, List<ParsedVariable>>(
     listOf(
         Move.of(1.DR, 5.I),
         Add.of(3.DR, 1.SR, 2.I),
@@ -33,7 +33,7 @@ val test2Data = Pair<List<Instruction>, List<ParsedData>>(
     emptyList()
 )
 
-val test3Data = Pair<List<Instruction>, List<ParsedData>>(
+val test3Data = Pair<List<Instruction>, List<ParsedVariable>>(
     listOf(
         Move.of(1.DR, 5.I),
         Move.of(2.DR, 10.I),
@@ -65,8 +65,8 @@ val test4Data = Pair(
         Store.of(8.SR, "BCD"),
     ),
     listOf(
-        ParsedData("A", 10),
-        ParsedData("BCD", 15)
+        ParsedVariable("A", 10),
+        ParsedVariable("BCD", 15)
     )
 )
 
@@ -93,10 +93,10 @@ val test5Data = Pair(
         Store.of(8.SR, 4.DR),
     ),
     listOf(
-        ParsedData("A", 10),
-        ParsedData("B", 20),
-        ParsedData("C", 30),
-        ParsedData("D", 40),
+        ParsedVariable("A", 10),
+        ParsedVariable("B", 20),
+        ParsedVariable("C", 30),
+        ParsedVariable("D", 40),
     )
 )
 
@@ -116,12 +116,12 @@ val test6Data = Pair(
         Load.of(9.DR, 2.SR, (-10).I, POST),
     ),
     listOf(
-        ParsedData("A", 10),
-        ParsedData("B", 20),
+        ParsedVariable("A", 10),
+        ParsedVariable("B", 20),
     )
 )
 
-val test7Data = Pair<List<Instruction>, List<ParsedData>>(
+val test7Data = Pair<List<Instruction>, List<ParsedVariable>>(
     listOf(
         Move.of(1.DR, 3.I),
         Move.of(2.DR, 7.I),
@@ -146,7 +146,7 @@ val test7Data = Pair<List<Instruction>, List<ParsedData>>(
     emptyList()
 )
 
-val test8Data = Pair<List<Instruction>, List<ParsedData>>(
+val test8Data = Pair<List<Instruction>, List<ParsedVariable>>(
     listOf(
         Move.of(0.DR, 5.I),
         Move.of(1.DR, 5.I),

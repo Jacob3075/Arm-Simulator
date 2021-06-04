@@ -36,7 +36,7 @@ internal class SubImmediateTest {
     internal fun `running sub instructions using immediate value reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val registerAddress1 = 1.SR
         val registerAddress2 = 2.SR
@@ -68,7 +68,7 @@ internal class SubImmediateTest {
     internal fun `running sub instructions using immediate value with left shit reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val registerAddress1 = 1.SR
         val registerAddress2 = 2.SR
@@ -101,7 +101,7 @@ internal class SubImmediateTest {
     internal fun `running sub instructions using immediate value with right shit reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val registerAddress1 = 1.SR
         val registerAddress2 = 2.SR

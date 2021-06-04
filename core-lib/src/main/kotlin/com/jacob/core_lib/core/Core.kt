@@ -17,7 +17,7 @@ class Core(
     }
 
     private fun processMemoryArray(_memoryArray: MemoryArray): MemoryArray {
-        program.parsedData.forEachIndexed { index, parsedData ->
+        program.parsedVariables.forEachIndexed { index, parsedData ->
             _memoryArray.setWordAt(index.MA, parsedData.variableValue.W)
         }
         return _memoryArray

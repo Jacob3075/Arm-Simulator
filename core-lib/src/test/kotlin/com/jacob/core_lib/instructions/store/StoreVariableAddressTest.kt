@@ -40,8 +40,8 @@ internal class StoreVariableAddressTest {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
         val variables = listOf(
-            ParsedData("A", 0),
-            ParsedData("ABC", 0)
+            ParsedVariable("A", 0),
+            ParsedVariable("ABC", 0)
         )
 
         val sourceRegister1 = SourceRegister(RegisterAddresses.REGISTER_1)

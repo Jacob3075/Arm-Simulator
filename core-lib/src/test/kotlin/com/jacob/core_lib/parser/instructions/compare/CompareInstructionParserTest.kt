@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser.instructions.compare
 
+import arrow.core.getOrElse
 import com.jacob.core_lib.instructions.comapare.CompareRegister
 import com.jacob.core_lib.instructions.conditionals.Always
 import com.jacob.core_lib.parser.instructions.InstructionString
@@ -10,7 +11,7 @@ internal class CompareInstructionParserTest {
     @Test
     internal fun `creates correct instruction`() {
         val instructionString = InstructionString("CMP R1, R2")
-        val instruction = CompareInstructionParser.from(instructionString)
+        val instruction = CompareInstructionParser.from(instructionString).getOrElse { null }!!
 
         instruction `should be instance of` Always::class
         instruction as Always

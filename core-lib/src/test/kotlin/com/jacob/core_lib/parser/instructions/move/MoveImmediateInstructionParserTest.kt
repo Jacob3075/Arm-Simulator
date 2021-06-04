@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser.instructions.move
 
+import arrow.core.getOrElse
 import com.jacob.core_lib.common.I
 import com.jacob.core_lib.common.RA
 import com.jacob.core_lib.common.addresses.DestinationRegister
@@ -16,7 +17,7 @@ internal class MoveImmediateInstructionParserTest {
     internal fun `returns move immediate instruction for positive decimal immediate values`() {
         val instructionString = InstructionString("MOV R1, #2")
 
-        val instruction = MoveInstructionParser.from(instructionString) as Always
+        val instruction = MoveInstructionParser.from(instructionString).getOrElse { null }!! as Always
 
         instruction.instruction.apply {
             this `should be instance of` MoveImmediate::class
@@ -31,7 +32,7 @@ internal class MoveImmediateInstructionParserTest {
     internal fun `returns move immediate instruction for negative decimal immediate values`() {
         val instructionString = InstructionString("MOV R1, #-2")
 
-        val instruction = MoveInstructionParser.from(instructionString) as Always
+        val instruction = MoveInstructionParser.from(instructionString).getOrElse { null }!! as Always
 
         instruction.instruction.apply {
             this `should be instance of` MoveImmediate::class
@@ -46,7 +47,7 @@ internal class MoveImmediateInstructionParserTest {
     internal fun `returns move immediate instruction for hexadecimal immediate values without letters`() {
         val instructionString = InstructionString("MOV R1, #0X123")
 
-        val instruction = MoveInstructionParser.from(instructionString) as Always
+        val instruction = MoveInstructionParser.from(instructionString).getOrElse { null }!! as Always
 
         instruction.instruction.apply {
             this `should be instance of` MoveImmediate::class
@@ -61,7 +62,7 @@ internal class MoveImmediateInstructionParserTest {
     internal fun `returns move immediate instruction for hexadecimal immediate values with letters`() {
         val instructionString = InstructionString("MOV R1, #0X1A2FC3")
 
-        val instruction = MoveInstructionParser.from(instructionString) as Always
+        val instruction = MoveInstructionParser.from(instructionString).getOrElse { null }!! as Always
 
         instruction.instruction.apply {
             this `should be instance of` MoveImmediate::class

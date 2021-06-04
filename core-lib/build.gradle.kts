@@ -6,6 +6,7 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("io.arrow-kt:arrow-core:0.13.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.2")

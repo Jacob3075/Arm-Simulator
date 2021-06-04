@@ -40,7 +40,7 @@ internal class LoadMemoryAddressTest {
     internal fun `running load instructions reads and updates correct memory and register addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val memoryAddress1 = 0.MA
         val memoryAddress2 = 2.MA

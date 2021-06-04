@@ -1,5 +1,8 @@
 package com.jacob.core_lib.parser.instructions.move
 
+import arrow.core.invalidNel
+import arrow.core.valid
+import com.jacob.core_lib.common.Errors.InvalidInstruction
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.common.regex.InstructionRegex.Move.IMMEDIATE_DEC
@@ -12,10 +15,12 @@ interface MoveInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
-                matches(REGISTER) -> MoveRegisterParser(instructionString).parse()
+                matches(REGISTER) -> MoveRegisterParser(instructionString).parse().valid()
                 matches(IMMEDIATE_DEC) -> MoveImmediateParser(instructionString, String::immediateFromDec).parse()
+                    .valid()
                 matches(IMMEDIATE_HEX) -> MoveImmediateParser(instructionString, String::immediateFromHex).parse()
-                else -> throw IllegalArgumentException("Cannot parse instruction: $instructionString")
+                    .valid()
+                else -> InvalidInstruction("Cannot parse instruction: $instructionString").invalidNel()
             }
         }
     }

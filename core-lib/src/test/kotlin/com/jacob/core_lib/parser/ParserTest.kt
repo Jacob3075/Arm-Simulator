@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser
 
+import arrow.core.getOrElse
 import com.jacob.core_lib.core.*
 import com.jacob.core_lib.getFile
 import com.jacob.core_lib.instructions.Instruction
@@ -27,21 +28,25 @@ internal class ParserTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("testInput")
-    internal fun `test parser for input files`(fileName: String, testData: Pair<List<Instruction>, List<ParsedData>>) {
+    internal fun `test parser for input files`(
+        fileName: String,
+        testVariable: Pair<List<Instruction>, List<ParsedVariable>>
+    ) {
         val file = getFile(fileName)
 
-        val parseDataFromFile = Parser.parseDataFromFile(file)
+        val parseDataFromFile =
+            Parser.parseDataFromFile(file).getOrElse { Pair(emptyList(), emptyList()) }
 
         val instructions = parseDataFromFile.first
         val variables = parseDataFromFile.second.toVariables()
 
-        instructions.size `should be equal to` testData.first.size
-        variables.size `should be equal to` testData.second.size
+        instructions.size `should be equal to` testVariable.first.size
+        variables.size `should be equal to` testVariable.second.size
 
-        testData.first.forEach { it `should be in` instructions }
-        testData.second.toVariables().forEach { it `should be in` variables }
+        testVariable.first.forEach { it `should be in` instructions }
+        testVariable.second.toVariables().forEach { it `should be in` variables }
 
-        instructions `should be equal to` testData.first
-        variables `should be equal to` testData.second.toVariables()
+        instructions `should be equal to` testVariable.first
+        variables `should be equal to` testVariable.second.toVariables()
     }
 }

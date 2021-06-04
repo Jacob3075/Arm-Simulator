@@ -32,7 +32,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val destinationAddress1 = 0.DR
         val destinationAddress2 = 1.DR
@@ -63,7 +63,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions with left shift updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val destinationAddress1 = 0.DR
         val destinationAddress2 = 1.DR
@@ -94,7 +94,7 @@ internal class MoveRegisterTest {
     internal fun `running move instructions with right shift updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val destinationAddress1 = 0.DR
         val destinationAddress2 = 1.DR

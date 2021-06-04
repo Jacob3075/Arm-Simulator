@@ -1,5 +1,8 @@
 package com.jacob.core_lib.parser.instructions.multiply
 
+import arrow.core.invalidNel
+import arrow.core.valid
+import com.jacob.core_lib.common.Errors.InvalidInstruction
 import com.jacob.core_lib.common.immediateFromDec
 import com.jacob.core_lib.common.immediateFromHex
 import com.jacob.core_lib.common.regex.InstructionRegex.Multiply.IMMEDIATE_DEC
@@ -13,10 +16,12 @@ interface MultiplyInstructionParser : InstructionParser {
     companion object {
         fun from(instructionString: InstructionString) = with(instructionString.mainInstruction) {
             when {
-                matches(REGISTER) -> MultiplyRegisterParser(instructionString).parse()
+                matches(REGISTER) -> MultiplyRegisterParser(instructionString).parse().valid()
                 matches(IMMEDIATE_DEC) -> MultiplyImmediateParser(instructionString, String::immediateFromDec).parse()
+                    .valid()
                 matches(IMMEDIATE_HEX) -> MultiplyImmediateParser(instructionString, String::immediateFromHex).parse()
-                else -> throw IllegalArgumentException("Cannot parse string: $instructionString")
+                    .valid()
+                else -> InvalidInstruction("Cannot parse string: $instructionString").invalidNel()
             }
         }
     }

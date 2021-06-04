@@ -38,7 +38,7 @@ internal class StoreMemoryAddressTest {
     internal fun `running store instructions reads and updates correct register and memory addresses`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val memoryAddress1 = 0.MA
         val memoryAddress2 = 2.MA

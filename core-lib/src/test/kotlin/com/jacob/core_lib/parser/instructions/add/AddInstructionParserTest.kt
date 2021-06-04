@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser.instructions.add
 
+import arrow.core.getOrElse
 import com.jacob.core_lib.instructions.add.AddImmediate
 import com.jacob.core_lib.instructions.add.AddRegister
 import com.jacob.core_lib.instructions.conditionals.Always
@@ -12,7 +13,7 @@ internal class AddInstructionParserTest {
     internal fun `returns add register instruction parser`() {
         val instructionString = InstructionString("ADD R1, R2, R3")
 
-        val instruction = AddInstructionParser.from(instructionString)
+        val instruction = AddInstructionParser.from(instructionString).getOrElse { null }!!
 
         instruction `should be instance of` Always::class
 
@@ -25,7 +26,7 @@ internal class AddInstructionParserTest {
     internal fun `returns add immediate instruction parser`() {
         val instructionString = InstructionString("ADD R1, R2, #3")
 
-        val instruction = AddInstructionParser.from(instructionString)
+        val instruction = AddInstructionParser.from(instructionString).getOrElse { null }!!
 
         instruction `should be instance of` Always::class
 
@@ -38,7 +39,7 @@ internal class AddInstructionParserTest {
     internal fun `returns add register instruction parser with shift operation`() {
         val instructionString = InstructionString("ADD R1, R2, R3, LSL #2")
 
-        val instruction = AddInstructionParser.from(instructionString)
+        val instruction = AddInstructionParser.from(instructionString).getOrElse { null }!!
 
         instruction `should be instance of` Always::class
 

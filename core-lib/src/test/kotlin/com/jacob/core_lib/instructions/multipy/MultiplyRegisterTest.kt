@@ -38,7 +38,7 @@ internal class MultiplyRegisterTest {
     internal fun `running multiply instructions using registers reads and updates the correct registers`() {
         val memoryArray = MemoryArray()
         val registerArray = RegisterArray()
-        val variables = emptyList<ParsedData>()
+        val variables = emptyList<ParsedVariable>()
 
         val registerAddress1 = 1.SR
         val registerAddress2 = 2.SR

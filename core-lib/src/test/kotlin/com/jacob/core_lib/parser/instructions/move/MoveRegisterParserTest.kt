@@ -1,5 +1,6 @@
 package com.jacob.core_lib.parser.instructions.move
 
+import arrow.core.getOrElse
 import com.jacob.core_lib.common.addresses.DestinationRegister
 import com.jacob.core_lib.common.addresses.RegisterAddresses
 import com.jacob.core_lib.common.addresses.SourceRegister
@@ -16,7 +17,7 @@ internal class MoveRegisterParserTest {
     internal fun `returns move register instruction parser`() {
         val instructionString = InstructionString("MOV R1, R2")
 
-        val moveInstructionParser = MoveInstructionParser.from(instructionString) as Always
+        val moveInstructionParser = MoveInstructionParser.from(instructionString).getOrElse { null }!! as Always
 
         moveInstructionParser.instruction.apply {
             this `should be instance of` MoveRegister::class
